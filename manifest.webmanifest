@@ -1,9 +1,8 @@
 {
-  "name": "Mehrshad Eskandarpour",
+  "name": "Mehrshad Eskandarpour Portfolio",
   "short_name": "Mehrshad",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F8FAFC",
-  "theme_color": "#F8FAFC",
-  "icons": []
+  "background_color": "#F7F9FC",
+  "theme_color": "#F7F9FC"
 }

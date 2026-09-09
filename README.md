@@ -1,24 +1,29 @@
-# Mehrshad Minimal Portfolio
+# Mehrshad Eskandarpour — Modern Engineering Portfolio
 
-Minimal, modern and professional portfolio for GitHub Pages.
+A minimal, modern and professional GitHub Pages portfolio.
 
 ## Design direction
-- Font: Roboto, Arial fallback
-- One fixed palette only
-- Off-white background
-- Dark navy text
-- One blue accent
+- Font: Roboto, with Arial/Helvetica fallback
+- One fixed professional theme
+- Light technical interface
+- Navy + cobalt blue + subtle cyan accents
 - No theme switcher
-- No decorative animations
-- Minimal interaction
-- Responsive mobile layout
+- No decorative clutter
+- Controlled technical animation only where it supports the subject
+
+## Technical animations
+1. Hero: 6G / AI core with wireless nodes, radio waves and data packets
+2. Research: wireless sensor network pulse + adaptive routing paths
+3. AI / Programming: minimal Python policy execution animation
+4. Subtle scroll reveal and slight pointer parallax on the hero visualization
+
+All motion respects `prefers-reduced-motion`.
 
 ## Deploy
-Upload all files in this ZIP to the root of the GitHub Pages repository.
+Upload the contents of this package to the root of:
+`MehrshadEsk/Mehrshadesk.github.io`
 
-Keep the included `CNAME` file if the custom domain is `mehrshadesk.ir`.
-
-## Main files
+The package already includes:
 - index.html
 - styles.css
 - script.js
@@ -27,4 +32,8 @@ Keep the included `CNAME` file if the custom domain is `mehrshadesk.ir`.
 - robots.txt
 - sitemap.xml
 - manifest.webmanifest
+- .nojekyll
 - assets/favicon.svg
+
+The `CNAME` is set to:
+`mehrshadesk.ir`
