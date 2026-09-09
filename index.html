@@ -4,39 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>My Portfolio</title>
+  <title>Mehrshad Esk | Portfolio</title>
+
+  <meta name="description"
+        content="Official portfolio of Mehrshad Esk. Explore projects, experience, skills and professional work.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://mehrshadesk.ir/">
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      background: #0b0b0b;
+      color: #ffffff;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .small-title {
+      color: #999;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: clamp(48px, 9vw, 100px);
+      line-height: 0.95;
+      margin-bottom: 25px;
     }
 
-    p {
-      color: #aaa;
+    .intro {
+      max-width: 650px;
       font-size: 20px;
+      line-height: 1.6;
+      color: #cfcfcf;
+      margin-bottom: 35px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .links a {
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid #444;
+      padding: 12px 20px;
+      border-radius: 30px;
+      transition: 0.25s;
+    }
+
+    .links a:hover {
+      background: #ffffff;
+      color: #000000;
     }
   </style>
 </head>
 
 <body>
 
-  <div>
-    <h1>I love u PARMIDA</h1>
-    <p>4</p>
-  </div>
+  <main class="container">
+
+    <div class="small-title">Portfolio</div>
+
+    <h1>Mehrshad Esk</h1>
+
+    <p class="intro">
+      Welcome to my personal portfolio. Here you can explore my projects,
+      professional experience, research and selected work.
+    </p>
+
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About Me</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </main>
 
 </body>
 </html>
