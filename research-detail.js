@@ -1,0 +1,1 @@
+(()=>{const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();const preference=matchMedia('(prefers-reduced-motion: reduce)');function apply(){document.querySelectorAll('svg').forEach(svg=>{if(preference.matches)svg.pauseAnimations?.();else svg.unpauseAnimations?.()})}apply();preference.addEventListener('change',apply)})();

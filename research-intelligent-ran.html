@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Intelligent Radio Access Networks — Mehrshad Eskandarpour</title>
+  <meta name="description" content="Mehrshad Eskandarpour's work in intelligent radio access networks, 5G/6G, reinforcement learning, load balancing, mobility and AI-RAN."/>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="research-detail.css"/>
+  <style>
+    .ran-grid path{fill:none;stroke:#E9EEF5;stroke-width:1}
+    .cell{fill:none;stroke:#AFC7E8;stroke-width:1.1;opacity:.8;animation:cellPulse 4.5s ease-out infinite;transform-box:fill-box;transform-origin:center}.c2{animation-delay:1.5s}.c3{animation-delay:3s}
+    .tower-line{stroke:#0B1B31;stroke-width:3}.tower-arm{stroke:#0B1B31;stroke-width:2}
+    .beam{fill:none;stroke:#64A0E8;stroke-width:1.4;stroke-dasharray:5 5;animation:beam 3.6s linear infinite}
+    .user circle:first-child{fill:#fff;stroke:#AABBD0}.user circle:nth-child(2){fill:#0D91BC}.user text{font:600 8px Roboto;fill:#78869A}
+    .handover{fill:none;stroke:#245FC5;stroke-width:2;stroke-dasharray:4 6}
+    .decision circle{fill:#EAF2FF;stroke:#245FC5}.decision text{font:700 9px Roboto;fill:#184A9B}
+    .decision-edge{stroke:#9FB7D7;stroke-width:1}
+    .metric-bg{fill:#E0E7F0}.metric-live{fill:#245FC5;animation:metric 4s ease-in-out infinite;transform-origin:left}
+    @keyframes cellPulse{0%{opacity:.75;transform:scale(.72)}80%,100%{opacity:0;transform:scale(1.15)}}
+    @keyframes beam{to{stroke-dashoffset:-22}}
+    @keyframes metric{0%,100%{transform:scaleX(.75)}50%{transform:scaleX(1)}}
+  </style>
+<link rel="stylesheet" href="detail-theme.css" /></head>
+<body>
+<header class="topbar"><div class="container"><a class="brand" href="index.html"><i>ME</i>Mehrshad Eskandarpour</a><a class="back" href="index.html#research">← Back to Research</a></div></header>
+
+<main>
+<section class="research-hero"><div class="container">
+<p class="breadcrumb">R02 / INTELLIGENT RADIO ACCESS NETWORKS</p>
+<h1>Intelligent Radio<br/>Access Networks</h1>
+<p class="intro">
+  This work focuses on using artificial intelligence and reinforcement learning to make
+  radio access networks more adaptive — especially under mobility, uncertain observations,
+  changing load and quality-of-service constraints.
+</p>
+<div class="hero-meta"><span>AI-RAN</span><span>5G / 6G</span><span>Load Balancing</span><span>Mobility</span><span>QoS</span><span>Reinforcement Learning</span></div>
+
+<div class="animation-card">
+<div class="card-head"><span>AI-RAN / MOBILITY + HANDOVER DECISION MODEL</span><span class="active"><i></i> POLICY ACTIVE</span></div>
+<div class="viz">
+<svg viewBox="0 0 1000 560" role="img" aria-label="Animated intelligent radio access network with handover and AI decision layer">
+  <g class="ran-grid"><path d="M50 100H950M50 200H950M50 300H950M50 400H950M160 50V510M320 50V510M480 50V510M640 50V510M800 50V510"/></g>
+
+  <g>
+    <circle class="cell c1" cx="240" cy="310" r="125"/><circle class="cell c2" cx="500" cy="250" r="135"/><circle class="cell c3" cx="760" cy="320" r="125"/>
+  </g>
+
+  <g transform="translate(240 310)">
+    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
+    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
+    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
+  </g>
+  <g transform="translate(500 250)">
+    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
+    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
+    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
+  </g>
+  <g transform="translate(760 320)">
+    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
+    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
+    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
+  </g>
+
+  <path class="beam" d="M240 275 Q330 190 430 230"/><path class="beam" d="M500 215 Q620 165 715 285"/><path class="beam" d="M760 285 Q660 390 555 300"/>
+  <path class="handover" d="M325 355 C410 320 480 340 565 300 C650 260 700 300 810 365"/>
+
+  <g class="user" transform="translate(330 355)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-17</text></g>
+  <g class="user" transform="translate(560 300)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-24</text></g>
+  <g class="user" transform="translate(810 365)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-31</text></g>
+
+  <circle r="5" fill="#245FC5"><animateMotion dur="5.2s" repeatCount="indefinite" path="M325 355 C410 320 480 340 565 300 C650 260 700 300 810 365"/></circle>
+
+  <g class="decision-edge">
+    <line x1="500" y1="250" x2="500" y2="95"/><line x1="500" y1="95" x2="405" y2="95"/><line x1="500" y1="95" x2="595" y2="95"/>
+  </g>
+  <g class="decision" transform="translate(500 95)"><circle r="38"/><text y="-2" text-anchor="middle">AI</text><text y="14" text-anchor="middle">POLICY</text></g>
+  <g class="decision" transform="translate(405 95)"><circle r="23"/><text y="3" text-anchor="middle">QoS</text></g>
+  <g class="decision" transform="translate(595 95)"><circle r="23"/><text y="3" text-anchor="middle">LOAD</text></g>
+
+  <g transform="translate(65 505)">
+    <rect class="metric-bg" width="180" height="8" rx="4"/><rect class="metric-live" width="154" height="8" rx="4"/>
+    <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">QoS SCORE / 0.86</text>
+  </g>
+  <g transform="translate(745 505)">
+    <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">HANDOVER / ACCEPTED</text>
+    <text x="0" y="14" style="font:700 13px Roboto;fill:#245FC5">CELL B → C</text>
+  </g>
+</svg>
+</div>
+<div class="card-foot">
+<div><span>POLICY</span><strong>Adaptive RL</strong></div><div><span>OBJECTIVE</span><strong>QoS + Load</strong></div><div><span>MOBILITY</span><strong>Active</strong></div><div><span>HANDOVER</span><strong>Optimized</strong></div>
+</div></div>
+</div></section>
+
+<section class="section"><div class="container grid"><aside class="side"><span>01</span>What I work on</aside><div class="content">
+<h2>Making the radio access network more aware of what is happening around it.</h2>
+<p>
+  My work in intelligent RAN is centered on AI-driven network control, with a particular
+  focus on mobility, load balancing and quality of service. I have studied deep
+  reinforcement learning for cellular load balancing under user mobility and incomplete
+  observations, and my telecommunications experience has also included practical 3G, 4G
+  and 5G network monitoring, configuration, optimization, neighboring-cell management and
+  new-site deployment. The long-term direction is toward AI-native RAN architectures in
+  which network decisions become more context-aware, adaptive and autonomous.
+</p>
+<div class="work-grid">
+<article class="work-card"><span>AI-RAN</span><h3>Learning-based control</h3><p>Reinforcement-learning policies for network decisions that adapt to dynamic radio conditions.</p></article>
+<article class="work-card"><span>QoS</span><h3>Load balancing</h3><p>Balancing traffic across cells while protecting service quality under mobility and uncertainty.</p></article>
+<article class="work-card"><span>MOBILITY</span><h3>Handover-aware optimization</h3><p>Modeling user movement, cell association and changing network states as part of the control problem.</p></article>
+<article class="work-card"><span>OPERATIONS</span><h3>Real network context</h3><p>Experience with Huawei 3G/4G/5G configuration, alarms, optimization and live network operations.</p></article>
+</div>
+</div></div></section>
+
+<section class="section"><div class="container grid"><aside class="side"><span>02</span>Related papers</aside><div class="content">
+<h2>Publications connected to this field.</h2>
+<div class="paper-list">
+<a class="paper" href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3><p>arXiv · 5G · PPO · Deep Reinforcement Learning</p></div><b>↗</b></a>
+</div>
+<p>
+  This is currently the publication most directly connected to my Intelligent RAN work.
+  The broader research direction also draws on my work in reinforcement learning, multi-agent
+  systems and wireless network optimization.
+</p>
+</div></div></section>
+</main>
+
+<section class="cta"><div class="container"><div><h2>AI-RAN is the bridge between radio engineering and intelligent control.</h2><p>See the paper or return to the main portfolio.</p></div><div class="cta-links"><a href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer">View paper ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
+<footer><div class="container footer-row"><span>© <span id="year"></span> Mehrshad Eskandarpour</span><span>Intelligent Radio Access Networks</span></div></footer>
+<script src="research-detail.js"></script>
+</body></html>

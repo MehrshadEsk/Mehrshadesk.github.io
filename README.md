@@ -1,39 +1,14 @@
-# Mehrshad Eskandarpour — Modern Engineering Portfolio
+# Mehrshad Eskandarpour — Portfolio
 
-A minimal, modern and professional GitHub Pages portfolio.
+Minimal static portfolio for mehrshadesk.ir. No build or package installation required.
 
-## Design direction
-- Font: Roboto, with Arial/Helvetica fallback
-- One fixed professional theme
-- Light technical interface
-- Navy + cobalt blue + subtle cyan accents
-- No theme switcher
-- No decorative clutter
-- Controlled technical animation only where it supports the subject
+## GitHub Pages
 
-## Technical animations
-1. Hero: 6G / AI core with wireless nodes, radio waves and data packets
-2. Research: wireless sensor network pulse + adaptive routing paths
-3. AI / Programming: minimal Python policy execution animation
-4. Subtle scroll reveal and slight pointer parallax on the hero visualization
+1. Extract this ZIP.
+2. Replace the website files in the existing GitHub Pages publishing folder (repository root or docs, as configured). Upload the extracted files, not the ZIP.
+3. Commit the changes to the publishing branch.
+4. Keep the included CNAME file containing mehrshadesk.ir and preserve existing DNS settings.
 
-All motion respects `prefers-reduced-motion`.
+Six accessible portfolio tabs, keyboard navigation (arrows, Home, End), direct fragment links, mobile layouts, motion preferences, and three independent research pages. Content remains readable when JavaScript is disabled. IBM Plex Mono loads from Google Fonts, with system monospace fallbacks.
 
-## Deploy
-Upload the contents of this package to the root of:
-`MehrshadEsk/Mehrshadesk.github.io`
-
-The package already includes:
-- index.html
-- styles.css
-- script.js
-- 404.html
-- CNAME
-- robots.txt
-- sitemap.xml
-- manifest.webmanifest
-- .nojekyll
-- assets/favicon.svg
-
-The `CNAME` is set to:
-`mehrshadesk.ir`
+Research facts and publication links are retained from the supplied portfolio; they have not been independently verified. Research animations are illustrative, not live network measurements.
