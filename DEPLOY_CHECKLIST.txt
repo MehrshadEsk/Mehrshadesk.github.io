@@ -1,0 +1,17 @@
+MEHRSHAD PORTFOLIO — DEPLOY CHECKLIST
+
+1) Extract this ZIP.
+2) Open your GitHub repository: MehrshadEsk/Mehrshadesk.github.io
+3) Upload/replace ALL files and the assets folder in the repository root.
+4) Keep the branch as main.
+5) Commit the changes.
+6) GitHub Pages will continue using mehrshadesk.ir through the included CNAME file.
+
+Visual theme controls:
+- Click the diamond icon in the top navigation
+- Or press T
+- Quick navigation: Cmd/Ctrl + K
+
+Important:
+- The References & Recommendations area contains a clearly marked template.
+  Replace it with verified recommendation quotes before treating that area as final content.
