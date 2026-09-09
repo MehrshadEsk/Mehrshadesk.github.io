@@ -12,3 +12,7 @@ Minimal static portfolio for mehrshadesk.ir. No build or package installation re
 Six accessible portfolio tabs, keyboard navigation (arrows, Home, End), direct fragment links, mobile layouts, motion preferences, and three independent research pages. Content remains readable when JavaScript is disabled. IBM Plex Mono loads from Google Fonts, with system monospace fallbacks.
 
 Research facts and publication links are retained from the supplied portfolio; they have not been independently verified. Research animations are illustrative, not live network measurements.
+
+Portrait update: upload index.html, styles.css, script.js, teaching-assistantships.html and the complete assets folder together. The original portrait is served as JPEG with an embedded fallback. TA history opens in a new browser tab.
+
+Portrait refinement: 15% smaller, with binary animation behind the photo only and no foreground overlay.
