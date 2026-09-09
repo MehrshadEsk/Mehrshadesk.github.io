@@ -1,105 +1,1202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Mehrshad Esk | Portfolio</title>
+  <title>Mehrshad Eskandarpour | Network Engineer & Researcher</title>
 
-  <meta name="description"
-        content="Official portfolio of Mehrshad Esk. Explore projects, experience, skills and professional work.">
+  <meta
+    name="description"
+    content="Mehrshad Eskandarpour — Network Engineer and researcher working across wireless networks, reinforcement learning, telecommunications, cybersecurity, and intelligent systems."
+  />
 
-  <meta name="robots" content="index, follow">
+  <meta
+    name="keywords"
+    content="Mehrshad Eskandarpour, Network Engineer, Researcher, Telecommunications, Wireless Networks, Reinforcement Learning, 5G, WSN, Cybersecurity, IUST"
+  />
 
-  <link rel="canonical" href="https://mehrshadesk.ir/">
+  <meta name="author" content="Mehrshad Eskandarpour" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#07090d" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="canonical" href="https://mehrshadesk.ir/" />
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-    }
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%2307090d%22/><text x=%2250%22 y=%2262%22 text-anchor=%22middle%22 font-size=%2244%22 fill=%22%23b7ff57%22 font-family=%22Arial%22 font-weight=%22700%22>ME</text></svg>"
+  />
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-    }
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:title"
+    content="Mehrshad Eskandarpour | Network Engineer & Researcher"
+  />
+  <meta
+    property="og:description"
+    content="Research and engineering across wireless networks, intelligent systems, telecommunications, and applied machine learning."
+  />
+  <meta property="og:url" content="https://mehrshadesk.ir/" />
+  <meta property="og:site_name" content="Mehrshad Eskandarpour" />
 
-    .small-title {
-      color: #999;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Mehrshad Eskandarpour | Network Engineer & Researcher"
+  />
+  <meta
+    name="twitter:description"
+    content="Research and engineering across wireless networks, intelligent systems, telecommunications, and applied machine learning."
+  />
 
-    h1 {
-      font-size: clamp(48px, 9vw, 100px);
-      line-height: 0.95;
-      margin-bottom: 25px;
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    .intro {
-      max-width: 650px;
-      font-size: 20px;
-      line-height: 1.6;
-      color: #cfcfcf;
-      margin-bottom: 35px;
-    }
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+  <link rel="stylesheet" href="styles.css" />
 
-    .links a {
-      color: #ffffff;
-      text-decoration: none;
-      border: 1px solid #444;
-      padding: 12px 20px;
-      border-radius: 30px;
-      transition: 0.25s;
-    }
-
-    .links a:hover {
-      background: #ffffff;
-      color: #000000;
-    }
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mehrshad Eskandarpour",
+    "url": "https://mehrshadesk.ir/",
+    "jobTitle": "Network Engineer",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Iran University of Science and Technology"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/mehrshadesk",
+      "https://github.com/MehrshadEsk",
+      "https://orcid.org/0009-0006-8597-0293"
+    ],
+    "knowsAbout": [
+      "Wireless Networks",
+      "5G",
+      "Reinforcement Learning",
+      "Wireless Sensor Networks",
+      "Telecommunications",
+      "Cybersecurity",
+      "Machine Learning"
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
-  <main class="container">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-    <div class="small-title">Portfolio</div>
+  <header class="site-header">
 
-    <h1>Mehrshad Esk</h1>
+    <a class="brand" href="#top">
+      <span class="brand-mark">ME</span>
+      <span class="brand-name">Mehrshad Eskandarpour</span>
+    </a>
 
-    <p class="intro">
-      Welcome to my personal portfolio. Here you can explore my projects,
-      professional experience, research and selected work.
-    </p>
+    <nav class="desktop-nav">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+    </nav>
 
-    <div class="links">
-      <a href="#projects">Projects</a>
-      <a href="#about">About Me</a>
-      <a href="#contact">Contact</a>
+    <div class="header-actions">
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle color theme"
+      >
+        <svg
+          class="sun-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+          ></path>
+        </svg>
+      </button>
+
+      <a
+        class="contact-pill"
+        href="https://www.linkedin.com/in/mehrshadesk"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Connect <span>↗</span>
+      </a>
+
     </div>
 
+  </header>
+
+
+  <main id="top">
+
+    <section class="hero section-shell">
+
+      <div class="hero-kicker reveal">
+        <span class="status-dot"></span>
+        Network Engineer · Researcher · Electrical Engineering
+      </div>
+
+
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+
+          <h1 class="reveal">
+            Engineering
+            <span class="outline-word">intelligent</span>
+            networks.
+          </h1>
+
+          <p class="hero-intro reveal">
+
+            I’m <strong>Mehrshad Eskandarpour</strong>, a network engineer
+            and researcher focused on wireless systems, reinforcement
+            learning, telecommunications, cybersecurity, and
+            machine-learning-driven network intelligence.
+
+          </p>
+
+
+          <div class="hero-actions reveal">
+
+            <a class="primary-btn" href="#publications">
+
+              Explore research
+              <span class="btn-arrow">↘</span>
+
+            </a>
+
+
+            <a
+              class="text-link"
+              href="https://orcid.org/0009-0006-8597-0293"
+              target="_blank"
+              rel="noreferrer"
+            >
+              ORCID <span>↗</span>
+            </a>
+
+
+            <a
+              class="text-link"
+              href="https://github.com/MehrshadEsk"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <span>↗</span>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <aside class="signal-card reveal">
+
+          <div class="signal-top">
+
+            <span>research.signal</span>
+
+            <span class="live">ACTIVE</span>
+
+          </div>
+
+
+          <div class="signal-visual">
+
+            <svg
+              viewBox="0 0 600 260"
+              preserveAspectRatio="none"
+            >
+
+              <defs>
+
+                <linearGradient
+                  id="signalGradient"
+                  x1="0"
+                  x2="1"
+                >
+
+                  <stop
+                    offset="0%"
+                    stop-color="currentColor"
+                    stop-opacity="0.08"
+                  />
+
+                  <stop
+                    offset="50%"
+                    stop-color="currentColor"
+                    stop-opacity="0.7"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stop-color="currentColor"
+                    stop-opacity="0.08"
+                  />
+
+                </linearGradient>
+
+              </defs>
+
+
+              <path
+                class="grid-line"
+                d="M0 52H600M0 104H600M0 156H600M0 208H600"
+              ></path>
+
+
+              <path
+                class="signal-line"
+                d="M0 145
+                C45 145 58 145 78 145
+                C92 145 97 66 111 66
+                C125 66 129 187 144 187
+                C158 187 164 114 180 114
+                C198 114 202 150 220 150
+                C243 150 246 81 267 81
+                C289 81 294 181 316 181
+                C337 181 344 127 365 127
+                C386 127 395 155 420 155
+                C448 155 452 98 479 98
+                C505 98 512 145 540 145
+                C565 145 575 145 600 145"
+              ></path>
+
+
+              <path
+                class="signal-fill"
+                d="M0 145
+                C45 145 58 145 78 145
+                C92 145 97 66 111 66
+                C125 66 129 187 144 187
+                C158 187 164 114 180 114
+                C198 114 202 150 220 150
+                C243 150 246 81 267 81
+                C289 81 294 181 316 181
+                C337 181 344 127 365 127
+                C386 127 395 155 420 155
+                C448 155 452 98 479 98
+                C505 98 512 145 540 145
+                C565 145 575 145 600 145
+                L600 260 L0 260Z"
+              ></path>
+
+            </svg>
+
+          </div>
+
+
+          <div class="signal-tags">
+
+            <span>5G</span>
+            <span>RL</span>
+            <span>WSN</span>
+            <span>Security</span>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <div class="metrics-grid reveal">
+
+        <article>
+          <span class="metric-value">11+</span>
+          <span class="metric-label">Research papers</span>
+        </article>
+
+
+        <article>
+          <span class="metric-value">26</span>
+          <span class="metric-label">
+            Teaching-assistant experiences
+          </span>
+        </article>
+
+
+        <article>
+          <span class="metric-value">8</span>
+          <span class="metric-label">
+            Courses supported as TA
+          </span>
+        </article>
+
+
+        <article>
+          <span class="metric-value">IUST</span>
+          <span class="metric-label">
+            Electrical Engineering
+          </span>
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="marquee">
+
+      <div class="marquee-track">
+
+        <span>WIRELESS NETWORKS</span><i>✦</i>
+        <span>REINFORCEMENT LEARNING</span><i>✦</i>
+        <span>5G</span><i>✦</i>
+        <span>CYBERSECURITY</span><i>✦</i>
+        <span>TELECOMMUNICATIONS</span><i>✦</i>
+        <span>WIRELESS SENSOR NETWORKS</span><i>✦</i>
+
+        <span>WIRELESS NETWORKS</span><i>✦</i>
+        <span>REINFORCEMENT LEARNING</span><i>✦</i>
+        <span>5G</span><i>✦</i>
+        <span>CYBERSECURITY</span><i>✦</i>
+        <span>TELECOMMUNICATIONS</span><i>✦</i>
+        <span>WIRELESS SENSOR NETWORKS</span><i>✦</i>
+
+      </div>
+
+    </section>
+
+
+
+    <section
+      class="content-section section-shell"
+      id="about"
+    >
+
+      <div class="section-label reveal">
+        01 / About
+      </div>
+
+
+      <div class="about-grid">
+
+        <h2 class="section-title reveal">
+
+          Research that moves from
+          <span>theory to systems.</span>
+
+        </h2>
+
+
+        <div class="about-copy reveal">
+
+          <p>
+
+            My work sits at the intersection of
+            <strong>communication networks</strong> and
+            <strong>intelligent decision-making</strong>.
+
+            I’m particularly interested in systems that can
+            adapt to uncertainty, mobility, limited energy,
+            and changing network conditions.
+
+          </p>
+
+
+          <p>
+
+            I earned my B.Sc. in Electrical Engineering,
+            specializing in Telecommunication Systems,
+            from the Iran University of Science and Technology.
+
+            My undergraduate thesis explored deep reinforcement
+            learning for QoS-aware load balancing in 5G
+            cellular networks.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section
+      class="content-section section-shell"
+      id="research"
+    >
+
+      <div class="section-label reveal">
+        02 / Research map
+      </div>
+
+
+      <div class="research-grid">
+
+
+        <article class="research-card featured reveal">
+
+          <div class="card-index">
+            R.01
+          </div>
+
+          <h3>
+            Intelligent Wireless Networks
+          </h3>
+
+          <p>
+
+            Learning-driven optimization for network control,
+            mobility, load balancing, routing, coverage,
+            and resource management.
+
+          </p>
+
+          <div class="card-footer">
+
+            <span>5G</span>
+            <span>MARL</span>
+            <span>QoS</span>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="research-card reveal">
+
+          <div class="card-index">
+            R.02
+          </div>
+
+          <h3>
+            Wireless Sensor Networks
+          </h3>
+
+          <p>
+
+            Energy-aware routing, cluster-head selection,
+            mobile coverage, reliability, and long-lifetime
+            sensor architectures.
+
+          </p>
+
+          <div class="card-footer">
+
+            <span>WSN</span>
+            <span>Energy</span>
+            <span>IoT</span>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="research-card reveal">
+
+          <div class="card-index">
+            R.03
+          </div>
+
+          <h3>
+            Cybersecurity & Applied ML
+          </h3>
+
+          <p>
+
+            Machine-learning-assisted analysis of side channels,
+            smart-contract security, and robust intelligent
+            systems.
+
+          </p>
+
+          <div class="card-footer">
+
+            <span>Security</span>
+            <span>DL</span>
+            <span>Blockchain</span>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="research-card reveal">
+
+          <div class="card-index">
+            R.04
+          </div>
+
+          <h3>
+            Signals & Speech Intelligence
+          </h3>
+
+          <p>
+
+            Neural modeling for signal and speech applications,
+            including few-shot voice conversion and adaptive
+            learning.
+
+          </p>
+
+          <div class="card-footer">
+
+            <span>Signal</span>
+            <span>Speech</span>
+            <span>Neural</span>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <section
+      class="content-section section-shell"
+      id="publications"
+    >
+
+      <div class="section-heading-row">
+
+        <div>
+
+          <div class="section-label reveal">
+            03 / Selected publications
+          </div>
+
+          <h2 class="section-title compact reveal">
+            Research archive.
+          </h2>
+
+        </div>
+
+
+        <a
+          class="archive-link reveal"
+          href="https://dblp.org/pid/415/2012"
+          target="_blank"
+          rel="noreferrer"
+        >
+          DBLP profile ↗
+        </a>
+
+      </div>
+
+
+
+      <div class="publication-list">
+
+
+        <a
+          class="publication-row reveal"
+          href="https://doi.org/10.1016/j.rineng.2026.109099"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2026
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              VowelVC: A Neural Vowel-Centric Voice Conversion
+              Framework with Incremental Memory Learning for
+              Few-Shot Speaker Adaptation
+
+            </h3>
+
+            <p>
+              Results in Engineering · Elsevier
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+
+        <a
+          class="publication-row reveal"
+          href="https://doi.org/10.22060/eej.2026.24478.5712"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2026
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              Breaking Probabilistic Side-Channel Defenses:
+              A Deep Learning Approach to Cryptographic
+              Key Recovery
+
+            </h3>
+
+            <p>
+              AUT Journal of Electrical Engineering
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+
+        <a
+          class="publication-row reveal"
+          href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2026
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              Demystifying Random Numbers in Smart Contracts:
+              A Novel and High-Efficiency Approach for
+              Attacking Ethereum Contracts
+
+            </h3>
+
+            <p>
+              SSRN · Smart-contract security
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+
+        <a
+          class="publication-row reveal"
+          href="https://arxiv.org/abs/2510.24869"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2025
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              Deep Reinforcement Learning Approach to QoS-Aware
+              Load Balancing in 5G Cellular Networks under
+              User Mobility and Observation Uncertainty
+
+            </h3>
+
+            <p>
+              arXiv · 5G · Reinforcement learning
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+
+        <a
+          class="publication-row reveal"
+          href="https://arxiv.org/abs/2508.14679"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2025
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              Energy-Efficient Routing Algorithm for Wireless
+              Sensor Networks: A Multi-Agent Reinforcement
+              Learning Approach
+
+            </h3>
+
+            <p>
+              arXiv · Wireless Sensor Networks
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+
+        <a
+          class="publication-row reveal"
+          href="https://doi.org/10.1155/dsn/5870686"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <div class="pub-year">
+            2025
+          </div>
+
+          <div class="pub-main">
+
+            <h3>
+
+              Enhancing Lifetime and Reliability in WSNs:
+              Complementary of Dual-Battery Systems Energy
+              Management Strategy
+
+            </h3>
+
+            <p>
+              International Journal of Distributed Sensor Networks · Wiley
+            </p>
+
+          </div>
+
+          <div class="pub-arrow">
+            ↗
+          </div>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+
+    <section
+      class="content-section section-shell"
+      id="experience"
+    >
+
+      <div class="section-label reveal">
+        04 / Path
+      </div>
+
+
+      <div class="timeline">
+
+
+        <article class="timeline-item reveal">
+
+          <div class="timeline-marker"></div>
+
+          <div class="timeline-meta">
+            Engineering
+          </div>
+
+          <div class="timeline-content">
+
+            <h3>
+              Network Engineer
+            </h3>
+
+            <p>
+
+              Professional work in network engineering,
+              configuration, infrastructure, and
+              telecommunications environments.
+
+            </p>
+
+            <div class="timeline-tags">
+
+              <span>Networks</span>
+              <span>Telecom</span>
+              <span>Infrastructure</span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="timeline-item reveal">
+
+          <div class="timeline-marker"></div>
+
+          <div class="timeline-meta">
+            Research
+          </div>
+
+          <div class="timeline-content">
+
+            <h3>
+              Researcher — Intelligent Networks & Applied ML
+            </h3>
+
+            <p>
+
+              Research spanning reinforcement learning for
+              5G and WSNs, cybersecurity, signal processing,
+              speech intelligence, and energy-aware network
+              systems.
+
+            </p>
+
+            <div class="timeline-tags">
+
+              <span>RL</span>
+              <span>WSN</span>
+              <span>Security</span>
+              <span>Signals</span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="timeline-item reveal">
+
+          <div class="timeline-marker"></div>
+
+          <div class="timeline-meta">
+            Academic
+          </div>
+
+          <div class="timeline-content">
+
+            <h3>
+              Teaching Assistant · Iran University of Science and Technology
+            </h3>
+
+            <p>
+
+              26 teaching-assistant experiences across eight
+              electrical-engineering courses, including
+              Signals & Systems, Cryptography,
+              Communication Systems, Fields & Waves,
+              Electromagnetics, Electronics II,
+              Computer Programming, and Circuits & Networks.
+
+            </p>
+
+            <div class="timeline-tags">
+
+              <span>Teaching</span>
+              <span>Coordination</span>
+              <span>Mentoring</span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="timeline-item reveal">
+
+          <div class="timeline-marker"></div>
+
+          <div class="timeline-meta">
+            Education
+          </div>
+
+          <div class="timeline-content">
+
+            <h3>
+              B.Sc. Electrical Engineering — Telecommunication Systems
+            </h3>
+
+            <p>
+
+              Iran University of Science and Technology (IUST).
+
+              Undergraduate thesis:
+
+              <em>
+                Deep Reinforcement Learning Approach to QoS-Aware
+                Load Balancing in 5G Cellular Networks under User
+                Mobility and Observation Uncertainty.
+              </em>
+
+            </p>
+
+            <div class="timeline-tags">
+
+              <span>IUST</span>
+              <span>Telecommunications</span>
+              <span>5G</span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <section class="content-section section-shell">
+
+      <div class="section-label reveal">
+        05 / Profiles
+      </div>
+
+
+      <div class="profile-grid">
+
+
+        <a
+          class="profile-card reveal"
+          href="https://www.linkedin.com/in/mehrshadesk"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <span class="profile-platform">
+            LinkedIn
+          </span>
+
+          <span class="profile-handle">
+            /in/mehrshadesk
+          </span>
+
+          <span class="profile-arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <a
+          class="profile-card reveal"
+          href="https://github.com/MehrshadEsk"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <span class="profile-platform">
+            GitHub
+          </span>
+
+          <span class="profile-handle">
+            @MehrshadEsk
+          </span>
+
+          <span class="profile-arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <a
+          class="profile-card reveal"
+          href="https://orcid.org/0009-0006-8597-0293"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <span class="profile-platform">
+            ORCID
+          </span>
+
+          <span class="profile-handle">
+            0009-0006-8597-0293
+          </span>
+
+          <span class="profile-arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <a
+          class="profile-card reveal"
+          href="https://dblp.org/pid/415/2012"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <span class="profile-platform">
+            DBLP
+          </span>
+
+          <span class="profile-handle">
+            Research record
+          </span>
+
+          <span class="profile-arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+
+    <section class="closing-section section-shell">
+
+
+      <div
+        class="closing-orbit reveal"
+        aria-hidden="true"
+      >
+
+        <span class="orbit orbit-one"></span>
+
+        <span class="orbit orbit-two"></span>
+
+        <span class="orbit-dot"></span>
+
+      </div>
+
+
+      <div class="closing-copy">
+
+
+        <div class="section-label reveal">
+          06 / Connect
+        </div>
+
+
+        <h2 class="reveal">
+
+          Build the next intelligent system.
+
+        </h2>
+
+
+        <p class="reveal">
+
+          Research, engineering, telecommunications,
+          networks, and applied machine learning.
+
+        </p>
+
+
+        <div class="closing-actions reveal">
+
+
+          <a
+            class="primary-btn"
+            href="https://www.linkedin.com/in/mehrshadesk"
+            target="_blank"
+            rel="noreferrer"
+          >
+
+            Connect on LinkedIn
+
+            <span class="btn-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+          <a
+            class="text-link"
+            href="#top"
+          >
+            Back to top ↑
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
   </main>
+
+
+
+  <footer class="site-footer section-shell">
+
+    <span>
+      © <span id="year"></span>
+      Mehrshad Eskandarpour
+    </span>
+
+    <span class="footer-center">
+      Built for research, engineering & the open web.
+    </span>
+
+    <span>
+      mehrshadesk.ir
+    </span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
