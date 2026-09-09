@@ -1,34 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Intelligent Radio Access Networks — Mehrshad Eskandarpour</title>
-  <meta name="description" content="Mehrshad Eskandarpour's work in intelligent radio access networks, 5G/6G, reinforcement learning, load balancing, mobility and AI-RAN."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="research-detail.css"/>
-  <style>
-    .ran-grid path{fill:none;stroke:#E9EEF5;stroke-width:1}
-    .cell{fill:none;stroke:#AFC7E8;stroke-width:1.1;opacity:.8;animation:cellPulse 4.5s ease-out infinite;transform-box:fill-box;transform-origin:center}.c2{animation-delay:1.5s}.c3{animation-delay:3s}
-    .tower-line{stroke:#0B1B31;stroke-width:3}.tower-arm{stroke:#0B1B31;stroke-width:2}
-    .beam{fill:none;stroke:#64A0E8;stroke-width:1.4;stroke-dasharray:5 5;animation:beam 3.6s linear infinite}
-    .user circle:first-child{fill:#fff;stroke:#AABBD0}.user circle:nth-child(2){fill:#0D91BC}.user text{font:600 8px Roboto;fill:#78869A}
-    .handover{fill:none;stroke:#245FC5;stroke-width:2;stroke-dasharray:4 6}
-    .decision circle{fill:#EAF2FF;stroke:#245FC5}.decision text{font:700 9px Roboto;fill:#184A9B}
-    .decision-edge{stroke:#9FB7D7;stroke-width:1}
-    .metric-bg{fill:#E0E7F0}.metric-live{fill:#245FC5;animation:metric 4s ease-in-out infinite;transform-origin:left}
-    @keyframes cellPulse{0%{opacity:.75;transform:scale(.72)}80%,100%{opacity:0;transform:scale(1.15)}}
-    @keyframes beam{to{stroke-dashoffset:-22}}
-    @keyframes metric{0%,100%{transform:scaleX(.75)}50%{transform:scaleX(1)}}
-  </style>
-<link rel="stylesheet" href="detail-theme.css" /><link rel="icon" href="/favicon.ico?v=2" sizes="any"/>
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=2"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png?v=2"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Intelligent Radio Access Networks — Mehrshad Eskandarpour</title>
+<meta content="Mehrshad Eskandarpour's work in intelligent radio access networks, 5G/6G, reinforcement learning, load balancing, mobility and AI-RAN." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="research-detail.css" rel="stylesheet"/>
+
+<link href="detail-theme.css" rel="stylesheet"/><link href="research-viz.css?v=2" rel="stylesheet"/><link href="/favicon.ico?v=2" rel="icon" sizes="any"/>
+<link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180"/>
 </head>
 <body>
 <header class="topbar"><div class="container"><a class="brand" href="index.html"><i>ME</i>Mehrshad Eskandarpour</a><a class="back" href="index.html#research">← Back to Research</a></div></header>
-
 <main>
 <section class="research-hero"><div class="container">
 <p class="breadcrumb">R02 / INTELLIGENT RADIO ACCESS NETWORKS</p>
@@ -39,64 +26,34 @@
   changing load and quality-of-service constraints.
 </p>
 <div class="hero-meta"><span>AI-RAN</span><span>5G / 6G</span><span>Load Balancing</span><span>Mobility</span><span>QoS</span><span>Reinforcement Learning</span></div>
-
-<div class="animation-card">
-<div class="card-head"><span>AI-RAN / MOBILITY + HANDOVER DECISION MODEL</span><span class="active"><i></i> POLICY ACTIVE</span></div>
-<div class="viz">
-<svg viewBox="0 0 1000 560" role="img" aria-label="Animated intelligent radio access network with handover and AI decision layer">
-  <g class="ran-grid"><path d="M50 100H950M50 200H950M50 300H950M50 400H950M160 50V510M320 50V510M480 50V510M640 50V510M800 50V510"/></g>
-
-  <g>
-    <circle class="cell c1" cx="240" cy="310" r="125"/><circle class="cell c2" cx="500" cy="250" r="135"/><circle class="cell c3" cx="760" cy="320" r="125"/>
-  </g>
-
-  <g transform="translate(240 310)">
-    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
-    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
-    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
-  </g>
-  <g transform="translate(500 250)">
-    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
-    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
-    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
-  </g>
-  <g transform="translate(760 320)">
-    <line class="tower-line" x1="0" y1="-55" x2="0" y2="55"/>
-    <line class="tower-arm" x1="0" y1="-36" x2="-28" y2="-12"/><line class="tower-arm" x1="0" y1="-36" x2="28" y2="-12"/>
-    <line class="tower-arm" x1="-22" y1="-15" x2="22" y2="-15"/>
-  </g>
-
-  <path class="beam" d="M240 275 Q330 190 430 230"/><path class="beam" d="M500 215 Q620 165 715 285"/><path class="beam" d="M760 285 Q660 390 555 300"/>
-  <path class="handover" d="M325 355 C410 320 480 340 565 300 C650 260 700 300 810 365"/>
-
-  <g class="user" transform="translate(330 355)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-17</text></g>
-  <g class="user" transform="translate(560 300)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-24</text></g>
-  <g class="user" transform="translate(810 365)"><circle r="18"/><circle r="4"/><text y="34" text-anchor="middle">UE-31</text></g>
-
-  <circle r="5" fill="#245FC5"><animateMotion dur="5.2s" repeatCount="indefinite" path="M325 355 C410 320 480 340 565 300 C650 260 700 300 810 365"/></circle>
-
-  <g class="decision-edge">
-    <line x1="500" y1="250" x2="500" y2="95"/><line x1="500" y1="95" x2="405" y2="95"/><line x1="500" y1="95" x2="595" y2="95"/>
-  </g>
-  <g class="decision" transform="translate(500 95)"><circle r="38"/><text y="-2" text-anchor="middle">AI</text><text y="14" text-anchor="middle">POLICY</text></g>
-  <g class="decision" transform="translate(405 95)"><circle r="23"/><text y="3" text-anchor="middle">QoS</text></g>
-  <g class="decision" transform="translate(595 95)"><circle r="23"/><text y="3" text-anchor="middle">LOAD</text></g>
-
-  <g transform="translate(65 505)">
-    <rect class="metric-bg" width="180" height="8" rx="4"/><rect class="metric-live" width="154" height="8" rx="4"/>
-    <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">QoS SCORE / 0.86</text>
-  </g>
-  <g transform="translate(745 505)">
-    <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">HANDOVER / ACCEPTED</text>
-    <text x="0" y="14" style="font:700 13px Roboto;fill:#245FC5">CELL B → C</text>
-  </g>
-</svg>
+<div class="research-studies">
+<article class="research-study"><header><span class="study-number">01 / QoS-AWARE LOAD BALANCING</span><h2>Shift load before QoS breaks</h2><p>Observe cell pressure, user context and service quality, then redistribute traffic before congestion becomes failure.</p></header>
+<svg aria-labelledby="ran-load-title ran-load-desc" role="img" viewBox="0 0 480 590"><title id="ran-load-title">QoS-aware load balancing across three radio cells</title><desc id="ran-load-desc">Three cells with different loads exchange a mobile user through an AI policy that balances congestion and quality of service.</desc>
+<defs><marker id="ran-arrow" markerHeight="6" markerWidth="6" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 1L9 5L0 9" fill="none" stroke="currentColor"></path></marker></defs>
+<text class="rv-meta" x="34" y="34">5G RAN / CELL LOAD + QoS STATE</text><g class="rv-grid"><path d="M35 84H445M35 144H445M35 204H445M35 264H445M95 62V300M175 62V300M255 62V300M335 62V300M415 62V300"></path></g>
+<circle class="rv-cell" cx="112" cy="184" r="79"></circle><circle class="rv-cell c2" cx="240" cy="155" r="85"></circle><circle class="rv-cell c3" cx="366" cy="194" r="79"></circle>
+<g transform="translate(112 184)"><line class="rv-tower" x1="0" x2="0" y1="-27" y2="28"></line><line class="rv-tower" x1="0" x2="-15" y1="-17" y2="-5"></line><line class="rv-tower" x1="0" x2="15" y1="-17" y2="-5"></line></g><g transform="translate(240 155)"><line class="rv-tower" x1="0" x2="0" y1="-27" y2="28"></line><line class="rv-tower" x1="0" x2="-15" y1="-17" y2="-5"></line><line class="rv-tower" x1="0" x2="15" y1="-17" y2="-5"></line></g><g transform="translate(366 194)"><line class="rv-tower" x1="0" x2="0" y1="-27" y2="28"></line><line class="rv-tower" x1="0" x2="-15" y1="-17" y2="-5"></line><line class="rv-tower" x1="0" x2="15" y1="-17" y2="-5"></line></g>
+<text class="rv-small" text-anchor="middle" x="112" y="237">CELL A</text><text class="rv-small" text-anchor="middle" x="240" y="208">CELL B</text><text class="rv-small" text-anchor="middle" x="366" y="247">CELL C</text>
+<path class="rv-beam" d="M112 156Q168 98 218 140"></path><path class="rv-beam" d="M240 127Q301 110 345 174"></path>
+<path class="rv-link-hot" d="M101 282C171 258 216 264 269 275S355 266 417 286" marker-end="url(#ran-arrow)"></path>
+<g class="rv-ue" transform="translate(122 276)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="30">UE-17</text></g><circle class="rv-packet" r="4"><animateMotion dur="5.4s" path="M122 276C181 258 216 264 269 275S355 266 417 286" repeatCount="indefinite"></animateMotion></circle>
+<text class="rv-meta" x="34" y="336">LIVE LOAD / BEFORE POLICY ACTION</text><text class="rv-small" x="48" y="372">CELL A</text><rect class="rv-load-bg" height="10" width="249" x="125" y="360"></rect><rect class="rv-load" height="10" width="223" x="125" y="360"></rect><text class="rv-note" text-anchor="end" x="430" y="372">92%</text>
+<text class="rv-small" x="48" y="407">CELL B</text><rect class="rv-load-bg" height="10" width="249" x="125" y="395"></rect><rect class="rv-load mid" height="10" width="159" x="125" y="395"></rect><text class="rv-small" text-anchor="end" x="430" y="407">64%</text>
+<text class="rv-small" x="48" y="442">CELL C</text><rect class="rv-load-bg" height="10" width="249" x="125" y="430"></rect><rect class="rv-load low" height="10" width="105" x="125" y="430"></rect><text class="rv-small" text-anchor="end" x="430" y="442">42%</text>
+<rect class="rv-panel-accent" height="70" rx="4" width="412" x="34" y="476"></rect><text class="rv-small" x="52" y="503">POLICY ACTION</text><text class="rv-strong" x="52" y="529">handover UE-17 / A → B</text><text class="rv-note" text-anchor="end" x="430" y="529">QoS PROTECTED</text>
+</svg><footer>Conceptual research diagram · load, mobility and QoS jointly drive the action</footer></article>
+<article class="research-study"><header><span class="study-number">02 / RL UNDER OBSERVATION UNCERTAINTY</span><h2>Decide with an incomplete view</h2><p>Map noisy radio observations into a policy action, then learn from the QoS and mobility outcome rather than assuming perfect state knowledge.</p></header>
+<svg aria-labelledby="ppo-title ppo-desc" role="img" viewBox="0 0 480 590"><title id="ppo-title">Reinforcement-learning decision loop for intelligent radio access networks</title><desc id="ppo-desc">A radio observation vector enters a PPO policy, produces a cell association action, and receives a reward from quality of service, load and mobility outcomes.</desc>
+<defs><marker id="ppo-arrow" markerHeight="6" markerWidth="6" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 1L9 5L0 9" fill="none" stroke="currentColor"></path></marker></defs>
+<text class="rv-meta" x="34" y="34">PPO CONTROL LOOP / PARTIAL OBSERVATION</text>
+<rect class="rv-state" height="125" rx="4" width="160" x="34" y="64"></rect><text class="rv-small" x="52" y="91">OBSERVATION o<tspan baseline-shift="sub">t</tspan></text><text class="rv-label" x="52" y="120">RSRP  −87 dBm</text><text class="rv-label" x="52" y="146">load  0.78</text><text class="rv-label" x="52" y="172">speed  43 km/h</text>
+<path class="rv-loop" d="M194 126H229" marker-end="url(#ppo-arrow)"></path><rect class="rv-policy" height="125" rx="4" width="217" x="229" y="64"></rect><text class="rv-small" x="247" y="91">POLICY π<tspan baseline-shift="sub">θ</tspan></text><text class="rv-label" x="247" y="121">PPO / actor</text><rect class="rv-bar-bg" height="8" width="172" x="247" y="141"></rect><rect class="rv-bar" height="8" width="132" x="247" y="141"></rect><text class="rv-small" x="247" y="171">confidence / 0.77</text>
+<text class="rv-meta" x="34" y="231">ACTION DISTRIBUTION / CELL ASSOCIATION</text><rect class="rv-action" height="86" rx="4" width="412" x="34" y="249"></rect><text class="rv-small" x="53" y="278">STAY A</text><rect class="rv-bar-bg" height="9" width="194" x="137" y="267"></rect><rect class="rv-bar soft" height="9" width="56" x="137" y="267"></rect><text class="rv-small" text-anchor="end" x="417" y="278">0.18</text><text class="rv-small" x="53" y="309">MOVE B</text><rect class="rv-bar-bg" height="9" width="194" x="137" y="298"></rect><rect class="rv-bar" height="9" width="150" x="137" y="298"></rect><text class="rv-note" text-anchor="end" x="417" y="309">0.77</text>
+<text class="rv-meta" x="34" y="378">MOBILITY OUTCOME / UNCERTAIN STATE</text><path class="rv-confidence" d="M42 438C96 397 148 407 198 431S288 479 337 441S400 402 438 418L438 470C399 452 376 458 337 482S251 501 198 473S94 441 42 480Z"></path><path class="rv-trajectory" d="M42 459C96 419 148 427 198 451S288 489 337 462S400 421 438 439"></path><circle class="rv-sample" cx="78" cy="434" r="4"></circle><circle class="rv-sample s2" cx="158" cy="439" r="4"></circle><circle class="rv-sample s3" cx="236" cy="475" r="4"></circle><circle class="rv-sample s4" cx="332" cy="464" r="4"></circle><circle class="rv-sample s5" cx="408" cy="429" r="4"></circle>
+<path class="rv-loop" d="M413 484V529H75V335" marker-end="url(#ppo-arrow)"></path><text class="rv-small" x="92" y="520">reward</text><text class="rv-strong" x="148" y="520">+ QoS + fairness − handover cost</text><text class="rv-note" text-anchor="end" x="430" y="561">POLICY UPDATE / t → t+1</text>
+</svg><footer>Conceptual research diagram · PPO policy with mobility and imperfect observations</footer></article>
 </div>
-<div class="card-foot">
-<div><span>POLICY</span><strong>Adaptive RL</strong></div><div><span>OBJECTIVE</span><strong>QoS + Load</strong></div><div><span>MOBILITY</span><strong>Active</strong></div><div><span>HANDOVER</span><strong>Optimized</strong></div>
-</div></div>
 </div></section>
-
 <section class="section"><div class="container grid"><aside class="side"><span>01</span>What I work on</aside><div class="content">
 <h2>Making the radio access network more aware of what is happening around it.</h2>
 <p>
@@ -115,11 +72,10 @@
 <article class="work-card"><span>OPERATIONS</span><h3>Real network context</h3><p>Experience with Huawei 3G/4G/5G configuration, alarms, optimization and live network operations.</p></article>
 </div>
 </div></div></section>
-
 <section class="section"><div class="container grid"><aside class="side"><span>02</span>Related papers</aside><div class="content">
 <h2>Publications connected to this field.</h2>
 <div class="paper-list">
-<a class="paper" href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3><p>arXiv · 5G · PPO · Deep Reinforcement Learning</p></div><b>↗</b></a>
+<a class="paper" href="https://arxiv.org/abs/2510.24869" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3><p>arXiv · 5G · PPO · Deep Reinforcement Learning</p></div><b>↗</b></a>
 </div>
 <p>
   This is currently the publication most directly connected to my Intelligent RAN work.
@@ -128,8 +84,7 @@
 </p>
 </div></div></section>
 </main>
-
-<section class="cta"><div class="container"><div><h2>AI-RAN is the bridge between radio engineering and intelligent control.</h2><p>See the paper or return to the main portfolio.</p></div><div class="cta-links"><a href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer">View paper ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
+<section class="cta"><div class="container"><div><h2>AI-RAN is the bridge between radio engineering and intelligent control.</h2><p>See the paper or return to the main portfolio.</p></div><div class="cta-links"><a href="https://arxiv.org/abs/2510.24869" rel="noreferrer" target="_blank">View paper ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
 <footer><div class="container footer-row"><span>© <span id="year"></span> Mehrshad Eskandarpour</span><span>Intelligent Radio Access Networks</span></div></footer>
 <script src="research-detail.js"></script>
 </body></html>

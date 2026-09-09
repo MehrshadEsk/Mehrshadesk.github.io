@@ -1,106 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Wireless Systems and Networks — Mehrshad Eskandarpour</title>
-  <meta name="description" content="Mehrshad Eskandarpour's work in wireless systems and networks: wireless sensor networks, routing, energy efficiency, coverage and 5G systems."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="research-detail.css"/>
-  <style>
-    .topology-grid path{fill:none;stroke:#E9EEF5;stroke-width:1}
-    .route{fill:none;stroke:#9FB6D4;stroke-width:1.4;stroke-dasharray:5 6}
-    .route.hot{stroke:#6DA4E8;stroke-width:1.7}
-    .packet{fill:#245FC5}
-    .wnode circle:first-child{fill:#fff;stroke:#AEBED2;stroke-width:1.3}.wnode circle:nth-child(2){fill:#0D91BC}
-    .wnode text{font:600 9px Roboto,Arial;fill:#728095;letter-spacing:.04em}
-    .cluster circle{fill:#EAF2FF;stroke:#245FC5;stroke-width:1.4}.cluster text{font:700 9px Roboto,Arial;fill:#184A9B}
-    .ring{fill:none;stroke:#B7CBE8;stroke-width:1;transform-origin:center;animation:ring 3.6s ease-out infinite}.r2{animation-delay:1.2s}.r3{animation-delay:2.4s}
-    .energy-bar{fill:#DDE5EF}.energy-live{fill:#1EA56A;animation:energy 4s ease-in-out infinite}
-    @keyframes ring{0%{opacity:.7;transform:scale(.7)}80%,100%{opacity:0;transform:scale(1.22)}}
-    @keyframes energy{0%,100%{transform:scaleX(.85);transform-origin:left}50%{transform:scaleX(1)}}
-  </style>
-<link rel="stylesheet" href="detail-theme.css" /><link rel="icon" href="/favicon.ico?v=2" sizes="any"/>
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=2"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png?v=2"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Wireless Systems and Networks — Mehrshad Eskandarpour</title>
+<meta content="Mehrshad Eskandarpour's work in wireless systems and networks: wireless sensor networks, routing, energy efficiency, coverage and 5G systems." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="research-detail.css" rel="stylesheet"/>
+
+<link href="detail-theme.css" rel="stylesheet"/><link href="research-viz.css?v=2" rel="stylesheet"/><link href="/favicon.ico?v=2" rel="icon" sizes="any"/>
+<link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180"/>
 </head>
 <body>
 <header class="topbar"><div class="container"><a class="brand" href="index.html"><i>ME</i>Mehrshad Eskandarpour</a><a class="back" href="index.html#research">← Back to Research</a></div></header>
-
 <main>
 <section class="research-hero">
-  <div class="container">
-    <p class="breadcrumb">R01 / WIRELESS SYSTEMS AND NETWORKS</p>
-    <h1>Wireless Systems<br/>and Networks</h1>
-    <p class="intro">
+<div class="container">
+<p class="breadcrumb">R01 / WIRELESS SYSTEMS AND NETWORKS</p>
+<h1>Wireless Systems<br/>and Networks</h1>
+<p class="intro">
       My work in this area focuses on how wireless networks can become more efficient,
       reliable and adaptive — from low-power sensor deployments and routing decisions
       to mobility-aware cellular systems and network-wide resource optimization.
     </p>
-    <div class="hero-meta"><span>Wireless Sensor Networks</span><span>5G</span><span>Routing</span><span>Coverage</span><span>Energy Efficiency</span><span>Reliability</span></div>
-
-    <div class="animation-card">
-      <div class="card-head"><span>ADAPTIVE WIRELESS TOPOLOGY / REAL-TIME ROUTING MODEL</span><span class="active"><i></i> RUNNING</span></div>
-      <div class="viz">
-        <svg viewBox="0 0 1000 560" role="img" aria-label="Animated wireless sensor network topology with adaptive routing">
-          <g class="topology-grid">
-            <path d="M60 90H940M60 180H940M60 270H940M60 360H940M60 450H940"/>
-            <path d="M140 50V510M280 50V510M420 50V510M560 50V510M700 50V510M840 50V510"/>
-          </g>
-
-          <g>
-            <path class="route" d="M120 390 C225 350 240 260 355 265 S520 338 615 275 S765 150 880 175"/>
-            <path class="route" d="M125 140 C245 125 265 195 360 220 S505 180 600 150 S770 215 870 315"/>
-            <path class="route hot" d="M120 390 C220 305 280 300 355 265 C430 230 520 240 615 275 C710 310 780 245 880 175"/>
-            <path class="route" d="M125 140 C245 210 300 305 420 380 S650 445 870 315"/>
-          </g>
-
-          <g>
-            <circle class="ring r1" cx="500" cy="280" r="72"/>
-            <circle class="ring r2" cx="500" cy="280" r="112"/>
-            <circle class="ring r3" cx="500" cy="280" r="152"/>
-          </g>
-
-          <g class="cluster" transform="translate(500 280)">
-            <circle r="48"/><text y="-3" text-anchor="middle">CLUSTER</text><text y="15" text-anchor="middle">HEAD</text>
-          </g>
-
-          <g class="wnode" transform="translate(120 390)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S01</text></g>
-          <g class="wnode" transform="translate(125 140)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S02</text></g>
-          <g class="wnode" transform="translate(355 265)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S03</text></g>
-          <g class="wnode" transform="translate(420 380)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S04</text></g>
-          <g class="wnode" transform="translate(600 150)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S05</text></g>
-          <g class="wnode" transform="translate(615 275)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S06</text></g>
-          <g class="wnode" transform="translate(880 175)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S07</text></g>
-          <g class="wnode" transform="translate(870 315)"><circle r="20"/><circle r="4"/><text y="38" text-anchor="middle">S08</text></g>
-
-          <g>
-            <circle class="packet" r="5"><animateMotion dur="5s" repeatCount="indefinite" path="M120 390 C220 305 280 300 355 265 C430 230 520 240 615 275 C710 310 780 245 880 175"/></circle>
-            <circle class="packet" r="4"><animateMotion dur="6.2s" repeatCount="indefinite" path="M125 140 C245 125 265 195 360 220 S505 180 600 150 S770 215 870 315"/></circle>
-            <circle class="packet" r="4"><animateMotion dur="4.6s" repeatCount="indefinite" path="M125 140 C245 210 300 305 420 380 S650 445 870 315"/></circle>
-          </g>
-
-          <g transform="translate(60 505)">
-            <rect class="energy-bar" width="180" height="8" rx="4"/><rect class="energy-live" width="150" height="8" rx="4"/>
-            <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">NETWORK ENERGY / 83%</text>
-          </g>
-          <g transform="translate(760 505)">
-            <text x="0" y="-10" style="font:600 9px Roboto;fill:#78869A">ROUTE COST / OPTIMIZED</text>
-            <text x="0" y="14" style="font:700 13px Roboto;fill:#245FC5">0.271</text>
-          </g>
-        </svg>
-      </div>
-      <div class="card-foot">
-        <div><span>ROUTING</span><strong>Adaptive</strong></div>
-        <div><span>ENERGY</span><strong>Balanced</strong></div>
-        <div><span>TOPOLOGY</span><strong>Dynamic</strong></div>
-        <div><span>OBJECTIVE</span><strong>Lifetime + QoS</strong></div>
-      </div>
-    </div>
-  </div>
+<div class="hero-meta"><span>Wireless Sensor Networks</span><span>5G</span><span>Routing</span><span>Coverage</span><span>Energy Efficiency</span><span>Reliability</span></div>
+<div class="research-studies">
+<article class="research-study"><header><span class="study-number">01 / ENERGY-BALANCED CLUSTERING</span><h2>Choose the right cluster head</h2><p>Score local candidates, rotate responsibility, and keep the network from draining around a few overused nodes.</p></header>
+<svg aria-labelledby="wsn-title wsn-desc" role="img" viewBox="0 0 480 590"><title id="wsn-title">Hierarchical cluster-head selection in a wireless sensor network</title><desc id="wsn-desc">Sensor nodes form local clusters, candidate cluster heads are scored using energy, connectivity, distance and load, and aggregated data is forwarded to a sink.</desc>
+<defs><marker id="wsn-arrow" markerHeight="6" markerWidth="6" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 1L9 5L0 9" fill="none" stroke="currentColor"></path></marker></defs>
+<text class="rv-meta" x="34" y="34">ROUND t / HIERARCHICAL WSN</text>
+<g class="rv-grid"><path d="M35 76H445M35 136H445M35 196H445M35 256H445M95 62V286M175 62V286M255 62V286M335 62V286M415 62V286"></path></g>
+<path class="rv-link" d="M82 230L154 173L224 222L306 158L394 221"></path><path class="rv-link" d="M82 111L154 173L224 103L306 158L394 100"></path>
+<g class="rv-node" transform="translate(82 230)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N01</text></g><g class="rv-node" transform="translate(82 111)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N02</text></g><g class="rv-node" transform="translate(224 222)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N03</text></g><g class="rv-node" transform="translate(224 103)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N04</text></g><g class="rv-node" transform="translate(394 221)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N05</text></g><g class="rv-node" transform="translate(394 100)"><circle r="15"></circle><circle r="3"></circle><text text-anchor="middle" y="29">N06</text></g>
+<circle class="rv-halo" cx="154" cy="173" r="34"></circle><circle class="rv-halo h2" cx="306" cy="158" r="34"></circle><g class="rv-ch rv-selected" transform="translate(154 173)"><circle r="21"></circle><circle r="4"></circle><text text-anchor="middle" y="42">CH-A</text></g><g class="rv-ch" transform="translate(306 158)"><circle r="21"></circle><circle r="4"></circle><text text-anchor="middle" y="42">CH-B</text></g>
+<path class="rv-link-hot" d="M154 153Q238 78 306 138"></path><path class="rv-link-hot" d="M306 137Q343 74 382 67" marker-end="url(#wsn-arrow)"></path><g class="rv-ch" transform="translate(382 67)"><circle r="18"></circle><circle r="4"></circle><text x="-31" y="5">SINK</text></g>
+<circle class="rv-packet" r="4"><animateMotion dur="4.4s" path="M82 230L154 173Q238 78 306 138Q343 74 382 67" repeatCount="indefinite"></animateMotion></circle><circle class="rv-packet-soft" r="3.5"><animateMotion dur="5.2s" path="M394 221L306 158Q343 74 382 67" repeatCount="indefinite"></animateMotion></circle>
+<text class="rv-meta" x="34" y="322">CH SELECTION / NORMALIZED UTILITY</text><rect class="rv-panel" height="171" rx="4" width="412" x="34" y="340"></rect>
+<text class="rv-small" x="52" y="372">RESIDUAL ENERGY</text><rect class="rv-bar-bg" height="9" width="193" x="205" y="360"></rect><rect class="rv-bar" height="9" width="171" x="205" y="360"></rect>
+<text class="rv-small" x="52" y="405">CONNECTIVITY</text><rect class="rv-bar-bg" height="9" width="193" x="205" y="393"></rect><rect class="rv-bar soft b2" height="9" width="146" x="205" y="393"></rect>
+<text class="rv-small" x="52" y="438">DISTANCE COST</text><rect class="rv-bar-bg" height="9" width="193" x="205" y="426"></rect><rect class="rv-bar b3" height="9" width="124" x="205" y="426"></rect>
+<text class="rv-small" x="52" y="471">EXPECTED LOAD</text><rect class="rv-bar-bg" height="9" width="193" x="205" y="459"></rect><rect class="rv-bar soft b4" height="9" width="137" x="205" y="459"></rect>
+<text class="rv-note" x="52" y="498">SELECTED / CH-A</text><text class="rv-strong" text-anchor="end" x="398" y="498">0.84</text>
+<path class="rv-link-hot" d="M240 512V543" marker-end="url(#wsn-arrow)"></path><text class="rv-label" text-anchor="middle" x="240" y="570">balanced energy → longer lifetime</text>
+</svg><footer>Conceptual research diagram · cluster-head scoring and hierarchical forwarding</footer></article>
+<article class="research-study"><header><span class="study-number">02 / MULTI-AGENT ROUTING + COVERAGE</span><h2>Move, observe, reroute</h2><p>Let distributed agents react to energy, geometry and coverage gaps while preserving a feasible data path.</p></header>
+<svg aria-labelledby="route-title route-desc" role="img" viewBox="0 0 480 590"><title id="route-title">Multi-agent wireless routing and mobile coverage optimization</title><desc id="route-desc">Mobile sensing agents adjust coverage positions while an energy-aware route changes across the network. The animation is conceptual and illustrative.</desc>
+<defs><marker id="route-arrow" markerHeight="6" markerWidth="6" orient="auto" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 1L9 5L0 9" fill="none" stroke="currentColor"></path></marker></defs>
+<text class="rv-meta" x="34" y="34">MOBILE WSN / DISTRIBUTED POLICY</text><g class="rv-grid"><path d="M35 84H445M35 144H445M35 204H445M35 264H445M95 62V291M175 62V291M255 62V291M335 62V291M415 62V291"></path></g>
+<circle class="rv-coverage" cx="119" cy="207" r="50"></circle><circle class="rv-coverage delay" cx="248" cy="128" r="55"></circle><circle class="rv-coverage delay2" cx="365" cy="225" r="50"></circle>
+<path class="rv-link-soft" d="M70 250C132 180 182 186 248 128S339 115 410 81"></path><path class="rv-link-hot" d="M70 250C126 237 172 209 221 184S322 235 365 225S401 144 410 81" marker-end="url(#route-arrow)"></path>
+<g class="rv-node rv-mobile" transform="translate(119 207)"><circle r="16"></circle><circle r="3"></circle><text text-anchor="middle" y="31">A1</text></g><g class="rv-node rv-mobile" transform="translate(248 128)"><circle r="16"></circle><circle r="3"></circle><text text-anchor="middle" y="31">A2</text></g><g class="rv-node rv-mobile" transform="translate(365 225)"><circle r="16"></circle><circle r="3"></circle><text text-anchor="middle" y="31">A3</text></g><g class="rv-ch" transform="translate(410 81)"><circle r="18"></circle><circle r="4"></circle><text x="-34" y="5">SINK</text></g>
+<g class="rv-node" transform="translate(70 250)"><circle r="13"></circle><circle r="3"></circle><text text-anchor="middle" y="27">SRC</text></g><g class="rv-node" transform="translate(221 184)"><circle r="13"></circle><circle r="3"></circle><text text-anchor="middle" y="27">R1</text></g>
+<circle class="rv-packet" r="4"><animateMotion dur="4.8s" path="M70 250C126 237 172 209 221 184S322 235 365 225S401 144 410 81" repeatCount="indefinite"></animateMotion></circle>
+<text class="rv-meta" x="34" y="327">AGENT LOOP / LOCAL OBSERVATION → ACTION</text><rect class="rv-state" height="82" rx="4" width="126" x="34" y="348"></rect><text class="rv-small" x="50" y="373">STATE</text><text class="rv-label" x="50" y="397">E · d · hops</text><text class="rv-small" x="50" y="416">coverage gap</text>
+<path class="rv-loop" d="M160 389H194" marker-end="url(#route-arrow)"></path><rect class="rv-policy" height="82" rx="4" width="126" x="194" y="348"></rect><text class="rv-small" x="210" y="373">POLICY</text><text class="rv-label" x="210" y="397">multi-agent RL</text><text class="rv-small" x="210" y="416">Q / reward</text>
+<path class="rv-loop" d="M320 389H354" marker-end="url(#route-arrow)"></path><rect class="rv-action" height="82" rx="4" width="92" x="354" y="348"></rect><text class="rv-small" x="370" y="373">ACTION</text><text class="rv-label" x="370" y="397">move</text><text class="rv-small" x="370" y="416">reroute</text>
+<path class="rv-loop" d="M400 430V477H96V430" marker-end="url(#route-arrow)"></path><text class="rv-note" text-anchor="middle" x="248" y="468">reward = coverage + delivery − energy cost</text>
+<rect class="rv-panel" height="48" rx="4" width="412" x="34" y="503"></rect><text class="rv-small" x="50" y="533">ROUTE STATUS</text><text class="rv-strong" text-anchor="end" x="430" y="533">RECONFIGURED / FEASIBLE</text>
+</svg><footer>Conceptual research diagram · mobile coverage and energy-aware routing loop</footer></article>
+</div>
+</div>
 </section>
-
 <section class="section"><div class="container grid"><aside class="side"><span>01</span>What I work on</aside><div class="content">
 <h2>From individual sensors to complete wireless systems.</h2>
 <p>
@@ -112,26 +75,24 @@
   network configuration, mobility-aware load balancing and QoS-focused optimization.
 </p>
 <div class="work-grid">
-  <article class="work-card"><span>WSN</span><h3>Energy-aware routing</h3><p>Routing and cluster selection strategies designed to reduce energy imbalance and extend network lifetime.</p></article>
-  <article class="work-card"><span>MOBILITY</span><h3>Coverage optimization</h3><p>Multi-agent learning and vision-based methods for adaptive coverage in mobile wireless sensor networks.</p></article>
-  <article class="work-card"><span>RELIABILITY</span><h3>Battery & lifetime management</h3><p>Architectures and energy-management strategies for more reliable and long-lived sensor deployments.</p></article>
-  <article class="work-card"><span>5G</span><h3>QoS-aware networking</h3><p>Learning-based optimization for cellular load balancing, mobility and network performance.</p></article>
+<article class="work-card"><span>WSN</span><h3>Energy-aware routing</h3><p>Routing and cluster selection strategies designed to reduce energy imbalance and extend network lifetime.</p></article>
+<article class="work-card"><span>MOBILITY</span><h3>Coverage optimization</h3><p>Multi-agent learning and vision-based methods for adaptive coverage in mobile wireless sensor networks.</p></article>
+<article class="work-card"><span>RELIABILITY</span><h3>Battery &amp; lifetime management</h3><p>Architectures and energy-management strategies for more reliable and long-lived sensor deployments.</p></article>
+<article class="work-card"><span>5G</span><h3>QoS-aware networking</h3><p>Learning-based optimization for cellular load balancing, mobility and network performance.</p></article>
 </div>
 </div></div></section>
-
 <section class="section"><div class="container grid"><aside class="side"><span>02</span>Related papers</aside><div class="content">
 <h2>Publications connected to this field.</h2>
 <div class="paper-list">
-<a class="paper" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer"><span>2026</span><div><h3>A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks</h3><p>IET Networks · Wiley</p></div><b>↗</b></a>
-<a class="paper" href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3><p>arXiv · 5G · PPO · DRL</p></div><b>↗</b></a>
-<a class="paper" href="https://arxiv.org/abs/2508.14676" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Adaptive Vision-Based Coverage Optimization in Mobile Wireless Sensor Networks: A Multi-Agent Deep Reinforcement Learning Approach</h3><p>arXiv · Mobile WSN · MARL</p></div><b>↗</b></a>
-<a class="paper" href="https://arxiv.org/abs/2508.14679" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Energy-Efficient Routing Algorithm for Wireless Sensor Networks: A Multi-Agent Reinforcement Learning Approach</h3><p>arXiv · WSN · MARL</p></div><b>↗</b></a>
-<a class="paper" href="https://arxiv.org/abs/2508.12707" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Game-Theoretic and Reinforcement Learning-Based Cluster Head Selection for Energy-Efficient Wireless Sensor Network</h3><p>arXiv · Game Theory · WSN</p></div><b>↗</b></a>
-<a class="paper" href="https://doi.org/10.1155/dsn/5870686" target="_blank" rel="noreferrer"><span>2025</span><div><h3>Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy</h3><p>International Journal of Distributed Sensor Networks · Wiley</p></div><b>↗</b></a>
+<a class="paper" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" rel="noreferrer" target="_blank"><span>2026</span><div><h3>A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks</h3><p>IET Networks · Wiley</p></div><b>↗</b></a>
+<a class="paper" href="https://arxiv.org/abs/2510.24869" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3><p>arXiv · 5G · PPO · DRL</p></div><b>↗</b></a>
+<a class="paper" href="https://arxiv.org/abs/2508.14676" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Adaptive Vision-Based Coverage Optimization in Mobile Wireless Sensor Networks: A Multi-Agent Deep Reinforcement Learning Approach</h3><p>arXiv · Mobile WSN · MARL</p></div><b>↗</b></a>
+<a class="paper" href="https://arxiv.org/abs/2508.14679" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Energy-Efficient Routing Algorithm for Wireless Sensor Networks: A Multi-Agent Reinforcement Learning Approach</h3><p>arXiv · WSN · MARL</p></div><b>↗</b></a>
+<a class="paper" href="https://arxiv.org/abs/2508.12707" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Game-Theoretic and Reinforcement Learning-Based Cluster Head Selection for Energy-Efficient Wireless Sensor Network</h3><p>arXiv · Game Theory · WSN</p></div><b>↗</b></a>
+<a class="paper" href="https://doi.org/10.1155/dsn/5870686" rel="noreferrer" target="_blank"><span>2025</span><div><h3>Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy</h3><p>International Journal of Distributed Sensor Networks · Wiley</p></div><b>↗</b></a>
 </div></div></div></section>
 </main>
-
-<section class="cta"><div class="container"><div><h2>Wireless systems are where theory meets the real world.</h2><p>See my complete publication record or return to the main portfolio.</p></div><div class="cta-links"><a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
+<section class="cta"><div class="container"><div><h2>Wireless systems are where theory meets the real world.</h2><p>See my complete publication record or return to the main portfolio.</p></div><div class="cta-links"><a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" rel="noreferrer" target="_blank">Google Scholar ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
 <footer><div class="container footer-row"><span>© <span id="year"></span> Mehrshad Eskandarpour</span><span>Wireless Systems and Networks</span></div></footer>
 <script src="research-detail.js"></script>
 </body></html>

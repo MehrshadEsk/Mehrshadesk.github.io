@@ -15,3 +15,6 @@
 @media(max-width:760px){.hero{padding-top:38px}.hero-grid{grid-template-columns:1fr;gap:34px}.hero-profile{width:min(100%,440px);margin-inline:auto}.hero-profile .profile-note{padding-top:20px}.hero-label{margin-bottom:24px}.hero-profile .focus-line{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.binary-field span{animation:none;transform:translateY(-25%)}}
 .ta-page{max-width:900px;padding-block:56px 80px}.ta-page h1{font-size:clamp(30px,5vw,52px);margin-bottom:16px}.ta-intro{margin-bottom:44px}.ta-semester{border-top:1px solid var(--line);padding:26px 0}.ta-semester h2{font-size:22px;margin:0 0 18px;letter-spacing:-.03em}.ta-semester ul{margin:0;padding-left:22px}.ta-semester li{padding:6px 0;overflow-wrap:anywhere}.ta-semester li::marker{color:var(--accent)}.ta-semester strong{font-weight:500;color:var(--accent)}
+
+/* Softer binary texture behind the portrait. */
+.binary-field--back span{opacity:.14;color:#b88f7d;font-weight:400}
