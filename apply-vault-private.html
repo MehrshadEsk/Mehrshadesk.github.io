@@ -152,7 +152,8 @@ Best,
 <script src="access-config.js"></script>
 <script>
 (() => {
-  const cfg=window.MEHRSHAD_ACCESS||{},API=cfg.apiUrl||'',GATE=cfg.gateUrl||'apply-vault.html';
+  const cfg=window.MEHRSHAD_ACCESS||{},API=String(cfg.apiUrl||'').trim(),GATE=cfg.gateUrl||'apply-vault.html';
+  const HASHES=Array.isArray(cfg.allowedEmailHashes)?cfg.allowedEmailHashes.map(x=>String(x).toLowerCase()):[];
   const guard=document.getElementById('guard'),guardCopy=document.getElementById('guard-copy');
   const email=String(sessionStorage.getItem('applicationJourneyEmail')||'').trim().toLowerCase();
   const authorized=sessionStorage.getItem('applicationJourneyAuthorized')==='1';
@@ -162,10 +163,9 @@ Best,
   document.getElementById('viewer-email').textContent=email;
   function deny(msg){guardCopy.textContent=msg||'Authorization is no longer valid.';setTimeout(terminate,850)}
   function openVault(){document.getElementById('verified-at').textContent=new Date().toLocaleString([], {year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).toUpperCase();guard.classList.add('hidden');setTimeout(()=>guard.remove(),420)}
-  if(!configured){guardCopy.textContent='Authorization service is not configured.';setTimeout(terminate,1100);return}
-  const cb=`vaultRevalidate_${Date.now()}_${Math.random().toString(36).slice(2)}`,s=document.createElement('script');let finished=false;
-  const cleanup=()=>{if(finished)return;finished=true;delete window[cb];s.remove()};const timer=setTimeout(()=>{cleanup();deny('The authorization node could not be reached.')},10000);
-  window[cb]=r=>{clearTimeout(timer);cleanup();if(r&&r.allowed===true)openVault();else deny('This identity is no longer authorized.')};s.onerror=()=>{clearTimeout(timer);cleanup();deny('The authorization node could not be reached.')};s.src=`${API}?action=verify&email=${encodeURIComponent(email)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;document.body.appendChild(s);
+  async function hashEmail(v){if(!window.crypto||!window.crypto.subtle)return'';const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+  function remoteCheck(){return new Promise(resolve=>{if(!configured){resolve(null);return}const cb=`vaultRevalidate_${Date.now()}_${Math.random().toString(36).slice(2)}`,s=document.createElement('script');let finished=false;const finish=v=>{if(finished)return;finished=true;clearTimeout(timer);try{delete window[cb]}catch(_){window[cb]=undefined}s.remove();resolve(v)};const timer=setTimeout(()=>finish(null),7000);window[cb]=r=>finish(!!(r&&r.allowed===true));s.onerror=()=>finish(null);s.src=`${API}?action=verify&email=${encodeURIComponent(email)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;document.body.appendChild(s)})}
+  (async()=>{try{guardCopy.textContent='Validating authorization signature.';const h=await hashEmail(email);if(h&&HASHES.includes(h)){openVault();return}const remote=await remoteCheck();if(remote===true){openVault();return}deny(remote===null?'This session cannot be revalidated.':'This identity is no longer authorized.')}catch(_){deny('Authorization could not be validated.')}})();
 
   const nav=[...document.querySelectorAll('.nav a')],sections=nav.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if('IntersectionObserver'in window){const obs=new IntersectionObserver(entries=>{const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!v)return;nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+v.target.id))},{rootMargin:'-20% 0px -65% 0px',threshold:[0,.1,.5]});sections.forEach(s=>obs.observe(s))}
   const canvas=document.getElementById('binary'),ctx=canvas.getContext('2d',{alpha:true});let w=0,h=0,dpr=1,t=0,g=[];const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;

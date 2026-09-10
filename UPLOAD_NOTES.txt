@@ -1,21 +1,27 @@
-APPLY VAULT — UPLOAD NOTES
+APPLY VAULT — READY TO UPLOAD
 
-New public gate URL:
+Main gate:
   /apply-vault.html
 
-Private authorized page:
+Private content:
   /apply-vault-private.html
 
-Old URLs are preserved as redirects:
+What works immediately on GitHub Pages:
+- The gate is now a minimal single-email screen with hacker-style motion graphics.
+- mehrsh3d@gmail.com is already approved as the owner account.
+- Any unknown email shows ACCESS DENIED and opens the request form automatically.
+- The request form generates a ready-to-send email addressed to mehrsh3d@gmail.com.
+- Visitors can choose OPEN EMAIL APP or OPEN GMAIL WEB.
+- The email subject and body are pre-filled from the form.
+- There is no longer an AUTH NODE OFFLINE error when no Apps Script URL is configured.
+
+Optional Google Sheet / automatic email copy:
+- access-config.js intentionally leaves apiUrl blank, so the page does not depend on Apps Script.
+- If you later deploy google-apps-script.gs as a Web App and paste its /exec URL into apiUrl, the same gate can also check ALLOW statuses in Google Sheets and send a server-side copy of each request.
+
+Old URLs remain preserved as redirects:
   /application-journey.html -> /apply-vault.html
   /application-journey-private.html -> /apply-vault-private.html
 
-IMPORTANT BEFORE THE ACCESS GATE CAN WORK:
-1. Paste your Google Apps Script /exec URL into access-config.js.
-2. In your Google Sheet -> Extensions -> Apps Script, replace the old code with google-apps-script.gs.
-3. Deploy a new version/update of the Web App and authorize MailApp if Google asks.
-4. Requests will be logged in Access Requests and emailed to mehrsh3d@gmail.com.
-5. Change PENDING to ALLOW to approve an email.
-
-PERSONAL EXPERIENCE:
-The Apply Vault is fully designed and the application guide is populated. The “My application experience” area is intentionally left as structured personal-note slots so no personal history is invented. Replace those entries with Mehrshad's actual experience when ready.
+IMPORTANT SECURITY NOTE:
+This is still a lightweight client-side gate on GitHub Pages. It is suitable for portfolio/restricted presentation access, but not for highly sensitive documents.
