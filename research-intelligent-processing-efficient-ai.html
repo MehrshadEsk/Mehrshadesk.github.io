@@ -13,7 +13,15 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="styles.css?v=portrait-7" rel="stylesheet">
 <style>
-:root{--paper:#fafaf9;--ink:#171715;--muted:#77736d;--line:#dedbd5;--accent:#df4f2f;--soft:#f2f0ec}
+:root{
+  --paper:#fafaf9;
+  --ink:#151513;
+  --muted:#77736d;
+  --line:#dedbd5;
+  --accent:#df4f2f;
+  --soft:#f2f0ec;
+  --grid:#ece8e2;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
@@ -27,36 +35,53 @@ a{color:inherit}
 .back span{color:var(--accent)}
 .hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.85fr);gap:72px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,.92fr);gap:72px;align-items:center}
 h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
 h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
 .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
 .tag{border:1px solid var(--line);padding:8px 11px;font-size:11px;color:#68635d;background:#fff}
-.motion{border:1px solid var(--line);background:#fff;min-height:450px;position:relative;overflow:hidden}
-.motion::before{content:"LIVE RESEARCH MAP";position:absolute;z-index:3;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"signal → model → insight";position:absolute;z-index:3;right:18px;bottom:14px;font-size:10px;color:#8c877f}
-.motion svg{display:block;width:100%;height:450px}
-.gridline{stroke:#ebe8e2;stroke-width:1}
-.wire{stroke:#b9b4ad;stroke-width:1.25;fill:none;stroke-dasharray:5 7;animation:dash 10s linear infinite}
-.wire.hot{stroke:var(--accent);opacity:.9}
-.wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 5s ease-in-out infinite}
-.node{fill:#fff;stroke:#aaa49b;stroke-width:1.2}
+.motion{
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,247,244,0.9)),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px);
+  min-height:480px;position:relative;overflow:hidden
+}
+.motion::before{content:"ALGORITHMIC RESEARCH MAP";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"equations · graphs · optimization · signals";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion svg{display:block;width:100%;height:480px}
+.gridline{stroke:var(--grid);stroke-width:1}
+.thin{stroke:#c9c2b8;stroke-width:1.2;fill:none;stroke-dasharray:4 5;animation:dash 16s linear infinite}
+.thick{stroke:var(--accent);stroke-width:1.8;fill:none}
+.soft{stroke:#c7c1b8;stroke-width:1;fill:none}
+.node{fill:#fff;stroke:#b4ada3;stroke-width:1.1}
 .node.hot{stroke:var(--accent)}
-.pulse{fill:var(--accent);transform-origin:center;animation:pulse 2.1s ease-in-out infinite}
-.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
-.bar.hot{fill:#ffe3d8}
-.panel{fill:#fff;stroke:#d7d3cd}
-.token{fill:#f6f4f0;stroke:#cfcac2}
-.token.keep{fill:#fff4ef;stroke:var(--accent)}
+.dot{fill:var(--accent)}
+.panel{fill:rgba(255,255,255,.8);stroke:#d3cec6}
+.heatA{fill:#fff3ee;stroke:#df4f2f55}
+.heatB{fill:#f7f2ec;stroke:#cec6bc}
+.eq{font:11px "IBM Plex Mono";fill:#77736d}
+.eqHot{font:11px "IBM Plex Mono";fill:var(--accent)}
+.small{font:9px "IBM Plex Mono";fill:#9b968e}
+.tiny{font:8px "IBM Plex Mono";fill:#aba59d}
 .packet{fill:var(--accent)}
-.float-a{animation:floatA 5.5s ease-in-out infinite}.float-b{animation:floatB 6.5s ease-in-out infinite}
-.svg-label{font:11px "IBM Plex Mono";fill:#77736d}.svg-small{font:9px "IBM Plex Mono";fill:#9b968e}.svg-hot{fill:var(--accent)}
-@keyframes draw{0%{stroke-dashoffset:900;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
-@keyframes dash{to{stroke-dashoffset:-120}}
-@keyframes pulse{0%,100%{opacity:.28;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
-@keyframes floatA{50%{transform:translate(9px,-8px)}}@keyframes floatB{50%{transform:translate(-7px,9px)}}
+.scan{fill:url(#scanGrad);opacity:.6;animation:scan 5s ease-in-out infinite}
+.wave{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 6s ease-in-out infinite}
+.trace{fill:none;stroke:#978f85;stroke-width:1.2}
+.bar{fill:#f1ede8;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
+.bar.hot{fill:#ffdfd4}
+.orbit{animation:orbit 11s linear infinite;transform-origin:center}
+.float{animation:float 6s ease-in-out infinite}
+.float2{animation:float2 7s ease-in-out infinite}
+@keyframes dash{to{stroke-dashoffset:-220}}
+@keyframes draw{0%{stroke-dashoffset:900;opacity:.2}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
+@keyframes scan{0%,100%{transform:translateX(-80px)}50%{transform:translateX(170px)}}
 @keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translate(8px,-8px)}}
+@keyframes float2{50%{transform:translate(-7px,8px)}}
 .section{padding:80px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
 .section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
@@ -87,7 +112,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
 @media(max-width:900px){
- .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:380px}.motion svg{height:380px}
+ .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:400px}.motion svg{height:400px}
  .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
  .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
 }
@@ -110,79 +135,99 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
   <div>
     <div class="eyebrow">[ R04 · RESEARCH DIRECTION ]</div>
     <h1>Teach machines<br>to keep the <em>useful bits.</em></h1>
-    <p class="lede">This merged direction connects speech intelligence with LLM efficiency. At first glance, voice conversion and prompt compression seem far apart. Under the hood, both ask the same question: how can a system preserve the information that matters while using less data, less context or less compute?</p>
+    <p class="lede">This merged direction connects speech intelligence with LLM efficiency. Instead of a block-diagram look, the motion graphic now visualizes the actual algorithmic logic: waveform → spectrogram → vowel embeddings → adaptive memory → context graph → keep/drop policy → compressed prompt.</p>
     <div class="hero-tags"><span class="tag">VOICE CONVERSION</span><span class="tag">VOWEL-CENTRIC MODELING</span><span class="tag">MEMORY-AUGMENTED LEARNING</span><span class="tag">PROMPT COMPRESSION</span><span class="tag">GRAPH RL</span><span class="tag">BLACK-BOX LLMs</span></div>
   </div>
-  <div class="motion" aria-label="Animated research visualization">
-<svg viewBox="0 0 760 450" role="img">
-  <path class="gridline" d="M0 90H760M0 180H760M0 270H760M0 360H760"/>
-  <path class="gridline" d="M152 0V450M304 0V450M456 0V450M608 0V450"/>
-  <text x="26" y="44" class="svg-label svg-hot">SPEECH SIGNAL</text>
-  <text x="304" y="44" class="svg-label svg-hot">STRUCTURED MEMORY</text>
-  <text x="534" y="44" class="svg-label svg-hot">PROMPT OPTIMIZATION</text>
+  <div class="motion" aria-label="Algorithmic research visualization">
+<svg viewBox="0 0 760 480" role="img">
+  <defs>
+    <linearGradient id="scanGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
+  <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
 
-  <!-- Speech zone -->
-  <path class="wave" d="M28 121 C42 66 55 182 69 121 S94 69 108 121 S134 181 147 121 S173 70 186 121 S212 181 226 121"/>
-  <text x="28" y="147" class="svg-small">raw waveform</text>
+  <text x="24" y="34" class="eqHot">z_v = fϕ(x),   M_t ← Update(M_{t−1}, z_v),   πθ(keep | G, C)</text>
+  <text x="24" y="50" class="small">vowel-centric representation learning, memory-augmented adaptation and graph-aware prompt compression</text>
+
+  <!-- speech signal + spectrogram -->
+  <g class="float">
+    <path class="wave" d="M24 114 C40 70 52 161 66 116 S93 73 106 117 S135 161 148 116 S177 72 191 117 S218 161 232 116"/>
+    <text x="24" y="143" class="small">speech waveform</text>
+
+    <rect x="24" y="166" width="228" height="118" rx="2" class="panel"/>
+    <text x="38" y="186" class="eqHot">spectrogram / formant region</text>
+    <g>
+      <rect x="40" y="204" width="11" height="58" class="bar hot"/>
+      <rect x="54" y="216" width="11" height="46" class="bar"/>
+      <rect x="68" y="195" width="11" height="67" class="bar hot"/>
+      <rect x="82" y="225" width="11" height="37" class="bar"/>
+      <rect x="96" y="189" width="11" height="73" class="bar hot"/>
+      <rect x="110" y="212" width="11" height="50" class="bar"/>
+      <rect x="124" y="200" width="11" height="62" class="bar hot"/>
+      <rect x="138" y="221" width="11" height="41" class="bar"/>
+      <rect x="152" y="193" width="11" height="69" class="bar hot"/>
+      <rect x="166" y="217" width="11" height="45" class="bar"/>
+      <rect x="180" y="207" width="11" height="55" class="bar hot"/>
+      <rect x="194" y="219" width="11" height="43" class="bar"/>
+      <rect x="208" y="198" width="11" height="64" class="bar hot"/>
+    </g>
+    <text x="37" y="270" class="small">vowel-focused acoustic saliency map</text>
+
+    <circle cx="54" cy="325" r="16" class="node hot"/><circle cx="98" cy="325" r="16" class="node"/><circle cx="142" cy="325" r="16" class="node hot"/><circle cx="186" cy="325" r="16" class="node"/><circle cx="230" cy="325" r="16" class="node hot"/>
+    <text x="48" y="329" class="tiny">/a/</text><text x="92" y="329" class="tiny">/e/</text><text x="136" y="329" class="tiny">/i/</text><text x="180" y="329" class="tiny">/o/</text><text x="224" y="329" class="tiny">/u/</text>
+    <text x="26" y="355" class="eq">vowel embeddings → speaker cues</text>
+  </g>
+
+  <!-- memory manifold -->
   <g>
-    <rect x="29" y="174" width="202" height="78" rx="2" class="panel"/>
-    <text x="45" y="192" class="svg-small">spectrogram / formants</text>
-    <rect x="46" y="210" width="10" height="26" class="bar hot"/><rect x="61" y="203" width="10" height="33" class="bar"/>
-    <rect x="76" y="196" width="10" height="40" class="bar hot"/><rect x="91" y="208" width="10" height="28" class="bar"/>
-    <rect x="106" y="188" width="10" height="48" class="bar hot"/><rect x="121" y="201" width="10" height="35" class="bar"/>
-    <rect x="136" y="194" width="10" height="42" class="bar"/><rect x="151" y="205" width="10" height="31" class="bar hot"/>
-    <rect x="166" y="191" width="10" height="45" class="bar"/><rect x="181" y="206" width="10" height="30" class="bar hot"/>
-    <text x="44" y="245" class="svg-small">vowel-centric feature emphasis</text>
-  </g>
-  <circle cx="70" cy="285" r="18" class="node hot"/><text x="63" y="289" class="svg-small">/a/</text>
-  <circle cx="117" cy="285" r="18" class="node"/><text x="110" y="289" class="svg-small">/e/</text>
-  <circle cx="164" cy="285" r="18" class="node hot"/><text x="157" y="289" class="svg-small">/i/</text>
-  <circle cx="211" cy="285" r="18" class="node"/><text x="204" y="289" class="svg-small">/o/</text>
-  <path class="wire hot" d="M228 121C248 121 255 227 288 227" />
-  <path class="wire hot" d="M228 285C247 285 258 285 288 285" />
-  <circle cx="243" cy="334" r="4" class="pulse"/>
-
-  <!-- Memory & embeddings -->
-  <g class="float-a">
-    <rect x="286" y="160" width="176" height="190" rx="2" class="panel"/>
-    <text x="309" y="186" class="svg-label svg-hot">ADAPTIVE MEMORY BANK</text>
-    <text x="308" y="207" class="svg-small">speaker cues / reusable patterns</text>
-    <rect x="312" y="226" width="44" height="26" class="token keep"/><text x="321" y="243" class="svg-small">S1</text>
-    <rect x="364" y="226" width="44" height="26" class="token"/><text x="373" y="243" class="svg-small">S2</text>
-    <rect x="416" y="226" width="44" height="26" class="token keep"/><text x="425" y="243" class="svg-small">S3</text>
-    <rect x="312" y="264" width="44" height="26" class="token"/><text x="321" y="281" class="svg-small">F1</text>
-    <rect x="364" y="264" width="44" height="26" class="token keep"/><text x="373" y="281" class="svg-small">F2</text>
-    <rect x="416" y="264" width="44" height="26" class="token"/><text x="425" y="281" class="svg-small">F3</text>
-    <text x="312" y="316" class="svg-small">few-shot adaptation without retraining everything</text>
+    <rect x="280" y="92" width="182" height="276" rx="2" class="panel"/>
+    <text x="300" y="116" class="eqHot">adaptive memory / latent geometry</text>
+    <text x="300" y="138" class="eq">M = {m_1, m_2, …, m_k}</text>
+    <ellipse cx="370" cy="235" rx="58" ry="92" fill="none" stroke="#df4f2f" stroke-opacity=".18"/>
+    <ellipse cx="370" cy="235" rx="88" ry="122" fill="none" stroke="#cfc8bf" stroke-opacity=".45"/>
+    <circle cx="332" cy="183" r="5" class="dot"/><circle cx="387" cy="165" r="5" class="dot"/><circle cx="411" cy="226" r="5" class="dot"/><circle cx="346" cy="275" r="5" class="dot"/><circle cx="391" cy="303" r="5" class="dot"/><circle cx="360" cy="226" r="6" class="node hot"/>
+    <path class="thin" d="M332 183L360 226L387 165M360 226L411 226M360 226L346 275L391 303"/>
+    <text x="299" y="337" class="small">few-shot adaptation through selective memory update</text>
   </g>
 
-  <!-- Prompt / graph / policy -->
-  <g class="float-b">
-    <rect x="518" y="86" width="190" height="104" rx="2" class="panel"/>
-    <text x="540" y="110" class="svg-label svg-hot">LONG PROMPT</text>
-    <rect x="537" y="126" width="46" height="22" class="token"/><rect x="590" y="126" width="58" height="22" class="token"/>
-    <rect x="655" y="126" width="35" height="22" class="token"/><rect x="547" y="156" width="42" height="22" class="token"/>
-    <rect x="597" y="156" width="67" height="22" class="token"/><text x="541" y="183" class="svg-small">rules · examples · code · rationale</text>
+  <!-- bridge -->
+  <path class="thick" d="M252 220C268 220 270 220 280 220"/>
+  <path class="thick" d="M462 220C488 220 495 119 523 119"/>
+  <path class="thick" d="M462 220C493 220 497 230 522 230"/>
+  <path class="thick" d="M462 220C489 220 497 365 523 365"/>
+  <text x="470" y="191" class="small">shared objective: keep useful structure</text>
+
+  <!-- prompt compression -->
+  <g class="float2">
+    <text x="522" y="92" class="eqHot">context graph</text>
+    <rect x="524" y="106" width="184" height="64" rx="2" class="panel"/>
+    <circle cx="551" cy="136" r="12" class="node hot"/><circle cx="606" cy="123" r="12" class="node"/><circle cx="661" cy="136" r="12" class="node hot"/><circle cx="584" cy="153" r="12" class="node"/><circle cx="639" cy="153" r="12" class="node"/>
+    <path class="thin" d="M551 136L606 123L661 136M551 136L584 153L639 153L661 136M606 123L639 153"/>
+    <text x="536" y="162" class="tiny">reasoning units and dependencies</text>
+
+    <text x="522" y="215" class="eqHot">keep / drop policy logits</text>
+    <text x="523" y="235" class="small">ℓ = W · g(C, G)</text>
+    <rect x="524" y="247" width="160" height="18" class="heatB"/>
+    <rect x="524" y="247" width="118" height="18" class="heatA"/>
+    <rect x="524" y="275" width="160" height="18" class="heatB"/>
+    <rect x="524" y="275" width="64" height="18" class="heatA"/>
+    <rect x="524" y="303" width="160" height="18" class="heatB"/>
+    <rect x="524" y="303" width="136" height="18" class="heatA"/>
+    <text x="526" y="334" class="small">retained utility by token group / reasoning chunk</text>
+
+    <text x="522" y="365" class="eqHot">compressed context C′</text>
+    <rect x="524" y="379" width="31" height="21" class="heatA"/>
+    <rect x="560" y="379" width="31" height="21" class="heatB"/>
+    <rect x="596" y="379" width="31" height="21" class="heatA"/>
+    <rect x="632" y="379" width="31" height="21" class="heatA"/>
+    <rect x="668" y="379" width="31" height="21" class="heatB"/>
+    <rect x="520" y="378" width="185" height="24" class="scan"/>
+    <text x="523" y="424" class="small">lower context cost, preserve reasoning quality</text>
   </g>
-
-  <circle cx="560" cy="246" r="16" class="node hot"/><circle cx="622" cy="226" r="16" class="node"/>
-  <circle cx="676" cy="254" r="16" class="node hot"/><circle cx="600" cy="305" r="16" class="node"/>
-  <circle cx="658" cy="318" r="16" class="node"/><circle cx="545" cy="312" r="16" class="node hot"/>
-  <path class="wire hot" d="M560 246L622 226L676 254L658 318L600 305L545 312L560 246L600 305L676 254"/>
-  <text x="528" y="341" class="svg-small">graph-aware policy selects what survives</text>
-
-  <rect x="517" y="360" width="180" height="40" rx="2" class="panel"/>
-  <rect x="530" y="370" width="28" height="20" class="token keep"/><rect x="565" y="370" width="28" height="20" class="token keep"/>
-  <rect x="600" y="370" width="28" height="20" class="token"/><rect x="635" y="370" width="28" height="20" class="token keep"/>
-  <text x="531" y="407" class="svg-small">compressed prompt → lower context cost</text>
-
-  <!-- Cross-domain bridge -->
-  <path class="wire hot" d="M462 256C487 256 489 256 520 256"/>
-  <path class="wire hot" d="M462 208C505 208 505 138 518 138"/>
-  <path class="wire hot" d="M462 305C505 305 505 380 517 380"/>
-  <text x="454" y="117" class="svg-small svg-hot">shared idea:</text>
-  <text x="454" y="131" class="svg-small">keep useful structure</text>
-  <circle cx="486" cy="152" r="4" class="pulse"/><circle cx="488" cy="256" r="4" class="pulse" style="animation-delay:.35s"/><circle cx="489" cy="356" r="4" class="pulse" style="animation-delay:.7s"/>
 </svg>
 </div>
 </div>
@@ -202,13 +247,14 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <p>VowelVC emphasizes vowel-centric acoustic cues and uses incremental memory learning for few-shot speaker adaptation, aiming to retain identity with limited target data.</p>
           <div class="chips"><span>VOICE</span><span>VOWEL FEATURES</span><span>MEMORY BANK</span><span>FEW-SHOT</span><span>ADAPTATION</span></div>
         </article>
-
+        
         <article class="track">
           <div class="track-no">02 · EFFICIENT LANGUAGE AI</div>
           <h3>Preserve reasoning structure while shrinking prompt cost.</h3>
           <p>Graph-aware prompt compression represents reusable reasoning units as a structured graph and applies reinforcement learning to keep compact but informative contexts for black-box LLM inference.</p>
           <div class="chips"><span>PROMPT COMPRESSION</span><span>GRAPHS</span><span>PPO</span><span>LLMs</span><span>BLACK-BOX APIs</span></div>
         </article>
+        
   </div>
   <div class="bridge"><strong>COMMON THREAD</strong><p>Across speech and language, the shared idea is selective efficiency: represent the right structure, store it intelligently, and use only the parts that change the outcome.</p></div>
 </div>
@@ -222,23 +268,23 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
   </div>
   <div class="paper-list">
     
-        <a class="paper" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer">
-          <div class="paper-year">2026<br>PAPER</div>
-          <div>
-            <h3>Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs</h3>
-            <div class="paper-meta">Preprint · July 2026 · Reinforcement Learning · Large Language Models</div>
-            <div class="metrics"><span class="metric">RL</span><span class="metric">LLMs</span><span class="metric">PROMPT COMPRESSION</span><span class="metric">BLACK-BOX INFERENCE</span></div>
-          </div>
-          <div class="paper-arrow">↗</div>
-        </a>
-        
-
         <a class="paper" href="https://doi.org/10.1016/j.rineng.2026.109099" target="_blank" rel="noreferrer">
           <div class="paper-year">2026<br>PAPER</div>
           <div>
             <h3>VowelVC: A Neural Vowel-Centric Voice Conversion Framework with Incremental Memory Learning for Few-Shot Speaker Adaptation</h3>
             <div class="paper-meta">Results in Engineering · Elsevier · 29, 109099 · DOI 10.1016/j.rineng.2026.109099</div>
-            <div class="metrics"><span class="metric">VOICE CONVERSION</span><span class="metric">FEW-SHOT</span><span class="metric">MEMORY LEARNING</span></div>
+            <div class="metrics"><span class="metric">VOICE CONVERSION</span><span class="metric">FEW-SHOT</span><span class="metric">MEMORY</span><span class="metric">ACOUSTICS</span></div>
+          </div>
+          <div class="paper-arrow">↗</div>
+        </a>
+        
+
+        <a class="paper" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer">
+          <div class="paper-year">2026<br>PAPER</div>
+          <div>
+            <h3>Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs</h3>
+            <div class="paper-meta">Preprint · July 2026 · Reinforcement Learning · Large Language Models</div>
+            <div class="metrics"><span class="metric">PROMPT COMPRESSION</span><span class="metric">GRAPH RL</span><span class="metric">LLMs</span><span class="metric">BLACK-BOX</span></div>
           </div>
           <div class="paper-arrow">↗</div>
         </a>
@@ -254,9 +300,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
     <div><h2>Questions that drive the work.</h2></div>
   </div>
   <div class="questions">
-    <div class="q"><span>Q01</span><p>How little target data can a model see and still adapt effectively without forgetting useful prior knowledge?</p></div>
-<div class="q"><span>Q02</span><p>How much context can be removed before reasoning quality actually degrades in practice?</p></div>
-<div class="q"><span>Q03</span><p>Can efficient AI remain interpretable when it works through memory selection, graph structure and learned policies?</p></div>
+    <div class="q"><span>Q01</span><p>How little target data can a model see and still adapt effectively without forgetting useful prior knowledge?</p></div><div class="q"><span>Q02</span><p>How much context can be removed before reasoning quality actually degrades in practice?</p></div><div class="q"><span>Q03</span><p>Can efficient AI remain interpretable when it works through memory selection, graph structure and learned policies?</p></div>
   </div>
 </div>
 </section>

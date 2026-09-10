@@ -13,7 +13,15 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="styles.css?v=portrait-7" rel="stylesheet">
 <style>
-:root{--paper:#fafaf9;--ink:#171715;--muted:#77736d;--line:#dedbd5;--accent:#df4f2f;--soft:#f2f0ec}
+:root{
+  --paper:#fafaf9;
+  --ink:#151513;
+  --muted:#77736d;
+  --line:#dedbd5;
+  --accent:#df4f2f;
+  --soft:#f2f0ec;
+  --grid:#ece8e2;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
@@ -27,36 +35,53 @@ a{color:inherit}
 .back span{color:var(--accent)}
 .hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.85fr);gap:72px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,.92fr);gap:72px;align-items:center}
 h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
 h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
 .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
 .tag{border:1px solid var(--line);padding:8px 11px;font-size:11px;color:#68635d;background:#fff}
-.motion{border:1px solid var(--line);background:#fff;min-height:450px;position:relative;overflow:hidden}
-.motion::before{content:"LIVE RESEARCH MAP";position:absolute;z-index:3;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"signal → model → insight";position:absolute;z-index:3;right:18px;bottom:14px;font-size:10px;color:#8c877f}
-.motion svg{display:block;width:100%;height:450px}
-.gridline{stroke:#ebe8e2;stroke-width:1}
-.wire{stroke:#b9b4ad;stroke-width:1.25;fill:none;stroke-dasharray:5 7;animation:dash 10s linear infinite}
-.wire.hot{stroke:var(--accent);opacity:.9}
-.wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 5s ease-in-out infinite}
-.node{fill:#fff;stroke:#aaa49b;stroke-width:1.2}
+.motion{
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,247,244,0.9)),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px);
+  min-height:480px;position:relative;overflow:hidden
+}
+.motion::before{content:"ALGORITHMIC RESEARCH MAP";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"equations · graphs · optimization · signals";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion svg{display:block;width:100%;height:480px}
+.gridline{stroke:var(--grid);stroke-width:1}
+.thin{stroke:#c9c2b8;stroke-width:1.2;fill:none;stroke-dasharray:4 5;animation:dash 16s linear infinite}
+.thick{stroke:var(--accent);stroke-width:1.8;fill:none}
+.soft{stroke:#c7c1b8;stroke-width:1;fill:none}
+.node{fill:#fff;stroke:#b4ada3;stroke-width:1.1}
 .node.hot{stroke:var(--accent)}
-.pulse{fill:var(--accent);transform-origin:center;animation:pulse 2.1s ease-in-out infinite}
-.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
-.bar.hot{fill:#ffe3d8}
-.panel{fill:#fff;stroke:#d7d3cd}
-.token{fill:#f6f4f0;stroke:#cfcac2}
-.token.keep{fill:#fff4ef;stroke:var(--accent)}
+.dot{fill:var(--accent)}
+.panel{fill:rgba(255,255,255,.8);stroke:#d3cec6}
+.heatA{fill:#fff3ee;stroke:#df4f2f55}
+.heatB{fill:#f7f2ec;stroke:#cec6bc}
+.eq{font:11px "IBM Plex Mono";fill:#77736d}
+.eqHot{font:11px "IBM Plex Mono";fill:var(--accent)}
+.small{font:9px "IBM Plex Mono";fill:#9b968e}
+.tiny{font:8px "IBM Plex Mono";fill:#aba59d}
 .packet{fill:var(--accent)}
-.float-a{animation:floatA 5.5s ease-in-out infinite}.float-b{animation:floatB 6.5s ease-in-out infinite}
-.svg-label{font:11px "IBM Plex Mono";fill:#77736d}.svg-small{font:9px "IBM Plex Mono";fill:#9b968e}.svg-hot{fill:var(--accent)}
-@keyframes draw{0%{stroke-dashoffset:900;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
-@keyframes dash{to{stroke-dashoffset:-120}}
-@keyframes pulse{0%,100%{opacity:.28;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
-@keyframes floatA{50%{transform:translate(9px,-8px)}}@keyframes floatB{50%{transform:translate(-7px,9px)}}
+.scan{fill:url(#scanGrad);opacity:.6;animation:scan 5s ease-in-out infinite}
+.wave{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 6s ease-in-out infinite}
+.trace{fill:none;stroke:#978f85;stroke-width:1.2}
+.bar{fill:#f1ede8;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
+.bar.hot{fill:#ffdfd4}
+.orbit{animation:orbit 11s linear infinite;transform-origin:center}
+.float{animation:float 6s ease-in-out infinite}
+.float2{animation:float2 7s ease-in-out infinite}
+@keyframes dash{to{stroke-dashoffset:-220}}
+@keyframes draw{0%{stroke-dashoffset:900;opacity:.2}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
+@keyframes scan{0%,100%{transform:translateX(-80px)}50%{transform:translateX(170px)}}
 @keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translate(8px,-8px)}}
+@keyframes float2{50%{transform:translate(-7px,8px)}}
 .section{padding:80px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
 .section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
@@ -87,7 +112,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
 @media(max-width:900px){
- .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:380px}.motion svg{height:380px}
+ .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:400px}.motion svg{height:400px}
  .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
  .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
 }
@@ -110,69 +135,90 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
   <div>
     <div class="eyebrow">[ R02 · RESEARCH DIRECTION ]</div>
     <h1>Make radio access<br>more <em>adaptive.</em></h1>
-    <p class="lede">This direction focuses on AI-assisted radio access networks, with an emphasis on QoS-aware load balancing, handover decisions and user mobility. The aim is to let the network react more intelligently to uncertainty and changing demand.</p>
+    <p class="lede">This direction focuses on AI-assisted radio access networks, with emphasis on QoS-aware load balancing, handover decisions and user mobility. The motion graphic now shows policy equations, mobility trajectories, load heatmaps and association matrices rather than module boxes.</p>
     <div class="hero-tags"><span class="tag">5G</span><span class="tag">RADIO ACCESS</span><span class="tag">LOAD BALANCING</span><span class="tag">QOS</span><span class="tag">USER MOBILITY</span><span class="tag">DEEP RL</span></div>
   </div>
-  <div class="motion" aria-label="Animated research visualization">
-<svg viewBox="0 0 760 450" role="img">
-  <path class="gridline" d="M0 90H760M0 180H760M0 270H760M0 360H760"/>
-  <path class="gridline" d="M152 0V450M304 0V450M456 0V450M608 0V450"/>
-  <text x="32" y="48" class="svg-label svg-hot">USER MOBILITY</text>
-  <text x="518" y="48" class="svg-label svg-hot">QOS-AWARE LOAD BALANCING</text>
+  <div class="motion" aria-label="Algorithmic research visualization">
+<svg viewBox="0 0 760 480" role="img">
+  <defs>
+    <linearGradient id="scanGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
+  <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
 
-  <g>
-    <path class="wire hot" d="M92 308C130 250 145 203 198 162" />
-    <path class="wire hot" d="M210 152C253 132 282 112 315 91" />
-    <circle cx="89" cy="311" r="8" class="node hot"/><circle cx="196" cy="160" r="8" class="node"/><circle cx="314" cy="90" r="8" class="node hot"/>
-    <text x="79" y="332" class="svg-small">u1</text><text x="188" y="182" class="svg-small">u2</text><text x="306" y="112" class="svg-small">u3</text>
+  <text x="24" y="34" class="eqHot">a_t = argmax_i [ QoS_i(t) + λÛ_i(t) − μL_i(t) ]</text>
+  <text x="24" y="50" class="small">mobility-aware load balancing under observation uncertainty</text>
+
+  <g class="float">
+    <path class="soft" d="M78 354 C111 278 146 214 207 171"/>
+    <path class="soft" d="M88 330 C138 302 183 257 224 203"/>
+    <path class="soft" d="M102 310 C162 274 194 230 246 145"/>
+    <circle cx="78" cy="354" r="5" class="dot"/><circle cx="207" cy="171" r="5" class="dot"/>
+    <circle cx="88" cy="330" r="5" class="dot"/><circle cx="224" cy="203" r="5" class="dot"/>
+    <circle cx="102" cy="310" r="5" class="dot"/><circle cx="246" cy="145" r="5" class="dot"/>
+    <text x="43" y="387" class="small">user trajectories / predicted handovers</text>
   </g>
 
   <g>
-    <rect x="378" y="92" width="102" height="140" rx="2" class="panel"/>
-    <text x="401" y="118" class="svg-label svg-hot">RL POLICY</text>
-    <text x="392" y="146" class="svg-small">observe mobility</text>
-    <text x="392" y="162" class="svg-small">predict load</text>
-    <text x="392" y="178" class="svg-small">handover decision</text>
-    <rect x="396" y="193" width="18" height="24" class="bar"/>
-    <rect x="421" y="183" width="18" height="34" class="bar hot"/>
-    <rect x="446" y="171" width="18" height="46" class="bar"/>
+    <path class="thick" d="M142 120V248"/><path class="thick" d="M126 148H158M121 182H163M116 216H168"/>
+    <text x="115" y="265" class="eq">cell A</text>
+
+    <path class="thick" d="M252 164V292"/><path class="thick" d="M236 192H268M231 226H273M226 260H278"/>
+    <text x="225" y="309" class="eq">cell B</text>
+
+    <path class="thick" d="M202 64V192"/><path class="thick" d="M186 92H218M181 126H223M176 160H228"/>
+    <text x="176" y="209" class="eq">cell C</text>
   </g>
 
-  <g class="float-a">
-    <rect x="86" y="100" width="48" height="138" class="panel"/>
-    <path class="wire hot" d="M110 120V217"/>
-    <path class="wire hot" d="M96 138H124M93 170H127M89 203H131"/>
-    <text x="92" y="252" class="svg-small">cell A</text>
-  </g>
-  <g class="float-b">
-    <rect x="223" y="156" width="48" height="138" class="panel"/>
-    <path class="wire hot" d="M247 176V273"/>
-    <path class="wire hot" d="M233 194H261M230 226H264M226 259H268"/>
-    <text x="229" y="308" class="svg-small">cell B</text>
-  </g>
-  <g class="float-a">
-    <rect x="290" y="248" width="48" height="138" class="panel"/>
-    <path class="wire hot" d="M314 268V365"/>
-    <path class="wire hot" d="M300 286H328M297 318H331M293 351H335"/>
-    <text x="296" y="401" class="svg-small">cell C</text>
+  <g>
+    <rect x="304" y="82" width="176" height="274" rx="2" class="panel"/>
+    <text x="325" y="108" class="eqHot">policy state s_t</text>
+    <text x="325" y="130" class="small">[ load_A, load_B, load_C, QoS, v̂_user, H ]</text>
+    <text x="325" y="156" class="eq">πθ(a|s) = softmax(Wφ(s_t))</text>
+    <text x="325" y="180" class="small">handover / association action distribution</text>
+
+    <text x="325" y="213" class="eqHot">estimated load</text>
+    <rect x="326" y="225" width="116" height="18" class="heatB"/>
+    <rect x="326" y="225" width="43" height="18" class="heatA"/>
+    <text x="328" y="246" class="tiny">A = 0.37</text>
+
+    <rect x="326" y="255" width="116" height="18" class="heatB"/>
+    <rect x="326" y="255" width="79" height="18" class="heatA"/>
+    <text x="328" y="276" class="tiny">B = 0.68</text>
+
+    <rect x="326" y="285" width="116" height="18" class="heatB"/>
+    <rect x="326" y="285" width="31" height="18" class="heatA"/>
+    <text x="328" y="306" class="tiny">C = 0.27</text>
+
+    <text x="325" y="333" class="eq">reward = +QoS − drop − overload − ping_pong</text>
   </g>
 
-  <path class="wire" d="M134 170C178 170 177 225 223 225"/>
-  <path class="wire" d="M271 225C285 225 289 293 290 316"/>
-  <path class="wire hot" d="M338 316C356 316 362 241 378 164"/>
-  <path class="wire hot" d="M480 164C531 164 545 145 586 145"/>
-  <path class="wire hot" d="M480 164C531 164 545 214 586 214"/>
-  <path class="wire hot" d="M480 164C531 164 545 283 586 283"/>
+  <path class="thick" d="M272 228C286 228 292 228 304 228"/>
+  <path class="thick" d="M480 218C518 218 526 121 560 121"/>
+  <path class="thick" d="M480 218C517 218 524 216 560 216"/>
+  <path class="thick" d="M480 218C515 218 523 315 560 315"/>
 
-  <rect x="586" y="92" width="120" height="240" rx="2" class="panel"/>
-  <text x="603" y="118" class="svg-label svg-hot">NETWORK STATE</text>
-  <text x="603" y="142" class="svg-small">A load</text>
-  <rect x="603" y="151" width="76" height="14" class="token"/><rect x="603" y="151" width="33" height="14" class="token keep"/>
-  <text x="603" y="191" class="svg-small">B load</text>
-  <rect x="603" y="200" width="76" height="14" class="token"/><rect x="603" y="200" width="59" height="14" class="token keep"/>
-  <text x="603" y="240" class="svg-small">C load</text>
-  <rect x="603" y="249" width="76" height="14" class="token"/><rect x="603" y="249" width="24" height="14" class="token keep"/>
-  <text x="603" y="295" class="svg-small">QoS ↑   drops ↓</text>
+  <g class="float2">
+    <text x="540" y="86" class="eqHot">association matrix</text>
+    <text x="540" y="105" class="small">P(cell_i | user_j)</text>
+    <rect x="540" y="118" width="26" height="26" class="heatA"/><rect x="569" y="118" width="26" height="26" class="heatB"/><rect x="598" y="118" width="26" height="26" class="heatB"/>
+    <rect x="540" y="147" width="26" height="26" class="heatB"/><rect x="569" y="147" width="26" height="26" class="heatA"/><rect x="598" y="147" width="26" height="26" class="heatB"/>
+    <rect x="540" y="176" width="26" height="26" class="heatB"/><rect x="569" y="176" width="26" height="26" class="heatB"/><rect x="598" y="176" width="26" height="26" class="heatA"/>
+    <text x="636" y="134" class="tiny">u1</text><text x="636" y="163" class="tiny">u2</text><text x="636" y="192" class="tiny">u3</text>
+
+    <text x="540" y="246" class="eqHot">QoS surface</text>
+    <path class="soft" d="M540 312C565 276 587 308 605 267S646 247 664 286S702 317 710 286"/>
+    <path class="thick" d="M540 300C567 255 584 284 603 243S646 234 665 268S700 301 710 272"/>
+    <rect x="537" y="260" width="176" height="50" class="scan"/>
+    <text x="540" y="333" class="small">optimize throughput / latency / fairness</text>
+
+    <text x="540" y="379" class="eq">H_t = entropy(p(observation_t))</text>
+    <text x="540" y="396" class="small">robust decisions when state information is partial</text>
+  </g>
 </svg>
 </div>
 </div>
@@ -192,13 +238,14 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <p>I examine how reinforcement learning can optimize cell association and load balancing when the network state is uncertain and demand shifts over time.</p>
           <div class="chips"><span>QOS</span><span>LOAD BALANCING</span><span>OBSERVATION UNCERTAINTY</span><span>5G</span></div>
         </article>
-
+        
         <article class="track">
           <div class="track-no">02 · MOBILITY AWARENESS</div>
           <h3>Account for movement, not just current state.</h3>
           <p>User mobility changes the network’s optimal decisions. This research studies policies that anticipate handovers and network pressure instead of reacting too late.</p>
           <div class="chips"><span>USER MOBILITY</span><span>HANDOVER</span><span>RL POLICY</span><span>RAN CONTROL</span></div>
         </article>
+        
   </div>
   <div class="bridge"><strong>COMMON THREAD</strong><p>Radio access gets harder when information is partial and users are moving. The key research question is how to make intelligent policies that preserve QoS under uncertainty.</p></div>
 </div>
@@ -217,7 +264,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <div>
             <h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3>
             <div class="paper-meta">arXiv · 5G · PPO · Deep Reinforcement Learning</div>
-            <div class="metrics"><span class="metric">RL</span><span class="metric">5G</span></div>
+            <div class="metrics"><span class="metric">5G</span><span class="metric">QOS</span><span class="metric">LOAD BALANCING</span><span class="metric">MOBILITY</span></div>
           </div>
           <div class="paper-arrow">↗</div>
         </a>
@@ -233,9 +280,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
     <div><h2>Questions that drive the work.</h2></div>
   </div>
   <div class="questions">
-    <div class="q"><span>Q01</span><p>How should a radio network balance short-term QoS with long-term load stability?</p></div>
-<div class="q"><span>Q02</span><p>What is the right policy when the system sees only partial or noisy observations?</p></div>
-<div class="q"><span>Q03</span><p>How can mobility predictions improve handover and cell-association decisions?</p></div>
+    <div class="q"><span>Q01</span><p>How should a radio network balance short-term QoS with long-term load stability?</p></div><div class="q"><span>Q02</span><p>What is the right policy when the system sees only partial or noisy observations?</p></div><div class="q"><span>Q03</span><p>How can mobility predictions improve handover and cell-association decisions?</p></div>
   </div>
 </div>
 </section>
