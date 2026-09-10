@@ -32,16 +32,42 @@
   margin-bottom:.15rem;
 }
 </style><style>
-/* R04 merged research direction */
-.research-card--wide{grid-column:1/-1;min-height:260px;position:relative;overflow:hidden}
-.research-card--wide::after{
-  content:"VOICE  →  FEATURES  →  MEMORY      CONTEXT  →  GRAPH  →  POLICY  →  LESS TOKENS";
-  position:absolute;right:28px;bottom:26px;max-width:52%;font-size:11px;line-height:1.8;
-  letter-spacing:.06em;color:var(--accent,#df4f2f);opacity:.72;text-align:right;
+/* --- 4 equal research cards in a 2x2 system --- */
+#research .research-cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0;
+  align-items:stretch;
 }
+#research .research-card{
+  min-height:340px;
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+#research .research-card h3{max-width:72%}
+#research .research-card p{max-width:72%}
+#research .research-card::after{
+  position:absolute;
+  right:24px;
+  bottom:28px;
+  font-size:10px;
+  line-height:1.75;
+  letter-spacing:.06em;
+  color:var(--accent,#df4f2f);
+  opacity:.7;
+  text-align:right;
+  white-space:pre;
+}
+#research .research-card:nth-child(1)::after{content:"node\n↘  ↗\ngateway";}
+#research .research-card:nth-child(2)::after{content:"user A → cell 1\nuser B → cell 2\npolicy → balance";}
+#research .research-card:nth-child(3)::after{content:"trace → features\nkey bits → model\nblock → contract";}
+#research .research-card:nth-child(4)::after{content:"voice → memory\ngraph → policy\nprompt → less tokens";}
 @media(max-width:780px){
-  .research-card--wide{grid-column:auto}
-  .research-card--wide::after{display:none}
+  #research .research-cards{grid-template-columns:1fr}
+  #research .research-card h3,
+  #research .research-card p{max-width:100%}
+  #research .research-card::after{display:none}
 }
 </style></head><body><a class="skip" href="#workspace">Skip to content</a>
 <header class="site-header"><div class="container nav"><a aria-label="Mehrshad Eskandarpour home" class="brand" href="#home"><span class="brand-mark">m<span>.</span></span><span class="brand-name">mehrshad<span>/eskandarpour</span></span></a><div class="header-right"><span class="location">TEHRAN, IRAN</span><a class="nav-cta" href="contact.html">Let’s connect <span>↗</span></a></div></div></header>
@@ -120,7 +146,7 @@
 <p>Cryptographic side-channel analysis, deep-learning-assisted key recovery, blockchain security and smart-contract randomness.</p>
 <span class="card-arrow">View field ↗</span>
 </a>
-<a class="research-card research-card--wide reveal" href="research-intelligent-processing-efficient-ai.html" rel="noopener" target="_blank"><div class="research-card-top"><span>R04</span><span>RESEARCH NOTE ↗</span></div><h3>Intelligent Processing<br/>and Efficient AI</h3><p>Efficient intelligence across speech and language — neural voice conversion, memory-augmented adaptation, graph-aware reinforcement learning, prompt compression and black-box LLM inference.</p><span class="card-arrow">View field ↗</span></a></div>
+<a class="research-card reveal" href="research-intelligent-processing-efficient-ai.html" rel="noopener" target="_blank"><div class="research-card-top"><span>R04</span><span>RESEARCH NOTE ↗</span></div><h3>Intelligent Processing<br/>and Efficient AI</h3><p>Speech and language efficiency through neural voice conversion, memory-augmented learning, graph-aware prompt compression and black-box LLM inference.</p><span class="card-arrow">View field ↗</span></a></div>
 </div>
 </div>
 </section><section aria-labelledby="tab-teaching" class="panel" hidden="" id="teaching" role="tabpanel" tabindex="0">

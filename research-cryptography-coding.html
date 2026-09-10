@@ -1,88 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Cryptography and Coding — Mehrshad Eskandarpour</title>
-  <meta name="description" content="Mehrshad Eskandarpour's work in cryptography, coding, side-channel analysis, smart-contract security and machine-learning-assisted security."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="research-detail.css"/>
-
-<link rel="stylesheet" href="detail-theme.css" /><link rel="stylesheet" href="crypto-viz.css?v=1" /><link rel="icon" href="/favicon.ico?v=2" sizes="any"/>
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=2"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png?v=2"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security, Cryptography and Blockchain — Mehrshad Eskandarpour</title>
+<meta name="description" content="Security, Cryptography and Blockchain research direction of Mehrshad Eskandarpour.">
+<meta name="author" content="Mehrshad Eskandarpour">
+<meta name="theme-color" content="#fafaf9">
+<link rel="canonical" href="https://mehrshadesk.ir/research-cryptography-coding.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="styles.css?v=portrait-7" rel="stylesheet">
+<style>
+:root{--paper:#fafaf9;--ink:#171715;--muted:#77736d;--line:#dedbd5;--accent:#df4f2f;--soft:#f2f0ec}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
+a{color:inherit}
+.shell{width:min(1280px,calc(100% - 48px));margin:auto}
+.head{height:92px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:16px;text-decoration:none}
+.mark{font-size:32px;font-weight:600}.mark i{font-style:normal;color:var(--accent)}
+.name{font-size:14px;line-height:1.35}.name span{color:#98938b}
+.back{text-decoration:none;border-bottom:1px solid #777;padding:8px 0;font-size:13px}
+.back span{color:var(--accent)}
+.hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.85fr);gap:72px;align-items:center}
+h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.tag{border:1px solid var(--line);padding:8px 11px;font-size:11px;color:#68635d;background:#fff}
+.motion{border:1px solid var(--line);background:#fff;min-height:450px;position:relative;overflow:hidden}
+.motion::before{content:"LIVE RESEARCH MAP";position:absolute;z-index:3;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"signal → model → insight";position:absolute;z-index:3;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion svg{display:block;width:100%;height:450px}
+.gridline{stroke:#ebe8e2;stroke-width:1}
+.wire{stroke:#b9b4ad;stroke-width:1.25;fill:none;stroke-dasharray:5 7;animation:dash 10s linear infinite}
+.wire.hot{stroke:var(--accent);opacity:.9}
+.wave{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 5s ease-in-out infinite}
+.node{fill:#fff;stroke:#aaa49b;stroke-width:1.2}
+.node.hot{stroke:var(--accent)}
+.pulse{fill:var(--accent);transform-origin:center;animation:pulse 2.1s ease-in-out infinite}
+.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
+.bar.hot{fill:#ffe3d8}
+.panel{fill:#fff;stroke:#d7d3cd}
+.token{fill:#f6f4f0;stroke:#cfcac2}
+.token.keep{fill:#fff4ef;stroke:var(--accent)}
+.packet{fill:var(--accent)}
+.float-a{animation:floatA 5.5s ease-in-out infinite}.float-b{animation:floatB 6.5s ease-in-out infinite}
+.svg-label{font:11px "IBM Plex Mono";fill:#77736d}.svg-small{font:9px "IBM Plex Mono";fill:#9b968e}.svg-hot{fill:var(--accent)}
+@keyframes draw{0%{stroke-dashoffset:900;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
+@keyframes dash{to{stroke-dashoffset:-120}}
+@keyframes pulse{0%,100%{opacity:.28;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes floatA{50%{transform:translate(9px,-8px)}}@keyframes floatB{50%{transform:translate(-7px,9px)}}
+@keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.section{padding:80px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
+.section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
+.section h2{font-size:clamp(30px,4vw,52px);line-height:1.12;margin:0;font-weight:500;letter-spacing:-.04em}
+.section-intro{color:#66615b;line-height:1.8;max-width:760px;margin:18px 0 0}
+.two-track{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.track{padding:34px;min-height:330px}.track+ .track{border-left:1px solid var(--line)}
+.track-no{font-size:11px;color:var(--accent);margin-bottom:55px}.track h3{font-size:25px;line-height:1.25;margin:0 0 16px;font-weight:500}
+.track p{color:#716c65;line-height:1.75;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:25px}.chips span{font-size:10px;border:1px solid var(--line);padding:7px 9px;background:#fff}
+.bridge{margin-top:18px;border:1px solid var(--line);padding:27px 31px;display:grid;grid-template-columns:170px 1fr;gap:30px;background:var(--soft)}
+.bridge strong{font-size:11px;color:var(--accent);font-weight:500}.bridge p{margin:0;line-height:1.75;font-size:13px}
+.paper-list{border-top:1px solid var(--line)}
+.paper{display:grid;grid-template-columns:110px 1fr 90px;gap:28px;padding:34px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:.2s ease}
+.paper:hover{padding-left:12px;background:linear-gradient(90deg,#fff4ef 0,transparent 70%)}
+.paper-year{color:var(--accent);font-size:12px}
+.paper h3{font-size:20px;line-height:1.45;font-weight:500;margin:0 0 12px}
+.paper-meta{font-size:11px;color:#7e7971;line-height:1.7}
+.metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.metric{border:1px solid var(--line);padding:8px 10px;font-size:10px;background:#fff}
+.paper-arrow{text-align:right;color:var(--accent);font-size:16px}
+.questions{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.q{padding:28px;min-height:220px}.q+.q{border-left:1px solid var(--line)}.q span{color:var(--accent);font-size:11px}
+.q p{font-size:14px;line-height:1.75;margin:42px 0 0}
+.cta{padding:72px 0 90px}
+.cta-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-top:1px solid var(--line);padding-top:35px}
+.cta h2{font-size:clamp(28px,4vw,50px);font-weight:500;letter-spacing:-.04em;margin:0 0 15px}.cta p{color:#716c65;margin:0}
+.email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
+@media(max-width:900px){
+ .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:380px}.motion svg{height:380px}
+ .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
+ .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
+}
+@media(max-width:600px){.shell{width:min(100% - 28px,1280px)}.name{display:none}.hero{padding-top:58px}.paper{grid-template-columns:1fr}.paper-arrow{text-align:left}.cta-box{grid-template-columns:1fr}.back{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-<header class="topbar"><div class="container"><a class="brand" href="index.html"><i>ME</i>Mehrshad Eskandarpour</a><a class="back" href="index.html#research">← Back to Research</a></div></header>
+<header class="shell head">
+  <a class="brand" href="index.html" aria-label="Mehrshad Eskandarpour home">
+    <span class="mark">m<i>.</i></span>
+    <span class="name">mehrshad<br><span>/eskandarpour</span></span>
+  </a>
+  <a class="back" href="index.html#research">Back to research <span>←</span></a>
+</header>
 
 <main>
-<section class="research-hero"><div class="container">
-<p class="breadcrumb">R03 / CRYPTOGRAPHY AND CODING</p>
-<h1>Cryptography<br/>and Coding</h1>
-<p class="intro">
-  My work in this area combines cryptographic security with machine learning:
-  analyzing side-channel leakage, studying smart-contract randomness and exploring
-  how intelligent methods can reveal weaknesses in systems designed to resist attack.
-</p>
-<div class="hero-meta"><span>Cryptography</span><span>Side Channels</span><span>Deep Learning</span><span>Smart Contracts</span><span>Randomness</span><span>Coding</span></div>
+<section class="hero">
+<div class="shell hero-grid">
+  <div>
+    <div class="eyebrow">[ R03 · RESEARCH DIRECTION ]</div>
+    <h1>Inspect secure systems<br>where the cracks <em>actually hide.</em></h1>
+    <p class="lede">This direction covers cryptographic side-channel analysis, deep-learning-assisted key recovery, blockchain security and randomness in smart contracts. It sits at the intersection of security evaluation, attack realism and intelligent analysis.</p>
+    <div class="hero-tags"><span class="tag">SIDE-CHANNEL ANALYSIS</span><span class="tag">CRYPTOGRAPHY</span><span class="tag">DEEP LEARNING</span><span class="tag">BLOCKCHAIN</span><span class="tag">SMART CONTRACTS</span><span class="tag">SECURITY</span></div>
+  </div>
+  <div class="motion" aria-label="Animated research visualization">
+<svg viewBox="0 0 760 450" role="img">
+  <path class="gridline" d="M0 90H760M0 180H760M0 270H760M0 360H760"/>
+  <path class="gridline" d="M152 0V450M304 0V450M456 0V450M608 0V450"/>
+  <text x="33" y="46" class="svg-label svg-hot">SIDE-CHANNEL TRACE</text>
+  <text x="525" y="46" class="svg-label svg-hot">BLOCKCHAIN / CONTRACTS</text>
 
-<div class="crypto-studies">
-<article class="crypto-study"><header><span class="study-number">01 / SIDE-CHANNEL ANALYSIS</span><h2>From leakage to inference</h2><p>Observe an implementation, extract trace patterns, and rank key hypotheses.</p></header>
-<svg viewBox="0 0 480 590" role="img" aria-labelledby="trace-title trace-desc"><title id="trace-title">Side-channel analysis workflow</title><desc id="trace-desc">A cryptographic implementation produces ciphertext and a separate measurable leakage trace. A learned model uses the trace to rank key hypotheses. The waveform is illustrative, not measured research data.</desc>
-<defs><marker id="trace-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="currentColor"/></marker><clipPath id="trace-clip"><rect x="40" y="249" width="400" height="86"/></clipPath></defs>
-<text class="diagram-meta" x="40" y="34">PLAINTEXT + SECRET KEY</text><path class="connector" d="M240 48V76" marker-end="url(#trace-arrow)"/>
-<rect class="process" x="40" y="86" width="400" height="70" rx="4"/><text class="diagram-label" x="240" y="128" text-anchor="middle">Cryptographic implementation</text>
-<path class="connector" d="M350 156V203H434" marker-end="url(#trace-arrow)"/><text class="diagram-meta" x="292" y="231">CIPHERTEXT</text>
-<path class="connector signal-flow" d="M125 156V235" marker-end="url(#trace-arrow)"/><text class="diagram-meta" x="40" y="219">LEAKAGE TRACE</text>
-<path class="trace-grid" d="M40 250H440M40 292H440M40 334H440M120 245V340M200 245V340M280 245V340M360 245V340"/>
-<g clip-path="url(#trace-clip)"><path class="wave-line" d="M40.0,292.0 L41.0,296.0 L42.0,298.7 L43.0,299.3 L44.0,297.7 L45.0,294.3 L46.0,290.5 L47.0,287.3 L48.0,286.0 L49.0,286.9 L50.0,289.8 L51.0,293.8 L52.0,297.5 L53.0,299.7 L54.0,299.7 L55.0,297.5 L56.0,293.8 L57.0,289.6 L58.0,286.4 L59.0,285.2 L60.0,286.1 L61.0,289.0 L62.0,292.7 L63.0,296.0 L64.0,297.7 L65.0,297.2 L66.0,294.5 L67.0,290.5 L68.0,286.5 L69.0,283.6 L70.0,282.9 L71.0,284.5 L72.0,287.9 L73.0,292.0 L74.0,295.5 L75.0,297.3 L76.0,297.0 L77.0,294.6 L78.0,291.1 L79.0,287.8 L80.0,285.8 L81.0,286.0 L82.0,288.4 L83.0,292.5 L84.0,296.9 L85.0,300.5 L86.0,302.1 L87.0,301.4 L88.0,298.6 L89.0,294.8 L90.0,291.3 L91.0,289.1 L92.0,289.1 L93.0,291.1 L94.0,294.4 L95.0,297.9 L96.0,300.2 L97.0,300.4 L98.0,298.3 L99.0,294.2 L100.0,289.4 L101.0,285.1 L102.0,282.5 L103.0,282.2 L104.0,284.0 L105.0,287.1 L106.0,290.4 L107.0,292.5 L108.0,292.6 L109.0,290.7 L110.0,287.2 L111.0,283.3 L112.0,280.4 L113.0,279.5 L114.0,281.0 L115.0,284.7 L116.0,289.7 L117.0,294.5 L118.0,298.0 L119.0,299.4 L120.0,298.6 L121.0,296.3 L122.0,293.6 L123.0,291.9 L124.0,292.0 L125.0,294.2 L126.0,298.2 L127.0,302.8 L128.0,306.8 L129.0,308.9 L130.0,308.5 L131.0,305.7 L132.0,301.3 L133.0,296.5 L134.0,292.6 L135.0,290.6 L136.0,290.6 L137.0,292.2 L138.0,294.3 L139.0,295.7 L140.0,295.4 L141.0,292.7 L142.0,288.1 L143.0,282.5 L144.0,277.1 L145.0,273.4 L146.0,272.0 L147.0,273.2 L148.0,276.4 L149.0,280.3 L150.0,283.8 L151.0,285.7 L152.0,285.7 L153.0,284.2 L154.0,282.0 L155.0,280.4 L156.0,280.6 L157.0,283.2 L158.0,288.1 L159.0,294.5 L160.0,301.2 L161.0,306.6 L162.0,309.9 L163.0,310.7 L164.0,309.5 L165.0,307.1 L166.0,304.8 L167.0,303.8 L168.0,304.6 L169.0,307.0 L170.0,310.2 L171.0,312.8 L172.0,313.7 L173.0,312.1 L174.0,307.8 L175.0,301.6 L176.0,294.5 L177.0,287.9 L178.0,283.1 L179.0,280.6 L180.0,280.1 L181.0,280.8 L182.0,281.6 L183.0,281.2 L184.0,279.1 L185.0,275.2 L186.0,270.4 L187.0,265.8 L188.0,262.7 L189.0,262.2 L190.0,264.6 L191.0,269.5 L192.0,275.8 L193.0,282.1 L194.0,287.2 L195.0,290.4 L196.0,291.8 L197.0,292.0 L198.0,292.1 L199.0,293.4 L200.0,296.6 L201.0,301.8 L202.0,308.4 L203.0,315.1 L204.0,320.8 L205.0,324.1 L206.0,324.4 L207.0,322.1 L208.0,317.9 L209.0,313.2 L210.0,309.1 L211.0,306.6 L212.0,305.7 L213.0,305.9 L214.0,306.1 L215.0,305.2 L216.0,302.1 L217.0,296.7 L218.0,289.3 L219.0,281.1 L220.0,273.4 L221.0,267.7 L222.0,264.5 L223.0,264.1 L224.0,265.7 L225.0,268.2 L226.0,270.3 L227.0,271.1 L228.0,270.3 L229.0,268.5 L230.0,266.5 L231.0,265.7 L232.0,267.2 L233.0,271.3 L234.0,277.9 L235.0,286.0 L236.0,294.3 L237.0,301.3 L238.0,306.2 L239.0,308.5 L240.0,308.9 L241.0,308.4 L242.0,308.1 L243.0,309.1 L244.0,311.7 L245.0,315.7 L246.0,320.0 L247.0,323.4 L248.0,324.6 L249.0,323.0 L250.0,318.6 L251.0,312.2 L252.0,304.9 L253.0,298.2 L254.0,293.3 L255.0,290.4 L256.0,289.3 L257.0,289.2 L258.0,288.7 L259.0,286.9 L260.0,283.2 L261.0,277.8 L262.0,271.6 L263.0,265.8 L264.0,261.8 L265.0,260.5 L266.0,262.1 L267.0,266.0 L268.0,271.3 L269.0,276.4 L270.0,280.3 L271.0,282.3 L272.0,282.7 L273.0,282.2 L274.0,282.0 L275.0,283.2 L276.0,286.5 L277.0,292.0 L278.0,298.9 L279.0,306.0 L280.0,311.8 L281.0,315.4 L282.0,316.2 L283.0,314.5 L284.0,311.3 L285.0,308.0 L286.0,305.6 L287.0,305.0 L288.0,306.0 L289.0,308.0 L290.0,309.8 L291.0,310.3 L292.0,308.5 L293.0,304.2 L294.0,298.0 L295.0,291.0 L296.0,284.7 L297.0,280.2 L298.0,278.1 L299.0,278.4 L300.0,280.2 L301.0,282.4 L302.0,283.7 L303.0,283.4 L304.0,281.2 L305.0,277.7 L306.0,274.1 L307.0,271.7 L308.0,271.4 L309.0,273.8 L310.0,278.4 L311.0,284.2 L312.0,290.0 L313.0,294.5 L314.0,296.8 L315.0,296.9 L316.0,295.3 L317.0,293.4 L318.0,292.2 L319.0,292.8 L320.0,295.3 L321.0,299.5 L322.0,304.3 L323.0,308.3 L324.0,310.3 L325.0,309.9 L326.0,307.0 L327.0,302.5 L328.0,297.7 L329.0,293.8 L330.0,291.9 L331.0,292.1 L332.0,293.9 L333.0,296.4 L334.0,298.2 L335.0,298.2 L336.0,296.1 L337.0,292.1 L338.0,287.0 L339.0,282.3 L340.0,279.0 L341.0,278.1 L342.0,279.7 L343.0,283.1 L344.0,287.0 L345.0,290.4 L346.0,292.0 L347.0,291.4 L348.0,289.1 L349.0,286.0 L350.0,283.2 L351.0,282.1 L352.0,283.2 L353.0,286.5 L354.0,291.2 L355.0,296.1 L356.0,299.8 L357.0,301.4 L358.0,300.7 L359.0,298.0 L360.0,294.5 L361.0,291.3 L362.0,289.8 L363.0,290.3 L364.0,292.8 L365.0,296.5 L366.0,300.0 L367.0,302.2 L368.0,302.2 L369.0,299.9 L370.0,295.9 L371.0,291.3 L372.0,287.5 L373.0,285.5 L374.0,285.8 L375.0,288.1 L376.0,291.6 L377.0,294.8 L378.0,296.7 L379.0,296.5 L380.0,294.1 L381.0,290.4 L382.0,286.3 L383.0,283.4 L384.0,282.4 L385.0,283.8 L386.0,287.1 L387.0,291.3 L388.0,295.2 L389.0,297.4 L390.0,297.4 L391.0,295.3 L392.0,291.8 L393.0,288.3 L394.0,285.9 L395.0,285.5 L396.0,287.4 L397.0,291.0 L398.0,295.1 L399.0,298.6 L400.0,300.3 L401.0,299.7 L402.0,296.9 L403.0,293.0 L404.0,289.2 L405.0,286.7 L406.0,286.3 L407.0,288.1 L408.0,291.5 L409.0,295.4 L410.0,298.3 L411.0,299.3 L412.0,298.1 L413.0,294.9 L414.0,290.8 L415.0,287.1 L416.0,284.8 L417.0,284.9 L418.0,287.1 L419.0,290.7 L420.0,294.6 L421.0,297.4 L422.0,298.3 L423.0,296.9 L424.0,293.6 L425.0,289.7 L426.0,286.3 L427.0,284.6 L428.0,285.2 L429.0,287.9 L430.0,291.8 L431.0,295.7 L432.0,298.4 L433.0,298.9 L434.0,297.2 L435.0,293.8 L436.0,289.8 L437.0,286.7 L438.0,285.3 L439.0,286.2"/><rect class="trace-scan" x="40" y="245" width="35" height="96"/></g>
-<path class="connector signal-flow" d="M240 346V376" marker-end="url(#trace-arrow)"/>
-<rect class="process accent-process" x="40" y="387" width="400" height="65" rx="4"/><text class="diagram-label" x="240" y="427" text-anchor="middle">Learned trace model</text>
-<path class="connector" d="M240 452V487" marker-end="url(#trace-arrow)"/>
-<text class="diagram-meta" x="40" y="518">RANKED KEY HYPOTHESES</text>
-<rect class="rank-track" x="40" y="540" width="400" height="8"/><rect class="rank-bar rank-one" x="40" y="540" width="310" height="8"/>
-<rect class="rank-track" x="40" y="559" width="400" height="8"/><rect class="rank-bar rank-two" x="40" y="559" width="185" height="8"/>
-</svg><footer>Conceptual workflow · illustrative trace and ranking</footer></article>
-<article class="crypto-study"><header><span class="study-number">02 / ERROR-CORRECTING CODES</span><h2>Redundancy that repairs</h2><p>A Hamming (7,4) example: locate and correct a single flipped bit.</p></header>
-<svg viewBox="0 0 480 590" role="img" aria-labelledby="code-title code-desc"><title id="code-title">Hamming code single-bit correction</title><desc id="code-desc">Data 1011 encodes to 0110011 with even parity. An error at position six produces 0110001. Syndrome 110, read as s4 s2 s1, identifies position six. Correction restores 0110011.</desc>
-<text class="diagram-meta" x="40" y="34">SOURCE DATA</text><text class="data-word" x="440" y="37" text-anchor="end">1 0 1 1</text>
-<path class="connector" d="M240 48V76"/>
-<rect class="process" x="40" y="86" width="400" height="70" rx="4"/><text class="diagram-label" x="240" y="128" text-anchor="middle">Hamming (7,4) · even parity</text>
-<path class="connector signal-flow" d="M240 156V191"/>
-<text class="diagram-meta" x="40" y="220">ENCODED WORD</text>
-<g class="bit-cell parity-bit"><rect x="40" y="241" width="50" height="46" rx="3"/><text x="65" y="272" text-anchor="middle">0</text></g><g class="bit-cell parity-bit"><rect x="98" y="241" width="50" height="46" rx="3"/><text x="123" y="272" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="156" y="241" width="50" height="46" rx="3"/><text x="181" y="272" text-anchor="middle">1</text></g><g class="bit-cell parity-bit"><rect x="214" y="241" width="50" height="46" rx="3"/><text x="239" y="272" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="272" y="241" width="50" height="46" rx="3"/><text x="297" y="272" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="330" y="241" width="50" height="46" rx="3"/><text x="355" y="272" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="388" y="241" width="50" height="46" rx="3"/><text x="413" y="272" text-anchor="middle">1</text></g><text class="diagram-note" x="40" y="314">Parity positions: 1, 2, 4</text><path class="connector signal-flow" d="M240 328V353"/><text class="diagram-meta" x="40" y="383">RECEIVED · BIT 6 FLIPPED</text><g class="bit-cell"><rect x="40" y="400" width="50" height="46" rx="3"/><text x="65" y="431" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="98" y="400" width="50" height="46" rx="3"/><text x="123" y="431" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="156" y="400" width="50" height="46" rx="3"/><text x="181" y="431" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="214" y="400" width="50" height="46" rx="3"/><text x="239" y="431" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="272" y="400" width="50" height="46" rx="3"/><text x="297" y="431" text-anchor="middle">0</text></g><g class="bit-cell error-bit"><rect x="330" y="400" width="50" height="46" rx="3"/><text x="355" y="431" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="388" y="400" width="50" height="46" rx="3"/><text x="413" y="431" text-anchor="middle">1</text></g><text class="syndrome" x="40" y="484">Syndrome 110₂ → position 6</text><text class="diagram-meta" x="40" y="519">CORRECTED WORD</text><g class="bit-cell"><rect x="40" y="536" width="50" height="46" rx="3"/><text x="65" y="567" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="98" y="536" width="50" height="46" rx="3"/><text x="123" y="567" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="156" y="536" width="50" height="46" rx="3"/><text x="181" y="567" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="214" y="536" width="50" height="46" rx="3"/><text x="239" y="567" text-anchor="middle">0</text></g><g class="bit-cell"><rect x="272" y="536" width="50" height="46" rx="3"/><text x="297" y="567" text-anchor="middle">0</text></g><g class="bit-cell repaired-bit"><rect x="330" y="536" width="50" height="46" rx="3"/><text x="355" y="567" text-anchor="middle">1</text></g><g class="bit-cell"><rect x="388" y="536" width="50" height="46" rx="3"/><text x="413" y="567" text-anchor="middle">1</text></g></svg><footer>Exact worked example · one-bit error correction</footer></article></div>
-</div></section>
+  <path class="wave" d="M34 145 C55 82 67 220 90 146 S125 77 148 144 S180 215 204 147 S234 78 260 145"/>
+  <text x="39" y="191" class="svg-small">power trace</text>
+  <rect x="310" y="100" width="132" height="158" rx="2" class="panel"/>
+  <text x="331" y="126" class="svg-label svg-hot">DL KEY RECOVERY</text>
+  <text x="325" y="153" class="svg-small">trace → features</text>
+  <text x="325" y="170" class="svg-small">features → model</text>
+  <text x="325" y="187" class="svg-small">model → key guess</text>
+  <rect x="330" y="208" width="22" height="24" class="token keep"/><rect x="360" y="208" width="22" height="24" class="token"/><rect x="390" y="208" width="22" height="24" class="token keep"/>
+  <text x="337" y="253" class="svg-small">0x ? ? ?</text>
+  <path class="wire hot" d="M263 145C292 145 295 179 310 179"/>
 
-<section class="section"><div class="container grid"><aside class="side"><span>01</span>What I work on</aside><div class="content">
-<h2>Security viewed as both mathematics and a measurable system.</h2>
-<p>
-  My work in cryptography and coding includes machine-learning-assisted side-channel
-  analysis and smart-contract security. I have studied how deep-learning methods can
-  recover cryptographic keys even when probabilistic countermeasures are used, and I
-  have also worked on weaknesses in random-number generation inside Ethereum smart
-  contracts. This area connects directly to my teaching background in cryptography and
-  to my broader interest in robust communication systems, coding and intelligent
-  security analysis.
-</p>
-<div class="work-grid">
-<article class="work-card"><span>SIDE CHANNELS</span><h3>Cryptographic leakage</h3><p>Analyzing measurable traces from cryptographic operations and learning patterns that reveal key information.</p></article>
-<article class="work-card"><span>DEEP LEARNING</span><h3>Key recovery</h3><p>Using neural models to attack protected cryptographic implementations under probabilistic defenses.</p></article>
-<article class="work-card"><span>SMART CONTRACTS</span><h3>Randomness security</h3><p>Studying exploitable weaknesses in random-number generation and state behavior in Ethereum contracts.</p></article>
-<article class="work-card"><span>CODING</span><h3>Reliable information</h3><p>Connecting security with coding concepts, redundancy, robust transmission and structured information processing.</p></article>
+  <g class="float-a">
+    <rect x="516" y="116" width="65" height="42" class="panel"/><text x="534" y="141" class="svg-small">block 1</text>
+    <rect x="603" y="116" width="65" height="42" class="panel"/><text x="621" y="141" class="svg-small">block 2</text>
+    <rect x="560" y="196" width="65" height="42" class="panel"/><text x="576" y="221" class="svg-small">block 3</text>
+    <path class="wire hot" d="M581 137H603M548 156L560 196M625 158L612 196"/>
+  </g>
+
+  <rect x="516" y="282" width="172" height="66" rx="2" class="panel"/>
+  <text x="537" y="307" class="svg-label svg-hot">SMART CONTRACT RNG</text>
+  <text x="534" y="331" class="svg-small">predictability · exploitation · auditability</text>
+  <path class="wire hot" d="M442 179C487 179 512 216 548 216"/>
+  <path class="wire hot" d="M600 239C600 253 600 263 600 282"/>
+  <circle cx="558" cy="368" r="4" class="pulse"/><circle cx="610" cy="368" r="4" class="pulse" style="animation-delay:.4s"/><circle cx="662" cy="368" r="4" class="pulse" style="animation-delay:.8s"/>
+</svg>
 </div>
-</div></div></section>
-
-<section class="section"><div class="container grid"><aside class="side"><span>02</span>Related papers</aside><div class="content">
-<h2>Publications connected to this field.</h2>
-<div class="paper-list">
-<a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538" target="_blank" rel="noreferrer"><span>2026</span><div><h3>Demystifying Random Numbers in Smart Contracts: A Novel and High-Efficiency Approach for Attacking Ethereum Contracts</h3><p>SSRN · Blockchain · Smart Contract Security</p></div><b>↗</b></a>
-<a class="paper" href="https://doi.org/10.22060/eej.2026.24478.5712" target="_blank" rel="noreferrer"><span>2026</span><div><h3>Breaking Probabilistic Side-Channel Defenses: A Deep Learning Approach to Cryptographic Key Recovery</h3><p>AUT Journal of Electrical Engineering · Cybersecurity</p></div><b>↗</b></a>
 </div>
-</div></div></section>
+</section>
+
+<section class="section">
+<div class="shell">
+  <div class="section-head">
+    <div class="section-index">01 / SCOPE</div>
+    <div><h2>From leakage-based key recovery to smart-contract vulnerability analysis.</h2></div>
+  </div>
+  <div class="two-track">
+    
+        <article class="track">
+          <div class="track-no">01 · CRYPTO ANALYSIS</div>
+          <h3>Learn from leakage that secure systems did not intend to reveal.</h3>
+          <p>By studying side-channel traces and deep learning pipelines, this work explores how cryptographic secrets can be inferred even when defenses attempt to add uncertainty.</p>
+          <div class="chips"><span>SIDE-CHANNEL</span><span>KEY RECOVERY</span><span>DL MODELS</span><span>DEFENSE ANALYSIS</span></div>
+        </article>
+
+        <article class="track">
+          <div class="track-no">02 · BLOCKCHAIN SECURITY</div>
+          <h3>Test how trust assumptions fail in decentralized logic.</h3>
+          <p>The blockchain side investigates how randomness and contract design choices create exploitable security vulnerabilities and what those weaknesses imply for practice.</p>
+          <div class="chips"><span>BLOCKCHAIN</span><span>SMART CONTRACTS</span><span>RANDOMNESS</span><span>ATTACK SURFACE</span></div>
+        </article>
+  </div>
+  <div class="bridge"><strong>COMMON THREAD</strong><p>The common goal is not just to break things for sport. It is to understand where systems leak structure, where defenses fail, and how security claims hold up under realistic analysis.</p></div>
+</div>
+</section>
+
+<section class="section" id="papers">
+<div class="shell">
+  <div class="section-head">
+    <div class="section-index">02 / PUBLICATIONS</div>
+    <div><h2>Related papers.</h2><p class="section-intro">These papers examine both cryptographic leakage and blockchain security, using analytical and deep-learning-based approaches.</p></div>
+  </div>
+  <div class="paper-list">
+    
+        <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538" target="_blank" rel="noreferrer">
+          <div class="paper-year">2026<br>PAPER</div>
+          <div>
+            <h3>Demystifying Random Numbers in Smart Contracts: A Novel and High-Efficiency Approach for Attacking Ethereum Contracts</h3>
+            <div class="paper-meta">SSRN · Posted July 2, 2026 · Blockchain · Smart Contract Security</div>
+            <div class="metrics"><span class="metric">BLOCKCHAIN</span><span class="metric">SMART CONTRACT</span></div>
+          </div>
+          <div class="paper-arrow">↗</div>
+        </a>
+        
+
+        <a class="paper" href="https://doi.org/10.22060/eej.2026.24478.5712" target="_blank" rel="noreferrer">
+          <div class="paper-year">2060<br>PAPER</div>
+          <div>
+            <h3>Breaking Probabilistic Side-Channel Defenses: A Deep Learning Approach to Cryptographic Key Recovery</h3>
+            <div class="paper-meta">AUT Journal of Electrical Engineering · 58(Special Issue 1), 113–138 · DOI 10.22060/eej.2026.24478.5712</div>
+            <div class="metrics"><span class="metric">CRYPTOGRAPHY</span><span class="metric">SIDE-CHANNEL</span></div>
+          </div>
+          <div class="paper-arrow">↗</div>
+        </a>
+        
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="shell">
+  <div class="section-head">
+    <div class="section-index">03 / QUESTIONS</div>
+    <div><h2>Questions that drive the work.</h2></div>
+  </div>
+  <div class="questions">
+    <div class="q"><span>Q01</span><p>How resilient are side-channel defenses when the attacker uses learned feature extraction?</p></div>
+<div class="q"><span>Q02</span><p>What makes randomness in smart contracts fail in practice, not just in theory?</p></div>
+<div class="q"><span>Q03</span><p>How can security evaluation better connect model sophistication with deployable threats?</p></div>
+  </div>
+</div>
+</section>
+
+<section class="cta">
+<div class="shell cta-box">
+  <div><div class="eyebrow">[ COLLABORATION CHANNEL ]</div><h2>Have a signal worth exploring?</h2><p>Research, engineering, or a stubborn technical problem — send it over.</p></div>
+  <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Security,%20Cryptography%20and%20Blockchain">Email Mehrshad <span>↗</span></a>
+</div>
+</section>
 </main>
 
-<section class="cta"><div class="container"><div><h2>Good security is not just hidden information — it is resilient information.</h2><p>See the related papers or return to the main portfolio.</p></div><div class="cta-links"><a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a><a href="index.html#research">Main portfolio</a></div></div></section>
-<footer><div class="container footer-row"><span>© <span id="year"></span> Mehrshad Eskandarpour</span><span>Cryptography and Coding</span></div></footer>
-<script src="research-detail.js"></script>
-</body></html>
+<footer class="shell"><span>© 2026 Mehrshad Eskandarpour</span><a href="index.html#research">Research map ↑</a></footer>
+</body>
+</html>
