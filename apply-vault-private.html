@@ -34,6 +34,12 @@
 <aside class="sidebar"><div class="side-sticky"><div class="side-label">Knowledge index</div><nav class="nav">
 <a class="active" href="#overview">Overview</a><a href="#map">System Map</a><a href="#experience">My Experience</a><a href="#start">Start Here</a><a href="#universities">Universities</a><a href="#professors">Professors</a><a href="#cv">Academic CV</a><a href="#sop">SOP</a><a href="#emailing">Cold Emails</a><a href="#references">Recommendations</a><a href="#tests">Tests</a><a href="#funding">Funding</a><a href="#portal">Application Portal</a><a href="#interview">Interview</a><a href="#after">After Applying</a><a href="#mistakes">Lessons</a><a href="#resources">Resources</a>
 </nav><div class="side-info"><b>NODE AV-01</b><br>Experience + process + templates.<br>Built for applicants who want a system, not scattered advice.</div></div></aside>
+<!-- =========================================================
+     EDITABLE APPLY VAULT CONTENT START
+     Edit the sections below to change what authorized visitors see.
+     Keep the IDs (overview, experience, sop, etc.) if you want the
+     left navigation to continue working automatically.
+     ========================================================= -->
 <main class="content">
 <section class="hero" id="overview"><div class="hero-code">AV</div><div class="eyebrow"><b>AUTHORIZED KNOWLEDGE NODE</b><span>/ APPLICATION INTELLIGENCE</span></div><h1>Apply<br><span>Vault.</span></h1><p class="lead">Everything I would want in one place before starting a graduate application: how to build a shortlist, find research fit, contact professors, prepare documents, think about funding, handle interviews, compare outcomes, and avoid the mistakes that waste the most time.</p><div class="hero-actions"><a class="hero-btn primary" href="#start">START THE PLAYBOOK <i>→</i></a><a class="hero-btn" href="#experience">MY EXPERIENCE <i>↘</i></a><a class="hero-btn" href="#resources">TEMPLATES <i>↗</i></a></div></section>
 <div class="meta"><div><small>Authorization</small><strong class="ok">ACCESS GRANTED</strong></div><div><small>Identity</small><strong id="viewer-email">—</strong></div><div><small>Modules</small><strong>14 CORE MODULES</strong></div><div><small>Verification</small><strong id="verified-at">IN PROGRESS</strong></div></div>
@@ -148,24 +154,28 @@ Best,
 <div class="resource"><small>R-06</small><h3>Final Checklist</h3><p>Documents, names, dates, uploads, payment, references, confirmation.</p></div>
 </div></section>
 <footer class="footer"><span>MEHRSHAD ESKANDARPOUR · APPLY VAULT</span><span>PRIVATE KNOWLEDGE NODE / AV-01</span></footer>
-</main></div></div>
+</main>
+<!-- ================= EDITABLE APPLY VAULT CONTENT END ================= -->
+</div></div>
 <script src="access-config.js"></script>
 <script>
 (() => {
   const cfg=window.MEHRSHAD_ACCESS||{},API=String(cfg.apiUrl||'').trim(),GATE=cfg.gateUrl||'apply-vault.html';
-  const HASHES=Array.isArray(cfg.allowedEmailHashes)?cfg.allowedEmailHashes.map(x=>String(x).toLowerCase()):[];
   const guard=document.getElementById('guard'),guardCopy=document.getElementById('guard-copy');
   const email=String(sessionStorage.getItem('applicationJourneyEmail')||'').trim().toLowerCase();
+  const credential=String(sessionStorage.getItem('applicationJourneyCredential')||'').trim().toLowerCase();
   const authorized=sessionStorage.getItem('applicationJourneyAuthorized')==='1';
-  const configured=/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API),valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  function terminate(){sessionStorage.removeItem('applicationJourneyAuthorized');sessionStorage.removeItem('applicationJourneyEmail');location.replace(GATE)}
-  document.getElementById('logout').addEventListener('click',terminate);if(!authorized||!valid){terminate();return}
+  const configured=/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API),valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),validCredential=/^[a-f0-9]{64}$/.test(credential);
+  function terminate(){sessionStorage.removeItem('applicationJourneyAuthorized');sessionStorage.removeItem('applicationJourneyEmail');sessionStorage.removeItem('applicationJourneyCredential');location.replace(GATE)}
+  document.getElementById('logout').addEventListener('click',terminate);if(!authorized||!valid||!validCredential){terminate();return}
   document.getElementById('viewer-email').textContent=email;
   function deny(msg){guardCopy.textContent=msg||'Authorization is no longer valid.';setTimeout(terminate,850)}
   function openVault(){document.getElementById('verified-at').textContent=new Date().toLocaleString([], {year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).toUpperCase();guard.classList.add('hidden');setTimeout(()=>guard.remove(),420)}
-  async function hashEmail(v){if(!window.crypto||!window.crypto.subtle)return'';const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('')}
-  function remoteCheck(){return new Promise(resolve=>{if(!configured){resolve(null);return}const cb=`vaultRevalidate_${Date.now()}_${Math.random().toString(36).slice(2)}`,s=document.createElement('script');let finished=false;const finish=v=>{if(finished)return;finished=true;clearTimeout(timer);try{delete window[cb]}catch(_){window[cb]=undefined}s.remove();resolve(v)};const timer=setTimeout(()=>finish(null),7000);window[cb]=r=>finish(!!(r&&r.allowed===true));s.onerror=()=>finish(null);s.src=`${API}?action=verify&email=${encodeURIComponent(email)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;document.body.appendChild(s)})}
-  (async()=>{try{guardCopy.textContent='Validating authorization signature.';const h=await hashEmail(email);if(h&&HASHES.includes(h)){openVault();return}const remote=await remoteCheck();if(remote===true){openVault();return}deny(remote===null?'This session cannot be revalidated.':'This identity is no longer authorized.')}catch(_){deny('Authorization could not be validated.')}})();
+  function remoteCheck(){return new Promise(resolve=>{if(!configured){resolve(null);return}const cb=`vaultRevalidate_${Date.now()}_${Math.random().toString(36).slice(2)}`,s=document.createElement('script');let finished=false;const finish=v=>{if(finished)return;finished=true;clearTimeout(timer);try{delete window[cb]}catch(_){window[cb]=undefined}s.remove();resolve(v)};const timer=setTimeout(()=>finish(null),7000);window[cb]=r=>finish(!!(r&&r.allowed===true));s.onerror=()=>finish(null);s.src=`${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;document.body.appendChild(s)})}
+  async function validateSession(initial=false){try{if(initial)guardCopy.textContent='Validating email + access key.';const remote=await remoteCheck();if(remote===true){if(initial)openVault();return true}if(initial)deny(remote===null?'The authorization service is unavailable.':'This session is no longer authorized.');else if(remote===false)terminate();return false}catch(_){if(initial)deny('Authorization could not be validated.');return false}}
+  validateSession(true);
+  // Re-check periodically so changing a Sheet row to REVOKED takes effect for an open session too.
+  setInterval(()=>validateSession(false),60000);
 
   const nav=[...document.querySelectorAll('.nav a')],sections=nav.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if('IntersectionObserver'in window){const obs=new IntersectionObserver(entries=>{const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!v)return;nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+v.target.id))},{rootMargin:'-20% 0px -65% 0px',threshold:[0,.1,.5]});sections.forEach(s=>obs.observe(s))}
   const canvas=document.getElementById('binary'),ctx=canvas.getContext('2d',{alpha:true});let w=0,h=0,dpr=1,t=0,g=[];const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -32,7 +32,7 @@ a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button
 .brand-meta{font-size:8px;line-height:1.45;letter-spacing:.16em;text-transform:uppercase;color:#777c74}.brand-meta span{display:block;color:#393e38;margin-top:3px}
 .back{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#555b54;transition:.2s}.back:before{content:'← ';color:var(--accent)}.back:hover{color:#c7cac4}
 .main{flex:1;display:grid;place-items:center;width:min(1440px,100%);margin:0 auto;padding:42px 0 54px}
-.auth-wrap{width:min(560px,100%);position:relative}
+.auth-wrap{width:min(640px,100%);position:relative}
 .orbit{position:absolute;width:560px;height:560px;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.42}
 .orbit:before,.orbit:after{content:'';position:absolute;border-radius:50%;inset:8%;border:1px solid rgba(211,90,54,.08);animation:spin 26s linear infinite}
 .orbit:after{inset:24%;border-style:dashed;border-color:rgba(255,255,255,.06);animation-duration:18s;animation-direction:reverse}
@@ -48,8 +48,8 @@ a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button
 .glyph{width:42px;height:42px;margin:0 auto 21px;position:relative;border:1px solid rgba(211,90,54,.35);display:grid;place-items:center;transform:rotate(45deg);transition:.35s}
 .glyph:before,.glyph:after{content:'';position:absolute;background:var(--accent);opacity:.65}.glyph:before{width:13px;height:1px}.glyph:after{width:1px;height:13px}.glyph span{position:absolute;inset:-7px;border:1px solid rgba(255,255,255,.055);animation:glyphspin 7s linear infinite}@keyframes glyphspin{to{transform:rotate(360deg)}}
 .state{text-align:center;margin-bottom:26px}.state .eyebrow{font-size:7px;letter-spacing:.22em;color:#50554f;text-transform:uppercase;margin-bottom:9px}.state h1{font-size:22px;line-height:1.1;letter-spacing:-.045em;font-weight:500;margin:0}.state p{font-size:8px;line-height:1.65;color:#5f655d;margin:8px auto 0;max-width:360px}
-.verify-row{display:grid;grid-template-columns:1fr 50px;border:1px solid var(--line);background:rgba(0,0,0,.22);transition:.2s}.verify-row:focus-within{border-color:rgba(211,90,54,.55);box-shadow:0 0 0 3px rgba(211,90,54,.055)}
-.verify-row input{height:52px;min-width:0;border:0;outline:0;background:transparent;color:#eceee8;padding:0 16px;font-size:10px}.verify-row input::placeholder{color:#444943}
+.verify-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) 50px;border:1px solid var(--line);background:rgba(0,0,0,.22);transition:.2s}.verify-row:focus-within{border-color:rgba(211,90,54,.55);box-shadow:0 0 0 3px rgba(211,90,54,.055)}
+.verify-row input{height:52px;min-width:0;border:0;outline:0;background:transparent;color:#eceee8;padding:0 16px;font-size:10px}.verify-row input::placeholder{color:#444943}.verify-row input+input{border-left:1px solid var(--line)}
 .verify-row button{width:50px;height:52px;background:transparent;color:var(--accent);cursor:pointer;border-left:1px solid var(--line);font-size:17px;transition:.2s}.verify-row button:hover{background:var(--accent);color:white}.verify-row button:disabled{opacity:.45;cursor:wait}
 .status{min-height:28px;padding-top:12px;text-align:center;font-size:8px;line-height:1.55;letter-spacing:.04em;color:#575c55}.status b{font-weight:500;letter-spacing:.12em}.status.wait b{color:#a8634d}.status.bad b{color:var(--bad)}.status.ok b{color:var(--ok)}
 .progress{height:1px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:2px;opacity:0}.progress.on{opacity:1}.progress:after{content:'';display:block;width:30%;height:100%;background:var(--accent);transform:translateX(-120%);animation:load 1.05s ease-in-out infinite}@keyframes load{to{transform:translateX(430%)}}
@@ -66,7 +66,7 @@ a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button
 .corner{position:fixed;z-index:3;pointer-events:none;color:#30352f;font-size:7px;line-height:1.7;letter-spacing:.15em;text-transform:uppercase}.c1{left:3.8vw;top:26%}.c2{right:4vw;top:31%;text-align:right}.c3{left:5vw;bottom:17%}.c4{right:5vw;bottom:16%;text-align:right}.corner b{color:#4c524b;font-weight:400}
 body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} body.granted .glyph{border-color:rgba(117,189,139,.48)} body.granted .glyph:before,body.granted .glyph:after{background:var(--ok)}
 @media(max-width:760px){.corner{display:none}.auth-wrap{width:min(520px,100%)}.orbit{width:480px;height:480px}.auth-body{padding:30px 22px 27px}.brand-meta{display:none}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.action-grid{grid-template-columns:1fr}.footer span:last-child{display:none}}
-@media(max-width:420px){.page{padding:17px 15px}.main{padding:35px 0}.auth-head{padding:0 13px}.auth-body{padding:27px 17px 24px}.state h1{font-size:20px}.verify-row{grid-template-columns:1fr 46px}.verify-row button{width:46px}.orbit{display:none}}
+@media(max-width:520px){.verify-row{grid-template-columns:1fr 46px}.verify-row input+input{border-left:0;border-top:1px solid var(--line);grid-column:1/2}.verify-row button{grid-column:2;grid-row:1/3;height:104px;width:46px}.page{padding:17px 15px}.main{padding:35px 0}.auth-head{padding:0 13px}.auth-body{padding:27px 17px 24px}.state h1{font-size:20px}.orbit{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -96,12 +96,13 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
           <div class="state">
             <div class="eyebrow">Restricted access</div>
             <h1 id="state-title">Identify yourself.</h1>
-            <p id="state-copy">Enter your email to continue.</p>
+            <p id="state-copy">Enter the email and access key assigned to you.</p>
           </div>
 
           <form id="verify-form" novalidate>
             <div class="verify-row">
               <input id="verify-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="email@domain.com" aria-label="Email address" required />
+              <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="access key" aria-label="Access key" required />
               <button id="verify-btn" type="submit" aria-label="Check access">→</button>
             </div>
           </form>
@@ -155,11 +156,10 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
   const DEST = cfg.privateJourneyUrl || 'apply-vault-private.html';
   const OWNER = String(cfg.ownerEmail || 'mehrsh3d@gmail.com').trim();
   const API = String(cfg.apiUrl || '').trim();
-  const HASHES = Array.isArray(cfg.allowedEmailHashes) ? cfg.allowedEmailHashes.map(x => String(x).toLowerCase()) : [];
   const remoteConfigured = /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API);
 
   const $ = id => document.getElementById(id);
-  const verifyForm=$('verify-form'), verifyEmail=$('verify-email'), verifyBtn=$('verify-btn'), verifyStatus=$('verify-status'), progress=$('progress');
+  const verifyForm=$('verify-form'), verifyEmail=$('verify-email'), verifyPassword=$('verify-password'), verifyBtn=$('verify-btn'), verifyStatus=$('verify-status'), progress=$('progress');
   const requestBlock=$('request-block'), requestForm=$('request-form'), requestName=$('request-name'), requestEmail=$('request-email'), requestAff=$('request-affiliation'), requestReason=$('request-reason');
   const emailActions=$('email-actions'), mailAppBtn=$('mail-app-btn'), gmailBtn=$('gmail-btn'), deliveryNote=$('delivery-note');
   const stateTitle=$('state-title'), stateCopy=$('state-copy');
@@ -176,13 +176,10 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
     const digest = await crypto.subtle.digest('SHA-256',bytes);
     return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
   }
-  async function localAllowed(email){
-    if(email === OWNER.toLowerCase()) return true;
-    if(!HASHES.length) return false;
-    const hash = await sha256(email);
-    return !!hash && HASHES.includes(hash);
+  async function makeCredentialHash(email,password){
+    return sha256(String(email).trim().toLowerCase()+'\n'+String(password).trim());
   }
-  function remoteAllowed(email){
+  function remoteAllowed(email,credential){
     return new Promise(resolve => {
       if(!remoteConfigured){ resolve(null); return; }
       const cb='vault_'+Date.now()+'_'+Math.random().toString(36).slice(2);
@@ -191,50 +188,59 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
       const timer=setTimeout(()=>finish(null),7000);
       window[cb]=data=>finish(!!(data && data.allowed===true));
       script.onerror=()=>finish(null);
-      script.src=`${API}?action=verify&email=${encodeURIComponent(email)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
+      script.src=`${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
       document.body.appendChild(script);
     });
   }
   function storageSet(key,value){try{sessionStorage.setItem(key,value)}catch(_){}}
   function storageRemove(key){try{sessionStorage.removeItem(key)}catch(_){}}
-  function grant(email){
+  function clearSession(){
+    storageRemove('applicationJourneyAuthorized');
+    storageRemove('applicationJourneyEmail');
+    storageRemove('applicationJourneyCredential');
+  }
+  function grant(email,credential){
     document.body.classList.remove('denied'); document.body.classList.add('granted');
     requestBlock.classList.remove('open');
-    stateTitle.textContent='Access granted.'; stateCopy.textContent='Identity verified. Opening the vault…';
+    stateTitle.textContent='Access granted.'; stateCopy.textContent='Credentials verified. Opening the vault…';
     setStatus('ok','ACCESS GRANTED','decrypting');
     storageSet('applicationJourneyAuthorized','1');
     storageSet('applicationJourneyEmail',email);
+    storageSet('applicationJourneyCredential',credential);
+    verifyPassword.value='';
     setTimeout(()=>location.href=DEST,650);
   }
-  function deny(email){
+  function deny(email, offline=false){
     document.body.classList.remove('granted'); document.body.classList.add('denied');
-    storageRemove('applicationJourneyAuthorized');
-    storageRemove('applicationJourneyEmail');
-    stateTitle.textContent='Identity not authorized.'; stateCopy.textContent='Request access below.';
-    setStatus('bad','ACCESS DENIED','authorization required');
+    clearSession();
+    stateTitle.textContent=offline ? 'Access node unavailable.' : 'Identity not authorized.';
+    stateCopy.textContent=offline ? 'The verification service is not connected. You can still request access below.' : 'You do not have access. Complete the request form below.';
+    setStatus('bad', offline ? 'AUTH NODE OFFLINE' : 'ACCESS DENIED', offline ? 'administrator setup required' : 'email or access key not authorized');
     requestEmail.value=email;
     requestBlock.classList.add('open');
     emailActions.classList.remove('ready');
+    verifyPassword.value='';
     setTimeout(()=>requestName.focus({preventScroll:true}),420);
   }
 
   verifyForm.addEventListener('submit', async e => {
     e.preventDefault();
     const email=verifyEmail.value.trim().toLowerCase();
+    const password=verifyPassword.value;
     requestBlock.classList.remove('open'); emailActions.classList.remove('ready'); document.body.classList.remove('denied','granted');
     if(!validEmail(email)){ setStatus('bad','INVALID EMAIL','check the address'); verifyEmail.focus(); return; }
+    if(!password.trim()){ setStatus('bad','ACCESS KEY REQUIRED','enter the assigned key'); verifyPassword.focus(); return; }
     verifyBtn.disabled=true; progress.classList.add('on');
-    stateTitle.textContent='Scanning identity…'; stateCopy.textContent='Checking authorization signature.';
+    stateTitle.textContent='Scanning credentials…'; stateCopy.textContent='Checking authorization signature.';
     setStatus('wait','VERIFYING','secure lookup');
     try{
-      const local = await localAllowed(email);
-      await sleep(520);
-      if(local){ grant(email); return; }
-      const remote = await remoteAllowed(email);
-      await sleep(remoteConfigured ? 180 : 260);
-      if(remote === true){ grant(email); return; }
-      deny(email);
-    } catch(_){ deny(email); }
+      const credential = await makeCredentialHash(email,password);
+      await sleep(420);
+      const remote = await remoteAllowed(email,credential);
+      await sleep(remoteConfigured ? 180 : 220);
+      if(remote === true){ grant(email,credential); return; }
+      deny(email, remote === null);
+    } catch(_){ deny(email,!remoteConfigured); }
     finally{ verifyBtn.disabled=false; progress.classList.remove('on'); }
   });
 
@@ -253,6 +259,7 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
       `Email: ${email}`,
       `Affiliation / Organization: ${affiliation || 'Not provided'}`,
       '', 'Reason for access:', reason,
+      '', 'Please create an access key for this email if approved.',
       '', '—', 'Sent from mehrshadesk.ir/apply-vault.html'
     ].join('\n');
     return {name,email,affiliation,reason,subject,body};
@@ -262,7 +269,7 @@ body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} b
     gmailBtn.href=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(OWNER)}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
     emailActions.classList.add('ready');
     deliveryNote.textContent = remoteConfigured
-      ? 'A notification copy is also being handed to the access system. The buttons above open a pre-filled email you can send yourself.'
+      ? 'A notification copy is also sent to the vault owner. The buttons above open the same request as a pre-filled email.'
       : 'The subject and message are already filled in. Review and press Send in your email service.';
   }
   async function sendServerCopy(data){

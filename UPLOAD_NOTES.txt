@@ -1,27 +1,28 @@
-APPLY VAULT — READY TO UPLOAD
+APPLY VAULT V4 — EMAIL + PER-USER PASSWORD
 
-Main gate:
-  /apply-vault.html
+CHANGED / ADDED FILES
+- apply-vault.html
+- apply-vault-private.html
+- access-config.js
+- google-apps-script.gs
+- VAULT_ADMIN_GUIDE.md
+- UPLOAD_NOTES.txt
 
-Private content:
-  /apply-vault-private.html
+WHAT CHANGED
+- Login now requires BOTH email and an assigned access key/password.
+- Every email can have its own password.
+- Access is managed in Google Sheet tab: Vault Access.
+- Status ALLOW grants access; REVOKED removes access.
+- Passwords can be changed in the Sheet without changing website code.
+- Password is hashed in the browser before verification; the raw password is not saved in sessionStorage.
+- Private sessions are revalidated about once per minute.
+- Denied visitors still get the access-request form + Email App + Gmail Web buttons.
+- Private page now contains clear EDITABLE CONTENT markers for future updates.
 
-What works immediately on GitHub Pages:
-- The gate is now a minimal single-email screen with hacker-style motion graphics.
-- mehrsh3d@gmail.com is already approved as the owner account.
-- Any unknown email shows ACCESS DENIED and opens the request form automatically.
-- The request form generates a ready-to-send email addressed to mehrsh3d@gmail.com.
-- Visitors can choose OPEN EMAIL APP or OPEN GMAIL WEB.
-- The email subject and body are pre-filled from the form.
-- There is no longer an AUTH NODE OFFLINE error when no Apps Script URL is configured.
+FIRST TIME ONLY
+Follow VAULT_ADMIN_GUIDE.md to deploy google-apps-script.gs and paste the /exec URL into access-config.js.
 
-Optional Google Sheet / automatic email copy:
-- access-config.js intentionally leaves apiUrl blank, so the page does not depend on Apps Script.
-- If you later deploy google-apps-script.gs as a Web App and paste its /exec URL into apiUrl, the same gate can also check ALLOW statuses in Google Sheets and send a server-side copy of each request.
 
-Old URLs remain preserved as redirects:
-  /application-journey.html -> /apply-vault.html
-  /application-journey-private.html -> /apply-vault-private.html
-
-IMPORTANT SECURITY NOTE:
-This is still a lightweight client-side gate on GitHub Pages. It is suitable for portfolio/restricted presentation access, but not for highly sensitive documents.
+V4 CONNECTION STATUS:
+Google Apps Script URL is already connected in access-config.js.
+Deployment ID: AKfycbwpcJ4GUEbty_N_9iFEiU_WDr39YtjDUiSzdFHVDKne6ieew3OXkQGh3f8JrcrJj6TT
