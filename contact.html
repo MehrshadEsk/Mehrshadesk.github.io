@@ -68,7 +68,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:#7d7870;font-s
 
 <section class="c-shell contact-grid">
   <div class="composer">
-    <div class="composer-head"><h2>Give your email a head start.</h2><span>* opens your mail app</span></div>
+    <div class="composer-head"><h2>Give your email a head start.</h2><span>* opens Gmail in your browser</span></div>
     <form id="emailBuilder">
       <div class="form-grid">
         <div class="field"><label>NAME <b>*</b></label><input id="name" required placeholder="Your name"></div>
@@ -86,8 +86,11 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:#7d7870;font-s
         <div class="field full"><label>MESSAGE <b>*</b></label><textarea id="message" required placeholder="What are you building, studying, fixing, or trying to make behave?"></textarea></div>
       </div>
       <div class="send-row">
-        <button class="send-btn" type="submit">OPEN EMAIL DRAFT <span>↗</span></button>
-        <div class="micro">Nothing gets uploaded to a mystery backend here. This simply prepares an email to Mehrshad in your own mail app.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <button class="send-btn" type="submit">OPEN IN GMAIL <span>↗</span></button>
+          <a class="copy-btn" href="mailto:mehrsh3d@gmail.com">USE EMAIL APP ↗</a>
+        </div>
+        <div class="micro">This opens a pre-filled Gmail draft in your browser. If you prefer your default email app, use the secondary link below.</div>
       </div>
     </form>
   </div>
@@ -134,6 +137,7 @@ document.getElementById("copyEmail").addEventListener("click", async () => {
 
 document.getElementById("emailBuilder").addEventListener("submit", (e) => {
   e.preventDefault();
+
   const name = document.getElementById("name").value.trim();
   const org = document.getElementById("org").value.trim();
   const inquiry = document.getElementById("inquiry").value;
@@ -149,12 +153,26 @@ document.getElementById("emailBuilder").addEventListener("submit", (e) => {
     "Name: " + name,
     org ? "Organization: " + org : "",
     "Inquiry: " + inquiry
-  ].filter(Boolean).join("\n");
+  ].filter(Boolean).join("
+");
 
-  const mailto = "mailto:" + EMAIL
-    + "?subject=" + encodeURIComponent("[" + inquiry + "] " + subject)
+  // Gmail web compose works even when the visitor has no local mail app.
+  // If they are not signed in, Gmail will ask them to sign in first.
+  const gmailUrl =
+    "https://mail.google.com/mail/?view=cm&fs=1"
+    + "&to=" + encodeURIComponent(EMAIL)
+    + "&su=" + encodeURIComponent("[" + inquiry + "] " + subject)
     + "&body=" + encodeURIComponent(body);
-  window.location.href = mailto;
+
+  const gmailWindow = window.open(gmailUrl, "_blank", "noopener,noreferrer");
+
+  // Very rare fallback: if the browser blocks the new tab, try the default mail app.
+  if (!gmailWindow) {
+    const mailto = "mailto:" + EMAIL
+      + "?subject=" + encodeURIComponent("[" + inquiry + "] " + subject)
+      + "&body=" + encodeURIComponent(body);
+    window.location.href = mailto;
+  }
 });
 </script>
 </body>
