@@ -35,7 +35,7 @@ a{color:inherit}
 .back span{color:var(--accent)}
 .hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,.92fr);gap:72px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(500px,.96fr);gap:72px;align-items:center}
 h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
 h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
@@ -44,44 +44,50 @@ h1 em{font-style:normal;color:var(--accent)}
 .motion{
   border:1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,247,244,0.9)),
-    repeating-linear-gradient(0deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px),
-    repeating-linear-gradient(90deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px);
+    linear-gradient(180deg, rgba(255,255,255,0.95), rgba(249,247,244,0.95)),
+    repeating-linear-gradient(0deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px),
+    repeating-linear-gradient(90deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px);
   min-height:480px;position:relative;overflow:hidden
 }
-.motion::before{content:"ALGORITHMIC RESEARCH MAP";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"equations · graphs · optimization · signals";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion::before{content:"LIVE RESEARCH SYSTEM";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"signals · activity · metrics · motion";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
 .motion svg{display:block;width:100%;height:480px}
-.gridline{stroke:var(--grid);stroke-width:1}
-.thin{stroke:#c9c2b8;stroke-width:1.2;fill:none;stroke-dasharray:4 5;animation:dash 16s linear infinite}
-.thick{stroke:var(--accent);stroke-width:1.8;fill:none}
-.soft{stroke:#c7c1b8;stroke-width:1;fill:none}
-.node{fill:#fff;stroke:#b4ada3;stroke-width:1.1}
-.node.hot{stroke:var(--accent)}
-.dot{fill:var(--accent)}
-.panel{fill:rgba(255,255,255,.8);stroke:#d3cec6}
-.heatA{fill:#fff3ee;stroke:#df4f2f55}
-.heatB{fill:#f7f2ec;stroke:#cec6bc}
-.eq{font:11px "IBM Plex Mono";fill:#77736d}
-.eqHot{font:11px "IBM Plex Mono";fill:var(--accent)}
-.small{font:9px "IBM Plex Mono";fill:#9b968e}
-.tiny{font:8px "IBM Plex Mono";fill:#aba59d}
-.packet{fill:var(--accent)}
-.scan{fill:url(#scanGrad);opacity:.6;animation:scan 5s ease-in-out infinite}
-.wave{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 6s ease-in-out infinite}
-.trace{fill:none;stroke:#978f85;stroke-width:1.2}
-.bar{fill:#f1ede8;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
-.bar.hot{fill:#ffdfd4}
-.orbit{animation:orbit 11s linear infinite;transform-origin:center}
-.float{animation:float 6s ease-in-out infinite}
-.float2{animation:float2 7s ease-in-out infinite}
-@keyframes dash{to{stroke-dashoffset:-220}}
-@keyframes draw{0%{stroke-dashoffset:900;opacity:.2}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
-@keyframes scan{0%,100%{transform:translateX(-80px)}50%{transform:translateX(170px)}}
+.caption{font:10px "IBM Plex Mono";fill:#8d877f}
+.label{font:11px "IBM Plex Mono";fill:#df4f2f}
+.muted{font:10px "IBM Plex Mono";fill:#79746d}
+.panel{fill:rgba(255,255,255,.78);stroke:#d8d2c8}
+.soft{stroke:#c9c2b8;stroke-width:1.2;fill:none}
+.hot{stroke:#df4f2f;stroke-width:1.7;fill:none}
+.dot{fill:#df4f2f}
+.dot2{fill:#bdb5ab}
+.node{fill:#fff;stroke:#b8b0a4;stroke-width:1.25}
+.nodeHot{fill:#fff;stroke:#df4f2f;stroke-width:1.5}
+.ring{fill:none;stroke:#df4f2f;stroke-opacity:.22}
+.gridline{stroke:#ece8e2;stroke-width:1}
+.pulseCircle{fill:#df4f2f;opacity:.3;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+.dataPath{stroke:#df4f2f;stroke-width:1.6;fill:none;stroke-dasharray:5 5;animation:dash 8s linear infinite}
+.dataPathSoft{stroke:#bcb5ab;stroke-width:1.1;fill:none;stroke-dasharray:4 7;animation:dash 11s linear infinite}
+.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
+.barHot{fill:#ffd8cc;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
+.lineHot{stroke:#df4f2f;stroke-width:2;fill:none;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 5.5s ease-in-out infinite}
+.lineSoft{stroke:#bdb6ab;stroke-width:1.2;fill:none}
+.token{fill:#f8f5f1;stroke:#d3ccc1}
+.tokenHot{fill:#fff1eb;stroke:#df4f2f}
+.scan{fill:url(#scanGrad);opacity:.55;animation:scan 4.8s ease-in-out infinite}
+.f1{animation:float1 5.5s ease-in-out infinite}
+.f2{animation:float2 7.1s ease-in-out infinite}
+.f3{animation:float3 6.5s ease-in-out infinite}
+.orbit{animation:orbit 16s linear infinite;transform-origin:center}
+#particles circle{animation:pulse 2.8s ease-in-out infinite}
+@keyframes dash{to{stroke-dashoffset:-120}}
+@keyframes pulse{0%,100%{opacity:.22;transform:scale(.72)}50%{opacity:.95;transform:scale(1.18)}}
+@keyframes draw{0%{stroke-dashoffset:500;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-500;opacity:.25}}
 @keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes scan{0%,100%{transform:translateX(-120px)}50%{transform:translateX(170px)}}
 @keyframes orbit{to{transform:rotate(360deg)}}
-@keyframes float{50%{transform:translate(8px,-8px)}}
-@keyframes float2{50%{transform:translate(-7px,8px)}}
+@keyframes float1{50%{transform:translate(9px,-8px)}}
+@keyframes float2{50%{transform:translate(-8px,9px)}}
+@keyframes float3{50%{transform:translate(7px,6px)}}
 .section{padding:80px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
 .section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
@@ -112,11 +118,24 @@ h1 em{font-style:normal;color:var(--accent)}
 .email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
 @media(max-width:900px){
- .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:400px}.motion svg{height:400px}
- .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
- .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
+  .hero-grid,.section-head{grid-template-columns:1fr}
+  .hero-grid{gap:40px}
+  .motion{min-height:400px}
+  .motion svg{height:400px}
+  .two-track,.questions{grid-template-columns:1fr}
+  .track+ .track,.q+.q{border-left:0;border-top:1px solid var(--line)}
+  .paper{grid-template-columns:72px 1fr 30px}
+  .bridge{grid-template-columns:1fr}
 }
-@media(max-width:600px){.shell{width:min(100% - 28px,1280px)}.name{display:none}.hero{padding-top:58px}.paper{grid-template-columns:1fr}.paper-arrow{text-align:left}.cta-box{grid-template-columns:1fr}.back{font-size:11px}}
+@media(max-width:600px){
+  .shell{width:min(100% - 28px,1280px)}
+  .name{display:none}
+  .hero{padding-top:58px}
+  .paper{grid-template-columns:1fr}
+  .paper-arrow{text-align:left}
+  .cta-box{grid-template-columns:1fr}
+  .back{font-size:11px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -131,118 +150,91 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
 
 <main>
 <section class="hero">
-<div class="shell hero-grid">
-  <div>
-    <div class="eyebrow">[ R01 · RESEARCH DIRECTION ]</div>
-    <h1>Design networks<br>that stay <em>reliable.</em></h1>
-    <p class="lede">This direction studies wireless sensor networks, RF-aware systems, coverage, mobility and energy efficiency. The visual map below is now intentionally algorithmic: graph structure, utility vectors, routing paths and optimization objectives — not generic block diagrams.</p>
-    <div class="hero-tags"><span class="tag">WIRELESS SENSOR NETWORKS</span><span class="tag">RF SYSTEMS</span><span class="tag">MOBILITY</span><span class="tag">ENERGY EFFICIENCY</span><span class="tag">ROUTING</span><span class="tag">MULTI-AGENT RL</span></div>
-  </div>
-  <div class="motion" aria-label="Algorithmic research visualization">
+  <div class="shell hero-grid">
+    <div>
+      <div class="eyebrow">[ R01 · RESEARCH DIRECTION ]</div>
+      <h1>Design networks<br>that stay <em>reliable.</em></h1>
+      <p class="lede">This direction studies wireless sensor networks, RF-aware systems, coverage, mobility and energy efficiency. I redesigned the hero visual to feel like a live system rather than a formula sheet: active nodes, moving packets and metrics that keep changing.</p>
+      <div class="hero-tags"><span class="tag">WIRELESS SENSOR NETWORKS</span><span class="tag">RF SYSTEMS</span><span class="tag">MOBILITY</span><span class="tag">ENERGY EFFICIENCY</span><span class="tag">ROUTING</span><span class="tag">MULTI-AGENT RL</span></div>
+    </div>
+    <div class="motion" aria-label="Animated research visualization">
+      
 <svg viewBox="0 0 760 480" role="img">
   <defs>
     <linearGradient id="scanGrad" x1="0" x2="1">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".2"/>
+      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".18"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
   <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
+  <text x="28" y="56" class="label">sensor network activity</text>
+  <text x="29" y="72" class="caption">nodes exchanging packets and live system metrics</text>
 
-  <text x="28" y="34" class="eqHot">G = (V, E),  πθ(a|s),  r_t = αΔC + βΔB − γΔE</text>
-  <text x="28" y="51" class="small">energy-aware graph optimization for coverage, routing and balanced lifetime</text>
-
-  <g class="float">
-    <circle cx="86" cy="112" r="10" class="node hot"/>
-    <circle cx="136" cy="150" r="9" class="node"/>
-    <circle cx="106" cy="220" r="9" class="node"/>
-    <circle cx="178" cy="250" r="9" class="node hot"/>
-    <circle cx="76" cy="322" r="9" class="node"/>
-    <circle cx="154" cy="344" r="9" class="node"/>
-    <circle cx="226" cy="198" r="18" class="node hot"/>
-    <circle cx="226" cy="198" r="54" fill="none" stroke="#df4f2f" stroke-opacity=".2"/>
-    <circle cx="226" cy="198" r="88" fill="none" stroke="#df4f2f" stroke-opacity=".1"/>
-    <text x="208" y="203" class="small">CH</text>
-
-    <path class="thin" d="M86 112L136 150L226 198L178 250L106 220L76 322L154 344L178 250L226 198"/>
-    <path class="soft" d="M106 220L136 150M86 112L106 220M76 322L106 220M154 344L226 198"/>
-    <circle cx="86" cy="112" r="3" class="dot"/>
-    <circle cx="136" cy="150" r="3" class="dot"/>
-    <circle cx="106" cy="220" r="3" class="dot"/>
-    <circle cx="178" cy="250" r="3" class="dot"/>
-    <circle cx="76" cy="322" r="3" class="dot"/>
-    <circle cx="154" cy="344" r="3" class="dot"/>
+  <g class="f1">
+    <path class="dataPathSoft" d="M100 132L176 112L240 172L192 254L112 232L82 322L167 350L246 312L240 172L320 232"/>
+    <circle cx="100" cy="132" r="12" class="nodeHot"/><circle cx="176" cy="112" r="10" class="node"/>
+    <circle cx="240" cy="172" r="15" class="nodeHot"/><circle cx="192" cy="254" r="10" class="node"/>
+    <circle cx="112" cy="232" r="10" class="node"/><circle cx="82" cy="322" r="10" class="node"/>
+    <circle cx="167" cy="350" r="10" class="node"/><circle cx="246" cy="312" r="12" class="nodeHot"/>
+    <circle cx="240" cy="172" r="42" class="ring"/><circle cx="240" cy="172" r="70" class="ring"/>
+    <circle cx="100" cy="132" r="4" class="pulseCircle"/>
+    <circle cx="240" cy="172" r="4" class="pulseCircle" style="animation-delay:.5s"/>
+    <circle cx="246" cy="312" r="4" class="pulseCircle" style="animation-delay:1s"/>
   </g>
 
-  <text x="44" y="392" class="eq">A = adjacency(V, E)</text>
-  <text x="44" y="409" class="small">[0 1 1 0 0 0]</text>
-  <text x="44" y="423" class="small">[1 0 1 1 0 0]</text>
-  <text x="44" y="437" class="small">[1 1 0 1 1 0]</text>
-
-  <g>
-    <rect x="272" y="106" width="176" height="240" rx="2" class="panel"/>
-    <text x="292" y="128" class="eqHot">state vector s_t</text>
-    <text x="292" y="150" class="small">E = [0.91, 0.78, 0.64, 0.88, 0.52, 0.73]</text>
-    <text x="292" y="169" class="small">d = [0.34, 0.47, 0.19, 0.62, 0.71, 0.56]</text>
-    <text x="292" y="188" class="small">c = [0.81, 0.83, 0.79, 0.86, 0.68, 0.74]</text>
-
-    <text x="292" y="224" class="eq">Q(s,a) ← Q + η[r + γ maxQ' − Q]</text>
-    <text x="292" y="242" class="small">policy updates favor balanced cluster-head choice</text>
-
-    <g>
-      <rect x="298" y="266" width="18" height="46" class="bar hot"/>
-      <rect x="320" y="253" width="18" height="59" class="bar"/>
-      <rect x="342" y="277" width="18" height="35" class="bar hot"/>
-      <rect x="364" y="238" width="18" height="74" class="bar"/>
-      <rect x="386" y="287" width="18" height="25" class="bar hot"/>
-      <rect x="408" y="259" width="18" height="53" class="bar"/>
-    </g>
-    <text x="297" y="329" class="small">node utilities / action scores</text>
-    <rect x="286" y="352" width="145" height="15" class="heatB"/>
-    <rect x="286" y="352" width="112" height="15" class="heatA"/>
-    <text x="292" y="377" class="small">coverage objective ↑</text>
+  <g id="particles">
+    <circle r="4" class="dot">
+      <animateMotion dur="4.5s" repeatCount="indefinite" path="M100 132L176 112L240 172L320 232"/>
+    </circle>
+    <circle r="4" class="dot2">
+      <animateMotion dur="5.8s" repeatCount="indefinite" path="M82 322L112 232L240 172L192 254L167 350"/>
+    </circle>
+    <circle r="4" class="dot">
+      <animateMotion dur="6.1s" repeatCount="indefinite" path="M246 312L240 172L176 112L112 232"/>
+    </circle>
   </g>
 
-  <path class="thick" d="M226 198C246 198 258 198 272 198"/>
-  <path class="thick" d="M448 198C481 198 494 124 552 124"/>
-  <path class="thick" d="M448 198C496 198 513 200 550 238"/>
-  <path class="thick" d="M448 198C486 198 498 317 548 317"/>
+  <g class="f2">
+    <rect x="382" y="112" width="296" height="248" rx="2" class="panel"/>
+    <text x="402" y="138" class="label">live metrics dashboard</text>
+    <text x="402" y="157" class="caption">throughput / latency / residual energy / reliability</text>
 
-  <g class="float2">
-    <text x="528" y="89" class="eqHot">routing path</text>
-    <path class="soft" d="M558 112L600 132L644 122L690 141"/>
-    <circle cx="558" cy="112" r="7" class="node hot"/>
-    <circle cx="600" cy="132" r="7" class="node"/>
-    <circle cx="644" cy="122" r="7" class="node hot"/>
-    <circle cx="690" cy="141" r="7" class="node"/>
-    <text x="530" y="170" class="small">πθ selects minimum-energy relay chain</text>
+    <text x="404" y="192" class="muted">throughput</text>
+    <rect x="404" y="203" width="16" height="70" class="barHot"/>
+    <rect x="427" y="216" width="16" height="57" class="bar"/>
+    <rect x="450" y="194" width="16" height="79" class="barHot"/>
+    <rect x="473" y="210" width="16" height="63" class="bar"/>
+    <rect x="496" y="186" width="16" height="87" class="barHot"/>
 
-    <text x="528" y="209" class="eqHot">coverage field</text>
-    <circle cx="570" cy="238" r="44" fill="none" stroke="#df4f2f" stroke-opacity=".2"/>
-    <circle cx="570" cy="238" r="27" fill="none" stroke="#df4f2f" stroke-opacity=".36"/>
-    <circle cx="627" cy="238" r="35" fill="none" stroke="#cfc8bf" stroke-opacity=".6"/>
-    <circle cx="603" cy="264" r="30" fill="none" stroke="#df4f2f" stroke-opacity=".28"/>
-    <rect x="540" y="293" width="112" height="18" class="scan"/>
-    <text x="532" y="333" class="small">Δcoverage / redundancy trade-off</text>
+    <text x="544" y="192" class="muted">latency</text>
+    <rect x="544" y="233" width="16" height="40" class="bar"/>
+    <rect x="567" y="220" width="16" height="53" class="barHot"/>
+    <rect x="590" y="242" width="16" height="31" class="bar"/>
+    <rect x="613" y="214" width="16" height="59" class="barHot"/>
+    <rect x="636" y="226" width="16" height="47" class="bar"/>
 
-    <text x="528" y="370" class="eqHot">energy balance</text>
-    <text x="529" y="389" class="small">B = 1 − σ(E_residual)</text>
-    <text x="529" y="407" class="small">maximize lifetime, minimize early-node death</text>
+    <text x="404" y="306" class="muted">reliability trend</text>
+    <path class="lineSoft" d="M404 338C432 316 448 322 468 300S512 290 536 312S579 344 605 319S648 282 668 298"/>
+    <path class="lineHot" d="M404 330C431 301 450 314 470 287S516 281 539 298S577 336 603 309S646 266 668 286"/>
+    <rect x="398" y="279" width="278" height="72" class="scan"/>
+
+    <text x="404" y="374" class="caption">packet flow stays active while system metrics rebalance in real time</text>
   </g>
 </svg>
-</div>
-</div>
+
+    </div>
+  </div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">01 / SCOPE</div>
-    <div><h2>From energy-aware WSNs to coverage-driven RF systems.</h2></div>
-  </div>
-  <div class="two-track">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">01 / SCOPE</div>
+      <div><h2>From energy-aware WSNs to coverage-driven RF systems.</h2></div>
+    </div>
+    <div class="two-track">
         <article class="track">
           <div class="track-no">01 · NETWORK LIFETIME</div>
           <h3>Allocate energy intelligently so the network survives longer.</h3>
@@ -256,20 +248,18 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <p>This includes adaptive coverage optimization, mobility-aware sensing and broader RF-oriented studies that connect communication performance with physical deployment realities.</p>
           <div class="chips"><span>RF</span><span>COVERAGE</span><span>SENSING</span><span>MOBILITY</span><span>RELIABILITY</span></div>
         </article>
-        
+        </div>
+    <div class="bridge"><strong>COMMON THREAD</strong><p>Wireless systems are most useful when they keep operating under constraints. Across these papers, the thread is resource-aware decision making: how to use limited power, topology and connectivity more intelligently.</p></div>
   </div>
-  <div class="bridge"><strong>COMMON THREAD</strong><p>Wireless systems are most useful when they keep operating under constraints. Across these papers, the thread is resource-aware decision making: how to use limited power, topology and connectivity more intelligently.</p></div>
-</div>
 </section>
 
 <section class="section" id="papers">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">02 / PUBLICATIONS</div>
-    <div><h2>Related papers.</h2><p class="section-intro">Research in this field spans cluster-head selection, coverage optimization, routing strategies, RF impacts and energy management.</p></div>
-  </div>
-  <div class="paper-list">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">02 / PUBLICATIONS</div>
+      <div><h2>Related papers.</h2><p class="section-intro">Research in this field spans cluster-head selection, coverage optimization, routing strategies, RF impacts and energy management.</p></div>
+    </div>
+    <div class="paper-list">
         <a class="paper" href="https://doi.org/10.1049/ntw2.70036" target="_blank" rel="noreferrer">
           <div class="paper-year">2026<br>PAPER</div>
           <div>
@@ -287,17 +277,6 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
             <h3>Potential Impacts of Radiofrequency Electromagnetic Fields on the Central Nervous System, Brain Neurotransmitter Dynamics and Reproductive System</h3>
             <div class="paper-meta">AUT Journal of Electrical Engineering · 58(Special Issue 1), 85–104 · DOI 10.22060/eej.2025.23753.5631</div>
             <div class="metrics"><span class="metric">RF-EMF</span><span class="metric">SYSTEM IMPACTS</span><span class="metric">REVIEW</span><span class="metric">ELECTROMAGNETICS</span></div>
-          </div>
-          <div class="paper-arrow">↗</div>
-        </a>
-        
-
-        <a class="paper" href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer">
-          <div class="paper-year">2026<br>PAPER</div>
-          <div>
-            <h3>Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty</h3>
-            <div class="paper-meta">arXiv · 5G · PPO · Deep Reinforcement Learning</div>
-            <div class="metrics"><span class="metric">5G</span><span class="metric">LOAD BALANCING</span><span class="metric">PPO</span><span class="metric">QOS</span></div>
           </div>
           <div class="paper-arrow">↗</div>
         </a>
@@ -345,28 +324,29 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           </div>
           <div class="paper-arrow">↗</div>
         </a>
-        
+        </div>
   </div>
-</div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">03 / QUESTIONS</div>
-    <div><h2>Questions that drive the work.</h2></div>
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">03 / QUESTIONS</div>
+      <div><h2>Questions that drive the work.</h2></div>
+    </div>
+    <div class="questions"><div class="q"><span>Q01</span><p>How can network policies extend lifetime without sacrificing coverage or reliability?</p></div><div class="q"><span>Q02</span><p>When should reinforcement learning outperform fixed heuristics in routing or cluster-head selection?</p></div><div class="q"><span>Q03</span><p>How do RF conditions and mobility patterns change the decisions a wireless system should make?</p></div></div>
   </div>
-  <div class="questions">
-    <div class="q"><span>Q01</span><p>How can network policies extend lifetime without sacrificing coverage or reliability?</p></div><div class="q"><span>Q02</span><p>When should reinforcement learning outperform fixed heuristics in routing or cluster-head selection?</p></div><div class="q"><span>Q03</span><p>How do RF conditions and mobility patterns change the decisions a wireless system should make?</p></div>
-  </div>
-</div>
 </section>
 
 <section class="cta">
-<div class="shell cta-box">
-  <div><div class="eyebrow">[ COLLABORATION CHANNEL ]</div><h2>Have a signal worth exploring?</h2><p>Research, engineering, or a stubborn technical problem — send it over.</p></div>
-  <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Wireless%20Systems,%20Networks%20&%20RF">Email Mehrshad <span>↗</span></a>
-</div>
+  <div class="shell cta-box">
+    <div>
+      <div class="eyebrow">[ COLLABORATION CHANNEL ]</div>
+      <h2>Have a signal worth exploring?</h2>
+      <p>Research, engineering, or a stubborn technical problem — send it over.</p>
+    </div>
+    <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Wireless%20Systems,%20Networks%20&%20RF">Email Mehrshad <span>↗</span></a>
+  </div>
 </section>
 </main>
 

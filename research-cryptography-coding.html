@@ -35,7 +35,7 @@ a{color:inherit}
 .back span{color:var(--accent)}
 .hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,.92fr);gap:72px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(500px,.96fr);gap:72px;align-items:center}
 h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
 h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
@@ -44,44 +44,50 @@ h1 em{font-style:normal;color:var(--accent)}
 .motion{
   border:1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,247,244,0.9)),
-    repeating-linear-gradient(0deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px),
-    repeating-linear-gradient(90deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px);
+    linear-gradient(180deg, rgba(255,255,255,0.95), rgba(249,247,244,0.95)),
+    repeating-linear-gradient(0deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px),
+    repeating-linear-gradient(90deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px);
   min-height:480px;position:relative;overflow:hidden
 }
-.motion::before{content:"ALGORITHMIC RESEARCH MAP";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"equations · graphs · optimization · signals";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion::before{content:"LIVE RESEARCH SYSTEM";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"signals · activity · metrics · motion";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
 .motion svg{display:block;width:100%;height:480px}
-.gridline{stroke:var(--grid);stroke-width:1}
-.thin{stroke:#c9c2b8;stroke-width:1.2;fill:none;stroke-dasharray:4 5;animation:dash 16s linear infinite}
-.thick{stroke:var(--accent);stroke-width:1.8;fill:none}
-.soft{stroke:#c7c1b8;stroke-width:1;fill:none}
-.node{fill:#fff;stroke:#b4ada3;stroke-width:1.1}
-.node.hot{stroke:var(--accent)}
-.dot{fill:var(--accent)}
-.panel{fill:rgba(255,255,255,.8);stroke:#d3cec6}
-.heatA{fill:#fff3ee;stroke:#df4f2f55}
-.heatB{fill:#f7f2ec;stroke:#cec6bc}
-.eq{font:11px "IBM Plex Mono";fill:#77736d}
-.eqHot{font:11px "IBM Plex Mono";fill:var(--accent)}
-.small{font:9px "IBM Plex Mono";fill:#9b968e}
-.tiny{font:8px "IBM Plex Mono";fill:#aba59d}
-.packet{fill:var(--accent)}
-.scan{fill:url(#scanGrad);opacity:.6;animation:scan 5s ease-in-out infinite}
-.wave{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 6s ease-in-out infinite}
-.trace{fill:none;stroke:#978f85;stroke-width:1.2}
-.bar{fill:#f1ede8;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
-.bar.hot{fill:#ffdfd4}
-.orbit{animation:orbit 11s linear infinite;transform-origin:center}
-.float{animation:float 6s ease-in-out infinite}
-.float2{animation:float2 7s ease-in-out infinite}
-@keyframes dash{to{stroke-dashoffset:-220}}
-@keyframes draw{0%{stroke-dashoffset:900;opacity:.2}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
-@keyframes scan{0%,100%{transform:translateX(-80px)}50%{transform:translateX(170px)}}
+.caption{font:10px "IBM Plex Mono";fill:#8d877f}
+.label{font:11px "IBM Plex Mono";fill:#df4f2f}
+.muted{font:10px "IBM Plex Mono";fill:#79746d}
+.panel{fill:rgba(255,255,255,.78);stroke:#d8d2c8}
+.soft{stroke:#c9c2b8;stroke-width:1.2;fill:none}
+.hot{stroke:#df4f2f;stroke-width:1.7;fill:none}
+.dot{fill:#df4f2f}
+.dot2{fill:#bdb5ab}
+.node{fill:#fff;stroke:#b8b0a4;stroke-width:1.25}
+.nodeHot{fill:#fff;stroke:#df4f2f;stroke-width:1.5}
+.ring{fill:none;stroke:#df4f2f;stroke-opacity:.22}
+.gridline{stroke:#ece8e2;stroke-width:1}
+.pulseCircle{fill:#df4f2f;opacity:.3;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+.dataPath{stroke:#df4f2f;stroke-width:1.6;fill:none;stroke-dasharray:5 5;animation:dash 8s linear infinite}
+.dataPathSoft{stroke:#bcb5ab;stroke-width:1.1;fill:none;stroke-dasharray:4 7;animation:dash 11s linear infinite}
+.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
+.barHot{fill:#ffd8cc;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
+.lineHot{stroke:#df4f2f;stroke-width:2;fill:none;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 5.5s ease-in-out infinite}
+.lineSoft{stroke:#bdb6ab;stroke-width:1.2;fill:none}
+.token{fill:#f8f5f1;stroke:#d3ccc1}
+.tokenHot{fill:#fff1eb;stroke:#df4f2f}
+.scan{fill:url(#scanGrad);opacity:.55;animation:scan 4.8s ease-in-out infinite}
+.f1{animation:float1 5.5s ease-in-out infinite}
+.f2{animation:float2 7.1s ease-in-out infinite}
+.f3{animation:float3 6.5s ease-in-out infinite}
+.orbit{animation:orbit 16s linear infinite;transform-origin:center}
+#particles circle{animation:pulse 2.8s ease-in-out infinite}
+@keyframes dash{to{stroke-dashoffset:-120}}
+@keyframes pulse{0%,100%{opacity:.22;transform:scale(.72)}50%{opacity:.95;transform:scale(1.18)}}
+@keyframes draw{0%{stroke-dashoffset:500;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-500;opacity:.25}}
 @keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes scan{0%,100%{transform:translateX(-120px)}50%{transform:translateX(170px)}}
 @keyframes orbit{to{transform:rotate(360deg)}}
-@keyframes float{50%{transform:translate(8px,-8px)}}
-@keyframes float2{50%{transform:translate(-7px,8px)}}
+@keyframes float1{50%{transform:translate(9px,-8px)}}
+@keyframes float2{50%{transform:translate(-8px,9px)}}
+@keyframes float3{50%{transform:translate(7px,6px)}}
 .section{padding:80px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
 .section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
@@ -112,11 +118,24 @@ h1 em{font-style:normal;color:var(--accent)}
 .email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
 @media(max-width:900px){
- .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:400px}.motion svg{height:400px}
- .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
- .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
+  .hero-grid,.section-head{grid-template-columns:1fr}
+  .hero-grid{gap:40px}
+  .motion{min-height:400px}
+  .motion svg{height:400px}
+  .two-track,.questions{grid-template-columns:1fr}
+  .track+ .track,.q+.q{border-left:0;border-top:1px solid var(--line)}
+  .paper{grid-template-columns:72px 1fr 30px}
+  .bridge{grid-template-columns:1fr}
 }
-@media(max-width:600px){.shell{width:min(100% - 28px,1280px)}.name{display:none}.hero{padding-top:58px}.paper{grid-template-columns:1fr}.paper-arrow{text-align:left}.cta-box{grid-template-columns:1fr}.back{font-size:11px}}
+@media(max-width:600px){
+  .shell{width:min(100% - 28px,1280px)}
+  .name{display:none}
+  .hero{padding-top:58px}
+  .paper{grid-template-columns:1fr}
+  .paper-arrow{text-align:left}
+  .cta-box{grid-template-columns:1fr}
+  .back{font-size:11px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -131,100 +150,86 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
 
 <main>
 <section class="hero">
-<div class="shell hero-grid">
-  <div>
-    <div class="eyebrow">[ R03 · RESEARCH DIRECTION ]</div>
-    <h1>Inspect secure systems<br>where the cracks <em>actually hide.</em></h1>
-    <p class="lede">This direction covers cryptographic side-channel analysis, deep-learning-assisted key recovery, blockchain security and randomness in smart contracts. The new visual now leans into traces, score distributions, state graphs and entropy structure to feel algorithmic and research-heavy.</p>
-    <div class="hero-tags"><span class="tag">SIDE-CHANNEL ANALYSIS</span><span class="tag">CRYPTOGRAPHY</span><span class="tag">DEEP LEARNING</span><span class="tag">BLOCKCHAIN</span><span class="tag">SMART CONTRACTS</span><span class="tag">SECURITY</span></div>
-  </div>
-  <div class="motion" aria-label="Algorithmic research visualization">
+  <div class="shell hero-grid">
+    <div>
+      <div class="eyebrow">[ R03 · RESEARCH DIRECTION ]</div>
+      <h1>Inspect secure systems<br>where the cracks <em>actually hide.</em></h1>
+      <p class="lede">This direction covers cryptographic side-channel analysis, deep-learning-assisted key recovery, blockchain security and randomness in smart contracts. The new motion graphic emphasizes live traces, linked states and shifting risk indicators — still technical, but much more visual.</p>
+      <div class="hero-tags"><span class="tag">SIDE-CHANNEL ANALYSIS</span><span class="tag">CRYPTOGRAPHY</span><span class="tag">DEEP LEARNING</span><span class="tag">BLOCKCHAIN</span><span class="tag">SMART CONTRACTS</span><span class="tag">SECURITY</span></div>
+    </div>
+    <div class="motion" aria-label="Animated research visualization">
+      
 <svg viewBox="0 0 760 480" role="img">
   <defs>
     <linearGradient id="scanGrad" x1="0" x2="1">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".2"/>
+      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".18"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
   <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
+  <text x="28" y="56" class="label">security activity and anomaly monitoring</text>
+  <text x="29" y="72" class="caption">trace behavior, block transitions and attack indicators</text>
 
-  <text x="24" y="34" class="eqHot">L(θ) = CE(fθ(T_trace), k_true)   ·   R = H(x || y || t)</text>
-  <text x="24" y="50" class="small">deep-learning key recovery and exploitability analysis of smart-contract randomness</text>
+  <g class="f1">
+    <path class="lineSoft" d="M48 188C70 151 86 216 105 176S138 163 157 208S190 236 212 186S250 151 280 194"/>
+    <path class="lineHot" d="M48 204C70 165 87 230 107 191S139 178 157 224S191 247 213 202S251 167 280 209"/>
+    <rect x="42" y="152" width="248" height="95" class="scan"/>
+    <text x="48" y="132" class="muted">side-channel trace</text>
 
-  <g>
-    <path class="trace" d="M26 140 C42 101 53 182 67 128 S96 147 110 100 S141 192 155 130 S184 112 197 156 S225 92 239 141 S267 182 281 131"/>
-    <path class="wave" d="M26 162 C42 123 53 204 67 150 S96 169 110 122 S141 214 155 152 S184 134 197 178 S225 114 239 163 S267 204 281 153"/>
-    <text x="25" y="194" class="small">power / EM trace window</text>
-    <text x="24" y="219" class="eq">corr(k_i, trace_j) → peak selection</text>
+    <rect x="54" y="286" width="230" height="92" rx="2" class="panel"/>
+    <text x="70" y="308" class="muted">candidate score activity</text>
+    <rect x="72" y="336" width="14" height="28" class="bar"/>
+    <rect x="91" y="318" width="14" height="46" class="barHot"/>
+    <rect x="110" y="324" width="14" height="40" class="bar"/>
+    <rect x="129" y="301" width="14" height="63" class="barHot"/>
+    <rect x="148" y="334" width="14" height="30" class="bar"/>
+    <rect x="167" y="313" width="14" height="51" class="barHot"/>
+    <rect x="186" y="325" width="14" height="39" class="bar"/>
+    <rect x="205" y="309" width="14" height="55" class="barHot"/>
+    <rect x="224" y="331" width="14" height="33" class="bar"/>
   </g>
 
-  <g class="float">
-    <rect x="33" y="257" width="224" height="126" rx="2" class="panel"/>
-    <text x="48" y="279" class="eqHot">candidate subkey scores</text>
-    <rect x="52" y="300" width="12" height="42" class="bar hot"/>
-    <rect x="68" y="318" width="12" height="24" class="bar"/>
-    <rect x="84" y="306" width="12" height="36" class="bar"/>
-    <rect x="100" y="286" width="12" height="56" class="bar hot"/>
-    <rect x="116" y="323" width="12" height="19" class="bar"/>
-    <rect x="132" y="309" width="12" height="33" class="bar"/>
-    <rect x="148" y="280" width="12" height="62" class="bar hot"/>
-    <rect x="164" y="315" width="12" height="27" class="bar"/>
-    <rect x="180" y="293" width="12" height="49" class="bar"/>
-    <rect x="196" y="321" width="12" height="21" class="bar"/>
-    <text x="48" y="363" class="small">ranked hypothesis distribution / key-byte recovery</text>
-  </g>
+  <g class="f2">
+    <text x="406" y="116" class="label">blockchain state flow</text>
+    <path class="dataPathSoft" d="M420 165L490 132L557 165L522 222L454 222Z"/>
+    <circle cx="420" cy="165" r="13" class="nodeHot"/>
+    <circle cx="490" cy="132" r="12" class="node"/>
+    <circle cx="557" cy="165" r="13" class="nodeHot"/>
+    <circle cx="522" cy="222" r="12" class="node"/>
+    <circle cx="454" cy="222" r="12" class="node"/>
+    <circle r="4" class="dot">
+      <animateMotion dur="5.6s" repeatCount="indefinite" path="M420 165L490 132L557 165L522 222L454 222Z"/>
+    </circle>
+    <circle r="4" class="dot2">
+      <animateMotion dur="6.3s" repeatCount="indefinite" path="M454 222L420 165L490 132"/>
+    </circle>
 
-  <g>
-    <rect x="292" y="84" width="170" height="276" rx="2" class="panel"/>
-    <text x="312" y="108" class="eqHot">attack model</text>
-    <text x="312" y="130" class="eq">x_t → φ(x_t) → fθ(·) → P(k | x)</text>
-    <text x="312" y="154" class="small">feature extraction learned from noisy traces</text>
-    <text x="312" y="187" class="eqHot">defense stress-test</text>
-    <text x="312" y="209" class="eq">ε ~ randomized masking / shuffling</text>
-    <text x="312" y="232" class="small">does probabilistic defense collapse under learned decoding?</text>
-    <text x="312" y="271" class="eqHot">decision signal</text>
-    <rect x="312" y="284" width="118" height="16" class="heatB"/>
-    <rect x="312" y="284" width="87" height="16" class="heatA"/>
-    <text x="314" y="319" class="small">confidence of recovered key material</text>
-  </g>
+    <rect x="392" y="270" width="290" height="92" rx="2" class="panel"/>
+    <text x="411" y="292" class="muted">threat indicators</text>
+    <text x="412" y="315" class="caption">entropy</text>
+    <rect x="412" y="322" width="92" height="16" class="token"/><rect x="412" y="322" width="62" height="16" class="tokenHot"/>
+    <text x="412" y="350" class="caption">attack confidence</text>
+    <rect x="412" y="357" width="92" height="16" class="token"/><rect x="412" y="357" width="48" height="16" class="tokenHot"/>
 
-  <path class="thick" d="M257 149C275 149 281 149 292 149"/>
-  <path class="thick" d="M462 226C502 226 509 122 554 122"/>
-  <path class="thick" d="M462 226C500 226 514 212 555 212"/>
-  <path class="thick" d="M462 226C500 226 516 326 556 326"/>
-
-  <g class="float2">
-    <text x="534" y="88" class="eqHot">contract state graph</text>
-    <circle cx="565" cy="124" r="15" class="node hot"/><circle cx="626" cy="124" r="15" class="node"/><circle cx="687" cy="124" r="15" class="node hot"/>
-    <circle cx="595" cy="173" r="15" class="node"/><circle cx="656" cy="173" r="15" class="node hot"/>
-    <path class="thin" d="M565 124L626 124L687 124M565 124L595 173L656 173L687 124M626 124L656 173"/>
-    <text x="543" y="199" class="small">dependency chain / exploitable transitions</text>
-
-    <text x="534" y="245" class="eqHot">entropy leakage</text>
-    <rect x="539" y="259" width="25" height="25" class="heatA"/><rect x="567" y="259" width="25" height="25" class="heatB"/><rect x="595" y="259" width="25" height="25" class="heatA"/>
-    <rect x="623" y="259" width="25" height="25" class="heatB"/><rect x="651" y="259" width="25" height="25" class="heatA"/>
-    <rect x="539" y="287" width="25" height="25" class="heatB"/><rect x="567" y="287" width="25" height="25" class="heatA"/><rect x="595" y="287" width="25" height="25" class="heatB"/>
-    <rect x="623" y="287" width="25" height="25" class="heatA"/><rect x="651" y="287" width="25" height="25" class="heatB"/>
-    <rect x="535" y="258" width="150" height="56" class="scan"/>
-    <text x="538" y="338" class="small">weak randomness patterns across contract calls</text>
-
-    <text x="534" y="388" class="eq">attackability ∝ predictability × value at risk</text>
+    <text x="543" y="315" class="caption">anomaly score</text>
+    <path class="lineSoft" d="M544 354C562 327 580 338 595 316S626 304 644 334S672 365 695 333"/>
+    <path class="lineHot" d="M544 343C563 316 581 326 596 305S627 292 645 322S673 354 695 321"/>
   </g>
 </svg>
-</div>
-</div>
+
+    </div>
+  </div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">01 / SCOPE</div>
-    <div><h2>From leakage-based key recovery to smart-contract vulnerability analysis.</h2></div>
-  </div>
-  <div class="two-track">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">01 / SCOPE</div>
+      <div><h2>From leakage-based key recovery to smart-contract vulnerability analysis.</h2></div>
+    </div>
+    <div class="two-track">
         <article class="track">
           <div class="track-no">01 · CRYPTO ANALYSIS</div>
           <h3>Learn from leakage that secure systems did not intend to reveal.</h3>
@@ -238,20 +243,18 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <p>The blockchain side investigates how randomness and contract design choices create exploitable security vulnerabilities and what those weaknesses imply for practice.</p>
           <div class="chips"><span>BLOCKCHAIN</span><span>SMART CONTRACTS</span><span>RANDOMNESS</span><span>ATTACK SURFACE</span></div>
         </article>
-        
+        </div>
+    <div class="bridge"><strong>COMMON THREAD</strong><p>The common goal is not just to break things for sport. It is to understand where systems leak structure, where defenses fail, and how security claims hold up under realistic analysis.</p></div>
   </div>
-  <div class="bridge"><strong>COMMON THREAD</strong><p>The common goal is not just to break things for sport. It is to understand where systems leak structure, where defenses fail, and how security claims hold up under realistic analysis.</p></div>
-</div>
 </section>
 
 <section class="section" id="papers">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">02 / PUBLICATIONS</div>
-    <div><h2>Related papers.</h2><p class="section-intro">These papers examine both cryptographic leakage and blockchain security, using analytical and deep-learning-based approaches.</p></div>
-  </div>
-  <div class="paper-list">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">02 / PUBLICATIONS</div>
+      <div><h2>Related papers.</h2><p class="section-intro">These papers examine both cryptographic leakage and blockchain security, using analytical and deep-learning-based approaches.</p></div>
+    </div>
+    <div class="paper-list">
         <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538" target="_blank" rel="noreferrer">
           <div class="paper-year">2026<br>PAPER</div>
           <div>
@@ -272,28 +275,29 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           </div>
           <div class="paper-arrow">↗</div>
         </a>
-        
+        </div>
   </div>
-</div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">03 / QUESTIONS</div>
-    <div><h2>Questions that drive the work.</h2></div>
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">03 / QUESTIONS</div>
+      <div><h2>Questions that drive the work.</h2></div>
+    </div>
+    <div class="questions"><div class="q"><span>Q01</span><p>How resilient are side-channel defenses when the attacker uses learned feature extraction?</p></div><div class="q"><span>Q02</span><p>What makes randomness in smart contracts fail in practice, not just in theory?</p></div><div class="q"><span>Q03</span><p>How can security evaluation better connect model sophistication with deployable threats?</p></div></div>
   </div>
-  <div class="questions">
-    <div class="q"><span>Q01</span><p>How resilient are side-channel defenses when the attacker uses learned feature extraction?</p></div><div class="q"><span>Q02</span><p>What makes randomness in smart contracts fail in practice, not just in theory?</p></div><div class="q"><span>Q03</span><p>How can security evaluation better connect model sophistication with deployable threats?</p></div>
-  </div>
-</div>
 </section>
 
 <section class="cta">
-<div class="shell cta-box">
-  <div><div class="eyebrow">[ COLLABORATION CHANNEL ]</div><h2>Have a signal worth exploring?</h2><p>Research, engineering, or a stubborn technical problem — send it over.</p></div>
-  <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Security,%20Cryptography%20and%20Blockchain">Email Mehrshad <span>↗</span></a>
-</div>
+  <div class="shell cta-box">
+    <div>
+      <div class="eyebrow">[ COLLABORATION CHANNEL ]</div>
+      <h2>Have a signal worth exploring?</h2>
+      <p>Research, engineering, or a stubborn technical problem — send it over.</p>
+    </div>
+    <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Security,%20Cryptography%20and%20Blockchain">Email Mehrshad <span>↗</span></a>
+  </div>
 </section>
 </main>
 

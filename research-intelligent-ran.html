@@ -35,7 +35,7 @@ a{color:inherit}
 .back span{color:var(--accent)}
 .hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,.92fr);gap:72px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(500px,.96fr);gap:72px;align-items:center}
 h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
 h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
@@ -44,44 +44,50 @@ h1 em{font-style:normal;color:var(--accent)}
 .motion{
   border:1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,247,244,0.9)),
-    repeating-linear-gradient(0deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px),
-    repeating-linear-gradient(90deg, transparent 0 27px, rgba(223,79,47,.035) 27px 28px);
+    linear-gradient(180deg, rgba(255,255,255,0.95), rgba(249,247,244,0.95)),
+    repeating-linear-gradient(0deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px),
+    repeating-linear-gradient(90deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px);
   min-height:480px;position:relative;overflow:hidden
 }
-.motion::before{content:"ALGORITHMIC RESEARCH MAP";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"equations · graphs · optimization · signals";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion::before{content:"LIVE RESEARCH SYSTEM";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"signals · activity · metrics · motion";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
 .motion svg{display:block;width:100%;height:480px}
-.gridline{stroke:var(--grid);stroke-width:1}
-.thin{stroke:#c9c2b8;stroke-width:1.2;fill:none;stroke-dasharray:4 5;animation:dash 16s linear infinite}
-.thick{stroke:var(--accent);stroke-width:1.8;fill:none}
-.soft{stroke:#c7c1b8;stroke-width:1;fill:none}
-.node{fill:#fff;stroke:#b4ada3;stroke-width:1.1}
-.node.hot{stroke:var(--accent)}
-.dot{fill:var(--accent)}
-.panel{fill:rgba(255,255,255,.8);stroke:#d3cec6}
-.heatA{fill:#fff3ee;stroke:#df4f2f55}
-.heatB{fill:#f7f2ec;stroke:#cec6bc}
-.eq{font:11px "IBM Plex Mono";fill:#77736d}
-.eqHot{font:11px "IBM Plex Mono";fill:var(--accent)}
-.small{font:9px "IBM Plex Mono";fill:#9b968e}
-.tiny{font:8px "IBM Plex Mono";fill:#aba59d}
-.packet{fill:var(--accent)}
-.scan{fill:url(#scanGrad);opacity:.6;animation:scan 5s ease-in-out infinite}
-.wave{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 6s ease-in-out infinite}
-.trace{fill:none;stroke:#978f85;stroke-width:1.2}
-.bar{fill:#f1ede8;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
-.bar.hot{fill:#ffdfd4}
-.orbit{animation:orbit 11s linear infinite;transform-origin:center}
-.float{animation:float 6s ease-in-out infinite}
-.float2{animation:float2 7s ease-in-out infinite}
-@keyframes dash{to{stroke-dashoffset:-220}}
-@keyframes draw{0%{stroke-dashoffset:900;opacity:.2}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-900;opacity:.2}}
-@keyframes scan{0%,100%{transform:translateX(-80px)}50%{transform:translateX(170px)}}
+.caption{font:10px "IBM Plex Mono";fill:#8d877f}
+.label{font:11px "IBM Plex Mono";fill:#df4f2f}
+.muted{font:10px "IBM Plex Mono";fill:#79746d}
+.panel{fill:rgba(255,255,255,.78);stroke:#d8d2c8}
+.soft{stroke:#c9c2b8;stroke-width:1.2;fill:none}
+.hot{stroke:#df4f2f;stroke-width:1.7;fill:none}
+.dot{fill:#df4f2f}
+.dot2{fill:#bdb5ab}
+.node{fill:#fff;stroke:#b8b0a4;stroke-width:1.25}
+.nodeHot{fill:#fff;stroke:#df4f2f;stroke-width:1.5}
+.ring{fill:none;stroke:#df4f2f;stroke-opacity:.22}
+.gridline{stroke:#ece8e2;stroke-width:1}
+.pulseCircle{fill:#df4f2f;opacity:.3;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
+.dataPath{stroke:#df4f2f;stroke-width:1.6;fill:none;stroke-dasharray:5 5;animation:dash 8s linear infinite}
+.dataPathSoft{stroke:#bcb5ab;stroke-width:1.1;fill:none;stroke-dasharray:4 7;animation:dash 11s linear infinite}
+.bar{fill:#f0ece7;transform-origin:center bottom;animation:bars 1.8s ease-in-out infinite}
+.barHot{fill:#ffd8cc;transform-origin:center bottom;animation:bars 2.2s ease-in-out infinite}
+.lineHot{stroke:#df4f2f;stroke-width:2;fill:none;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 5.5s ease-in-out infinite}
+.lineSoft{stroke:#bdb6ab;stroke-width:1.2;fill:none}
+.token{fill:#f8f5f1;stroke:#d3ccc1}
+.tokenHot{fill:#fff1eb;stroke:#df4f2f}
+.scan{fill:url(#scanGrad);opacity:.55;animation:scan 4.8s ease-in-out infinite}
+.f1{animation:float1 5.5s ease-in-out infinite}
+.f2{animation:float2 7.1s ease-in-out infinite}
+.f3{animation:float3 6.5s ease-in-out infinite}
+.orbit{animation:orbit 16s linear infinite;transform-origin:center}
+#particles circle{animation:pulse 2.8s ease-in-out infinite}
+@keyframes dash{to{stroke-dashoffset:-120}}
+@keyframes pulse{0%,100%{opacity:.22;transform:scale(.72)}50%{opacity:.95;transform:scale(1.18)}}
+@keyframes draw{0%{stroke-dashoffset:500;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-500;opacity:.25}}
 @keyframes bars{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes scan{0%,100%{transform:translateX(-120px)}50%{transform:translateX(170px)}}
 @keyframes orbit{to{transform:rotate(360deg)}}
-@keyframes float{50%{transform:translate(8px,-8px)}}
-@keyframes float2{50%{transform:translate(-7px,8px)}}
+@keyframes float1{50%{transform:translate(9px,-8px)}}
+@keyframes float2{50%{transform:translate(-8px,9px)}}
+@keyframes float3{50%{transform:translate(7px,6px)}}
 .section{padding:80px 0;border-bottom:1px solid var(--line)}
 .section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
 .section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
@@ -112,11 +118,24 @@ h1 em{font-style:normal;color:var(--accent)}
 .email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
 @media(max-width:900px){
- .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:400px}.motion svg{height:400px}
- .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
- .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
+  .hero-grid,.section-head{grid-template-columns:1fr}
+  .hero-grid{gap:40px}
+  .motion{min-height:400px}
+  .motion svg{height:400px}
+  .two-track,.questions{grid-template-columns:1fr}
+  .track+ .track,.q+.q{border-left:0;border-top:1px solid var(--line)}
+  .paper{grid-template-columns:72px 1fr 30px}
+  .bridge{grid-template-columns:1fr}
 }
-@media(max-width:600px){.shell{width:min(100% - 28px,1280px)}.name{display:none}.hero{padding-top:58px}.paper{grid-template-columns:1fr}.paper-arrow{text-align:left}.cta-box{grid-template-columns:1fr}.back{font-size:11px}}
+@media(max-width:600px){
+  .shell{width:min(100% - 28px,1280px)}
+  .name{display:none}
+  .hero{padding-top:58px}
+  .paper{grid-template-columns:1fr}
+  .paper-arrow{text-align:left}
+  .cta-box{grid-template-columns:1fr}
+  .back{font-size:11px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -131,107 +150,102 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
 
 <main>
 <section class="hero">
-<div class="shell hero-grid">
-  <div>
-    <div class="eyebrow">[ R02 · RESEARCH DIRECTION ]</div>
-    <h1>Make radio access<br>more <em>adaptive.</em></h1>
-    <p class="lede">This direction focuses on AI-assisted radio access networks, with emphasis on QoS-aware load balancing, handover decisions and user mobility. The motion graphic now shows policy equations, mobility trajectories, load heatmaps and association matrices rather than module boxes.</p>
-    <div class="hero-tags"><span class="tag">5G</span><span class="tag">RADIO ACCESS</span><span class="tag">LOAD BALANCING</span><span class="tag">QOS</span><span class="tag">USER MOBILITY</span><span class="tag">DEEP RL</span></div>
-  </div>
-  <div class="motion" aria-label="Algorithmic research visualization">
+  <div class="shell hero-grid">
+    <div>
+      <div class="eyebrow">[ R02 · RESEARCH DIRECTION ]</div>
+      <h1>Make radio access<br>more <em>adaptive.</em></h1>
+      <p class="lede">This direction focuses on AI-assisted radio access networks, with emphasis on QoS-aware load balancing, handover decisions and user mobility. The motion graphic now shows moving users, active cells and live QoS metrics instead of a static algorithm poster.</p>
+      <div class="hero-tags"><span class="tag">5G</span><span class="tag">RADIO ACCESS</span><span class="tag">LOAD BALANCING</span><span class="tag">QOS</span><span class="tag">USER MOBILITY</span><span class="tag">DEEP RL</span></div>
+    </div>
+    <div class="motion" aria-label="Animated research visualization">
+      
 <svg viewBox="0 0 760 480" role="img">
   <defs>
     <linearGradient id="scanGrad" x1="0" x2="1">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".2"/>
+      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".18"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
   <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
+  <text x="28" y="56" class="label">mobility-aware radio access</text>
+  <text x="29" y="72" class="caption">users move, cells rebalance, qos reacts live</text>
 
-  <text x="24" y="34" class="eqHot">a_t = argmax_i [ QoS_i(t) + λÛ_i(t) − μL_i(t) ]</text>
-  <text x="24" y="50" class="small">mobility-aware load balancing under observation uncertainty</text>
+  <g class="f1">
+    <g>
+      <path class="hot" d="M128 134V286"/><path class="hot" d="M111 166H145M105 205H151M101 246H155"/>
+      <circle cx="128" cy="124" r="6" class="dot"/>
+      <text x="101" y="308" class="muted">cell A</text>
+    </g>
+    <g>
+      <path class="hot" d="M250 96V248"/><path class="hot" d="M233 128H267M227 167H273M223 208H277"/>
+      <circle cx="250" cy="86" r="6" class="dot"/>
+      <text x="223" y="270" class="muted">cell B</text>
+    </g>
+    <g>
+      <path class="hot" d="M284 202V354"/><path class="hot" d="M267 234H301M261 273H307M257 314H311"/>
+      <circle cx="284" cy="192" r="6" class="dot"/>
+      <text x="257" y="376" class="muted">cell C</text>
+    </g>
 
-  <g class="float">
-    <path class="soft" d="M78 354 C111 278 146 214 207 171"/>
-    <path class="soft" d="M88 330 C138 302 183 257 224 203"/>
-    <path class="soft" d="M102 310 C162 274 194 230 246 145"/>
-    <circle cx="78" cy="354" r="5" class="dot"/><circle cx="207" cy="171" r="5" class="dot"/>
-    <circle cx="88" cy="330" r="5" class="dot"/><circle cx="224" cy="203" r="5" class="dot"/>
-    <circle cx="102" cy="310" r="5" class="dot"/><circle cx="246" cy="145" r="5" class="dot"/>
-    <text x="43" y="387" class="small">user trajectories / predicted handovers</text>
+    <path class="dataPathSoft" d="M70 352C115 314 135 271 160 223S220 137 250 110"/>
+    <path class="dataPath" d="M92 336C135 306 158 258 182 214S236 158 278 146"/>
+    <path class="dataPathSoft" d="M110 364C155 334 184 286 218 248S257 210 300 226"/>
+    <circle r="5" class="dot">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M70 352C115 314 135 271 160 223S220 137 250 110"/>
+    </circle>
+    <circle r="5" class="dot2">
+      <animateMotion dur="6s" repeatCount="indefinite" path="M92 336C135 306 158 258 182 214S236 158 278 146"/>
+    </circle>
+    <circle r="5" class="dot">
+      <animateMotion dur="5.6s" repeatCount="indefinite" path="M110 364C155 334 184 286 218 248S257 210 300 226"/>
+    </circle>
   </g>
 
-  <g>
-    <path class="thick" d="M142 120V248"/><path class="thick" d="M126 148H158M121 182H163M116 216H168"/>
-    <text x="115" y="265" class="eq">cell A</text>
+  <g class="f2">
+    <rect x="372" y="112" width="292" height="250" rx="2" class="panel"/>
+    <text x="392" y="138" class="label">qos and load metrics</text>
+    <text x="392" y="157" class="caption">cell load / latency / handover stability / throughput</text>
 
-    <path class="thick" d="M252 164V292"/><path class="thick" d="M236 192H268M231 226H273M226 260H278"/>
-    <text x="225" y="309" class="eq">cell B</text>
+    <text x="394" y="195" class="muted">cell load</text>
+    <rect x="394" y="206" width="96" height="18" class="token"/><rect x="394" y="206" width="33" height="18" class="tokenHot"/>
+    <rect x="394" y="232" width="96" height="18" class="token"/><rect x="394" y="232" width="68" height="18" class="tokenHot"/>
+    <rect x="394" y="258" width="96" height="18" class="token"/><rect x="394" y="258" width="44" height="18" class="tokenHot"/>
+    <text x="498" y="219" class="caption">A</text><text x="498" y="245" class="caption">B</text><text x="498" y="271" class="caption">C</text>
 
-    <path class="thick" d="M202 64V192"/><path class="thick" d="M186 92H218M181 126H223M176 160H228"/>
-    <text x="176" y="209" class="eq">cell C</text>
-  </g>
+    <text x="550" y="195" class="muted">qos surface</text>
+    <path class="lineSoft" d="M550 258C576 215 595 228 612 198S647 190 664 220S696 270 708 236"/>
+    <path class="lineHot" d="M550 248C577 203 598 214 615 186S650 180 667 210S697 262 708 228"/>
+    <rect x="544" y="180" width="170" height="90" class="scan"/>
 
-  <g>
-    <rect x="304" y="82" width="176" height="274" rx="2" class="panel"/>
-    <text x="325" y="108" class="eqHot">policy state s_t</text>
-    <text x="325" y="130" class="small">[ load_A, load_B, load_C, QoS, v̂_user, H ]</text>
-    <text x="325" y="156" class="eq">πθ(a|s) = softmax(Wφ(s_t))</text>
-    <text x="325" y="180" class="small">handover / association action distribution</text>
+    <text x="394" y="315" class="muted">handover stability</text>
+    <rect x="394" y="326" width="18" height="28" class="bar"/>
+    <rect x="418" y="310" width="18" height="44" class="barHot"/>
+    <rect x="442" y="320" width="18" height="34" class="bar"/>
+    <rect x="466" y="300" width="18" height="54" class="barHot"/>
+    <rect x="490" y="314" width="18" height="40" class="bar"/>
 
-    <text x="325" y="213" class="eqHot">estimated load</text>
-    <rect x="326" y="225" width="116" height="18" class="heatB"/>
-    <rect x="326" y="225" width="43" height="18" class="heatA"/>
-    <text x="328" y="246" class="tiny">A = 0.37</text>
-
-    <rect x="326" y="255" width="116" height="18" class="heatB"/>
-    <rect x="326" y="255" width="79" height="18" class="heatA"/>
-    <text x="328" y="276" class="tiny">B = 0.68</text>
-
-    <rect x="326" y="285" width="116" height="18" class="heatB"/>
-    <rect x="326" y="285" width="31" height="18" class="heatA"/>
-    <text x="328" y="306" class="tiny">C = 0.27</text>
-
-    <text x="325" y="333" class="eq">reward = +QoS − drop − overload − ping_pong</text>
-  </g>
-
-  <path class="thick" d="M272 228C286 228 292 228 304 228"/>
-  <path class="thick" d="M480 218C518 218 526 121 560 121"/>
-  <path class="thick" d="M480 218C517 218 524 216 560 216"/>
-  <path class="thick" d="M480 218C515 218 523 315 560 315"/>
-
-  <g class="float2">
-    <text x="540" y="86" class="eqHot">association matrix</text>
-    <text x="540" y="105" class="small">P(cell_i | user_j)</text>
-    <rect x="540" y="118" width="26" height="26" class="heatA"/><rect x="569" y="118" width="26" height="26" class="heatB"/><rect x="598" y="118" width="26" height="26" class="heatB"/>
-    <rect x="540" y="147" width="26" height="26" class="heatB"/><rect x="569" y="147" width="26" height="26" class="heatA"/><rect x="598" y="147" width="26" height="26" class="heatB"/>
-    <rect x="540" y="176" width="26" height="26" class="heatB"/><rect x="569" y="176" width="26" height="26" class="heatB"/><rect x="598" y="176" width="26" height="26" class="heatA"/>
-    <text x="636" y="134" class="tiny">u1</text><text x="636" y="163" class="tiny">u2</text><text x="636" y="192" class="tiny">u3</text>
-
-    <text x="540" y="246" class="eqHot">QoS surface</text>
-    <path class="soft" d="M540 312C565 276 587 308 605 267S646 247 664 286S702 317 710 286"/>
-    <path class="thick" d="M540 300C567 255 584 284 603 243S646 234 665 268S700 301 710 272"/>
-    <rect x="537" y="260" width="176" height="50" class="scan"/>
-    <text x="540" y="333" class="small">optimize throughput / latency / fairness</text>
-
-    <text x="540" y="379" class="eq">H_t = entropy(p(observation_t))</text>
-    <text x="540" y="396" class="small">robust decisions when state information is partial</text>
+    <text x="549" y="315" class="muted">throughput</text>
+    <rect x="549" y="326" width="18" height="28" class="bar"/>
+    <rect x="573" y="304" width="18" height="50" class="barHot"/>
+    <rect x="597" y="312" width="18" height="42" class="bar"/>
+    <rect x="621" y="294" width="18" height="60" class="barHot"/>
+    <rect x="645" y="309" width="18" height="45" class="bar"/>
   </g>
 </svg>
-</div>
-</div>
+
+    </div>
+  </div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">01 / SCOPE</div>
-    <div><h2>AI assistance for QoS-aware, mobility-aware RAN control.</h2></div>
-  </div>
-  <div class="two-track">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">01 / SCOPE</div>
+      <div><h2>AI assistance for QoS-aware, mobility-aware RAN control.</h2></div>
+    </div>
+    <div class="two-track">
         <article class="track">
           <div class="track-no">01 · LOAD BALANCING</div>
           <h3>Distribute users and resources where they create the least congestion.</h3>
@@ -245,20 +259,18 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           <p>User mobility changes the network’s optimal decisions. This research studies policies that anticipate handovers and network pressure instead of reacting too late.</p>
           <div class="chips"><span>USER MOBILITY</span><span>HANDOVER</span><span>RL POLICY</span><span>RAN CONTROL</span></div>
         </article>
-        
+        </div>
+    <div class="bridge"><strong>COMMON THREAD</strong><p>Radio access gets harder when information is partial and users are moving. The key research question is how to make intelligent policies that preserve QoS under uncertainty.</p></div>
   </div>
-  <div class="bridge"><strong>COMMON THREAD</strong><p>Radio access gets harder when information is partial and users are moving. The key research question is how to make intelligent policies that preserve QoS under uncertainty.</p></div>
-</div>
 </section>
 
 <section class="section" id="papers">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">02 / PUBLICATIONS</div>
-    <div><h2>Related papers.</h2><p class="section-intro">This line of work currently centers on deep reinforcement learning for QoS-aware load balancing in 5G environments.</p></div>
-  </div>
-  <div class="paper-list">
-    
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">02 / PUBLICATIONS</div>
+      <div><h2>Related papers.</h2><p class="section-intro">This line of work currently centers on deep reinforcement learning for QoS-aware load balancing in 5G environments.</p></div>
+    </div>
+    <div class="paper-list">
         <a class="paper" href="https://arxiv.org/abs/2510.24869" target="_blank" rel="noreferrer">
           <div class="paper-year">2026<br>PAPER</div>
           <div>
@@ -268,28 +280,29 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
           </div>
           <div class="paper-arrow">↗</div>
         </a>
-        
+        </div>
   </div>
-</div>
 </section>
 
 <section class="section">
-<div class="shell">
-  <div class="section-head">
-    <div class="section-index">03 / QUESTIONS</div>
-    <div><h2>Questions that drive the work.</h2></div>
+  <div class="shell">
+    <div class="section-head">
+      <div class="section-index">03 / QUESTIONS</div>
+      <div><h2>Questions that drive the work.</h2></div>
+    </div>
+    <div class="questions"><div class="q"><span>Q01</span><p>How should a radio network balance short-term QoS with long-term load stability?</p></div><div class="q"><span>Q02</span><p>What is the right policy when the system sees only partial or noisy observations?</p></div><div class="q"><span>Q03</span><p>How can mobility predictions improve handover and cell-association decisions?</p></div></div>
   </div>
-  <div class="questions">
-    <div class="q"><span>Q01</span><p>How should a radio network balance short-term QoS with long-term load stability?</p></div><div class="q"><span>Q02</span><p>What is the right policy when the system sees only partial or noisy observations?</p></div><div class="q"><span>Q03</span><p>How can mobility predictions improve handover and cell-association decisions?</p></div>
-  </div>
-</div>
 </section>
 
 <section class="cta">
-<div class="shell cta-box">
-  <div><div class="eyebrow">[ COLLABORATION CHANNEL ]</div><h2>Have a signal worth exploring?</h2><p>Research, engineering, or a stubborn technical problem — send it over.</p></div>
-  <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Intelligent%20Radio%20Access%20Networks">Email Mehrshad <span>↗</span></a>
-</div>
+  <div class="shell cta-box">
+    <div>
+      <div class="eyebrow">[ COLLABORATION CHANNEL ]</div>
+      <h2>Have a signal worth exploring?</h2>
+      <p>Research, engineering, or a stubborn technical problem — send it over.</p>
+    </div>
+    <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20direction%20—%20Intelligent%20Radio%20Access%20Networks">Email Mehrshad <span>↗</span></a>
+  </div>
 </section>
 </main>
 
