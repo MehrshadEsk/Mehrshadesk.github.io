@@ -49,8 +49,8 @@ h1 em{font-style:normal;color:var(--accent)}
     repeating-linear-gradient(90deg, transparent 0 29px, rgba(223,79,47,.035) 29px 30px);
   min-height:480px;position:relative;overflow:hidden
 }
-.motion::before{content:"LIVE RESEARCH SYSTEM";position:absolute;z-index:4;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
-.motion::after{content:"signals · activity · metrics · motion";position:absolute;z-index:4;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion::before{content:none;display:none}
+.motion::after{content:none;display:none}
 .motion svg{display:block;width:100%;height:480px}
 .caption{font:10px "IBM Plex Mono";fill:#8d877f}
 .label{font:11px "IBM Plex Mono";fill:#df4f2f}
@@ -159,66 +159,6 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
     </div>
     <div class="motion" aria-label="Animated research visualization">
       
-<svg viewBox="0 0 760 480" role="img">
-  <defs>
-    <linearGradient id="scanGrad" x1="0" x2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#df4f2f" stop-opacity=".18"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <path class="gridline" d="M0 96H760M0 192H760M0 288H760M0 384H760"/>
-  <path class="gridline" d="M152 0V480M304 0V480M456 0V480M608 0V480"/>
-  <text x="28" y="56" class="label">security activity and anomaly monitoring</text>
-  <text x="29" y="72" class="caption">trace behavior, block transitions and attack indicators</text>
-
-  <g class="f1">
-    <path class="lineSoft" d="M48 188C70 151 86 216 105 176S138 163 157 208S190 236 212 186S250 151 280 194"/>
-    <path class="lineHot" d="M48 204C70 165 87 230 107 191S139 178 157 224S191 247 213 202S251 167 280 209"/>
-    <rect x="42" y="152" width="248" height="95" class="scan"/>
-    <text x="48" y="132" class="muted">side-channel trace</text>
-
-    <rect x="54" y="286" width="230" height="92" rx="2" class="panel"/>
-    <text x="70" y="308" class="muted">candidate score activity</text>
-    <rect x="72" y="336" width="14" height="28" class="bar"/>
-    <rect x="91" y="318" width="14" height="46" class="barHot"/>
-    <rect x="110" y="324" width="14" height="40" class="bar"/>
-    <rect x="129" y="301" width="14" height="63" class="barHot"/>
-    <rect x="148" y="334" width="14" height="30" class="bar"/>
-    <rect x="167" y="313" width="14" height="51" class="barHot"/>
-    <rect x="186" y="325" width="14" height="39" class="bar"/>
-    <rect x="205" y="309" width="14" height="55" class="barHot"/>
-    <rect x="224" y="331" width="14" height="33" class="bar"/>
-  </g>
-
-  <g class="f2">
-    <text x="406" y="116" class="label">blockchain state flow</text>
-    <path class="dataPathSoft" d="M420 165L490 132L557 165L522 222L454 222Z"/>
-    <circle cx="420" cy="165" r="13" class="nodeHot"/>
-    <circle cx="490" cy="132" r="12" class="node"/>
-    <circle cx="557" cy="165" r="13" class="nodeHot"/>
-    <circle cx="522" cy="222" r="12" class="node"/>
-    <circle cx="454" cy="222" r="12" class="node"/>
-    <circle r="4" class="dot">
-      <animateMotion dur="5.6s" repeatCount="indefinite" path="M420 165L490 132L557 165L522 222L454 222Z"/>
-    </circle>
-    <circle r="4" class="dot2">
-      <animateMotion dur="6.3s" repeatCount="indefinite" path="M454 222L420 165L490 132"/>
-    </circle>
-
-    <rect x="392" y="270" width="290" height="92" rx="2" class="panel"/>
-    <text x="411" y="292" class="muted">threat indicators</text>
-    <text x="412" y="315" class="caption">entropy</text>
-    <rect x="412" y="322" width="92" height="16" class="token"/><rect x="412" y="322" width="62" height="16" class="tokenHot"/>
-    <text x="412" y="350" class="caption">attack confidence</text>
-    <rect x="412" y="357" width="92" height="16" class="token"/><rect x="412" y="357" width="48" height="16" class="tokenHot"/>
-
-    <text x="543" y="315" class="caption">anomaly score</text>
-    <path class="lineSoft" d="M544 354C562 327 580 338 595 316S626 304 644 334S672 365 695 333"/>
-    <path class="lineHot" d="M544 343C563 316 581 326 596 305S627 292 645 322S673 354 695 321"/>
-  </g>
-</svg>
-
     </div>
   </div>
 </section>
@@ -302,5 +242,511 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
 </main>
 
 <footer class="shell"><span>© 2026 Mehrshad Eskandarpour</span><a href="index.html#research">Research map ↑</a></footer>
+
+<script>
+/*
+ * MehrshadEsk Research Motion System — Pro Edition
+ * Drop-in canvas motion for the four research direction hero panels.
+ * No text is rendered inside the visualizations.
+ */
+(() => {
+  'use strict';
+
+  const MOTION_MAP = [
+    ['research-wireless-systems', 'wireless'],
+    ['research-intelligent-ran', 'ran'],
+    ['research-cryptography-coding', 'crypto'],
+    ['research-intelligent-processing-efficient-ai', 'ai']
+  ];
+
+  const path = (location.pathname || '').toLowerCase();
+  const mode = (MOTION_MAP.find(([needle]) => path.includes(needle)) || [null, null])[1];
+  if (!mode) return;
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ACCENT = '#df4f2f';
+  const INK = '#151513';
+  const PAPER = '#fafaf9';
+  const MUTED = '#b8b0a5';
+  const SOFT = '#e8e3dc';
+
+  const style = document.createElement('style');
+  style.id = 'research-motion-pro-style';
+  style.textContent = `
+    .motion[data-pro-motion]{
+      position:relative!important;
+      overflow:hidden!important;
+      isolation:isolate;
+      min-height:480px;
+      background:
+        radial-gradient(circle at 42% 46%, rgba(223,79,47,.045), transparent 33%),
+        linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,246,242,.98))!important;
+    }
+    .motion[data-pro-motion]::before,
+    .motion[data-pro-motion]::after{content:none!important;display:none!important}
+    .motion[data-pro-motion] canvas{
+      display:block;
+      width:100%;
+      height:480px;
+      position:absolute;
+      inset:0;
+      z-index:1;
+    }
+    @media(max-width:900px){.motion[data-pro-motion],.motion[data-pro-motion] canvas{height:400px;min-height:400px}}
+  `;
+  document.head.appendChild(style);
+
+  function init() {
+    const host = document.querySelector('.motion');
+    if (!host) return;
+
+    host.dataset.proMotion = mode;
+    host.setAttribute('aria-label', 'Animated research visualization');
+    host.replaceChildren();
+
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    host.appendChild(canvas);
+    const ctx = canvas.getContext('2d', { alpha: true });
+
+    const state = {
+      w: 0, h: 0, dpr: 1,
+      pointerX: 0, pointerY: 0,
+      targetX: 0, targetY: 0,
+      visible: true,
+      last: performance.now(),
+      t: 0
+    };
+
+    function resize() {
+      const r = host.getBoundingClientRect();
+      state.w = Math.max(320, r.width);
+      state.h = Math.max(360, r.height || (innerWidth <= 900 ? 400 : 480));
+      state.dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(state.w * state.dpr);
+      canvas.height = Math.round(state.h * state.dpr);
+      canvas.style.width = `${state.w}px`;
+      canvas.style.height = `${state.h}px`;
+      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+      drawFrame(reduceMotion ? 2.4 : state.t);
+    }
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(host);
+
+    const io = new IntersectionObserver(entries => {
+      state.visible = !!entries[0]?.isIntersecting;
+    }, { rootMargin: '160px' });
+    io.observe(host);
+
+    host.addEventListener('pointermove', e => {
+      const r = host.getBoundingClientRect();
+      state.targetX = ((e.clientX - r.left) / r.width - .5) * 2;
+      state.targetY = ((e.clientY - r.top) / r.height - .5) * 2;
+    }, { passive: true });
+    host.addEventListener('pointerleave', () => {
+      state.targetX = 0; state.targetY = 0;
+    }, { passive: true });
+
+    function drawFrame(t) {
+      const { w, h } = state;
+      if (!w || !h) return;
+      ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      drawBackdrop(ctx, w, h, t, state.pointerX, state.pointerY);
+      ctx.save();
+      ctx.translate(state.pointerX * 5, state.pointerY * 4);
+      if (mode === 'wireless') drawWireless(ctx, w, h, t);
+      if (mode === 'ran') drawRAN(ctx, w, h, t);
+      if (mode === 'crypto') drawCrypto(ctx, w, h, t);
+      if (mode === 'ai') drawAI(ctx, w, h, t);
+      ctx.restore();
+      drawVignette(ctx, w, h);
+    }
+
+    function tick(now) {
+      const dt = Math.min(.035, (now - state.last) / 1000);
+      state.last = now;
+      state.pointerX += (state.targetX - state.pointerX) * Math.min(1, dt * 4.2);
+      state.pointerY += (state.targetY - state.pointerY) * Math.min(1, dt * 4.2);
+      if (state.visible) {
+        state.t += dt;
+        drawFrame(state.t);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    resize();
+    if (!reduceMotion) requestAnimationFrame(tick);
+  }
+
+  function drawBackdrop(c, w, h, t, px, py) {
+    c.save();
+    c.fillStyle = 'rgba(255,255,255,.01)';
+    c.fillRect(0, 0, w, h);
+
+    const grid = Math.max(28, Math.min(38, w / 17));
+    c.lineWidth = 1;
+    c.strokeStyle = 'rgba(43,38,33,.047)';
+    const ox = ((t * 2.2 + px * 8) % grid);
+    const oy = ((t * 1.2 + py * 7) % grid);
+    c.beginPath();
+    for (let x = -grid + ox; x <= w + grid; x += grid) { c.moveTo(x, 0); c.lineTo(x, h); }
+    for (let y = -grid + oy; y <= h + grid; y += grid) { c.moveTo(0, y); c.lineTo(w, y); }
+    c.stroke();
+
+    c.strokeStyle = 'rgba(223,79,47,.055)';
+    c.beginPath();
+    for (let x = grid * 4 + ox; x <= w + grid; x += grid * 4) { c.moveTo(x, 0); c.lineTo(x, h); }
+    for (let y = grid * 4 + oy; y <= h + grid; y += grid * 4) { c.moveTo(0, y); c.lineTo(w, y); }
+    c.stroke();
+    c.restore();
+  }
+
+  function drawVignette(c, w, h) {
+    const g = c.createRadialGradient(w * .5, h * .48, Math.min(w,h) * .17, w * .5, h * .48, Math.max(w,h) * .72);
+    g.addColorStop(0, 'rgba(250,250,249,0)');
+    g.addColorStop(1, 'rgba(250,250,249,.42)');
+    c.fillStyle = g;
+    c.fillRect(0,0,w,h);
+  }
+
+  function line(c, a, b, color, width = 1, alpha = 1) {
+    c.save(); c.globalAlpha = alpha; c.strokeStyle = color; c.lineWidth = width;
+    c.beginPath(); c.moveTo(a.x,a.y); c.lineTo(b.x,b.y); c.stroke(); c.restore();
+  }
+
+  function circle(c, x, y, r, fill, stroke = null, lw = 1, alpha = 1) {
+    c.save(); c.globalAlpha = alpha; c.beginPath(); c.arc(x,y,r,0,Math.PI*2);
+    if (fill) { c.fillStyle = fill; c.fill(); }
+    if (stroke) { c.strokeStyle = stroke; c.lineWidth = lw; c.stroke(); }
+    c.restore();
+  }
+
+  function glowDot(c, x, y, r = 2.5, alpha = 1) {
+    c.save();
+    c.globalAlpha = alpha;
+    c.shadowColor = ACCENT;
+    c.shadowBlur = 13;
+    c.fillStyle = ACCENT;
+    c.beginPath(); c.arc(x,y,r,0,Math.PI*2); c.fill();
+    c.restore();
+  }
+
+  function poly(c, pts, stroke, fill, lw=1, alpha=1) {
+    c.save(); c.globalAlpha = alpha; c.beginPath();
+    pts.forEach((p,i)=> i ? c.lineTo(p.x,p.y) : c.moveTo(p.x,p.y));
+    c.closePath();
+    if (fill) { c.fillStyle = fill; c.fill(); }
+    if (stroke) { c.strokeStyle = stroke; c.lineWidth = lw; c.stroke(); }
+    c.restore();
+  }
+
+  function bezierPoint(p0,p1,p2,p3,u){
+    const a=(1-u)**3, b=3*(1-u)**2*u, d=3*(1-u)*u*u, e=u**3;
+    return {x:a*p0.x+b*p1.x+d*p2.x+e*p3.x, y:a*p0.y+b*p1.y+d*p2.y+e*p3.y};
+  }
+
+  function smoothstep(a,b,x){ x=Math.max(0,Math.min(1,(x-a)/(b-a))); return x*x*(3-2*x); }
+  function fract(x){ return x - Math.floor(x); }
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function mixPoint(a,b,t){ return {x:lerp(a.x,b.x,t),y:lerp(a.y,b.y,t)}; }
+  function hash(n){ return fract(Math.sin(n*91.3458+13.135)*47453.5453); }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // 01 — WIRELESS SYSTEMS: adaptive mesh + routing + energy / coverage fields
+  // ────────────────────────────────────────────────────────────────────────────
+  function drawWireless(c,w,h,t){
+    const P = [
+      [.10,.25],[.23,.16],[.39,.24],[.56,.16],[.76,.23],[.88,.36],
+      [.16,.49],[.34,.45],[.51,.50],[.70,.45],[.84,.58],
+      [.12,.75],[.30,.71],[.49,.77],[.66,.68],[.82,.79]
+    ].map((p,i)=>({x:p[0]*w + Math.sin(t*.19+i)*2.2, y:p[1]*h + Math.cos(t*.16+i*1.3)*2.2}));
+    const edges = [[0,1],[0,6],[1,2],[2,3],[2,7],[3,4],[3,8],[4,5],[4,9],[5,10],[6,7],[6,11],[7,8],[7,12],[8,9],[8,13],[9,10],[9,14],[10,15],[11,12],[12,13],[13,14],[14,15],[2,8],[4,8],[8,14]];
+
+    // Coverage fields — deliberately offset and breathing at different rates.
+    [7,9,13].forEach((idx,k)=>{
+      const p=P[idx], phase=t*(.58+.08*k)+k*1.7;
+      for(let j=3;j>=0;j--){
+        const r=(30+j*22) * (1 + .035*Math.sin(phase+j*.8));
+        circle(c,p.x,p.y,r,null,ACCENT,1, .045 + (3-j)*.012);
+      }
+    });
+
+    // Mesh edges.
+    edges.forEach((e,i)=>{
+      const active = [2,7,8,9,14,15].includes(e[0]) && [2,7,8,9,14,15].includes(e[1]);
+      line(c,P[e[0]],P[e[1]], active ? ACCENT : '#ada59b', active?1.35:1, active?.28:.25);
+    });
+
+    // Soft interference / RF field arcs.
+    c.save();
+    c.strokeStyle='rgba(91,83,75,.14)'; c.lineWidth=1;
+    const src={x:w*.93,y:h*.17};
+    for(let r=38;r<180;r+=25){
+      c.beginPath(); c.arc(src.x,src.y,r,Math.PI*.62,Math.PI*1.28); c.stroke();
+    }
+    c.restore();
+
+    // Dynamic main route morphs between two paths.
+    const pathA=[0,1,2,7,8,9,14,15];
+    const pathB=[11,12,7,8,3,4,5,10];
+    const swap=smoothstep(.20,.80,(Math.sin(t*.38)+1)/2);
+    const route = pathA.map((idx,i)=> mixPoint(P[idx], P[pathB[Math.min(i,pathB.length-1)]], swap));
+    c.save(); c.strokeStyle=ACCENT; c.lineWidth=2.1; c.globalAlpha=.62; c.lineJoin='round';
+    c.beginPath(); route.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y)); c.stroke(); c.restore();
+
+    // Packet trails along route.
+    const segs=[]; let total=0;
+    for(let i=0;i<route.length-1;i++){const a=route[i],b=route[i+1],d=Math.hypot(b.x-a.x,b.y-a.y);segs.push({a,b,d,start:total});total+=d;}
+    for(let k=0;k<7;k++){
+      let dist=fract(t*.135+k/7)*total;
+      const s=segs.find(q=>dist>=q.start && dist<=q.start+q.d) || segs[segs.length-1];
+      const u=(dist-s.start)/s.d; const p=mixPoint(s.a,s.b,u);
+      const prev=mixPoint(s.a,s.b,Math.max(0,u-.09));
+      line(c,prev,p,ACCENT,2.4,.18); glowDot(c,p.x,p.y,2.6,.85);
+    }
+
+    // Nodes with independent energy arcs.
+    P.forEach((p,i)=>{
+      const hot=[2,7,8,9,14].includes(i);
+      circle(c,p.x,p.y,hot?7.2:5.4,'rgba(255,255,255,.96)',hot?ACCENT:'#9f978d',hot?1.45:1.05,1);
+      circle(c,p.x,p.y,1.55,hot?ACCENT:INK,null,1,hot?.9:.55);
+      if(hot){
+        const a=t*.55+i*.9, span=Math.PI*(.55+.32*hash(i+3));
+        c.save(); c.strokeStyle=ACCENT; c.globalAlpha=.55; c.lineWidth=1.4;
+        c.beginPath(); c.arc(p.x,p.y,11.5,a,a+span); c.stroke(); c.restore();
+      }
+    });
+
+    // Distributed low-energy particles.
+    for(let i=0;i<20;i++){
+      const x=fract(hash(i)*.9 + t*(.0035+.001*hash(i+8)))*w;
+      const y=(.08+hash(i+33)*.84)*h + Math.sin(t*.35+i)*5;
+      circle(c,x,y,1.1, i%5===0?ACCENT:'#a9a197',null,1,i%5===0?.32:.18);
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // 02 — INTELLIGENT RAN: cells + beams + users + handovers + load balancing
+  // ────────────────────────────────────────────────────────────────────────────
+  function drawRAN(c,w,h,t){
+    const cells=[
+      {x:w*.25,y:h*.55,r:Math.min(w,h)*.27,phase:0},
+      {x:w*.52,y:h*.40,r:Math.min(w,h)*.25,phase:2.1},
+      {x:w*.77,y:h*.61,r:Math.min(w,h)*.26,phase:4.0}
+    ];
+
+    // Coverage sectors / hex cells.
+    cells.forEach((s,i)=>{
+      const load=.55+.32*Math.sin(t*.42+s.phase);
+      const pts=[]; for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3;pts.push({x:s.x+Math.cos(a)*s.r,y:s.y+Math.sin(a)*s.r});}
+      poly(c,pts,ACCENT,`rgba(223,79,47,${.018+.018*load})`,1,.22+.10*load);
+      circle(c,s.x,s.y,s.r*.47,null,ACCENT,1,.065+.04*load);
+      circle(c,s.x,s.y,s.r*.72,null,ACCENT,1,.045+.03*load);
+    });
+
+    // Base stations: abstract tri-sector transmitters.
+    cells.forEach((s,i)=>{
+      const rot=t*.08+i*2.1;
+      for(let k=0;k<3;k++){
+        const a=rot+k*Math.PI*2/3;
+        const p1={x:s.x+Math.cos(a)*8,y:s.y+Math.sin(a)*8};
+        const p2={x:s.x+Math.cos(a+.42)*19,y:s.y+Math.sin(a+.42)*19};
+        const p3={x:s.x+Math.cos(a-.42)*19,y:s.y+Math.sin(a-.42)*19};
+        poly(c,[p1,p2,p3],ACCENT,'rgba(223,79,47,.07)',1,.72);
+      }
+      circle(c,s.x,s.y,4.7,'#fff',ACCENT,1.4,1);
+      glowDot(c,s.x,s.y,1.8,.75);
+    });
+
+    // User trajectories.
+    const users=[];
+    const specs=[
+      [.04,.24,.95,.30,.10,.84,.92,.68,.085,0],
+      [.02,.72,.96,.74,.28,.18,.75,.20,.067,1.8],
+      [.18,.92,.83,.04,.20,.42,.82,.52,.055,3.1],
+      [.08,.48,.94,.48,.35,.08,.58,.90,.074,4.7],
+      [.30,.08,.65,.91,.82,.23,.18,.71,.061,5.9]
+    ];
+    specs.forEach((s,i)=>{
+      const u=fract(t*s[8]+s[9]/7);
+      const p=bezierPoint({x:s[0]*w,y:s[1]*h},{x:s[4]*w,y:s[5]*h},{x:s[6]*w,y:s[7]*h},{x:s[2]*w,y:s[3]*h},u);
+      users.push({p,u,i});
+    });
+
+    // Associations and beams. Nearest cell becomes serving cell.
+    users.forEach((u,ui)=>{
+      const ranked=cells.map((s,i)=>({i,d:Math.hypot(u.p.x-s.x,u.p.y-s.y)})).sort((a,b)=>a.d-b.d);
+      const primary=cells[ranked[0].i], secondary=cells[ranked[1].i];
+      const boundary=Math.abs(ranked[0].d-ranked[1].d);
+      const handover=Math.max(0,1-boundary/55);
+      line(c,primary,u.p,ACCENT,1.25,.32+.28*(1-handover));
+      if(handover>.12) line(c,secondary,u.p,ACCENT,1,.08+.34*handover);
+      if(handover>.45){
+        const rp=10+28*fract(t*.8+ui*.21);
+        circle(c,u.p.x,u.p.y,rp,null,ACCENT,1,(1-fract(t*.8+ui*.21))*.22*handover);
+      }
+      circle(c,u.p.x,u.p.y,4.1,'rgba(255,255,255,.95)',ACCENT,1.15,.95);
+      circle(c,u.p.x,u.p.y,1.35,INK,null,1,.68);
+    });
+
+    // Scheduler pulse rings / changing cell load.
+    cells.forEach((s,i)=>{
+      const phase=fract(t*.26+i*.31);
+      circle(c,s.x,s.y,24+phase*23,null,ACCENT,1,(1-phase)*.18);
+      const a0=-Math.PI/2, span=Math.PI*2*(.30+.45*(.5+.5*Math.sin(t*.53+i*2.2)));
+      c.save(); c.strokeStyle=ACCENT;c.lineWidth=2.1;c.globalAlpha=.54;c.beginPath();c.arc(s.x,s.y,26,a0,a0+span);c.stroke();c.restore();
+    });
+
+    // Handover corridor through the system.
+    c.save(); c.strokeStyle='rgba(21,21,19,.12)'; c.lineWidth=1; c.setLineDash([4,7]);
+    c.beginPath(); c.moveTo(w*.06,h*.80); c.bezierCurveTo(w*.34,h*.20,w*.63,h*.86,w*.95,h*.23); c.stroke(); c.restore();
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // 03 — CRYPTOGRAPHY: leakage trace + inference matrix + linked secure states
+  // ────────────────────────────────────────────────────────────────────────────
+  function drawCrypto(c,w,h,t){
+    const left=w*.08, right=w*.92, top=h*.13;
+
+    // Side-channel traces — three coherent layers with moving acquisition head.
+    for(let row=0;row<3;row++){
+      const y=top+row*h*.135;
+      c.save(); c.strokeStyle=row===1?ACCENT:'#9e968c'; c.lineWidth=row===1?1.6:1; c.globalAlpha=row===1?.55:.28;
+      c.beginPath();
+      const n=130;
+      for(let i=0;i<=n;i++){
+        const x=left+(right-left)*i/n;
+        const spike1=Math.exp(-Math.pow((i/n-.32)/.035,2))*Math.sin(i*1.9)*16;
+        const spike2=Math.exp(-Math.pow((i/n-.67)/.045,2))*Math.cos(i*2.4)*12;
+        const noise=Math.sin(i*.63+row*1.8+t*.55)*2.2+Math.sin(i*1.71+row)*1.1;
+        const yy=y+noise+spike1+spike2;
+        i?c.lineTo(x,yy):c.moveTo(x,yy);
+      }
+      c.stroke(); c.restore();
+    }
+    const scanX=left+(right-left)*fract(t*.10);
+    c.save(); const g=c.createLinearGradient(scanX-40,0,scanX+40,0);g.addColorStop(0,'rgba(223,79,47,0)');g.addColorStop(.5,'rgba(223,79,47,.11)');g.addColorStop(1,'rgba(223,79,47,0)');c.fillStyle=g;c.fillRect(scanX-40,top-18,80,h*.31);c.restore();
+    line(c,{x:scanX,y:top-16},{x:scanX,y:top+h*.29},ACCENT,1,.22);
+
+    // Feature/key inference matrix.
+    const mx=w*.12,my=h*.57, cols=9,rows=5,cw=Math.min(24,w*.032),ch=20;
+    for(let r=0;r<rows;r++) for(let col=0;col<cols;col++){
+      const q=hash(r*cols+col+14);
+      const hot=Math.sin(t*.85+q*9+r*.7+col*.4)>.72;
+      const x=mx+col*(cw+6), y=my+r*(ch+6);
+      c.save();c.globalAlpha=hot?.78:.34;c.fillStyle=hot?'rgba(223,79,47,.13)':'rgba(255,255,255,.8)';c.strokeStyle=hot?ACCENT:'#afa79d';c.lineWidth=hot?1.25:1;c.fillRect(x,y,cw,ch);c.strokeRect(x+.5,y+.5,cw-1,ch-1);c.restore();
+      if(hot && (r+col)%3===0) glowDot(c,x+cw/2,y+ch/2,1.5,.52);
+    }
+
+    // Narrow inference beam from trace to matrix.
+    const from={x:scanX,y:top+h*.27}, to={x:mx+cols*(cw+6)*.48,y:my-12};
+    c.save();c.strokeStyle=ACCENT;c.globalAlpha=.16;c.lineWidth=1;c.setLineDash([3,8]);c.beginPath();c.moveTo(from.x,from.y);c.quadraticCurveTo(w*.48,h*.48,to.x,to.y);c.stroke();c.restore();
+    const pu=fract(t*.22); const cp={x:w*.48,y:h*.48};
+    const p1={x:(1-pu)*(1-pu)*from.x+2*(1-pu)*pu*cp.x+pu*pu*to.x,y:(1-pu)*(1-pu)*from.y+2*(1-pu)*pu*cp.y+pu*pu*to.y};
+    glowDot(c,p1.x,p1.y,2,.65);
+
+    // Linked block/security state chain on lower right.
+    const chain=[];
+    for(let i=0;i<4;i++) chain.push({x:w*(.55+i*.105),y:h*(.66+(i%2)*.10),s:Math.min(62,w*.075)});
+    chain.forEach((b,i)=>{
+      if(i<chain.length-1){
+        const nb=chain[i+1];
+        line(c,{x:b.x+b.s/2,y:b.y},{x:nb.x-nb.s/2,y:nb.y},i===2?ACCENT:'#9f978e',1.2,i===2?.45:.30);
+        const u=fract(t*.18+i*.23); const p=mixPoint({x:b.x+b.s/2,y:b.y},{x:nb.x-nb.s/2,y:nb.y},u); glowDot(c,p.x,p.y,1.8,(1-Math.abs(.5-u))*.52);
+      }
+      c.save();c.translate(b.x,b.y);c.rotate((i%2?1:-1)*.012*Math.sin(t*.7+i));c.fillStyle='rgba(255,255,255,.88)';c.strokeStyle=i===2?ACCENT:'#9f978e';c.lineWidth=i===2?1.5:1;c.fillRect(-b.s/2,-b.s/2,b.s,b.s);c.strokeRect(-b.s/2+.5,-b.s/2+.5,b.s-1,b.s-1);
+      // internal coded bit pattern: pure geometry, no glyphs.
+      for(let r=0;r<4;r++)for(let q=0;q<4;q++) if(hash(i*31+r*7+q)>.50){c.fillStyle=(i===2&&hash(r*8+q)>.72)?'rgba(223,79,47,.52)':'rgba(21,21,19,.18)';c.fillRect(-b.s*.31+q*b.s*.16,-b.s*.31+r*b.s*.16,b.s*.07,b.s*.07);}
+      c.restore();
+    });
+
+    // Anomaly/risk wave travels through chain.
+    const ax=w*(.55+.315*fract(t*.085)), ay=h*(.65+.035*Math.sin(t*1.6));
+    circle(c,ax,ay,10+24*fract(t*.42),null,ACCENT,1,(1-fract(t*.42))*.16);
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // 04 — EFFICIENT AI: signal -> compressed latent bottleneck -> sparse graph
+  // ────────────────────────────────────────────────────────────────────────────
+  function drawAI(c,w,h,t){
+    const x0=w*.07,x1=w*.34,x2=w*.53,x3=w*.91;
+
+    // Audio / information waveform at input.
+    const cy=h*.25;
+    c.save();c.strokeStyle=ACCENT;c.lineWidth=1.6;c.globalAlpha=.52;c.beginPath();
+    const N=110;
+    for(let i=0;i<=N;i++){
+      const u=i/N, x=lerp(x0,x1,u);
+      const env=.26+.74*Math.pow(Math.sin(Math.PI*u),.65);
+      const y=cy + env*(Math.sin(u*34+t*1.15)*17 + Math.sin(u*71-t*.5)*6);
+      i?c.lineTo(x,y):c.moveTo(x,y);
+    }
+    c.stroke();c.restore();
+
+    // Spectral particles moving toward bottleneck.
+    for(let i=0;i<26;i++){
+      const u=fract(t*(.055+.015*hash(i))+hash(i+50));
+      const x=lerp(x0,x2,u);
+      const spread=(1-u)*h*.20 + 6;
+      const y=h*.42 + (hash(i+12)-.5)*spread + Math.sin(t*.7+i)*2;
+      const rr=1.2+hash(i+30)*1.6;
+      circle(c,x,y,rr,i%6===0?ACCENT:'#948c82',null,1,i%6===0?.48:.22);
+    }
+
+    // Compression funnel / latent bottleneck.
+    c.save();
+    c.strokeStyle='rgba(21,21,19,.13)';c.lineWidth=1;
+    c.beginPath();c.moveTo(x1,h*.17);c.lineTo(x2,h*.40);c.lineTo(x1,h*.67);c.stroke();
+    c.beginPath();c.moveTo(x1,h*.67);c.lineTo(x2,h*.44);c.lineTo(x1,h*.17);c.stroke();
+    c.restore();
+    circle(c,x2,h*.42,8,'rgba(255,255,255,.96)',ACCENT,1.4,1);
+    circle(c,x2,h*.42,2.1,ACCENT,null,1,.85);
+    for(let k=0;k<3;k++) circle(c,x2,h*.42,15+k*10,null,ACCENT,1,.05+.025*Math.sin(t*.8+k));
+
+    // Sparse neural / graph reasoning space.
+    const G=[
+      [.61,.20],[.72,.14],[.84,.22],[.66,.37],[.79,.38],[.90,.43],
+      [.61,.57],[.73,.57],[.86,.61],[.68,.78],[.82,.79]
+    ].map((p,i)=>({x:p[0]*w,y:p[1]*h+Math.sin(t*.24+i)*2}));
+    const E=[[0,1],[0,3],[1,2],[1,4],[2,5],[3,4],[3,6],[4,5],[4,7],[5,8],[6,7],[6,9],[7,8],[7,10],[8,10],[9,10],[1,3],[4,8]];
+    E.forEach((e,i)=>line(c,G[e[0]],G[e[1]],i%5===0?ACCENT:'#9f978d',i%5===0?1.25:1,i%5===0?.32:.22));
+
+    // Information pulses expanding from bottleneck through chosen graph routes.
+    const routes=[[0,1,4,7,10],[3,4,5,8],[6,7,8,10]];
+    routes.forEach((route,ri)=>{
+      const full=[{x:x2,y:h*.42},...route.map(i=>G[i])];
+      const u=fract(t*(.11+.015*ri)+ri*.29);
+      const scaled=u*(full.length-1), si=Math.min(full.length-2,Math.floor(scaled)), local=scaled-si;
+      const p=mixPoint(full[si],full[si+1],local);
+      glowDot(c,p.x,p.y,2.3,.74);
+    });
+
+    G.forEach((p,i)=>{
+      const active=.5+.5*Math.sin(t*.66+i*1.31);
+      circle(c,p.x,p.y,4.8,'rgba(255,255,255,.96)',active>.72?ACCENT:'#9b9389',active>.72?1.3:1,.95);
+      circle(c,p.x,p.y,1.25,active>.72?ACCENT:INK,null,1,.48+.35*active);
+    });
+
+    // Token / prompt compression geometry — rectangles collapse into fewer units.
+    const baseY=h*.88;
+    for(let i=0;i<12;i++){
+      const phase=fract(t*.08+i*.035);
+      const compression=.5+.5*Math.sin(t*.33);
+      const targetCount=4;
+      const tx=x2+(i%targetCount)*18-27;
+      const sx=x0+i*18;
+      const x=lerp(sx,tx,compression*.72);
+      const ww=11, hh=7;
+      c.save();c.globalAlpha=.18+.24*(1-compression);c.fillStyle=i%4===0?'rgba(223,79,47,.23)':'rgba(21,21,19,.12)';c.fillRect(x,baseY+Math.sin(i+t)*1.2,ww,hh);c.restore();
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once:true });
+  else init();
+})();
+
+</script>
 </body>
 </html>
