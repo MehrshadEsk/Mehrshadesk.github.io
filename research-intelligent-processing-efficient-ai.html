@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intelligent Processing and Efficient AI — Mehrshad Eskandarpour</title>
+<meta name="description" content="Research direction of Mehrshad Eskandarpour spanning neural voice conversion, memory-augmented learning, graph-aware reinforcement learning, prompt compression and efficient black-box LLM inference.">
+<meta name="author" content="Mehrshad Eskandarpour">
+<meta name="theme-color" content="#fafaf9">
+<link rel="canonical" href="https://mehrshadesk.ir/research-intelligent-processing-efficient-ai.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="styles.css?v=portrait-7" rel="stylesheet">
+<style>
+:root{--paper:#fafaf9;--ink:#171715;--muted:#77736d;--line:#dedbd5;--accent:#df4f2f;--soft:#f2f0ec}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
+a{color:inherit}
+.ip-shell{width:min(1280px,calc(100% - 48px));margin:auto}
+.ip-head{height:92px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.ip-brand{display:flex;align-items:center;gap:16px;text-decoration:none}
+.ip-mark{font-size:32px;font-weight:600}.ip-mark i{font-style:normal;color:var(--accent)}
+.ip-name{font-size:14px;line-height:1.35}.ip-name span{color:#98938b}
+.ip-back{text-decoration:none;border-bottom:1px solid #777;padding:8px 0;font-size:13px}
+.ip-back span{color:var(--accent)}
+.hero{padding:92px 0 64px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:25px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.85fr);gap:72px;align-items:center}
+h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.055em;margin:0 0 26px;font-weight:500}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:16px;line-height:1.85;color:#5e5b55;max-width:720px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.tag{border:1px solid var(--line);padding:8px 11px;font-size:11px;color:#68635d;background:#fff}
+.motion{border:1px solid var(--line);background:#fff;min-height:450px;position:relative;overflow:hidden}
+.motion::before{content:"LIVE RESEARCH MAP";position:absolute;z-index:3;top:16px;left:18px;font-size:10px;color:var(--accent);letter-spacing:.08em}
+.motion::after{content:"signal in → useful structure out";position:absolute;z-index:3;right:18px;bottom:14px;font-size:10px;color:#8c877f}
+.motion svg{display:block;width:100%;height:450px}
+.gridline{stroke:#ebe8e2;stroke-width:1}
+.wire{stroke:#b9b4ad;stroke-width:1.25;fill:none;stroke-dasharray:5 7;animation:dash 10s linear infinite}
+.wire.hot{stroke:var(--accent);opacity:.85}
+.wave{fill:none;stroke:var(--accent);stroke-width:2.3;stroke-dasharray:800;stroke-dashoffset:800;animation:draw 4.4s ease-in-out infinite}
+.node{fill:#fff;stroke:#aaa49b;stroke-width:1.2}
+.node.hot{stroke:var(--accent)}
+.pulse{fill:var(--accent);transform-origin:center;animation:pulse 2.1s ease-in-out infinite}
+.token{fill:#f6f4f0;stroke:#cfcac2}
+.token.keep{fill:#fff4ef;stroke:var(--accent)}
+.float-a{animation:floatA 5.5s ease-in-out infinite}.float-b{animation:floatB 6.5s ease-in-out infinite}
+.svg-label{font:11px "IBM Plex Mono";fill:#77736d}.svg-small{font:9px "IBM Plex Mono";fill:#9b968e}.svg-hot{fill:var(--accent)}
+@keyframes draw{0%{stroke-dashoffset:800;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-800;opacity:.2}}
+@keyframes dash{to{stroke-dashoffset:-120}}
+@keyframes pulse{0%,100%{opacity:.28;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes floatA{50%{transform:translate(9px,-8px)}}@keyframes floatB{50%{transform:translate(-7px,9px)}}
+.section{padding:80px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:220px 1fr;gap:46px;margin-bottom:46px}
+.section-index{color:var(--accent);font-size:11px;letter-spacing:.08em}
+.section h2{font-size:clamp(30px,4vw,52px);line-height:1.12;margin:0;font-weight:500;letter-spacing:-.04em}
+.section-intro{color:#66615b;line-height:1.8;max-width:760px;margin:18px 0 0}
+.two-track{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.track{padding:34px;min-height:330px}.track+ .track{border-left:1px solid var(--line)}
+.track-no{font-size:11px;color:var(--accent);margin-bottom:55px}.track h3{font-size:25px;line-height:1.25;margin:0 0 16px;font-weight:500}
+.track p{color:#716c65;line-height:1.75;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:25px}.chips span{font-size:10px;border:1px solid var(--line);padding:7px 9px;background:#fff}
+.bridge{margin-top:18px;border:1px solid var(--line);padding:27px 31px;display:grid;grid-template-columns:170px 1fr;gap:30px;background:var(--soft)}
+.bridge strong{font-size:11px;color:var(--accent);font-weight:500}.bridge p{margin:0;line-height:1.75;font-size:13px}
+.paper-list{border-top:1px solid var(--line)}
+.paper{display:grid;grid-template-columns:110px 1fr 90px;gap:28px;padding:34px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:.2s ease}
+.paper:hover{padding-left:12px;background:linear-gradient(90deg,#fff4ef 0,transparent 70%)}
+.paper-year{color:var(--accent);font-size:12px}
+.paper h3{font-size:20px;line-height:1.45;font-weight:500;margin:0 0 12px}
+.paper-meta{font-size:11px;color:#7e7971;line-height:1.7}
+.metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.metric{border:1px solid var(--line);padding:8px 10px;font-size:10px;background:#fff}
+.paper-arrow{text-align:right;color:var(--accent);font-size:16px}
+.questions{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.q{padding:28px;min-height:220px}.q+.q{border-left:1px solid var(--line)}.q span{color:var(--accent);font-size:11px}
+.q p{font-size:14px;line-height:1.75;margin:42px 0 0}
+.cta{padding:72px 0 90px}
+.cta-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-top:1px solid var(--line);padding-top:35px}
+.cta h2{font-size:clamp(28px,4vw,50px);font-weight:500;letter-spacing:-.04em;margin:0 0 15px}.cta p{color:#716c65;margin:0}
+.email-btn{display:inline-block;background:var(--ink);color:#fff;padding:15px 20px;text-decoration:none;font-size:12px}.email-btn span{color:#ff7659}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-size:11px;display:flex;justify-content:space-between}
+@media(max-width:900px){
+ .hero-grid,.section-head{grid-template-columns:1fr}.hero-grid{gap:40px}.motion{min-height:380px}.motion svg{height:380px}
+ .two-track,.questions{grid-template-columns:1fr}.track+.track,.q+.q{border-left:0;border-top:1px solid var(--line)}
+ .paper{grid-template-columns:72px 1fr 30px}.bridge{grid-template-columns:1fr}
+}
+@media(max-width:600px){.ip-shell{width:min(100% - 28px,1280px)}.ip-name{display:none}.hero{padding-top:58px}.paper{grid-template-columns:1fr}.paper-arrow{text-align:left}.cta-box{grid-template-columns:1fr}.ip-back{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="ip-shell ip-head">
+  <a class="ip-brand" href="index.html" aria-label="Mehrshad Eskandarpour home">
+    <span class="ip-mark">m<i>.</i></span>
+    <span class="ip-name">mehrshad<br><span>/eskandarpour</span></span>
+  </a>
+  <a class="ip-back" href="index.html#research">Back to research <span>←</span></a>
+</header>
+
+<main>
+<section class="hero">
+<div class="ip-shell hero-grid">
+  <div>
+    <div class="eyebrow">[ R04 · INTELLIGENT PROCESSING AND EFFICIENT AI ]</div>
+    <h1>Teach machines<br>to keep the <em>useful bits.</em></h1>
+    <p class="lede">
+      My work here connects two signals that look very different on the surface: human voice and LLM context.
+      The common problem is information efficiency — extracting what matters, remembering it intelligently,
+      and adapting without throwing absurd amounts of data or compute at the problem.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">VOICE CONVERSION</span><span class="tag">FEW-SHOT LEARNING</span>
+      <span class="tag">MEMORY-AUGMENTED AI</span><span class="tag">GRAPH RL</span>
+      <span class="tag">PROMPT COMPRESSION</span><span class="tag">BLACK-BOX LLMs</span>
+    </div>
+  </div>
+
+  <div class="motion" aria-label="Animated research visualization connecting voice processing and LLM prompt compression">
+    <svg viewBox="0 0 760 450" role="img">
+      <defs>
+        <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#b9b4ad"/></marker>
+      </defs>
+      <g opacity=".85">
+        <path class="gridline" d="M0 90H760M0 180H760M0 270H760M0 360H760"/>
+        <path class="gridline" d="M152 0V450M304 0V450M456 0V450M608 0V450"/>
+      </g>
+
+      <text x="32" y="72" class="svg-label svg-hot">VOICE</text>
+      <text x="526" y="72" class="svg-label svg-hot">LLM CONTEXT</text>
+
+      <path class="wave" d="M34 144 C55 80 70 205 92 142 S130 93 150 144 S185 194 208 143 S245 87 269 144"/>
+      <text x="40" y="192" class="svg-small">/a/</text><text x="91" y="192" class="svg-small">/e/</text>
+      <text x="142" y="192" class="svg-small">/i/</text><text x="193" y="192" class="svg-small">/o/</text><text x="244" y="192" class="svg-small">/u/</text>
+      <circle cx="46" cy="211" r="4" class="pulse"/><circle cx="98" cy="211" r="4" class="pulse" style="animation-delay:.3s"/>
+      <circle cx="150" cy="211" r="4" class="pulse" style="animation-delay:.6s"/><circle cx="202" cy="211" r="4" class="pulse" style="animation-delay:.9s"/>
+      <circle cx="254" cy="211" r="4" class="pulse" style="animation-delay:1.2s"/>
+
+      <path class="wire hot" d="M269 144 C310 144 308 225 352 225" marker-end="url(#arrow)"/>
+      <rect x="320" y="190" width="120" height="70" rx="2" class="token keep"/>
+      <text x="346" y="220" class="svg-label svg-hot">MEMORY</text>
+      <text x="339" y="239" class="svg-small">few-shot adapt</text>
+
+      <g class="float-a">
+        <rect x="527" y="112" width="64" height="28" class="token"/><text x="543" y="131" class="svg-small">rules</text>
+        <rect x="612" y="102" width="76" height="28" class="token"/><text x="626" y="121" class="svg-small">example</text>
+        <rect x="551" y="161" width="79" height="28" class="token"/><text x="566" y="180" class="svg-small">formula</text>
+        <rect x="650" y="157" width="56" height="28" class="token"/><text x="665" y="176" class="svg-small">code</text>
+      </g>
+
+      <path class="wire" d="M559 140L590 161M649 130L629 161M630 175L650 171M591 189L570 238M678 185L632 241"/>
+      <circle cx="570" cy="250" r="15" class="node hot"/><circle cx="632" cy="250" r="15" class="node"/>
+      <circle cx="685" cy="250" r="15" class="node hot"/><circle cx="600" cy="305" r="15" class="node"/>
+      <path class="wire hot" d="M570 250L632 250L685 250M570 250L600 305M632 250L600 305M685 250L600 305"/>
+
+      <text x="535" y="345" class="svg-small">GRAPH → PPO → KEEP / DROP</text>
+      <path class="wire hot" d="M600 322C575 359 520 362 472 362" marker-end="url(#arrow)"/>
+      <g class="float-b">
+        <rect x="323" y="335" width="44" height="28" class="token keep"/><rect x="374" y="335" width="44" height="28" class="token"/>
+        <rect x="425" y="335" width="44" height="28" class="token keep"/>
+      </g>
+      <text x="327" y="390" class="svg-small">less context · same job</text>
+      <text x="289" y="423" class="svg-label svg-hot">INTELLIGENT PROCESSING</text>
+    </svg>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="ip-shell">
+  <div class="section-head">
+    <div class="section-index">01 / TWO SIGNALS</div>
+    <div><h2>Different inputs.<br>Same obsession with efficiency.</h2>
+    <p class="section-intro">Both research tracks ask how intelligent systems can preserve task-relevant information while operating with less data, less context, or tighter computational constraints.</p></div>
+  </div>
+  <div class="two-track">
+    <article class="track">
+      <div class="track-no">01 · SPEECH INTELLIGENCE</div>
+      <h3>Learn the speaker from the parts of speech that carry the most identity.</h3>
+      <p>VowelVC focuses computation on vowel structure, combines learned vowel representations with a differentiable memory bank, and supports incremental few-shot speaker adaptation.</p>
+      <div class="chips"><span>VOWELS</span><span>ACOUSTIC FEATURES</span><span>MEMORY BANK</span><span>FEW-SHOT</span><span>GAN / DIFFUSION</span></div>
+    </article>
+    <article class="track">
+      <div class="track-no">02 · EFFICIENT LANGUAGE AI</div>
+      <h3>Keep the reasoning structure. Drop the context that is just taking up rent.</h3>
+      <p>Graph-aware prompt compression treats reusable reasoning units as a structured graph and uses reinforcement learning to select compact contexts for black-box LLM inference.</p>
+      <div class="chips"><span>LLMs</span><span>GRAPH STRUCTURE</span><span>PPO</span><span>KEEP / DROP</span><span>BLACK-BOX API</span></div>
+    </article>
+  </div>
+  <div class="bridge"><strong>THE THROUGH-LINE</strong><p>Representation → selective memory → task-aware adaptation. Whether the raw input is a mel-spectrogram or a long reasoning prompt, the goal is to retain information that changes the answer and spend fewer resources on information that does not.</p></div>
+</div>
+</section>
+
+<section class="section" id="papers">
+<div class="ip-shell">
+  <div class="section-head">
+    <div class="section-index">02 / PUBLICATIONS</div>
+    <div><h2>Two papers.<br>One research direction.</h2>
+    <p class="section-intro">The speech and LLM work now live together here instead of sending visitors out of the portfolio the moment things get interesting.</p></div>
+  </div>
+
+  <div class="paper-list">
+    <a class="paper" href="https://doi.org/10.1016/j.rineng.2026.109099" target="_blank" rel="noreferrer">
+      <div class="paper-year">2026<br>JOURNAL</div>
+      <div>
+        <h3>VowelVC: A Neural Vowel-Centric Voice Conversion Framework with Incremental Memory Learning for Few-Shot Speaker Adaptation</h3>
+        <div class="paper-meta">Parham Soltani · Mohammad Javad Jannati · Mehrshad Eskandarpour<br>Results in Engineering · Elsevier · Volume 29 · 109099</div>
+        <div class="metrics"><span class="metric">47.1% LSD reduction</span><span class="metric">17.2% MOS gain</span><span class="metric">1–3 utterance adaptation</span><span class="metric">real-time capable</span></div>
+      </div>
+      <div class="paper-arrow">↗</div>
+    </a>
+
+    <a class="paper" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer">
+      <div class="paper-year">2026<br>PREPRINT</div>
+      <div>
+        <h3>Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs</h3>
+        <div class="paper-meta">Mehrshad Eskandarpour · Parmida Haddadnejad · Mohammad Javad Jannati<br>Preprint · July 2026 · Reinforcement Learning · Large Language Models</div>
+        <div class="metrics"><span class="metric">52.6% context compression</span><span class="metric">40.3% estimated input-cost savings</span><span class="metric">1.0 pp accuracy degradation</span><span class="metric">black-box inference</span></div>
+      </div>
+      <div class="paper-arrow">↗</div>
+    </a>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="ip-shell">
+  <div class="section-head">
+    <div class="section-index">03 / QUESTIONS</div>
+    <div><h2>What I’m trying to make<br>machines do better.</h2></div>
+  </div>
+  <div class="questions">
+    <div class="q"><span>Q01</span><p>How little target data can a model see and still adapt without forgetting what it already knows?</p></div>
+    <div class="q"><span>Q02</span><p>How do we compress representations without deleting the structure that actually drives correct decisions?</p></div>
+    <div class="q"><span>Q03</span><p>Can efficient AI stay interpretable when the model itself is a black box? Preferably without summoning 40,000 unnecessary tokens.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="cta">
+<div class="ip-shell cta-box">
+  <div><div class="eyebrow">[ COLLABORATION CHANNEL ]</div><h2>Have a signal worth processing?</h2><p>Research, engineering, strange edge case — send it over.</p></div>
+  <a class="email-btn" href="mailto:mehrsh3d@gmail.com?subject=Research%20collaboration%20%E2%80%94%20Intelligent%20Processing%20and%20Efficient%20AI">Email Mehrshad <span>↗</span></a>
+</div>
+</section>
+</main>
+
+<footer class="ip-shell"><span>© 2026 Mehrshad Eskandarpour</span><a href="index.html#research">Research map ↑</a></footer>
+</body>
+</html>

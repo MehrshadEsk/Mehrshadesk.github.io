@@ -1,1103 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  />
-
-  <title>
-    Contact — Mehrshad Eskandarpour
-  </title>
-
-  <meta
-    name="description"
-    content="Contact Mehrshad Eskandarpour for research collaboration, wireless communications, AI, intelligent systems, technical projects and academic opportunities."
-  />
-
-  <meta
-    name="author"
-    content="Mehrshad Eskandarpour"
-  />
-
-  <meta
-    name="theme-color"
-    content="#fafaf9"
-  />
-
-  <link
-    rel="canonical"
-    href="https://mehrshadesk.ir/contact.html"
-  />
-
-  <link
-    href="https://fonts.googleapis.com"
-    rel="preconnect"
-  />
-
-  <link
-    crossorigin
-    href="https://fonts.gstatic.com"
-    rel="preconnect"
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Your existing website CSS -->
-  <link
-    href="styles.css?v=portrait-7"
-    rel="stylesheet"
-  />
-
-  <link
-    href="/favicon.ico?v=2"
-    rel="icon"
-    sizes="any"
-  />
-
-  <link
-    href="/assets/favicon-32.png?v=2"
-    rel="icon"
-    sizes="32x32"
-    type="image/png"
-  />
-
-  <link
-    href="/assets/favicon-16.png?v=2"
-    rel="icon"
-    sizes="16x16"
-    type="image/png"
-  />
-
-  <link
-    href="/assets/favicon-180.png?v=2"
-    rel="apple-touch-icon"
-    sizes="180x180"
-  />
-
-
-  <!-- ==========================================================
-       CONTACT PAGE STYLES
-       ========================================================== -->
-
-  <style>
-
-    .contact-page {
-      min-height: calc(100vh - 90px);
-      padding: 86px 0 100px;
-    }
-
-    .contact-page-header {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
-      gap: 90px;
-      align-items: end;
-      padding-bottom: 58px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: .09em;
-    }
-
-    .contact-eyebrow::before {
-      content: "[";
-    }
-
-    .contact-eyebrow::after {
-      content: "]";
-    }
-
-    .contact-page h1 {
-      max-width: 850px;
-      font-size: clamp(42px, 5.3vw, 72px);
-      line-height: 1.12;
-      letter-spacing: -.065em;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    .contact-page h1 span {
-      color: var(--muted);
-    }
-
-    .contact-intro {
-      max-width: 520px;
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.95;
-      color: var(--muted);
-      text-align: left;
-    }
-
-    .contact-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 330px;
-      gap: 100px;
-      padding-top: 60px;
-    }
-
-
-    /* =========================
-       FORM
-       ========================= */
-
-    .contact-form {
-      width: 100%;
-    }
-
-    .form-topline {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 20px;
-      margin-bottom: 38px;
-    }
-
-    .form-topline h2 {
-      margin: 0;
-      font-size: 23px;
-      letter-spacing: -.035em;
-    }
-
-    .required-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 11px;
-      text-align: right;
-    }
-
-    .required-note span {
-      color: var(--accent);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    .field {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .055em;
-      text-transform: uppercase;
-    }
-
-    .field label .required {
-      color: var(--accent);
-      margin-left: 3px;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      display: block;
-      width: 100%;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      border-radius: 0;
-      outline: 0;
-      padding: 11px 0 14px;
-      background: transparent;
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 14px;
-      line-height: 1.7;
-      transition:
-        border-color .2s ease,
-        background .2s ease;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #aaa9a2;
-    }
-
-    .field input:hover,
-    .field select:hover,
-    .field textarea:hover {
-      border-bottom-color: #a8a9a1;
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-bottom-color: var(--accent);
-    }
-
-    .field textarea {
-      min-height: 160px;
-      resize: vertical;
-    }
-
-    .field select {
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      padding-right: 32px;
-    }
-
-    .select-wrap {
-      position: relative;
-    }
-
-    .select-wrap::after {
-      content: "↓";
-      position: absolute;
-      right: 2px;
-      bottom: 14px;
-      color: var(--accent);
-      pointer-events: none;
-      font-size: 13px;
-    }
-
-
-    /* =========================
-       SUBMIT
-       ========================= */
-
-    .form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      padding-top: 10px;
-    }
-
-    .send-button {
-      appearance: none;
-      border: 0;
-      background: var(--text);
-      color: #fff;
-      font-family: var(--font);
-      font-size: 13px;
-      padding: 15px 23px;
-      min-width: 190px;
-      display: inline-flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      cursor: pointer;
-      transition:
-        background .2s ease,
-        transform .2s ease;
-    }
-
-    .send-button span {
-      color: #fff;
-    }
-
-    .send-button:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .send-button:disabled {
-      opacity: .55;
-      cursor: wait;
-      transform: none;
-    }
-
-    .form-privacy {
-      max-width: 400px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.7;
-      text-align: left;
-    }
-
-
-    /* =========================
-       STATUS MESSAGE
-       ========================= */
-
-    .form-status {
-      display: none;
-      margin-top: 30px;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      font-size: 12px;
-    }
-
-    .form-status.success {
-      display: block;
-      border-color: var(--text);
-    }
-
-    .form-status.error {
-      display: block;
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-
-    /* =========================
-       SIDEBAR
-       ========================= */
-
-    .contact-sidebar {
-      border-left: 1px solid var(--line);
-      padding-left: 35px;
-    }
-
-    .sidebar-block {
-      padding: 0 0 35px;
-      margin-bottom: 35px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .sidebar-block:last-child {
-      border-bottom: 0;
-    }
-
-    .sidebar-label {
-      display: block;
-      margin-bottom: 17px;
-      color: var(--accent);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .sidebar-block h3 {
-      margin: 0 0 12px;
-      font-size: 15px;
-      font-weight: 400;
-    }
-
-    .sidebar-block p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.85;
-      color: var(--muted);
-      text-align: left;
-    }
-
-    .direct-links {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .direct-links a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 12px;
-      transition: color .2s ease;
-    }
-
-    .direct-links a:first-child {
-      border-top: 1px solid var(--line);
-    }
-
-    .direct-links a span:last-child {
-      color: var(--accent);
-    }
-
-    .direct-links a:hover {
-      color: var(--accent);
-    }
-
-    .contact-index {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .contact-index span:first-child {
-      color: var(--accent);
-    }
-
-
-    /* =========================
-       PAGE FOOTER
-       ========================= */
-
-    .contact-page-footer {
-      border-top: 1px solid var(--line);
-      margin-top: 85px;
-    }
-
-
-    /* =========================
-       MOBILE
-       ========================= */
-
-    @media (max-width: 900px) {
-
-      .contact-page-header {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .contact-body {
-        grid-template-columns: 1fr;
-        gap: 70px;
-      }
-
-      .contact-sidebar {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-        padding-left: 0;
-        padding-top: 40px;
-      }
-
-    }
-
-
-    @media (max-width: 760px) {
-
-      .contact-page {
-        padding: 55px 0 70px;
-      }
-
-      .contact-page h1 {
-        font-size: clamp(37px, 11vw, 55px);
-      }
-
-      .contact-page-header {
-        padding-bottom: 42px;
-      }
-
-      .contact-body {
-        padding-top: 43px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .form-footer {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .send-button {
-        width: 100%;
-      }
-
-      .form-topline {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .required-note {
-        text-align: left;
-      }
-
-    }
-
-  </style>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Mehrshad Eskandarpour</title>
+<meta name="description" content="Contact Mehrshad Eskandarpour for research collaboration, wireless systems, AI, engineering and technical projects.">
+<meta name="author" content="Mehrshad Eskandarpour">
+<meta name="theme-color" content="#fafaf9">
+<link rel="canonical" href="https://mehrshadesk.ir/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="styles.css?v=portrait-7" rel="stylesheet">
+<style>
+:root{--paper:#fafaf9;--ink:#181816;--muted:#7b766e;--line:#dedbd5;--accent:#df4f2f;--soft:#f3f1ed}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
+a{color:inherit}
+.c-shell{width:min(1280px,calc(100% - 48px));margin:auto}
+.c-head{height:92px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.c-brand{display:flex;align-items:center;gap:16px;text-decoration:none}.c-mark{font-size:32px;font-weight:600}.c-mark i{font-style:normal;color:var(--accent)}
+.c-name{font-size:14px;line-height:1.35}.c-name span{color:#99948c}.c-back{text-decoration:none;border-bottom:1px solid #777;padding:8px 0;font-size:13px}.c-back span{color:var(--accent)}
+.hero{padding:82px 0 56px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.08em;margin-bottom:24px}
+h1{font-size:clamp(44px,7vw,88px);line-height:1.02;letter-spacing:-.06em;font-weight:500;margin:0 0 28px;max-width:1050px}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:15px;line-height:1.9;color:#68635d;max-width:760px}
+.email-hero{margin-top:38px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.email-address{font-size:clamp(18px,2.4vw,31px);text-decoration:none;border-bottom:1px solid var(--ink);padding:3px 0 8px}.email-address:hover{color:var(--accent);border-color:var(--accent)}
+.copy-btn{border:1px solid var(--line);background:#fff;font-family:inherit;padding:10px 12px;cursor:pointer;font-size:11px}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.65fr)}
+.composer{padding:65px 68px 78px 0;border-right:1px solid var(--line)}
+.side{padding:65px 0 78px 38px}
+.composer-head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:44px}.composer-head h2{font-size:24px;font-weight:500;margin:0}.composer-head span{font-size:10px;color:var(--accent)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.field{display:flex;flex-direction:column;gap:10px}.field.full{grid-column:1/-1}.field label{font-size:10px;letter-spacing:.05em;color:#77716a}.field label b{color:var(--accent)}
+input,select,textarea{font:inherit;font-size:13px;color:var(--ink);border:0;border-bottom:1px solid var(--line);background:transparent;padding:12px 0 14px;outline:none;border-radius:0}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}textarea{min-height:130px;resize:vertical}
+.send-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:34px}.send-btn{border:0;background:var(--ink);color:#fff;font:inherit;font-size:12px;padding:16px 20px;cursor:pointer}.send-btn span{color:#ff7659}
+.micro{font-size:10px;line-height:1.6;color:#8b857d;max-width:330px}
+.note{border-top:1px solid var(--line);padding:24px 0 30px}.note:first-child{border-top:0;padding-top:0}.note-no{color:var(--accent);font-size:10px;letter-spacing:.07em}.note h3{font-size:15px;font-weight:500;line-height:1.5;margin:21px 0 10px}.note p{font-size:11px;line-height:1.8;color:#77716a;margin:0}
+.channels a{display:flex;justify-content:space-between;text-decoration:none;border-top:1px solid var(--line);padding:15px 0;font-size:11px}.channels a:last-child{border-bottom:1px solid var(--line)}.channels a b{font-weight:400;color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:27px 0 40px;color:#7d7870;font-size:11px;display:flex;justify-content:space-between}
+.toast{position:fixed;right:24px;bottom:24px;background:var(--ink);color:#fff;padding:12px 15px;font-size:10px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s ease}.toast.show{opacity:1;transform:none}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.composer{border-right:0;padding-right:0;border-bottom:1px solid var(--line)}.side{padding-left:0}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+@media(max-width:600px){.c-shell{width:min(100% - 28px,1280px)}.c-name{display:none}.hero{padding-top:54px}.composer-head,.send-row{align-items:flex-start;flex-direction:column}.c-back{font-size:11px}}
+</style>
 </head>
-
-
 <body>
+<header class="c-shell c-head">
+  <a class="c-brand" href="index.html" aria-label="Mehrshad Eskandarpour home"><span class="c-mark">m<i>.</i></span><span class="c-name">mehrshad<br><span>/eskandarpour</span></span></a>
+  <a class="c-back" href="index.html">Back to portfolio <span>←</span></a>
+</header>
 
-  <a
-    class="skip"
-    href="#contact-form"
-  >
-    Skip to contact form
-  </a>
+<main>
+<section class="hero">
+<div class="c-shell">
+  <div class="eyebrow">[ OPEN CHANNEL · NO HANDSHAKE PROTOCOL REQUIRED ]</div>
+  <h1>Send a signal.<br><em>I’ll decode it.</em></h1>
+  <p class="lede">Research idea, engineering problem, collaboration, opportunity, or a diagram that has become emotionally complicated? My inbox is open. Context is appreciated. Telepathy is still in beta.</p>
+  <div class="email-hero">
+    <a class="email-address" href="mailto:mehrsh3d@gmail.com">mehrsh3d@gmail.com</a>
+    <button class="copy-btn" type="button" id="copyEmail">COPY EMAIL</button>
+  </div>
+</div>
+</section>
 
-
-  <!-- ==========================================================
-       HEADER
-       ========================================================== -->
-
-  <header class="site-header">
-
-    <div class="container nav">
-
-      <a
-        aria-label="Mehrshad Eskandarpour home"
-        class="brand"
-        href="index.html"
-      >
-
-        <span class="brand-mark">
-          m<span>.</span>
-        </span>
-
-        <span class="brand-name">
-          mehrshad
-          <span>/eskandarpour</span>
-        </span>
-
-      </a>
-
-
-      <div class="header-right">
-
-        <span class="location">
-          TEHRAN, IRAN
-        </span>
-
-        <a
-          class="nav-cta"
-          href="index.html"
-        >
-          Back to portfolio
-          <span>←</span>
-        </a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- ==========================================================
-       CONTACT PAGE
-       ========================================================== -->
-
-  <main class="contact-page">
-
-    <div class="container">
-
-
-      <!-- INTRO -->
-
-      <header class="contact-page-header">
-
-        <div>
-
-          <div class="contact-eyebrow">
-            CONTACT
-          </div>
-
-          <h1>
-            Start with a message.<br>
-            <span>We’ll take it from there.</span>
-          </h1>
-
+<section class="c-shell contact-grid">
+  <div class="composer">
+    <div class="composer-head"><h2>Give your email a head start.</h2><span>* opens your mail app</span></div>
+    <form id="emailBuilder">
+      <div class="form-grid">
+        <div class="field"><label>NAME <b>*</b></label><input id="name" required placeholder="Your name"></div>
+        <div class="field"><label>ORGANIZATION</label><input id="org" placeholder="University, lab, company..."></div>
+        <div class="field"><label>INQUIRY <b>*</b></label>
+          <select id="inquiry" required>
+            <option>Research collaboration</option>
+            <option>Technical / engineering project</option>
+            <option>AI / programming / teaching</option>
+            <option>Speaking / academic opportunity</option>
+            <option>Something gloriously specific</option>
+          </select>
         </div>
-
-
-        <p class="contact-intro">
-          Research collaboration, wireless communications, intelligent
-          networks, AI, technical projects, academic opportunities—or a
-          problem interesting enough to deserve a whiteboard. If there is
-          something worth discussing, I’d be glad to hear about it.
-        </p>
-
-      </header>
-
-
-      <div class="contact-body">
-
-
-        <!-- ====================================================
-             CONTACT FORM
-             ==================================================== -->
-
-        <section>
-
-          <div class="form-topline">
-
-            <h2>
-              Send a message.
-            </h2>
-
-            <p class="required-note">
-              <span>*</span> Required fields
-            </p>
-
-          </div>
-
-
-          <!--
-            IMPORTANT:
-            Replace YOUR_FORM_ID below with your Formspree form ID.
-
-            Example:
-            https://formspree.io/f/xabcdeyz
-          -->
-
-          <form
-            id="contact-form"
-            class="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
-          >
-
-
-            <!-- Name + Email -->
-
-            <div class="form-row">
-
-              <div class="field">
-
-                <label for="name">
-                  Name
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  placeholder="Your name"
-                  required
-                />
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="email">
-                  Email
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  placeholder="you@example.com"
-                  required
-                />
-
-              </div>
-
-            </div>
-
-
-            <!-- Organization + Inquiry -->
-
-            <div class="form-row">
-
-              <div class="field">
-
-                <label for="organization">
-                  Organization
-                </label>
-
-                <input
-                  id="organization"
-                  name="organization"
-                  type="text"
-                  autocomplete="organization"
-                  placeholder="University, lab, company..."
-                />
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="inquiry">
-                  Inquiry
-                  <span class="required">*</span>
-                </label>
-
-                <div class="select-wrap">
-
-                  <select
-                    id="inquiry"
-                    name="inquiry"
-                    required
-                  >
-
-                    <option
-                      value=""
-                      disabled
-                      selected
-                    >
-                      Select a topic
-                    </option>
-
-                    <option value="Research collaboration">
-                      Research collaboration
-                    </option>
-
-                    <option value="Academic opportunity">
-                      Academic opportunity
-                    </option>
-
-                    <option value="Wireless communications">
-                      Wireless communications
-                    </option>
-
-                    <option value="AI and intelligent systems">
-                      AI &amp; intelligent systems
-                    </option>
-
-                    <option value="Technical project">
-                      Technical project
-                    </option>
-
-                    <option value="Speaking or teaching">
-                      Speaking / teaching
-                    </option>
-
-                    <option value="Other">
-                      Something else
-                    </option>
-
-                  </select>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- Subject -->
-
-            <div class="field">
-
-              <label for="subject">
-                Subject
-                <span class="required">*</span>
-              </label>
-
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="What would you like to discuss?"
-                required
-              />
-
-            </div>
-
-
-            <!-- Message -->
-
-            <div class="field">
-
-              <label for="message">
-                Message
-                <span class="required">*</span>
-              </label>
-
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Tell me a little about the idea, project, opportunity or problem."
-                required
-              ></textarea>
-
-            </div>
-
-
-            <!-- Formspree subject -->
-
-            <input
-              type="hidden"
-              name="_subject"
-              value="New message from mehrshadesk.ir"
-            />
-
-
-            <!-- Honeypot / spam field -->
-
-            <input
-              type="text"
-              name="_gotcha"
-              tabindex="-1"
-              autocomplete="off"
-              style="position:absolute;left:-9999px;opacity:0;"
-              aria-hidden="true"
-            />
-
-
-            <div class="form-footer">
-
-              <button
-                class="send-button"
-                id="send-button"
-                type="submit"
-              >
-
-                <span>
-                  SEND MESSAGE
-                </span>
-
-                <span>
-                  ↗
-                </span>
-
-              </button>
-
-
-              <p class="form-privacy">
-                Your contact details and message are submitted only for the
-                purpose of responding to your inquiry. Form delivery is
-                processed through Formspree.
-              </p>
-
-            </div>
-
-
-            <div
-              id="form-status"
-              class="form-status"
-              role="status"
-              aria-live="polite"
-            ></div>
-
-          </form>
-
-        </section>
-
-
-        <!-- ====================================================
-             SIDEBAR
-             ==================================================== -->
-
-        <aside class="contact-sidebar">
-
-
-          <div class="sidebar-block">
-
-            <span class="sidebar-label">
-              01 / GOOD TO INCLUDE
-            </span>
-
-            <h3>
-              Context makes everything easier.
-            </h3>
-
-            <p>
-              If you’re reaching out about research or a technical project,
-              include the subject, relevant background, and what you have in
-              mind. Links, papers, repositories and questionable diagrams are
-              all welcome.
-            </p>
-
-          </div>
-
-
-          <div class="sidebar-block">
-
-            <span class="sidebar-label">
-              02 / DIRECT CHANNELS
-            </span>
-
-            <div class="direct-links">
-
-              <a
-                href="https://www.linkedin.com/in/mehrshadesk"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>LinkedIn</span>
-                <span>↗</span>
-              </a>
-
-
-              <a
-                href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>Google Scholar</span>
-                <span>↗</span>
-              </a>
-
-
-              <a
-                href="https://github.com/MehrshadEsk"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>GitHub</span>
-                <span>↗</span>
-              </a>
-
-
-              <a
-                href="https://orcid.org/0009-0006-8597-0293"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>ORCID</span>
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </div>
-
-
-          <div class="sidebar-block">
-
-            <span class="sidebar-label">
-              03 / CURRENT INTERESTS
-            </span>
-
-            <p>
-              Wireless communications, intelligent RAN, network optimization,
-              reinforcement learning, wireless sensing, and systems that are
-              complicated enough to be interesting.
-            </p>
-
-          </div>
-
-
-          <div class="contact-index">
-
-            <span>●</span>
-
-            <span>
-              OPEN TO RESEARCH &amp; TECHNICAL COLLABORATION
-            </span>
-
-          </div>
-
-        </aside>
-
+        <div class="field"><label>SUBJECT <b>*</b></label><input id="subject" required placeholder="What are we discussing?"></div>
+        <div class="field full"><label>MESSAGE <b>*</b></label><textarea id="message" required placeholder="What are you building, studying, fixing, or trying to make behave?"></textarea></div>
       </div>
-
-
-      <!-- ======================================================
-           FOOTER
-           ====================================================== -->
-
-      <div class="contact-page-footer">
-
-        <footer class="footer">
-
-          <span>
-            © <span id="year">2026</span>
-            Mehrshad Eskandarpour
-          </span>
-
-          <a href="index.html">
-            Portfolio ←
-          </a>
-
-        </footer>
-
+      <div class="send-row">
+        <button class="send-btn" type="submit">OPEN EMAIL DRAFT <span>↗</span></button>
+        <div class="micro">Nothing gets uploaded to a mystery backend here. This simply prepares an email to Mehrshad in your own mail app.</div>
       </div>
+    </form>
+  </div>
 
+  <aside class="side">
+    <div class="note">
+      <div class="note-no">01 / GOOD TO INCLUDE</div>
+      <h3>Context makes everything easier.</h3>
+      <p>Tell me what you’re working on, what you need, and where I fit. Links, papers, repositories, and questionable diagrams with seventeen arrows are welcome.</p>
     </div>
+    <div class="note">
+      <div class="note-no">02 / RESPONSE PROTOCOL</div>
+      <h3>I read the message. The packet is not dropped.</h3>
+      <p>The more context you send, the less likely my first reply has to be “could you tell me a bit more?” — a win for both bandwidth and humanity.</p>
+    </div>
+    <div class="note channels">
+      <div class="note-no" style="margin-bottom:20px">03 / DIRECT CHANNELS</div>
+      <a href="mailto:mehrsh3d@gmail.com"><span>Email</span><b>↗</b></a>
+      <a href="https://www.linkedin.com/in/mehrshadesk" target="_blank" rel="noreferrer"><span>LinkedIn</span><b>↗</b></a>
+      <a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en" target="_blank" rel="noreferrer"><span>Google Scholar</span><b>↗</b></a>
+      <a href="https://github.com/MehrshadEsk" target="_blank" rel="noreferrer"><span>GitHub</span><b>↗</b></a>
+      <a href="https://orcid.org/0009-0006-8597-0293" target="_blank" rel="noreferrer"><span>ORCID</span><b>↗</b></a>
+    </div>
+  </aside>
+</section>
+</main>
 
-  </main>
+<footer class="c-shell"><span>© 2026 Mehrshad Eskandarpour</span><a href="index.html">Portfolio ↑</a></footer>
+<div class="toast" id="toast">EMAIL COPIED ✓</div>
 
+<script>
+const EMAIL = "mehrsh3d@gmail.com";
+const toast = document.getElementById("toast");
 
-  <!-- ==========================================================
-       FORM SUBMISSION
-       ========================================================== -->
+document.getElementById("copyEmail").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(EMAIL);
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 1800);
+  } catch(e) {
+    window.location.href = "mailto:" + EMAIL;
+  }
+});
 
-  <script>
+document.getElementById("emailBuilder").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const org = document.getElementById("org").value.trim();
+  const inquiry = document.getElementById("inquiry").value;
+  const subject = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
 
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("form-status");
-    const button = document.getElementById("send-button");
+  const body = [
+    "Hi Mehrshad,",
+    "",
+    message,
+    "",
+    "—",
+    "Name: " + name,
+    org ? "Organization: " + org : "",
+    "Inquiry: " + inquiry
+  ].filter(Boolean).join("\n");
 
-    form.addEventListener("submit", async function(event) {
-
-      event.preventDefault();
-
-      button.disabled = true;
-
-      button.querySelector("span:first-child").textContent =
-        "SENDING...";
-
-      status.className = "form-status";
-      status.textContent = "";
-
-
-      try {
-
-        const response = await fetch(form.action, {
-
-          method: form.method,
-
-          body: new FormData(form),
-
-          headers: {
-            "Accept": "application/json"
-          }
-
-        });
-
-
-        if (response.ok) {
-
-          form.reset();
-
-          status.className =
-            "form-status success";
-
-          status.textContent =
-            "Message received. Thank you for reaching out — I’ll take it from here.";
-
-        }
-
-        else {
-
-          status.className =
-            "form-status error";
-
-          status.textContent =
-            "Something went wrong while sending the message. Please try again.";
-
-        }
-
-      }
-
-      catch (error) {
-
-        status.className =
-          "form-status error";
-
-        status.textContent =
-          "The message could not be sent. Please check your connection and try again.";
-
-      }
-
-
-      button.disabled = false;
-
-      button.querySelector("span:first-child").textContent =
-        "SEND MESSAGE";
-
-    });
-
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-  </script>
-
+  const mailto = "mailto:" + EMAIL
+    + "?subject=" + encodeURIComponent("[" + inquiry + "] " + subject)
+    + "&body=" + encodeURIComponent(body);
+  window.location.href = mailto;
+});
+</script>
 </body>
-
 </html>
