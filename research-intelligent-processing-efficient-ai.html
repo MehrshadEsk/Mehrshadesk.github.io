@@ -279,8 +279,10 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
       isolation:isolate;
       min-height:480px;
       background:
-        radial-gradient(circle at 42% 46%, rgba(223,79,47,.045), transparent 33%),
-        linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,246,242,.98))!important;
+        radial-gradient(circle at 53% 50%, rgba(223,79,47,.052), transparent 31%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(21,21,19,.026) 31px 32px),
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(21,21,19,.022) 31px 32px),
+        linear-gradient(180deg,rgba(255,255,255,.985),rgba(248,246,242,.985))!important;
     }
     .motion[data-pro-motion]::before,
     .motion[data-pro-motion]::after{content:none!important;display:none!important}
@@ -671,78 +673,204 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:#7c7770;font-s
   // 04 — EFFICIENT AI: signal -> compressed latent bottleneck -> sparse graph
   // ────────────────────────────────────────────────────────────────────────────
   function drawAI(c,w,h,t){
-    const x0=w*.07,x1=w*.34,x2=w*.53,x3=w*.91;
+    const left=w*.035, right=w*.965;
+    const top=h*.075, bottom=h*.925;
+    const midY=h*.50;
 
-    // Audio / information waveform at input.
-    const cy=h*.25;
-    c.save();c.strokeStyle=ACCENT;c.lineWidth=1.6;c.globalAlpha=.52;c.beginPath();
-    const N=110;
-    for(let i=0;i<=N;i++){
-      const u=i/N, x=lerp(x0,x1,u);
-      const env=.26+.74*Math.pow(Math.sin(Math.PI*u),.65);
-      const y=cy + env*(Math.sin(u*34+t*1.15)*17 + Math.sin(u*71-t*.5)*6);
-      i?c.lineTo(x,y):c.moveTo(x,y);
+    // Dense multi-carrier signal field. Independent information streams enter from
+    // the left, tighten through an intelligent bottleneck, then re-expand as
+    // cleaner / sparser outputs. The motion is deliberately continuous rather
+    // than a collection of disconnected widgets.
+    const lanes=17;
+    const laneY=[];
+    for(let j=0;j<lanes;j++) laneY.push(lerp(top,bottom,j/(lanes-1)));
+
+    function signalPoint(j,u){
+      const x=lerp(left,right,u);
+      const base=laneY[j];
+      const core=Math.exp(-Math.pow((u-.535)/.145,2));
+      const shoulder=Math.exp(-Math.pow((u-.70)/.19,2));
+      const spacing=1-.69*core-.12*shoulder;
+      const carrier=7.0+hash(j+80)*13.5;
+      const freq1=24+hash(j+130)*28;
+      const freq2=58+hash(j+210)*35;
+      const phase=j*.73+t*(1.05+hash(j+320)*.82);
+      const envelope=(.80+.20*Math.sin(Math.PI*u))*carrier;
+      const wave=(Math.sin(u*freq1+phase)*.68 + Math.sin(u*freq2-phase*.52)*.20 + Math.sin(u*11.5+j)*.12);
+      const y=midY+(base-midY)*spacing + wave*envelope*(1-.58*core);
+      return {x,y};
     }
-    c.stroke();c.restore();
 
-    // Spectral particles moving toward bottleneck.
-    for(let i=0;i<26;i++){
-      const u=fract(t*(.055+.015*hash(i))+hash(i+50));
-      const x=lerp(x0,x2,u);
-      const spread=(1-u)*h*.20 + 6;
-      const y=h*.42 + (hash(i+12)-.5)*spread + Math.sin(t*.7+i)*2;
-      const rr=1.2+hash(i+30)*1.6;
-      circle(c,x,y,rr,i%6===0?ACCENT:'#948c82',null,1,i%6===0?.48:.22);
-    }
-
-    // Compression funnel / latent bottleneck.
+    // Subtle processing corridor and three transparent compression planes.
     c.save();
-    c.strokeStyle='rgba(21,21,19,.13)';c.lineWidth=1;
-    c.beginPath();c.moveTo(x1,h*.17);c.lineTo(x2,h*.40);c.lineTo(x1,h*.67);c.stroke();
-    c.beginPath();c.moveTo(x1,h*.67);c.lineTo(x2,h*.44);c.lineTo(x1,h*.17);c.stroke();
+    const coreX1=w*.425, coreX2=w*.635;
+    const g=c.createLinearGradient(coreX1,0,coreX2,0);
+    g.addColorStop(0,'rgba(223,79,47,0)');
+    g.addColorStop(.48,'rgba(223,79,47,.038)');
+    g.addColorStop(.52,'rgba(223,79,47,.052)');
+    g.addColorStop(1,'rgba(223,79,47,0)');
+    c.fillStyle=g;c.fillRect(coreX1,top-18,coreX2-coreX1,bottom-top+36);
+    [w*.455,w*.535,w*.615].forEach((x,k)=>{
+      c.fillStyle='rgba(255,255,255,.35)';
+      c.strokeStyle=k===1?'rgba(223,79,47,.23)':'rgba(21,21,19,.095)';
+      c.lineWidth=k===1?1.2:1;
+      c.beginPath();
+      c.roundRect(x-18,top+20,36,bottom-top-40,8);
+      c.fill();c.stroke();
+    });
     c.restore();
-    circle(c,x2,h*.42,8,'rgba(255,255,255,.96)',ACCENT,1.4,1);
-    circle(c,x2,h*.42,2.1,ACCENT,null,1,.85);
-    for(let k=0;k<3;k++) circle(c,x2,h*.42,15+k*10,null,ACCENT,1,.05+.025*Math.sin(t*.8+k));
 
-    // Sparse neural / graph reasoning space.
-    const G=[
-      [.61,.20],[.72,.14],[.84,.22],[.66,.37],[.79,.38],[.90,.43],
-      [.61,.57],[.73,.57],[.86,.61],[.68,.78],[.82,.79]
-    ].map((p,i)=>({x:p[0]*w,y:p[1]*h+Math.sin(t*.24+i)*2}));
-    const E=[[0,1],[0,3],[1,2],[1,4],[2,5],[3,4],[3,6],[4,5],[4,7],[5,8],[6,7],[6,9],[7,8],[7,10],[8,10],[9,10],[1,3],[4,8]];
-    E.forEach((e,i)=>line(c,G[e[0]],G[e[1]],i%5===0?ACCENT:'#9f978d',i%5===0?1.25:1,i%5===0?.32:.22));
-
-    // Information pulses expanding from bottleneck through chosen graph routes.
-    const routes=[[0,1,4,7,10],[3,4,5,8],[6,7,8,10]];
-    routes.forEach((route,ri)=>{
-      const full=[{x:x2,y:h*.42},...route.map(i=>G[i])];
-      const u=fract(t*(.11+.015*ri)+ri*.29);
-      const scaled=u*(full.length-1), si=Math.min(full.length-2,Math.floor(scaled)), local=scaled-si;
-      const p=mixPoint(full[si],full[si+1],local);
-      glowDot(c,p.x,p.y,2.3,.74);
-    });
-
-    G.forEach((p,i)=>{
-      const active=.5+.5*Math.sin(t*.66+i*1.31);
-      circle(c,p.x,p.y,4.8,'rgba(255,255,255,.96)',active>.72?ACCENT:'#9b9389',active>.72?1.3:1,.95);
-      circle(c,p.x,p.y,1.25,active>.72?ACCENT:INK,null,1,.48+.35*active);
-    });
-
-    // Token / prompt compression geometry — rectangles collapse into fewer units.
-    const baseY=h*.88;
-    for(let i=0;i<12;i++){
-      const phase=fract(t*.08+i*.035);
-      const compression=.5+.5*Math.sin(t*.33);
-      const targetCount=4;
-      const tx=x2+(i%targetCount)*18-27;
-      const sx=x0+i*18;
-      const x=lerp(sx,tx,compression*.72);
-      const ww=11, hh=7;
-      c.save();c.globalAlpha=.18+.24*(1-compression);c.fillStyle=i%4===0?'rgba(223,79,47,.23)':'rgba(21,21,19,.12)';c.fillRect(x,baseY+Math.sin(i+t)*1.2,ww,hh);c.restore();
+    // Main wave bundle: many coherent analog / neural signal traces.
+    for(let j=0;j<lanes;j++){
+      const hot=(j%5===2 || j===Math.floor(lanes/2));
+      c.save();
+      c.strokeStyle=hot?ACCENT:(j%2?'#8f887f':'#b8b0a6');
+      c.lineWidth=hot?1.45:.82;
+      c.globalAlpha=hot?.48:(j%2?.22:.16);
+      c.beginPath();
+      const N=150;
+      for(let i=0;i<=N;i++){
+        const u=i/N,p=signalPoint(j,u);
+        i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y);
+      }
+      c.stroke();c.restore();
     }
-  }
 
+    // Fine auxiliary waves between the principal lanes make the flow feel like a
+    // real signal fabric instead of a single decorative sine wave.
+    for(let j=0;j<12;j++){
+      const base=lerp(top+10,bottom-10,(j+.5)/12);
+      c.save();c.strokeStyle=j%4===0?ACCENT:'#a59d94';c.lineWidth=.65;c.globalAlpha=j%4===0?.16:.11;c.beginPath();
+      const N=105;
+      for(let i=0;i<=N;i++){
+        const u=i/N,x=lerp(left,right,u);
+        const core=Math.exp(-Math.pow((u-.535)/.16,2));
+        const y=midY+(base-midY)*(1-.74*core)+Math.sin(u*(42+j*2.2)-t*(.82+j*.035)+j)*4.5*(1-.55*core);
+        i?c.lineTo(x,y):c.moveTo(x,y);
+      }
+      c.stroke();c.restore();
+    }
+
+    // Moving signal packets: dozens of tiny bright samples ride the waveform paths.
+    for(let i=0;i<46;i++){
+      const lane=i%lanes;
+      const speed=.055+.035*hash(i+430);
+      const u=fract(t*speed+hash(i+510));
+      const p=signalPoint(lane,u);
+      const major=i%7===0;
+      if(major){
+        circle(c,p.x,p.y,8+7*(.5+.5*Math.sin(t*1.6+i)),null,ACCENT,1,.045);
+        glowDot(c,p.x,p.y,2.15,.64);
+      }else{
+        circle(c,p.x,p.y,1.05+(i%3)*.22,i%5===0?ACCENT:'#807971',null,1,i%5===0?.46:.26);
+      }
+    }
+
+    // Oscilloscope bands at the top and bottom: short high-frequency carriers
+    // continually sweep across the canvas to reinforce the signal-processing feel.
+    [h*.105,h*.895].forEach((yy,row)=>{
+      c.save();c.strokeStyle=row? '#9f978e':ACCENT;c.lineWidth=.75;c.globalAlpha=row?.14:.20;c.beginPath();
+      const N=170;
+      for(let i=0;i<=N;i++){
+        const u=i/N,x=lerp(left,right,u);
+        const amp=2.5+7*Math.pow(Math.sin(Math.PI*u),1.3);
+        const y=yy+Math.sin(u*95 + t*(row?-2.3:2.75))*amp + Math.sin(u*31-t*.8)*2;
+        i?c.lineTo(x,y):c.moveTo(x,y);
+      }
+      c.stroke();c.restore();
+    });
+
+    // Spectral activity field on the input side: translucent vertical energy bars
+    // that pulse with different phases rather than moving as one equalizer block.
+    const bars=34,bx0=w*.085,bx1=w*.365;
+    for(let i=0;i<bars;i++){
+      const x=lerp(bx0,bx1,i/(bars-1));
+      const energy=.22+.78*Math.pow(.5+.5*Math.sin(t*(1.1+hash(i)*1.5)+i*.71),2);
+      const hh=(9+46*hash(i+610))*energy;
+      c.save();c.globalAlpha=.07+.11*energy;c.strokeStyle=i%9===0?ACCENT:'#6f6963';c.lineWidth=i%9===0?1.15:.75;
+      c.beginPath();c.moveTo(x,midY-hh*.5);c.lineTo(x,midY+hh*.5);c.stroke();c.restore();
+    }
+
+    // Central adaptive memory / latent state nodes. They breathe asynchronously,
+    // while short links blink to suggest selective retention rather than a static net.
+    const coreNodes=[];
+    const coreCols=5,coreRows=7;
+    for(let col=0;col<coreCols;col++) for(let row=0;row<coreRows;row++){
+      const x=lerp(w*.455,w*.615,col/(coreCols-1));
+      const y=lerp(h*.28,h*.72,row/(coreRows-1));
+      const keep=hash(col*19+row*31)>.28;
+      if(keep) coreNodes.push({x,y,col,row});
+    }
+    coreNodes.forEach((a,idx)=>{
+      coreNodes.forEach((b,jdx)=>{
+        if(jdx<=idx) return;
+        const dc=Math.abs(a.col-b.col),dr=Math.abs(a.row-b.row);
+        if(dc===1 && dr<=1 && hash(idx*41+jdx*17)>.43){
+          const active=Math.sin(t*1.15+idx*.8+jdx*.31)>.69;
+          line(c,a,b,active?ACCENT:'#8f887f',active?1.0:.65,active?.20:.075);
+        }
+      });
+    });
+    coreNodes.forEach((p,i)=>{
+      const a=.40+.60*(.5+.5*Math.sin(t*.9+i*.79));
+      circle(c,p.x,p.y,2.2+(i%4===0?1.2:0),'rgba(255,255,255,.92)',i%6===0?ACCENT:'#9a9288',1,.50+.28*a);
+      if(i%9===0) glowDot(c,p.x,p.y,1.25,.42*a);
+    });
+
+    // Three larger processing hubs and travelling rings across the bottleneck.
+    const hubs=[{x:w*.455,y:midY},{x:w*.535,y:midY},{x:w*.615,y:midY}];
+    hubs.forEach((p,i)=>{
+      const q=fract(t*.34+i*.27);
+      circle(c,p.x,p.y,9+q*34,null,ACCENT,1,(1-q)*.11);
+      circle(c,p.x,p.y,5.0,'rgba(255,255,255,.96)',i===1?ACCENT:'#978f85',i===1?1.4:1,.95);
+      circle(c,p.x,p.y,1.5,ACCENT,null,1,.72);
+    });
+
+    // Sparse reasoning routes appear after the bottleneck, but remain integrated
+    // with the wave field. Pulses hop through selected nodes before rejoining output.
+    const graph=[
+      [.69,.27],[.76,.19],[.84,.29],[.92,.22],
+      [.70,.48],[.79,.44],[.88,.49],[.95,.43],
+      [.72,.69],[.81,.77],[.90,.68]
+    ].map((p,i)=>({x:p[0]*w,y:p[1]*h+Math.sin(t*.31+i*.9)*2.2}));
+    const edges=[[0,1],[0,4],[1,2],[2,3],[2,5],[4,5],[4,8],[5,6],[5,9],[6,7],[6,10],[8,9],[9,10],[3,7]];
+    edges.forEach((e,i)=>line(c,graph[e[0]],graph[e[1]],i%4===1?ACCENT:'#8c857c',i%4===1?1.05:.72,i%4===1?.20:.09));
+    graph.forEach((p,i)=>circle(c,p.x,p.y,3.0,'rgba(255,255,255,.96)',i%4===1?ACCENT:'#958d84',1,.72));
+
+    // Routing pulses through the graph — each follows a multi-hop reasoning path.
+    const routes=[[0,1,2,3,7],[4,5,6,10],[8,9,10],[0,4,5,9]];
+    routes.forEach((r,ri)=>{
+      const pts=[{x:w*.615,y:midY},...r.map(k=>graph[k])];
+      const u=fract(t*(.12+.014*ri)+ri*.23);
+      const z=u*(pts.length-1),seg=Math.min(pts.length-2,Math.floor(z)),v=z-seg;
+      const p=mixPoint(pts[seg],pts[seg+1],v);
+      glowDot(c,p.x,p.y,2.0,.54);
+    });
+
+    // Output compression: a set of narrow, cleaner waveforms leaves the system.
+    // They visually contain less amplitude/noise than the input bundle.
+    const outStart=w*.66;
+    for(let j=0;j<7;j++){
+      const yy=lerp(h*.31,h*.69,j/6);
+      c.save();c.strokeStyle=j===3?ACCENT:'#777069';c.lineWidth=j===3?1.45:.82;c.globalAlpha=j===3?.44:.17;c.beginPath();
+      const N=80;
+      for(let i=0;i<=N;i++){
+        const u=i/N,x=lerp(outStart,right,u);
+        const y=yy+Math.sin(u*(29+j*4)+t*(1.25+j*.08)+j)*3.1+Math.sin(u*67-t*.65)*.9;
+        i?c.lineTo(x,y):c.moveTo(x,y);
+      }
+      c.stroke();c.restore();
+    }
+
+    // A faint moving scan line adds depth without turning the animation into a UI gimmick.
+    const scanU=fract(t*.055);
+    const scanX=lerp(left,right,scanU);
+    c.save();
+    const sg=c.createLinearGradient(scanX-38,0,scanX+38,0);
+    sg.addColorStop(0,'rgba(223,79,47,0)');sg.addColorStop(.5,'rgba(223,79,47,.042)');sg.addColorStop(1,'rgba(223,79,47,0)');
+    c.fillStyle=sg;c.fillRect(scanX-38,top,76,bottom-top);
+    c.restore();
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once:true });
   else init();
 })();
