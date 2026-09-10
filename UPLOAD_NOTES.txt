@@ -1,0 +1,21 @@
+APPLY VAULT — UPLOAD NOTES
+
+New public gate URL:
+  /apply-vault.html
+
+Private authorized page:
+  /apply-vault-private.html
+
+Old URLs are preserved as redirects:
+  /application-journey.html -> /apply-vault.html
+  /application-journey-private.html -> /apply-vault-private.html
+
+IMPORTANT BEFORE THE ACCESS GATE CAN WORK:
+1. Paste your Google Apps Script /exec URL into access-config.js.
+2. In your Google Sheet -> Extensions -> Apps Script, replace the old code with google-apps-script.gs.
+3. Deploy a new version/update of the Web App and authorize MailApp if Google asks.
+4. Requests will be logged in Access Requests and emailed to mehrsh3d@gmail.com.
+5. Change PENDING to ALLOW to approve an email.
+
+PERSONAL EXPERIENCE:
+The Apply Vault is fully designed and the application guide is populated. The “My application experience” area is intentionally left as structured personal-note slots so no personal history is invented. Replace those entries with Mehrshad's actual experience when ready.

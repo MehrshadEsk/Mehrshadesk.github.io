@@ -1,72 +1,72 @@
-# Application Journey — Simple Google Sheet Access Gate
+# Apply Vault — Google Sheet Access Gate
 
-This setup keeps the workflow intentionally simple:
+The new Apply Vault uses a minimal access flow:
 
-1. Visitor submits the Request Access form.
-2. The request appears in your Google Sheet.
-3. You manually change that row's `Status` to `ALLOW`.
-4. The visitor returns to the page and enters the same email under Verify Access.
-5. If the newest row for that email is `ALLOW`, the site redirects to `application-journey-private.html`.
-6. The private page re-checks the same allow list on every load/refresh.
-7. To revoke access, change `ALLOW` to `REVOKED` (or any other value).
+1. Visitor enters only their email.
+2. The site checks the `Access Requests` Google Sheet.
+3. If the newest row for that email is `ALLOW`, Apply Vault opens.
+4. If access is missing, the request form appears automatically.
+5. Submitting the form logs the request in Google Sheets **and emails it to `mehrsh3d@gmail.com`**.
+6. To approve the visitor, change the newest Status for their email from `PENDING` to `ALLOW`.
+7. The private Apply Vault re-checks authorization on every page load.
+8. To revoke access, change `ALLOW` to `REVOKED` (or anything other than `ALLOW`).
 
-## 1. Create the Google Sheet
+## 1. Create / use the Google Sheet
 
-Create a new Google Sheet. You do not need to create columns manually; the script can create a tab named `Access Requests` with:
+Use a Google Sheet with a tab named `Access Requests`. The script will create it automatically if needed with:
 
 `Timestamp | Name | Email | Affiliation | Reason | Status`
 
-## 2. Add the Apps Script
+## 2. Install the Apps Script
 
-In the Google Sheet, open:
+In the Sheet, open **Extensions → Apps Script**.
 
-**Extensions → Apps Script**
+Replace the existing Apps Script with the contents of `google-apps-script.gs`, then save.
 
-Delete the default code and paste the contents of `google-apps-script.gs`.
+The script now uses `MailApp.sendEmail`, so the first deployment/update may ask you to authorize permission to send email.
 
-Save the project.
+## 3. Deploy or update the Web App
 
-## 3. Deploy it as a Web App
-
-In Apps Script:
+If this is the first deployment:
 
 **Deploy → New deployment → Web app**
-
-Use:
 
 - Execute as: **Me**
 - Who has access: **Anyone**
 
-Deploy and authorize it. Copy the URL ending in `/exec`.
+If you already deployed the old access script, create a **new version/deployment update** after replacing the code so the live `/exec` endpoint receives the new behavior.
 
-## 4. Connect the website
+Copy the Web App URL ending in `/exec`.
 
-Open `access-config.js` and find:
+## 4. Connect the site
+
+Open `access-config.js` and replace:
 
 ```js
 apiUrl: 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE',
 ```
 
-Replace the placeholder with your `/exec` URL. This is the only website file where the Apps Script URL needs to be pasted.
+with the real `/exec` URL.
 
-The approved destination is already set to:
+## 5. Approve / reject / revoke
 
-```js
-privateJourneyUrl: 'application-journey-private.html',
-```
+- Approve: `PENDING` → `ALLOW`
+- Reject: `PENDING` → `DENIED`
+- Revoke: `ALLOW` → `REVOKED`
 
-The private page also revalidates the approved email against the Sheet on every load.
+The newest row for each email is treated as the current decision.
 
-## 5. Approve / revoke people
+## Personal experience content
 
-When someone requests access, a row is added with `PENDING` status.
+`apply-vault-private.html` contains a **MY EXPERIENCE** section with four clearly marked placeholders:
 
-- Approve: change `PENDING` → `ALLOW`
-- Reject: change it to `DENIED`
-- Revoke later: change `ALLOW` → `REVOKED`
+- CONTEXT
+- STRATEGY
+- FRICTION
+- LESSON
 
-The newest row for an email is treated as the current decision.
+Replace those bracketed placeholder sentences with Mehrshad's real history before publishing personal claims.
 
-## Important security note
+## Security note
 
-This is a lightweight access gate for a static GitHub Pages site. The private page checks for an authorized browser session and revalidates the email against Google Sheets on each load, which is appropriate for the simple workflow requested. However, because the HTML itself is hosted statically on GitHub Pages, this is not equivalent to server-side authentication for highly sensitive material.
+This remains a lightweight gate on a static GitHub Pages site. It is useful for controlled portfolio access, but it is not equivalent to server-side authentication for highly sensitive documents.
