@@ -1210,11 +1210,11 @@
      }
 
      /* Logo stays on screen for 4 seconds. Binary transition then lasts 2 seconds. */
-     window.setTimeout(()=>intro.classList.add('binary-phase'),4000);
+     window.setTimeout(()=>intro.classList.add('binary-phase'),2500);
      window.setTimeout(()=>{
        intro.classList.add('is-leaving');
        window.setTimeout(()=>intro.remove(),760);
-     },6000);
+     },4500);
    })();
   </script>
  </body>
