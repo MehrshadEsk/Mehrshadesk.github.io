@@ -99,7 +99,6 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
     <section class="vault-window" id="vault-window" aria-label="Apply Vault access terminal">
       <div class="window-bar">
         <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="window-title"><b>apply-vault</b> / auth-terminal</div>
         <div class="window-code" id="window-code">NODE 01</div>
       </div>
 
@@ -126,7 +125,6 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
             <button class="verify-btn" id="verify-btn" type="submit" aria-label="Verify access">→</button>
           </div>
           <div class="login-note">
-            <span>Your registered email is your username.</span>
             <span class="mini-status" id="mini-status">awaiting credentials</span>
           </div>
         </form>
@@ -186,7 +184,6 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
     </section>
   </div>
 
-  <footer class="footer"><span>MEHRSHAD ESKANDARPOUR / APPLY VAULT</span><span>PRIVATE NODE · 2026</span></footer>
 </main>
 
 <script src="access-config.js"></script>
@@ -350,7 +347,7 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
     document.body.classList.remove('granted');
     stateEyebrow.textContent = offline ? 'Verification service unavailable' : 'Authorization rejected';
     stateTitle.textContent = offline ? 'Access node unavailable.' : 'Identity not authorized.';
-    stateCopy.textContent = offline ? 'The verification service could not be reached. You may still submit an access request.' : 'This identity is not currently registered for vault access.';
+    stateCopy.textContent = offline ? '' : 'This identity is not currently registered for vault access.';
     miniStatus.textContent = offline ? 'node unavailable' : 'access denied';
     addLog(offline ? 'AUTH NODE OFFLINE / request route enabled' : 'STATUS 403 / identity not authorized', 'bad', '!');
     requestEmail.value = email;
