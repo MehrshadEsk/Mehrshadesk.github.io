@@ -107,7 +107,7 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
           <div class="auth-copy">
             <div class="eyebrow" id="state-eyebrow">Authorization required</div>
             <h2 id="state-title">Identify yourself.</h2>
-            <p id="state-copy">Enter the registered email and access key assigned to you.</p>
+            <p id="state-copy">Enter the TAU and TAP assigned to you.</p>
           </div>
           <div class="security-mark" aria-hidden="true"><i></i></div>
         </div>
@@ -115,12 +115,12 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
         <form id="verify-form" novalidate>
           <div class="login-grid">
             <div class="input-cell">
-              <label for="verify-email">Username / email</label>
-              <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="name@university.edu" required />
+              <label for="verify-email">Temporary Access Username (TAU)</label>
+              <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="Enter your TAU" required />
             </div>
             <div class="input-cell">
-              <label for="verify-password">Access key</label>
-              <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••••" required />
+              <label for="verify-password">Temporary Access Pass (TAP)</label>
+                <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your TAP" required />
             </div>
             <button class="verify-btn" id="verify-btn" type="submit" aria-label="Verify access">→</button>
           </div>
