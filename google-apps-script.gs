@@ -1,32 +1,33 @@
 /**
- * Mehrshad Eskandarpour — Apply Vault authentication + access requests
+ * Mehrshad Eskandarpour — Apply Vault authentication + access requests (V5)
  *
- * This script is designed to be BOUND to the Google Sheet you use for access control.
- * Run setupVault() once, then deploy as a Web App.
+ * Bind this script to the Google Spreadsheet used for the vault.
+ * Run setupVault() once after replacing the script, then deploy/update the Web App.
  *
- * Sheet tab: Vault Access
- * Columns: Email | Password | Status | Note
+ * Vault Access columns:
+ *   Email | Password | Status | Note
  *
- * Sheet tab: Access Requests
- * Columns: Timestamp | Name | Email | Affiliation | Reason | Status
+ * Access Requests columns:
+ *   Timestamp | Request ID | First Name | Last Name | Mobile | Email |
+ *   University / Affiliation | University Entry Year | Reason for Access | Status
  *
  * Access rule:
- * - Email must match.
+ * - The visitor's email is the username.
  * - Password must match the password assigned to that email.
  * - Status must be ALLOW.
- * - The newest row for a duplicated email wins.
- *
- * To revoke access: set Status to REVOKED (or anything other than ALLOW).
- * To change a password: edit Password for that email.
- * Do not use important passwords from other accounts here; assign a unique vault key.
+ * - If an email appears more than once, the newest row wins.
  */
 
 const ACCESS_SHEET_NAME = 'Vault Access';
 const REQUEST_SHEET_NAME = 'Access Requests';
 const ALLOWED_STATUS = 'ALLOW';
 const OWNER_EMAIL = 'mehrsh3d@gmail.com';
+const REQUEST_HEADERS = [
+  'Timestamp','Request ID','First Name','Last Name','Mobile','Email',
+  'University / Affiliation','University Entry Year','Reason for Access','Status'
+];
 
-/** Run once manually from Apps Script after pasting this file. */
+/** Run once manually after pasting/updating this script. */
 function setupVault() {
   const active = SpreadsheetApp.getActiveSpreadsheet();
   if (!active) throw new Error('Open this script from the target Google Sheet, then run setupVault again.');
@@ -36,30 +37,56 @@ function setupVault() {
   const requests = getRequestSheet_();
   access.setFrozenRows(1);
   requests.setFrozenRows(1);
-  access.getRange('B:B').setNumberFormat('@'); // keep passwords as literal text
+  access.getRange('B:B').setNumberFormat('@');
   access.autoResizeColumns(1, 4);
-  requests.autoResizeColumns(1, 6);
-  return 'Apply Vault sheets are ready.';
+  requests.autoResizeColumns(1, REQUEST_HEADERS.length);
+  requests.setColumnWidth(9, 380);
+  return 'Apply Vault V5 is ready.';
 }
 
 function doPost(e) {
   try {
     const data = (e && e.parameter) || {};
-    if (String(data.website || '').trim()) return textResponse_('ignored'); // honeypot
+    if (String(data.website || '').trim()) return textResponse_('accepted'); // honeypot
     if (String(data.action || '') !== 'request') return textResponse_('invalid action');
 
-    const name = clean_(data.name, 120);
+    const requestId = cleanRequestId_(data.requestId) || makeRequestId_();
+    const firstName = clean_(data.firstName, 80);
+    const lastName = clean_(data.lastName, 80);
+    const mobile = clean_(data.mobile, 30);
     const email = normalizeEmail_(data.email);
     const affiliation = clean_(data.affiliation, 180);
-    const reason = clean_(data.reason, 1000);
-    if (!name || !isValidEmail_(email) || !reason) return textResponse_('invalid request');
+    const entryYear = clean_(data.entryYear, 4);
+    const reason = clean_(data.reason, 1200);
+
+    if (!firstName || !lastName || !isValidMobile_(mobile) || !isValidEmail_(email) || !affiliation || !isValidYear_(entryYear) || !reason) {
+      return textResponse_('invalid request');
+    }
+
+    // Light anti-spam throttle. A legitimate retry becomes harmless for two minutes.
+    const cache = CacheService.getScriptCache();
+    const throttleKey = 'vault_req_' + sha256Hex_(email).slice(0, 24);
+    if (cache.get(throttleKey)) return textResponse_('accepted');
+    cache.put(throttleKey, '1', 120);
 
     const now = new Date();
-    const sheet = getRequestSheet_();
-    sheet.appendRow([now, name, email, affiliation, reason, 'PENDING']);
+    const lock = LockService.getScriptLock();
+    lock.waitLock(5000);
+    try {
+      const sheet = getRequestSheet_();
+      sheet.appendRow([
+        now, requestId, firstName, lastName, mobile, email,
+        affiliation, entryYear, reason, 'PENDING'
+      ]);
+    } finally {
+      lock.releaseLock();
+    }
 
     try {
-      sendRequestEmail_(now, name, email, affiliation, reason);
+      sendRequestEmail_({
+        timestamp: now, requestId: requestId, firstName: firstName, lastName: lastName,
+        mobile: mobile, email: email, affiliation: affiliation, entryYear: entryYear, reason: reason
+      });
     } catch (mailErr) {
       console.error('Request saved, but email notification failed:', mailErr);
     }
@@ -87,7 +114,6 @@ function doGet(e) {
     payload = { allowed: false };
   }
 
-  // JSONP allows a static GitHub Pages frontend to receive a tiny boolean response.
   const js = callback + '(' + JSON.stringify(payload) + ');';
   return ContentService.createTextOutput(js).setMimeType(ContentService.MimeType.JAVASCRIPT);
 }
@@ -137,55 +163,76 @@ function timingSafeEqual_(a, b) {
   return diff === 0;
 }
 
-function sendRequestEmail_(timestamp, name, email, affiliation, reason) {
+function sendRequestEmail_(request) {
   const tz = Session.getScriptTimeZone() || 'Etc/GMT';
-  const when = Utilities.formatDate(timestamp, tz, 'yyyy-MM-dd HH:mm:ss z');
-  const subject = 'Apply Vault — Access Request — ' + name;
-  const safeName = htmlEscape_(name);
-  const safeEmail = htmlEscape_(email);
-  const safeAffiliation = htmlEscape_(affiliation || 'Not provided');
-  const safeReason = htmlEscape_(reason).replace(/\n/g, '<br>');
+  const when = Utilities.formatDate(request.timestamp, tz, 'yyyy-MM-dd HH:mm:ss z');
+  const fullName = request.firstName + ' ' + request.lastName;
+  const subject = 'Apply Vault — Access Request — ' + fullName;
 
   const plain = [
     'APPLY VAULT — ACCESS REQUEST',
+    'Reference: ' + request.requestId,
     '',
-    'Name: ' + name,
-    'Email: ' + email,
-    'Affiliation: ' + (affiliation || 'Not provided'),
+    'Name: ' + fullName,
+    'Mobile: ' + request.mobile,
+    'Email: ' + request.email,
+    'University / Affiliation: ' + request.affiliation,
+    'University Entry Year: ' + request.entryYear,
     'Requested at: ' + when,
     '',
-    'Reason:',
-    reason,
+    'REASON FOR ACCESS',
+    request.reason,
     '',
-    'TO GRANT ACCESS:',
-    'Open the "Vault Access" sheet, add this email, choose a unique password, and set Status to ALLOW.'
+    'TO GRANT ACCESS',
+    'Open the "Vault Access" tab in the connected Google Sheet.',
+    'Add the applicant email, assign a unique password, and set Status to ALLOW.',
+    'The applicant will use their email as the username.'
   ].join('\n');
 
   const html = `
-    <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;background:#0d0f0d;color:#ecece5;padding:28px;border:1px solid #2a2d29">
-      <div style="font-size:11px;letter-spacing:2px;color:#d35a36;margin-bottom:18px">APPLY VAULT / ACCESS REQUEST</div>
-      <h2 style="font-size:22px;margin:0 0 24px;font-weight:600">New access request</h2>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;color:#d9dbd3">
-        <tr><td style="padding:10px 0;color:#777b73;width:130px">Name</td><td style="padding:10px 0">${safeName}</td></tr>
-        <tr><td style="padding:10px 0;color:#777b73">Email</td><td style="padding:10px 0">${safeEmail}</td></tr>
-        <tr><td style="padding:10px 0;color:#777b73">Affiliation</td><td style="padding:10px 0">${safeAffiliation}</td></tr>
-        <tr><td style="padding:10px 0;color:#777b73">Requested</td><td style="padding:10px 0">${htmlEscape_(when)}</td></tr>
-      </table>
-      <div style="margin-top:22px;border-top:1px solid #2a2d29;padding-top:18px">
-        <div style="font-size:11px;letter-spacing:1px;color:#777b73;margin-bottom:9px">REASON FOR ACCESS</div>
-        <div style="font-size:14px;line-height:1.7;color:#d9dbd3">${safeReason}</div>
+  <div style="margin:0;background:#f2f2ef;padding:34px 18px;font-family:Arial,Helvetica,sans-serif;color:#252622">
+    <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #ddded7">
+      <div style="padding:18px 24px;border-bottom:1px solid #ddded7;font-family:monospace;font-size:11px;letter-spacing:1.8px;color:#72736d">
+        <span style="color:#c34b29">●</span>&nbsp; APPLY VAULT / AUTHORIZATION REQUEST
       </div>
-      <div style="margin-top:24px;padding:14px;background:#141714;color:#959990;font-size:12px;line-height:1.6">To approve: open <b>Vault Access</b>, add <b>${safeEmail}</b>, choose a unique password, and set Status to <b style="color:#78b98b">ALLOW</b>.</div>
-    </div>`;
+      <div style="padding:30px 28px 28px">
+        <div style="font-family:monospace;font-size:11px;letter-spacing:1.4px;color:#c34b29;margin-bottom:9px">NEW REQUEST / ${htmlEscape_(request.requestId)}</div>
+        <h1 style="font-size:26px;line-height:1.2;margin:0 0 7px;font-weight:600;letter-spacing:-.5px">${htmlEscape_(fullName)}</h1>
+        <div style="font-size:13px;color:#7a7d76;margin-bottom:26px">Submitted ${htmlEscape_(when)}</div>
+
+        <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px">
+          ${emailRow_('Mobile', request.mobile)}
+          ${emailRow_('Email', request.email)}
+          ${emailRow_('University / affiliation', request.affiliation)}
+          ${emailRow_('University entry year', request.entryYear)}
+        </table>
+
+        <div style="margin-top:26px;padding-top:22px;border-top:1px solid #ecece8">
+          <div style="font-family:monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#7a7d76;margin-bottom:10px">Reason for access</div>
+          <div style="font-size:14px;line-height:1.75;color:#33352f">${htmlEscape_(request.reason).replace(/\n/g, '<br>')}</div>
+        </div>
+
+        <div style="margin-top:28px;background:#252622;color:#f6f6f2;padding:18px 20px">
+          <div style="font-family:monospace;font-size:10px;letter-spacing:1.2px;color:#df8a70;margin-bottom:8px">ADMIN ACTION</div>
+          <div style="font-size:13px;line-height:1.7;color:#dedfd8">Open <b>Vault Access</b> → add <b>${htmlEscape_(request.email)}</b> → assign a unique password → set Status to <b style="color:#92cca0">ALLOW</b>.</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
 
   MailApp.sendEmail({
     to: OWNER_EMAIL,
     subject: subject,
     body: plain,
     htmlBody: html,
-    replyTo: email,
+    replyTo: request.email,
     name: 'Mehrshad Apply Vault'
   });
+}
+
+function emailRow_(label, value) {
+  return '<tr><td style="width:190px;padding:11px 0;color:#8a8d85;border-bottom:1px solid #f0f0ec">' + htmlEscape_(label) + '</td>' +
+    '<td style="padding:11px 0;color:#252622;border-bottom:1px solid #f0f0ec">' + htmlEscape_(value) + '</td></tr>';
 }
 
 function getSpreadsheet_() {
@@ -213,15 +260,52 @@ function getRequestSheet_() {
   let sheet = ss.getSheetByName(REQUEST_SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(REQUEST_SHEET_NAME);
-    sheet.appendRow(['Timestamp', 'Name', 'Email', 'Affiliation', 'Reason', 'Status']);
+    sheet.getRange(1, 1, 1, REQUEST_HEADERS.length).setValues([REQUEST_HEADERS]);
     sheet.setFrozenRows(1);
+    return sheet;
   }
+  ensureRequestSchema_(sheet);
   return sheet;
+}
+
+function ensureRequestSchema_(sheet) {
+  const lastColumn = Math.max(sheet.getLastColumn(), 1);
+  const oldHeaders = sheet.getRange(1, 1, 1, Math.min(lastColumn, 6)).getDisplayValues()[0];
+  const isOldSchema = oldHeaders.join('|') === ['Timestamp','Name','Email','Affiliation','Reason','Status'].join('|');
+
+  if (isOldSchema) {
+    const lastRow = sheet.getLastRow();
+    const oldRows = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, 6).getValues() : [];
+    const migrated = oldRows.map(function(row) {
+      return [row[0], makeRequestId_(), row[1] || '', '', '', row[2] || '', row[3] || '', '', row[4] || '', row[5] || 'PENDING'];
+    });
+    sheet.clearContents();
+    sheet.getRange(1, 1, 1, REQUEST_HEADERS.length).setValues([REQUEST_HEADERS]);
+    if (migrated.length) sheet.getRange(2, 1, migrated.length, REQUEST_HEADERS.length).setValues(migrated);
+    sheet.setFrozenRows(1);
+    return;
+  }
+
+  const current = sheet.getRange(1, 1, 1, REQUEST_HEADERS.length).getDisplayValues()[0];
+  if (current.join('|') !== REQUEST_HEADERS.join('|') && sheet.getLastRow() <= 1) {
+    sheet.getRange(1, 1, 1, REQUEST_HEADERS.length).setValues([REQUEST_HEADERS]);
+  }
 }
 
 function normalizeEmail_(value) { return String(value || '').trim().toLowerCase(); }
 function isValidEmail_(value) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+function isValidMobile_(value) { return /^[0-9+()\-\.\s]{5,30}$/.test(String(value || '').trim()); }
+function isValidYear_(value) {
+  return /^\d{4}$/.test(String(value || '')) && Number(value) >= 1950 && Number(value) <= 2100;
+}
 function clean_(value, max) { return String(value || '').trim().slice(0, max); }
+function cleanRequestId_(value) {
+  const id = String(value || '').trim().toUpperCase();
+  return /^AV-[A-Z0-9-]{6,40}$/.test(id) ? id : '';
+}
+function makeRequestId_() {
+  return 'AV-' + Utilities.formatDate(new Date(), 'Etc/GMT', 'yyyyMMdd') + '-' + Utilities.getUuid().slice(0, 6).toUpperCase();
+}
 function safeCallback_(value) {
   const callback = String(value || 'callback');
   return /^[A-Za-z_$][0-9A-Za-z_$]*$/.test(callback) ? callback : 'callback';

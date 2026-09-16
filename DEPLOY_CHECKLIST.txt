@@ -15,3 +15,9 @@ Visual theme controls:
 Important:
 - The References & Recommendations area contains a clearly marked template.
   Replace it with verified recommendation quotes before treating that area as final content.
+
+APPLY VAULT V5 BACKEND UPDATE
+- After uploading the website files, open the connected Google Sheet -> Extensions -> Apps Script.
+- Replace the old script with google-apps-script.gs and run setupVault() once.
+- Deploy -> Manage deployments -> edit the existing Web App -> New version -> Deploy.
+- Keep the existing /exec URL in access-config.js.

@@ -1,31 +1,25 @@
-# Apply Vault — Access Setup V4
+# Apply Vault — Access Setup V5
 
-Apply Vault now uses **email + a different password for each person**.
+Apply Vault uses **email as the username + a unique password/access key for each approved person**.
 
-The credential list is managed in a private Google Sheet, not in the public website code.
+The credential list is managed in the private Google Sheet, not in the public website code.
 
 ## Connection status
 
-**CONNECTED.** The deployed Google Apps Script Web App URL is already configured in `access-config.js`.
+**CONNECTED.** The existing Google Apps Script Web App URL is already configured in `access-config.js`.
 
-Deployment ID: `AKfycbwpcJ4GUEbty_N_9iFEiU_WDr39YtjDUiSzdFHVDKne6ieew3OXkQGh3f8JrcrJj6TT`
+You do not need to change the URL. After replacing `google-apps-script.gs`, update the existing Apps Script deployment to a **new version** so the same `/exec` endpoint runs V5.
 
-You do not need to paste the URL again.
+## Update steps for V5
 
-## One-time connection (already completed)
-
-1. Open the Google Sheet you want to use.
+1. Open the Google Sheet already connected to Apply Vault.
 2. Go to **Extensions → Apps Script**.
-3. Replace the Apps Script code with the full contents of `google-apps-script.gs`.
-4. Save and run `setupVault()` once. Approve permissions.
-5. The script creates two tabs: `Vault Access` and `Access Requests`.
-6. Deploy the script: **Deploy → New deployment → Web app**.
-7. Choose **Execute as: Me** and **Who has access: Anyone**.
-8. Copy the Web App URL ending in `/exec`.
-9. The current deployment URL is already in `access-config.js`.
-10. Upload/commit the V4 website files to GitHub.
-
-After this one-time setup, access changes happen only in the Google Sheet. No website redeploy is needed when adding, revoking, or changing a user's password.
+3. Replace the old script with the contents of `google-apps-script.gs`.
+4. Save.
+5. Run `setupVault()` once.
+6. Go to **Deploy → Manage deployments**.
+7. Edit the current Web App deployment.
+8. Choose **New version** and deploy/update it.
 
 ## Vault Access tab
 
@@ -38,8 +32,17 @@ Example:
 `person@example.com | AV-Jordan-2026! | ALLOW | Applicant`
 
 - `ALLOW` = can enter.
-- `REVOKED` (or any value other than `ALLOW`) = cannot enter.
+- `REVOKED` or any value other than `ALLOW` = cannot enter.
+- The visitor uses the Email as the username.
 - Change the Password cell to rotate that person's access key.
-- If an email is listed multiple times, the newest/lower row wins.
+- If an email appears multiple times, the newest/lower row wins.
 
-See `VAULT_ADMIN_GUIDE.md` for full instructions, request handling, content editing, and security notes.
+## Access Requests tab
+
+V5 records:
+
+`Timestamp | Request ID | First Name | Last Name | Mobile | Email | University / Affiliation | University Entry Year | Reason for Access | Status`
+
+A successful form submission is automatically written to this tab and emailed to the vault owner.
+
+See `VAULT_ADMIN_GUIDE.md` for the full workflow and security note.

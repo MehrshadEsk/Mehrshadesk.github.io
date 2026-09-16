@@ -1,28 +1,31 @@
-APPLY VAULT V4 — EMAIL + PER-USER PASSWORD
+APPLY VAULT V5 — TERMINAL AUTHORIZATION EXPERIENCE
 
-CHANGED / ADDED FILES
+MAIN UPDATED FILES
 - apply-vault.html
-- apply-vault-private.html
-- access-config.js
 - google-apps-script.gs
 - VAULT_ADMIN_GUIDE.md
+- ACCESS_SETUP.md
 - UPLOAD_NOTES.txt
 
 WHAT CHANGED
-- Login now requires BOTH email and an assigned access key/password.
-- Every email can have its own password.
-- Access is managed in Google Sheet tab: Vault Access.
-- Status ALLOW grants access; REVOKED removes access.
-- Passwords can be changed in the Sheet without changing website code.
-- Password is hashed in the browser before verification; the raw password is not saved in sessionStorage.
-- Private sessions are revalidated about once per minute.
-- Denied visitors still get the access-request form + Email App + Gmail Web buttons.
-- Private page now contains clear EDITABLE CONTENT markers for future updates.
+- Apply Vault now visually matches the main portfolio: light background, IBM Plex Mono, orange accent, restrained grid system.
+- Login is presented as a secure command terminal.
+- After credentials are submitted, an animated authorization console opens and displays a fast verification trace.
+- Approved users get a dedicated access-granted transition before entering the private page.
+- Denied users get an animated authorization request form.
+- Request fields: first name, last name, mobile number, email, university/affiliation, university entry year, reason for access.
+- Requests submit automatically; users no longer need to open Gmail or a mail app.
+- Each request is stored in the connected Google Sheet and sent to the owner as a formatted HTML email.
+- Requests include a unique reference ID.
+- Existing Vault Access logic is preserved: Email | Password | Status | Note.
+- Email remains the username, so approving a visitor only requires adding their email, assigning a password, and setting Status to ALLOW.
+- The old six-column Access Requests layout is migrated when setupVault() runs.
 
-FIRST TIME ONLY
-Follow VAULT_ADMIN_GUIDE.md to deploy google-apps-script.gs and paste the /exec URL into access-config.js.
+IMPORTANT AFTER UPLOAD
+The frontend can be committed directly to GitHub, but the Google Apps Script backend must also be updated:
+1. Open the connected Sheet -> Extensions -> Apps Script.
+2. Replace the script with google-apps-script.gs.
+3. Run setupVault() once.
+4. Deploy -> Manage deployments -> edit existing Web App -> New version -> Deploy.
 
-
-V4 CONNECTION STATUS:
-Google Apps Script URL is already connected in access-config.js.
-Deployment ID: AKfycbwpcJ4GUEbty_N_9iFEiU_WDr39YtjDUiSzdFHVDKne6ieew3OXkQGh3f8JrcrJj6TT
+Keep the existing /exec URL in access-config.js.

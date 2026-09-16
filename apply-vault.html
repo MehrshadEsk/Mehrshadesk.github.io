@@ -4,323 +4,449 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex,nofollow,noarchive" />
-<meta name="theme-color" content="#050605" />
+<meta name="theme-color" content="#fafaf9" />
 <title>Apply Vault — Restricted Access</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --bg:#050605; --text:#eceee8; --muted:#747a72; --faint:#3a3f39;
-  --line:rgba(255,255,255,.11); --line-soft:rgba(255,255,255,.055);
-  --accent:#d35a36; --ok:#75bd8b; --bad:#e06458;
+  --bg:#fafaf9;--paper:#fff;--text:#252622;--muted:#72736d;--line:#ddded7;
+  --line-soft:#ecece8;--accent:#c34b29;--accent-soft:#f5d6c6;
+  --terminal:#10110f;--terminal-2:#161714;--terminal-line:#2b2d28;
+  --term-text:#dfe2d9;--term-muted:#777d72;--ok:#7fbd8f;--bad:#df6559;
   --font:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
 }
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
 body{min-height:100vh;overflow-x:hidden}
-a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button{border:0} ::selection{background:rgba(211,90,54,.35)}
-#hack-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.backdrop{position:fixed;inset:0;z-index:1;pointer-events:none;background:
-  radial-gradient(circle at 50% 47%,rgba(211,90,54,.085),transparent 25%),
-  radial-gradient(circle at 50% 50%,transparent 0 32%,rgba(5,6,5,.25) 62%,rgba(5,6,5,.86) 100%)}
-.scanlines{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.16;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(255,255,255,.022) 4px)}
-.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 0 180px rgba(0,0,0,.75)}
-.page{position:relative;z-index:4;min-height:100vh;display:flex;flex-direction:column;padding:22px clamp(18px,4vw,56px) 20px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1440px,100%);margin:0 auto}
-.brand{display:flex;align-items:center;gap:13px}.mark{font-size:25px;font-weight:600;letter-spacing:-4px}.mark i{font-style:normal;color:var(--accent)}
-.brand-meta{font-size:8px;line-height:1.45;letter-spacing:.16em;text-transform:uppercase;color:#777c74}.brand-meta span{display:block;color:#393e38;margin-top:3px}
-.back{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#555b54;transition:.2s}.back:before{content:'← ';color:var(--accent)}.back:hover{color:#c7cac4}
-.main{flex:1;display:grid;place-items:center;width:min(1440px,100%);margin:0 auto;padding:42px 0 54px}
-.auth-wrap{width:min(640px,100%);position:relative}
-.orbit{position:absolute;width:560px;height:560px;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.42}
-.orbit:before,.orbit:after{content:'';position:absolute;border-radius:50%;inset:8%;border:1px solid rgba(211,90,54,.08);animation:spin 26s linear infinite}
-.orbit:after{inset:24%;border-style:dashed;border-color:rgba(255,255,255,.06);animation-duration:18s;animation-direction:reverse}
-.orbit i{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--accent);left:50%;top:8%;box-shadow:0 0 16px rgba(211,90,54,.65);animation:spinDot 26s linear infinite;transform-origin:0 235px}
-@keyframes spin{to{transform:rotate(360deg)}} @keyframes spinDot{to{transform:rotate(360deg)}}
-.auth{position:relative;border:1px solid var(--line);background:linear-gradient(145deg,rgba(13,15,13,.93),rgba(7,9,7,.89));box-shadow:0 34px 120px rgba(0,0,0,.52);backdrop-filter:blur(12px);overflow:hidden}
-.auth:before{content:'';position:absolute;left:-45%;top:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(211,90,54,.065),transparent);transform:skewX(-14deg);animation:sweep 8s ease-in-out infinite}
-@keyframes sweep{0%,54%{left:-45%}76%,100%{left:125%}}
-.auth-head{height:44px;padding:0 17px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;justify-content:space-between;font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:#474c46}
-.auth-head b{font-weight:500;color:#6b7068}.live{display:flex;align-items:center;gap:7px}.live:before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(211,90,54,.55);animation:pulse 1.9s ease-in-out infinite}
-@keyframes pulse{50%{opacity:.35;transform:scale(.78)}}
-.auth-body{position:relative;padding:34px 32px 31px}
-.glyph{width:42px;height:42px;margin:0 auto 21px;position:relative;border:1px solid rgba(211,90,54,.35);display:grid;place-items:center;transform:rotate(45deg);transition:.35s}
-.glyph:before,.glyph:after{content:'';position:absolute;background:var(--accent);opacity:.65}.glyph:before{width:13px;height:1px}.glyph:after{width:1px;height:13px}.glyph span{position:absolute;inset:-7px;border:1px solid rgba(255,255,255,.055);animation:glyphspin 7s linear infinite}@keyframes glyphspin{to{transform:rotate(360deg)}}
-.state{text-align:center;margin-bottom:26px}.state .eyebrow{font-size:7px;letter-spacing:.22em;color:#50554f;text-transform:uppercase;margin-bottom:9px}.state h1{font-size:22px;line-height:1.1;letter-spacing:-.045em;font-weight:500;margin:0}.state p{font-size:8px;line-height:1.65;color:#5f655d;margin:8px auto 0;max-width:360px}
-.verify-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) 50px;border:1px solid var(--line);background:rgba(0,0,0,.22);transition:.2s}.verify-row:focus-within{border-color:rgba(211,90,54,.55);box-shadow:0 0 0 3px rgba(211,90,54,.055)}
-.verify-row input{height:52px;min-width:0;border:0;outline:0;background:transparent;color:#eceee8;padding:0 16px;font-size:10px}.verify-row input::placeholder{color:#444943}.verify-row input+input{border-left:1px solid var(--line)}
-.verify-row button{width:50px;height:52px;background:transparent;color:var(--accent);cursor:pointer;border-left:1px solid var(--line);font-size:17px;transition:.2s}.verify-row button:hover{background:var(--accent);color:white}.verify-row button:disabled{opacity:.45;cursor:wait}
-.status{min-height:28px;padding-top:12px;text-align:center;font-size:8px;line-height:1.55;letter-spacing:.04em;color:#575c55}.status b{font-weight:500;letter-spacing:.12em}.status.wait b{color:#a8634d}.status.bad b{color:var(--bad)}.status.ok b{color:var(--ok)}
-.progress{height:1px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:2px;opacity:0}.progress.on{opacity:1}.progress:after{content:'';display:block;width:30%;height:100%;background:var(--accent);transform:translateX(-120%);animation:load 1.05s ease-in-out infinite}@keyframes load{to{transform:translateX(430%)}}
-.request{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .46s ease,opacity .28s ease;margin-top:0}.request.open{grid-template-rows:1fr;opacity:1;margin-top:25px}.request-inner{overflow:hidden}.request-sep{border-top:1px solid var(--line-soft);padding-top:23px}
-.denied-line{display:flex;align-items:center;gap:9px;margin-bottom:17px;font-size:8px;letter-spacing:.12em;color:#7e827a;text-transform:uppercase}.denied-line i{width:6px;height:6px;border-radius:50%;background:var(--bad);box-shadow:0 0 11px rgba(224,100,88,.45)}.denied-line b{color:var(--bad);font-weight:500}
-.request-copy{font-size:9px;line-height:1.7;color:#747970;margin:0 0 18px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:7px;letter-spacing:.13em;text-transform:uppercase;color:#545a53}.field input,.field textarea{width:100%;border:1px solid var(--line);outline:0;background:rgba(0,0,0,.22);color:#e9ebe5;padding:12px 13px;font-size:9px;transition:.2s}.field input{height:43px}.field textarea{min-height:82px;resize:vertical;line-height:1.55}.field input:focus,.field textarea:focus{border-color:rgba(211,90,54,.5)}.field input[readonly]{color:#858a82;background:rgba(255,255,255,.015)}
-.prepare{margin-top:11px;width:100%;height:46px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;background:#e8e9e3;color:#11130f;cursor:pointer;font-size:8px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;transition:.2s}.prepare:hover{background:var(--accent);color:white}.prepare span:last-child{font-size:14px;color:var(--accent)}.prepare:hover span:last-child{color:white}
-.email-actions{display:none;margin-top:15px}.email-actions.ready{display:block;animation:reveal .3s ease}@keyframes reveal{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.ready-copy{text-align:center;font-size:8px;line-height:1.6;color:#6e736b;margin-bottom:10px}.ready-copy b{color:var(--ok);font-weight:500;letter-spacing:.11em}
-.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.mail-btn{height:45px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:#b5b9b1;display:flex;align-items:center;justify-content:center;gap:9px;font-size:8px;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:.2s}.mail-btn:hover{border-color:rgba(211,90,54,.55);color:#fff;background:rgba(211,90,54,.06)}.mail-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
-.tiny-note{text-align:center;margin-top:10px;color:#41463f;font-size:7px;line-height:1.55}
-.footer{width:min(1440px,100%);margin:0 auto;display:flex;justify-content:space-between;gap:20px;color:#353a35;font-size:7px;letter-spacing:.12em;text-transform:uppercase}
-.corner{position:fixed;z-index:3;pointer-events:none;color:#30352f;font-size:7px;line-height:1.7;letter-spacing:.15em;text-transform:uppercase}.c1{left:3.8vw;top:26%}.c2{right:4vw;top:31%;text-align:right}.c3{left:5vw;bottom:17%}.c4{right:5vw;bottom:16%;text-align:right}.corner b{color:#4c524b;font-weight:400}
-body.denied .glyph{border-color:rgba(224,100,88,.42);transform:rotate(135deg)} body.granted .glyph{border-color:rgba(117,189,139,.48)} body.granted .glyph:before,body.granted .glyph:after{background:var(--ok)}
-@media(max-width:760px){.corner{display:none}.auth-wrap{width:min(520px,100%)}.orbit{width:480px;height:480px}.auth-body{padding:30px 22px 27px}.brand-meta{display:none}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.action-grid{grid-template-columns:1fr}.footer span:last-child{display:none}}
-@media(max-width:520px){.verify-row{grid-template-columns:1fr 46px}.verify-row input+input{border-left:0;border-top:1px solid var(--line);grid-column:1/2}.verify-row button{grid-column:2;grid-row:1/3;height:104px;width:46px}.page{padding:17px 15px}.main{padding:35px 0}.auth-head{padding:0 13px}.auth-body{padding:27px 17px 24px}.state h1{font-size:20px}.orbit{display:none}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{border:0}::selection{background:var(--accent-soft)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.site-header{height:90px;border-bottom:1px solid var(--line);background:rgba(250,250,249,.92);backdrop-filter:blur(16px);display:flex;align-items:center;position:relative;z-index:20}
+.nav{width:min(1200px,calc(100% - 96px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:18px;line-height:1.4}.brand-mark{font-size:38px;font-weight:600;letter-spacing:-4px}.brand-mark span{color:var(--accent)}
+.brand-name{font-size:14px}.brand-name span{display:block;color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:34px}.node-status{font-size:11px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px}.node-status:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(195,75,41,.09)}
+.back-link{font-size:13px;transition:color .2s}.back-link:hover{color:var(--accent)}
+
+.page{position:relative;min-height:calc(100vh - 90px);overflow:hidden}.page:before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(37,38,34,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(37,38,34,.028) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 86%)}
+.binary-rail{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.22}.binary-rail span{position:absolute;white-space:nowrap;font-size:9px;letter-spacing:.19em;color:#8e9189;animation:rail 22s linear infinite}.binary-rail span:nth-child(1){top:15%;left:-16%;animation-duration:28s}.binary-rail span:nth-child(2){top:72%;right:-24%;animation-direction:reverse;animation-duration:32s;color:var(--accent)}
+@keyframes rail{to{transform:translateX(18vw)}}
+
+.workspace{position:relative;z-index:2;width:min(1200px,calc(100% - 96px));margin:0 auto;padding:72px 0 64px;display:grid;grid-template-columns:minmax(250px,.68fr) minmax(560px,1.32fr);gap:72px;align-items:start}
+.context{padding-top:24px}.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}.context h1{font-size:clamp(36px,4.25vw,62px);line-height:1.02;letter-spacing:-.065em;font-weight:500;margin:0 0 23px;max-width:580px}.context p{font-size:13px;line-height:1.8;color:var(--muted);max-width:470px;margin:0 0 34px}.meta-grid{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;max-width:470px}.meta-item{padding:18px 0;border-bottom:1px solid var(--line);font-size:10px;line-height:1.6;color:var(--muted)}.meta-item:nth-child(odd){padding-right:18px}.meta-item:nth-child(even){padding-left:18px;border-left:1px solid var(--line)}.meta-item b{display:block;color:var(--text);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+
+.vault-window{position:relative;border:1px solid #cfd0ca;background:var(--paper);box-shadow:0 26px 85px rgba(29,31,27,.11);overflow:hidden;transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s ease}
+.vault-window:after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.65)}
+.window-bar{height:47px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#f7f7f4;color:#7a7d75;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.window-dots{display:flex;gap:6px}.window-dots i{display:block;width:7px;height:7px;border:1px solid #bbbdb6;border-radius:50%}.window-title b{font-weight:500;color:#555950}.window-code{color:#a2a59e}
+.auth-panel{padding:30px 30px 26px}.auth-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px}.auth-copy .eyebrow{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}.auth-copy h2{margin:0;font-size:21px;letter-spacing:-.035em;font-weight:500}.auth-copy p{margin:7px 0 0;font-size:10px;line-height:1.65;color:var(--muted)}.security-mark{width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;position:relative;flex:0 0 auto}.security-mark:before,.security-mark:after{content:'';position:absolute;background:var(--accent)}.security-mark:before{width:14px;height:1px}.security-mark:after{width:1px;height:14px}.security-mark i{position:absolute;inset:5px;border:1px dashed #cfd0ca;animation:spin 10s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.login-grid{display:grid;grid-template-columns:1fr 1fr 54px;border:1px solid var(--line);background:#fcfcfa;transition:border-color .2s,box-shadow .2s}.login-grid:focus-within{border-color:rgba(195,75,41,.58);box-shadow:0 0 0 4px rgba(195,75,41,.055)}.input-cell{position:relative}.input-cell+.input-cell{border-left:1px solid var(--line)}.input-cell label{position:absolute;left:14px;top:8px;font-size:7px;letter-spacing:.12em;color:#9a9d95;text-transform:uppercase;pointer-events:none}.input-cell input{width:100%;height:58px;border:0;background:transparent;padding:21px 14px 7px;outline:0;color:var(--text);font-size:11px}.input-cell input::placeholder{color:#b4b6b0}.verify-btn{height:58px;width:54px;border-left:1px solid var(--line);background:var(--text);color:#fff;cursor:pointer;font-size:18px;transition:background .2s,color .2s,transform .2s}.verify-btn:hover{background:var(--accent)}.verify-btn:disabled{cursor:wait;opacity:.65}.verify-btn:active{transform:scale(.96)}
+.login-note{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:10px;font-size:8px;line-height:1.55;color:#999c94}.login-note b{font-weight:500;color:#6e716a}.mini-status{display:flex;align-items:center;gap:7px;white-space:nowrap}.mini-status:before{content:'';width:5px;height:5px;border-radius:50%;background:#7e8279}
+
+.console-wrap{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .48s cubic-bezier(.2,.8,.2,1),opacity .25s ease}.console-wrap.open{grid-template-rows:1fr;opacity:1}.console-inner{min-height:0;overflow:hidden}.console{background:var(--terminal);border-top:1px solid #242621;color:var(--term-text);position:relative}.console:before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(255,255,255,.018) 4px)}.console-top{height:35px;border-bottom:1px solid var(--terminal-line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#747a70;font-size:8px;letter-spacing:.12em;text-transform:uppercase}.console-live{display:flex;align-items:center;gap:7px}.console-live:before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.25s ease-in-out infinite;box-shadow:0 0 10px rgba(195,75,41,.6)}@keyframes pulse{50%{opacity:.35}}.console-log{height:188px;overflow:hidden;padding:14px 16px 17px;font-size:9px;line-height:1.72}.log-line{display:flex;gap:10px;opacity:0;transform:translateY(4px);animation:logIn .16s ease forwards}.log-line .time{color:#555a52;min-width:58px}.log-line .prefix{color:#9b6b58;min-width:12px}.log-line.ok .prefix,.log-line.ok .msg{color:var(--ok)}.log-line.bad .prefix,.log-line.bad .msg{color:var(--bad)}.log-line.dim .msg{color:var(--term-muted)}@keyframes logIn{to{opacity:1;transform:none}}.console-progress{height:2px;background:#242621;overflow:hidden}.console-progress i{display:block;height:100%;width:22%;background:var(--accent);transform:translateX(-120%)}.console-wrap.open .console-progress i{animation:scan 1.05s ease-in-out infinite}@keyframes scan{to{transform:translateX(560%)}}
+
+.request-shell{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .62s cubic-bezier(.2,.8,.2,1),opacity .3s ease}.request-shell.open{grid-template-rows:1fr;opacity:1}.request-inner{min-height:0;overflow:hidden}.request-panel{border-top:1px solid var(--line);background:#fff;padding:28px 30px 30px;position:relative}.request-panel:before{content:'403';position:absolute;right:26px;top:17px;font-size:52px;line-height:1;font-weight:600;color:#f3f1ed;letter-spacing:-.06em;pointer-events:none}.request-heading{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:22px;margin-bottom:24px}.denied-badge{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--bad);display:flex;gap:8px;align-items:center;margin-bottom:8px}.denied-badge:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--bad);box-shadow:0 0 0 4px rgba(223,101,89,.08)}.request-heading h3{font-size:18px;letter-spacing:-.035em;margin:0 0 6px;font-weight:500}.request-heading p{font-size:9px;line-height:1.65;color:var(--muted);margin:0;max-width:500px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#777a73}.field label span{color:var(--accent)}.field input,.field textarea{width:100%;border:1px solid var(--line);background:#fbfbf9;color:var(--text);outline:0;padding:11px 12px;font-size:10px;transition:border-color .2s,box-shadow .2s}.field input{height:44px}.field textarea{min-height:92px;resize:vertical;line-height:1.55}.field input:focus,.field textarea:focus{border-color:rgba(195,75,41,.55);box-shadow:0 0 0 3px rgba(195,75,41,.045)}.field input[readonly]{color:#777a73;background:#f5f5f2}.honeypot{position:absolute!important;left:-99999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.submit-request{margin-top:14px;width:100%;height:49px;background:var(--text);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;cursor:pointer;font-size:9px;letter-spacing:.12em;text-transform:uppercase;transition:background .2s,transform .2s}.submit-request:hover{background:var(--accent)}.submit-request:disabled{opacity:.62;cursor:wait}.submit-request:active{transform:translateY(1px)}.submit-request strong{font-weight:500}.submit-request span:last-child{font-size:15px}
+.request-success{display:none;border:1px solid #d7e3da;background:#f8fbf8;padding:18px;margin-top:14px;animation:rise .35s ease}.request-success.show{display:block}.request-success b{font-size:9px;letter-spacing:.1em;color:#568765;text-transform:uppercase}.request-success p{font-size:9px;line-height:1.65;color:#68746b;margin:6px 0 0}.request-success code{color:var(--text);font-family:var(--font)}@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+.result-overlay{position:absolute;inset:47px 0 0;z-index:12;background:rgba(250,250,249,.97);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s}.result-overlay.show{opacity:1;visibility:visible}.result-card{text-align:center;transform:translateY(10px) scale(.98);opacity:0}.result-overlay.show .result-card{animation:resultIn .48s cubic-bezier(.16,1,.3,1) .06s forwards}.result-ring{width:76px;height:76px;margin:0 auto 18px;border:1px solid #cfd0ca;border-radius:50%;display:grid;place-items:center;position:relative}.result-ring:before{content:'';position:absolute;inset:7px;border:1px dashed #cfd0ca;border-radius:50%;animation:spin 4s linear infinite}.result-check{width:28px;height:14px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg) translate(2px,-2px)}.result-card .small{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#81847d;margin-bottom:7px}.result-card h3{margin:0;font-size:22px;letter-spacing:-.045em;font-weight:500}.result-card p{margin:8px 0 0;color:var(--muted);font-size:9px}.result-scan{position:absolute;left:0;right:0;height:1px;background:var(--accent);box-shadow:0 0 18px rgba(195,75,41,.35);top:0;opacity:0}.result-overlay.show .result-scan{animation:successScan 1.05s cubic-bezier(.2,.75,.25,1) .15s forwards}@keyframes successScan{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:.8}100%{top:100%;opacity:0}}@keyframes resultIn{to{transform:none;opacity:1}}
+body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform:translateY(-2px)}
+
+.footer{position:relative;z-index:2;width:min(1200px,calc(100% - 96px));margin:0 auto;padding:0 0 28px;display:flex;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a2a59e}
+
+@media(max-width:950px){.workspace{grid-template-columns:1fr;gap:38px;padding-top:48px}.context{padding-top:0}.context h1{max-width:720px}.meta-grid{max-width:100%}}
+@media(max-width:700px){.site-header{height:76px}.page{min-height:calc(100vh - 76px)}.nav,.workspace,.footer{width:min(100% - 32px,1200px)}.brand{gap:12px}.brand-mark{font-size:31px}.brand-name{font-size:11px}.node-status{display:none}.back-link{font-size:11px}.workspace{padding:38px 0 42px}.context h1{font-size:39px}.context p{font-size:11px}.auth-panel,.request-panel{padding:24px 18px}.login-grid{grid-template-columns:1fr 50px}.input-cell:nth-child(2){grid-row:2;grid-column:1;border-left:0;border-top:1px solid var(--line)}.verify-btn{grid-row:1/3;grid-column:2;height:116px;width:50px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-head{gap:14px}.security-mark{width:36px;height:36px}.window-title{display:none}.meta-grid{grid-template-columns:1fr}.meta-item:nth-child(even){padding-left:0;border-left:0}.meta-item:nth-child(odd){padding-right:0}.footer{font-size:7px}.footer span:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<canvas id="hack-canvas" aria-hidden="true"></canvas>
-<div class="page">
-  <header class="top">
-    <a class="brand" href="index.html" aria-label="Mehrshad Eskandarpour home">
-      <div class="mark">M<i>/</i>E</div>
-      <div class="brand-meta">Mehrshad Eskandarpour<span>secure knowledge node</span></div>
+<header class="site-header">
+  <div class="nav">
+    <a class="brand" href="index.html#home" aria-label="Mehrshad Eskandarpour home">
+      <div class="brand-mark">m<span>.</span></div>
+      <div class="brand-name">mehrshad <span>/eskandarpour</span></div>
     </a>
-    <a class="back" href="index.html">main system</a>
-  </header>
+    <div class="nav-right">
+      <div class="node-status">restricted node</div>
+      <a class="back-link" href="index.html#home">Back to portfolio ↗</a>
+    </div>
+  </div>
+</header>
 
-  <main class="main">
-    <div class="auth-wrap">
-      <div class="orbit" aria-hidden="true"><i></i></div>
-      <section class="auth" aria-label="Restricted access">
-        <div class="auth-head"><b>AUTH / AV-01</b><span class="live">secure channel</span></div>
-        <div class="auth-body">
-          <div class="glyph" aria-hidden="true"><span></span></div>
-          <div class="state">
-            <div class="eyebrow">Restricted access</div>
-            <h1 id="state-title">Identify yourself.</h1>
-            <p id="state-copy">Enter the email and access key assigned to you.</p>
+<main class="page">
+  <div class="binary-rail" aria-hidden="true">
+    <span>01001101 01000101 01001000 01010010 01010011 01001000 01000001 01000100 / ACCESS NODE / 6G / RESEARCH / AUTH</span>
+    <span>10110010 10111010 10110111 10101100 10111000 / VERIFY / HASH / POLICY / ALLOW / SESSION</span>
+  </div>
+
+  <div class="workspace">
+    <section class="context" aria-labelledby="vault-title">
+      <div class="kicker">// Apply Vault · Restricted access</div>
+      <h1 id="vault-title">Research application material, behind one gate.</h1>
+      <p>This area contains private application material and is available only to approved visitors. Use the credentials assigned to your email, or request access if your identity is not yet registered.</p>
+      <div class="meta-grid" aria-label="Vault metadata">
+        <div class="meta-item"><b>Identity</b>Email-based username</div>
+        <div class="meta-item"><b>Policy</b>Manual approval</div>
+        <div class="meta-item"><b>Registry</b>Private access sheet</div>
+        <div class="meta-item"><b>Session</b>Revalidated on entry</div>
+      </div>
+    </section>
+
+    <section class="vault-window" id="vault-window" aria-label="Apply Vault access terminal">
+      <div class="window-bar">
+        <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="window-title"><b>apply-vault</b> / auth-terminal</div>
+        <div class="window-code" id="window-code">NODE 01</div>
+      </div>
+
+      <div class="auth-panel">
+        <div class="auth-head">
+          <div class="auth-copy">
+            <div class="eyebrow" id="state-eyebrow">Authorization required</div>
+            <h2 id="state-title">Identify yourself.</h2>
+            <p id="state-copy">Enter the registered email and access key assigned to you.</p>
           </div>
+          <div class="security-mark" aria-hidden="true"><i></i></div>
+        </div>
 
-          <form id="verify-form" novalidate>
-            <div class="verify-row">
-              <input id="verify-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="email@domain.com" aria-label="Email address" required />
-              <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="access key" aria-label="Access key" required />
-              <button id="verify-btn" type="submit" aria-label="Check access">→</button>
+        <form id="verify-form" novalidate>
+          <div class="login-grid">
+            <div class="input-cell">
+              <label for="verify-email">Username / email</label>
+              <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="name@university.edu" required />
             </div>
-          </form>
-          <div class="progress" id="progress"></div>
-          <div class="status" id="verify-status" aria-live="polite"></div>
-
-          <div class="request" id="request-block">
-            <div class="request-inner">
-              <div class="request-sep">
-                <div class="denied-line"><i></i><b>Access denied</b><span>/ request authorization</span></div>
-                <p class="request-copy">You don’t currently have access. Fill out the form below and send the prepared request to Mehrshad.</p>
-                <form id="request-form" novalidate>
-                  <div class="form-grid">
-                    <div class="field"><label for="request-name">Name</label><input id="request-name" name="name" maxlength="120" autocomplete="name" required /></div>
-                    <div class="field"><label for="request-email">Email</label><input id="request-email" name="email" type="email" maxlength="180" readonly required /></div>
-                    <div class="field full"><label for="request-affiliation">Affiliation / organization <span style="opacity:.5">(optional)</span></label><input id="request-affiliation" name="affiliation" maxlength="180" placeholder="University, company, independent..." /></div>
-                    <div class="field full"><label for="request-reason">Why do you want access?</label><textarea id="request-reason" name="reason" maxlength="900" placeholder="A short note is enough." required></textarea></div>
-                  </div>
-                  <button class="prepare" id="prepare-btn" type="submit"><span>Continue to email</span><span>↗</span></button>
-                </form>
-
-                <div class="email-actions" id="email-actions">
-                  <div class="ready-copy"><b>REQUEST READY</b><br>Choose where you want to send the pre-filled email.</div>
-                  <div class="action-grid">
-                    <a class="mail-btn" id="mail-app-btn" href="#">
-                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17z"/><path d="m4 7 8 6 8-6"/></svg>
-                      Open email app
-                    </a>
-                    <a class="mail-btn" id="gmail-btn" href="#" target="_blank" rel="noopener">
-                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5v11h16v-11l-8 6z"/><path d="m4 6.5 8 6 8-6"/></svg>
-                      Open Gmail web
-                    </a>
-                  </div>
-                  <div class="tiny-note" id="delivery-note">The subject and message are already filled in. Review and press Send in your email service.</div>
-                </div>
-              </div>
+            <div class="input-cell">
+              <label for="verify-password">Access key</label>
+              <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••••" required />
             </div>
+            <button class="verify-btn" id="verify-btn" type="submit" aria-label="Verify access">→</button>
+          </div>
+          <div class="login-note">
+            <span>Your registered email is your username.</span>
+            <span class="mini-status" id="mini-status">awaiting credentials</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="console-wrap" id="console-wrap" aria-live="polite">
+        <div class="console-inner">
+          <div class="console">
+            <div class="console-top"><span>authorization trace</span><span class="console-live">live process</span></div>
+            <div class="console-log" id="console-log"></div>
+            <div class="console-progress"><i></i></div>
           </div>
         </div>
-      </section>
-    </div>
-  </main>
-  <footer class="footer"><span>MEHRSHAD ESKANDARPOUR / APPLY VAULT</span><span>PRIVATE NODE / 2026</span></footer>
-</div>
+      </div>
+
+      <div class="request-shell" id="request-shell">
+        <div class="request-inner">
+          <div class="request-panel">
+            <div class="request-heading">
+              <div>
+                <div class="denied-badge">Access not registered</div>
+                <h3>Request authorization.</h3>
+                <p>Submit your details below. The request is logged in the access registry and sent directly to the vault administrator for review.</p>
+              </div>
+            </div>
+
+            <form id="request-form" novalidate>
+              <input class="honeypot" id="request-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="form-grid">
+                <div class="field"><label for="first-name">First name <span>*</span></label><input id="first-name" name="firstName" maxlength="80" autocomplete="given-name" required /></div>
+                <div class="field"><label for="last-name">Last name <span>*</span></label><input id="last-name" name="lastName" maxlength="80" autocomplete="family-name" required /></div>
+                <div class="field"><label for="mobile">Mobile number <span>*</span></label><input id="mobile" name="mobile" type="tel" maxlength="30" autocomplete="tel" placeholder="+1 416 555 0123" required /></div>
+                <div class="field"><label for="request-email">Email address <span>*</span></label><input id="request-email" name="email" type="email" maxlength="180" autocomplete="email" readonly required /></div>
+                <div class="field"><label for="affiliation">University / affiliation <span>*</span></label><input id="affiliation" name="affiliation" maxlength="180" placeholder="University, lab, company..." required /></div>
+                <div class="field"><label for="entry-year">University entry year <span>*</span></label><input id="entry-year" name="entryYear" type="number" inputmode="numeric" min="1950" max="2100" placeholder="2024" required /></div>
+                <div class="field full"><label for="reason">Reason for access <span>*</span></label><textarea id="reason" name="reason" maxlength="1200" placeholder="Briefly explain why you are requesting access to the Apply Vault." required></textarea></div>
+              </div>
+              <button class="submit-request" id="request-btn" type="submit"><strong>Submit access request</strong><span>↗</span></button>
+              <div class="request-success" id="request-success" role="status">
+                <b>Request transmitted</b>
+                <p>Your request has been sent for review and recorded in the access registry. Reference: <code id="request-ref">—</code></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-overlay" id="result-overlay" aria-hidden="true">
+        <div class="result-scan"></div>
+        <div class="result-card">
+          <div class="result-ring"><div class="result-check"></div></div>
+          <div class="small">Authorization complete</div>
+          <h3>Access granted.</h3>
+          <p>Secure session established. Opening the vault…</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer"><span>MEHRSHAD ESKANDARPOUR / APPLY VAULT</span><span>PRIVATE NODE · 2026</span></footer>
+</main>
 
 <script src="access-config.js"></script>
 <script>
 (() => {
   'use strict';
+
   const cfg = window.MEHRSHAD_ACCESS || {};
   const DEST = cfg.privateJourneyUrl || 'apply-vault-private.html';
-  const OWNER = String(cfg.ownerEmail || 'mehrsh3d@gmail.com').trim();
   const API = String(cfg.apiUrl || '').trim();
   const remoteConfigured = /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API);
-
   const $ = id => document.getElementById(id);
-  const verifyForm=$('verify-form'), verifyEmail=$('verify-email'), verifyPassword=$('verify-password'), verifyBtn=$('verify-btn'), verifyStatus=$('verify-status'), progress=$('progress');
-  const requestBlock=$('request-block'), requestForm=$('request-form'), requestName=$('request-name'), requestEmail=$('request-email'), requestAff=$('request-affiliation'), requestReason=$('request-reason');
-  const emailActions=$('email-actions'), mailAppBtn=$('mail-app-btn'), gmailBtn=$('gmail-btn'), deliveryNote=$('delivery-note');
-  const stateTitle=$('state-title'), stateCopy=$('state-copy');
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim());
-  const sleep = ms => new Promise(r=>setTimeout(r,ms));
-  function setStatus(type,title,copy=''){
-    verifyStatus.className='status '+type;
-    verifyStatus.innerHTML = title ? `<b>${title}</b>${copy ? ' · '+copy : ''}` : '';
-  }
-  async function sha256(text){
-    if(!window.crypto || !window.crypto.subtle) return '';
-    const bytes = new TextEncoder().encode(text);
-    const digest = await crypto.subtle.digest('SHA-256',bytes);
-    return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  }
-  async function makeCredentialHash(email,password){
-    return sha256(String(email).trim().toLowerCase()+'\n'+String(password).trim());
-  }
-  function remoteAllowed(email,credential){
-    return new Promise(resolve => {
-      if(!remoteConfigured){ resolve(null); return; }
-      const cb='vault_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-      const script=document.createElement('script'); let finished=false;
-      const finish=value=>{ if(finished)return; finished=true; clearTimeout(timer); try{delete window[cb]}catch(_){window[cb]=undefined} script.remove(); resolve(value); };
-      const timer=setTimeout(()=>finish(null),7000);
-      window[cb]=data=>finish(!!(data && data.allowed===true));
-      script.onerror=()=>finish(null);
-      script.src=`${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
-      document.body.appendChild(script);
-    });
-  }
-  function storageSet(key,value){try{sessionStorage.setItem(key,value)}catch(_){}}
-  function storageRemove(key){try{sessionStorage.removeItem(key)}catch(_){}}
+  const verifyForm = $('verify-form');
+  const verifyEmail = $('verify-email');
+  const verifyPassword = $('verify-password');
+  const verifyBtn = $('verify-btn');
+  const miniStatus = $('mini-status');
+  const stateEyebrow = $('state-eyebrow');
+  const stateTitle = $('state-title');
+  const stateCopy = $('state-copy');
+  const consoleWrap = $('console-wrap');
+  const consoleLog = $('console-log');
+  const requestShell = $('request-shell');
+  const requestForm = $('request-form');
+  const requestBtn = $('request-btn');
+  const requestSuccess = $('request-success');
+  const requestRef = $('request-ref');
+  const requestEmail = $('request-email');
+  const resultOverlay = $('result-overlay');
+
+  function storageSet(key, value){ try{ sessionStorage.setItem(key, value); }catch(_){} }
+  function storageRemove(key){ try{ sessionStorage.removeItem(key); }catch(_){} }
   function clearSession(){
     storageRemove('applicationJourneyAuthorized');
     storageRemove('applicationJourneyEmail');
     storageRemove('applicationJourneyCredential');
   }
-  function grant(email,credential){
-    document.body.classList.remove('denied'); document.body.classList.add('granted');
-    requestBlock.classList.remove('open');
-    stateTitle.textContent='Access granted.'; stateCopy.textContent='Credentials verified. Opening the vault…';
-    setStatus('ok','ACCESS GRANTED','decrypting');
+
+  async function sha256(text){
+    if(!window.crypto || !window.crypto.subtle) return '';
+    const bytes = new TextEncoder().encode(text);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function makeCredentialHash(email, password){
+    return sha256(String(email).trim().toLowerCase() + '\n' + String(password).trim());
+  }
+
+  function remoteAllowed(email, credential){
+    return new Promise(resolve => {
+      if(!remoteConfigured){ resolve(null); return; }
+      const cb = 'vault_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+      const script = document.createElement('script');
+      let finished = false;
+      const finish = value => {
+        if(finished) return;
+        finished = true;
+        clearTimeout(timer);
+        try{ delete window[cb]; }catch(_){ window[cb] = undefined; }
+        script.remove();
+        resolve(value);
+      };
+      const timer = setTimeout(() => finish(null), 7000);
+      window[cb] = data => finish(!!(data && data.allowed === true));
+      script.onerror = () => finish(null);
+      script.src = `${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
+      document.body.appendChild(script);
+    });
+  }
+
+  function traceTime(){
+    const d = new Date();
+    return [d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2,'0')).join(':') + '.' + String(d.getMilliseconds()).padStart(3,'0');
+  }
+
+  function addLog(message, type='dim', prefix='>'){
+    const line = document.createElement('div');
+    line.className = 'log-line ' + type;
+    line.innerHTML = `<span class="time">${traceTime()}</span><span class="prefix">${prefix}</span><span class="msg"></span>`;
+    line.querySelector('.msg').textContent = message;
+    consoleLog.appendChild(line);
+    while(consoleLog.children.length > 12) consoleLog.removeChild(consoleLog.firstElementChild);
+    consoleLog.scrollTop = consoleLog.scrollHeight;
+  }
+
+  async function runTrace(email){
+    consoleLog.innerHTML = '';
+    consoleWrap.classList.add('open');
+    const id = Math.random().toString(16).slice(2,10).toUpperCase();
+    const domain = email.split('@')[1] || 'unknown';
+    const steps = [
+      [`vault@node01:~$ authorize --request ${id}`, 'dim', '$'],
+      ['Initializing secure browser client', 'dim', '·'],
+      [`Identity normalized / domain:${domain}`, 'dim', '·'],
+      ['Generating SHA-256 credential signature', 'dim', '·'],
+      ['Opening remote authorization registry', 'dim', '·'],
+      ['Querying latest identity policy', 'dim', '·'],
+      ['Comparing credential signature', 'dim', '·'],
+      ['Waiting for authorization response', 'dim', '·']
+    ];
+    for(const [msg,type,prefix] of steps){
+      addLog(msg,type,prefix);
+      await sleep(reduceMotion ? 0 : 78 + Math.random()*48);
+    }
+  }
+
+  function setIdleState(){
+    stateEyebrow.textContent = 'Authorization required';
+    stateTitle.textContent = 'Identify yourself.';
+    stateCopy.textContent = 'Enter the registered email and access key assigned to you.';
+    miniStatus.textContent = 'awaiting credentials';
+  }
+
+  function deny(email, offline=false){
+    clearSession();
+    document.body.classList.remove('granted');
+    stateEyebrow.textContent = offline ? 'Verification service unavailable' : 'Authorization rejected';
+    stateTitle.textContent = offline ? 'Access node unavailable.' : 'Identity not authorized.';
+    stateCopy.textContent = offline ? 'The verification service could not be reached. You may still submit an access request.' : 'This identity is not currently registered for vault access.';
+    miniStatus.textContent = offline ? 'node unavailable' : 'access denied';
+    addLog(offline ? 'AUTH NODE OFFLINE / request route enabled' : 'STATUS 403 / identity not authorized', 'bad', '!');
+    requestEmail.value = email;
+    requestShell.classList.add('open');
+    requestSuccess.classList.remove('show');
+    setTimeout(() => $('first-name').focus({preventScroll:true}), reduceMotion ? 0 : 620);
+  }
+
+  function grant(email, credential){
+    document.body.classList.add('granted');
+    requestShell.classList.remove('open');
+    addLog('STATUS 200 / authorization policy ALLOW', 'ok', '✓');
+    addLog('Session signature accepted / opening vault', 'ok', '✓');
+    miniStatus.textContent = 'access granted';
+    stateEyebrow.textContent = 'Authorization accepted';
+    stateTitle.textContent = 'Access granted.';
+    stateCopy.textContent = 'Credential verified. Establishing your private session.';
     storageSet('applicationJourneyAuthorized','1');
     storageSet('applicationJourneyEmail',email);
     storageSet('applicationJourneyCredential',credential);
-    verifyPassword.value='';
-    setTimeout(()=>location.href=DEST,650);
-  }
-  function deny(email, offline=false){
-    document.body.classList.remove('granted'); document.body.classList.add('denied');
-    clearSession();
-    stateTitle.textContent=offline ? 'Access node unavailable.' : 'Identity not authorized.';
-    stateCopy.textContent=offline ? 'The verification service is not connected. You can still request access below.' : 'You do not have access. Complete the request form below.';
-    setStatus('bad', offline ? 'AUTH NODE OFFLINE' : 'ACCESS DENIED', offline ? 'administrator setup required' : 'email or access key not authorized');
-    requestEmail.value=email;
-    requestBlock.classList.add('open');
-    emailActions.classList.remove('ready');
-    verifyPassword.value='';
-    setTimeout(()=>requestName.focus({preventScroll:true}),420);
+    verifyPassword.value = '';
+    setTimeout(() => resultOverlay.classList.add('show'), reduceMotion ? 0 : 260);
+    setTimeout(() => location.href = DEST, reduceMotion ? 220 : 1500);
   }
 
-  verifyForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const email=verifyEmail.value.trim().toLowerCase();
-    const password=verifyPassword.value;
-    requestBlock.classList.remove('open'); emailActions.classList.remove('ready'); document.body.classList.remove('denied','granted');
-    if(!validEmail(email)){ setStatus('bad','INVALID EMAIL','check the address'); verifyEmail.focus(); return; }
-    if(!password.trim()){ setStatus('bad','ACCESS KEY REQUIRED','enter the assigned key'); verifyPassword.focus(); return; }
-    verifyBtn.disabled=true; progress.classList.add('on');
-    stateTitle.textContent='Scanning credentials…'; stateCopy.textContent='Checking authorization signature.';
-    setStatus('wait','VERIFYING','secure lookup');
+  verifyForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const email = verifyEmail.value.trim().toLowerCase();
+    const password = verifyPassword.value;
+    requestShell.classList.remove('open');
+    requestSuccess.classList.remove('show');
+    resultOverlay.classList.remove('show');
+    document.body.classList.remove('granted');
+
+    if(!validEmail(email)){
+      stateEyebrow.textContent = 'Input rejected';
+      stateTitle.textContent = 'Check your username.';
+      stateCopy.textContent = 'Use the full email address registered for vault access.';
+      miniStatus.textContent = 'invalid username';
+      verifyEmail.focus();
+      return;
+    }
+    if(!password.trim()){
+      stateEyebrow.textContent = 'Input required';
+      stateTitle.textContent = 'Access key missing.';
+      stateCopy.textContent = 'Enter the access key assigned to this email.';
+      miniStatus.textContent = 'key required';
+      verifyPassword.focus();
+      return;
+    }
+
+    verifyBtn.disabled = true;
+    miniStatus.textContent = 'processing request';
+    stateEyebrow.textContent = 'Authorization in progress';
+    stateTitle.textContent = 'Processing credentials…';
+    stateCopy.textContent = 'Running the identity against the private authorization registry.';
+
     try{
-      const credential = await makeCredentialHash(email,password);
-      await sleep(420);
-      const remote = await remoteAllowed(email,credential);
-      await sleep(remoteConfigured ? 180 : 220);
-      if(remote === true){ grant(email,credential); return; }
-      deny(email, remote === null);
-    } catch(_){ deny(email,!remoteConfigured); }
-    finally{ verifyBtn.disabled=false; progress.classList.remove('on'); }
+      const trace = runTrace(email);
+      const credential = await makeCredentialHash(email, password);
+      const remotePromise = remoteAllowed(email, credential);
+      await trace;
+      const remote = await remotePromise;
+      await sleep(reduceMotion ? 0 : 160);
+      if(remote === true) grant(email, credential);
+      else deny(email, remote === null);
+    }catch(_){
+      deny(email, !remoteConfigured);
+    }finally{
+      verifyBtn.disabled = false;
+    }
   });
 
-  function buildEmail(){
-    const name=requestName.value.trim();
-    const email=requestEmail.value.trim().toLowerCase();
-    const affiliation=requestAff.value.trim();
-    const reason=requestReason.value.trim();
-    if(!name){requestName.focus(); return null;}
-    if(!validEmail(email)){requestEmail.focus(); return null;}
-    if(!reason){requestReason.focus(); return null;}
-    const subject=`Apply Vault — Access Request — ${name}`;
-    const body=[
-      'APPLY VAULT — ACCESS REQUEST', '',
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Affiliation / Organization: ${affiliation || 'Not provided'}`,
-      '', 'Reason for access:', reason,
-      '', 'Please create an access key for this email if approved.',
-      '', '—', 'Sent from mehrshadesk.ir/apply-vault.html'
-    ].join('\n');
-    return {name,email,affiliation,reason,subject,body};
+  function makeRequestId(){
+    return 'AV-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,8).toUpperCase();
   }
-  function prepareLinks(data){
-    mailAppBtn.href=`mailto:${OWNER}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
-    gmailBtn.href=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(OWNER)}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
-    emailActions.classList.add('ready');
-    deliveryNote.textContent = remoteConfigured
-      ? 'A notification copy is also sent to the vault owner. The buttons above open the same request as a pre-filled email.'
-      : 'The subject and message are already filled in. Review and press Send in your email service.';
+
+  function cleanValue(id){ return $(id).value.trim(); }
+
+  function validateRequest(){
+    const data = {
+      firstName: cleanValue('first-name'),
+      lastName: cleanValue('last-name'),
+      mobile: cleanValue('mobile'),
+      email: cleanValue('request-email').toLowerCase(),
+      affiliation: cleanValue('affiliation'),
+      entryYear: cleanValue('entry-year'),
+      reason: cleanValue('reason'),
+      website: cleanValue('request-website')
+    };
+    const order = [
+      ['first-name', data.firstName], ['last-name', data.lastName], ['mobile', data.mobile],
+      ['request-email', validEmail(data.email)], ['affiliation', data.affiliation],
+      ['entry-year', /^\d{4}$/.test(data.entryYear) && +data.entryYear >= 1950 && +data.entryYear <= 2100],
+      ['reason', data.reason]
+    ];
+    for(const [id, value] of order){ if(!value){ $(id).focus(); return null; } }
+    return data;
   }
-  async function sendServerCopy(data){
-    if(!remoteConfigured) return;
+
+  async function transmitRequest(data){
+    if(!remoteConfigured) throw new Error('Access endpoint is not configured.');
+    const requestId = makeRequestId();
+    const fd = new FormData();
+    fd.set('action','request');
+    fd.set('requestId',requestId);
+    fd.set('firstName',data.firstName);
+    fd.set('lastName',data.lastName);
+    fd.set('mobile',data.mobile);
+    fd.set('email',data.email);
+    fd.set('affiliation',data.affiliation);
+    fd.set('entryYear',data.entryYear);
+    fd.set('reason',data.reason);
+    fd.set('website',data.website);
+    await fetch(API,{method:'POST',mode:'no-cors',body:fd,keepalive:true});
+    return requestId;
+  }
+
+  requestForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const data = validateRequest();
+    if(!data) return;
+    requestBtn.disabled = true;
+    requestBtn.querySelector('strong').textContent = 'Transmitting request…';
+    requestSuccess.classList.remove('show');
     try{
-      const fd=new FormData();
-      fd.set('action','request'); fd.set('name',data.name); fd.set('email',data.email); fd.set('affiliation',data.affiliation); fd.set('reason',data.reason); fd.set('website','');
-      await fetch(API,{method:'POST',mode:'no-cors',body:fd,keepalive:true});
-    }catch(_){ /* Email buttons remain the reliable fallback. */ }
-  }
-  requestForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const data=buildEmail(); if(!data) return;
-    prepareLinks(data); sendServerCopy(data);
-    emailActions.scrollIntoView({behavior:'smooth',block:'nearest'});
+      const id = await transmitRequest(data);
+      requestRef.textContent = id;
+      requestSuccess.classList.add('show');
+      requestBtn.querySelector('strong').textContent = 'Request submitted';
+      requestBtn.querySelector('span:last-child').textContent = '✓';
+    }catch(_){
+      requestBtn.querySelector('strong').textContent = 'Transmission failed — retry';
+      requestBtn.disabled = false;
+    }
   });
 
-  // Hacker motion layer: sparse network, packet lanes, binary traces and signal waves.
-  const canvas=$('hack-canvas'), ctx=canvas.getContext('2d',{alpha:true});
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W=0,H=0,DPR=1,T=0,nodes=[],lanes=[],bits=[];
-  function resetScene(){
-    DPR=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
-    canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px'; ctx.setTransform(DPR,0,0,DPR,0,0);
-    const nodeCount=Math.max(16,Math.min(42,Math.floor(W*H/36000)));
-    nodes=Array.from({length:nodeCount},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.045,vy:(Math.random()-.5)*.045,r:.7+Math.random()*1.15,p:Math.random()*Math.PI*2}));
-    const laneCount=Math.max(5,Math.min(11,Math.floor(W/170)));
-    lanes=Array.from({length:laneCount},(_,i)=>({x:(i+.5)*W/laneCount+(Math.random()-.5)*40,s:.35+Math.random()*.45,o:.025+Math.random()*.04,phase:Math.random()*H}));
-    bits=Array.from({length:Math.max(28,Math.min(78,Math.floor(W*H/21000)))},()=>({x:Math.random()*W,y:Math.random()*H,v:.08+Math.random()*.18,a:.025+Math.random()*.06,c:Math.random()>.5?'1':'0',s:7+Math.random()*4}));
-  }
-  function drawWave(y,amp,phase,alpha){
-    ctx.beginPath();
-    for(let x=0;x<=W;x+=7){const yy=y+Math.sin(x*.012+phase)*amp+Math.sin(x*.027-phase*.7)*amp*.22; x===0?ctx.moveTo(x,yy):ctx.lineTo(x,yy)}
-    ctx.strokeStyle=`rgba(211,90,54,${alpha})`; ctx.lineWidth=.65; ctx.stroke();
-  }
-  function render(){
-    ctx.clearRect(0,0,W,H); T+=reduce?0:.007;
-    // packet lanes
-    for(const l of lanes){
-      ctx.strokeStyle=`rgba(210,214,205,${l.o})`; ctx.lineWidth=.5; ctx.setLineDash([2,9]); ctx.beginPath();ctx.moveTo(l.x,0);ctx.lineTo(l.x,H);ctx.stroke();ctx.setLineDash([]);
-      const py=((T*120*l.s+l.phase)% (H+80))-40; ctx.fillStyle='rgba(211,90,54,.42)';ctx.fillRect(l.x-1,py,2,11);
-    }
-    // connected nodes
-    for(let i=0;i<nodes.length;i++){
-      const a=nodes[i]; if(!reduce){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1}
-      for(let j=i+1;j<nodes.length;j++){const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<150){ctx.strokeStyle=`rgba(208,212,203,${(1-d/150)*.045})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}
-      const flash=Math.sin(a.p+T*2.2)>.992; ctx.fillStyle=flash?'rgba(211,90,54,.6)':'rgba(211,214,207,.16)';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();
-    }
-    // binary traces
-    ctx.font='9px IBM Plex Mono, monospace';
-    for(const b of bits){if(!reduce){b.y+=b.v;if(b.y>H+12){b.y=-12;b.x=Math.random()*W}}ctx.fillStyle=`rgba(215,219,210,${b.a})`;ctx.font=`${b.s}px IBM Plex Mono, monospace`;ctx.fillText(b.c,b.x,b.y)}
-    // signal traces at the edges of the central frame
-    drawWave(H*.205,5,T*3,.055); drawWave(H*.79,7,-T*2.4,.04);
-    requestAnimationFrame(render);
-  }
-  addEventListener('resize',resetScene,{passive:true}); resetScene(); render();
+  setIdleState();
 })();
 </script>
 </body>

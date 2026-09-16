@@ -1,105 +1,91 @@
-# Apply Vault — Admin Guide (V4)
+# Apply Vault — Admin Guide (V5)
 
-## Current status
+## What V5 does
 
-The Google Apps Script deployment is already connected to the website configuration. For normal access management, you only edit the `Vault Access` Google Sheet.
+The Apply Vault now uses the same visual language as the main site and adds a terminal-style authorization flow.
 
-## One-time setup (already completed)
+- Visitor enters **email (username)** + **access key**.
+- The browser hashes the credential before verification.
+- Google Apps Script checks the private `Vault Access` tab.
+- Approved users see the access-granted motion and enter `apply-vault-private.html`.
+- Unapproved users get the authorization-request form.
+- Request submission is automatic: it is saved to the `Access Requests` tab and an HTML email is sent to `mehrsh3d@gmail.com`.
 
-1. Open the Google Sheet you want to use for Apply Vault.
+## Important: one update is required after uploading V5
+
+The website already has your existing Apps Script `/exec` URL in `access-config.js`.
+Keep that URL. You only need to update the code behind the same Apps Script deployment.
+
+1. Open the Google Sheet currently connected to Apply Vault.
 2. Go to **Extensions → Apps Script**.
-3. Delete the old Apps Script code and paste the full content of `google-apps-script.gs`.
+3. Replace the existing script with the new `google-apps-script.gs` from this project.
 4. Save.
-5. From the function dropdown, choose **setupVault** and click **Run** once. Approve Google's permissions when prompted.
-6. Return to the Sheet. You should now have two tabs:
-   - `Vault Access`
-   - `Access Requests`
-7. In Apps Script choose **Deploy → New deployment → Web app**.
-8. Set **Execute as: Me** and **Who has access: Anyone**.
-9. Deploy and copy the URL ending in `/exec`.
-10. The deployed `/exec` URL is already configured in `access-config.js`.
-11. Upload/commit the V4 site files to GitHub.
+5. Run **setupVault** once from the function dropdown and approve permissions if Google asks.
+6. Go to **Deploy → Manage deployments**.
+7. Edit the existing Web App deployment.
+8. Under **Version**, choose **New version**.
+9. Deploy/update it.
 
-> When you later change only users/passwords/statuses in the Sheet, you do **not** redeploy the website and you do **not** redeploy Apps Script.
+Using the existing deployment keeps the `/exec` URL unchanged, so `access-config.js` does not need a new URL.
 
-## Give someone access
+## Google Sheet structure
 
-Open the `Vault Access` tab and add a row:
+### Vault Access
+
+This remains intentionally simple:
 
 | Email | Password | Status | Note |
 |---|---|---|---|
 | person@example.com | AV-Jordan-2026! | ALLOW | Applicant |
 
-Then send that person exactly the email + password you assigned.
+The visitor uses the **Email** as their username and the **Password** as their access key.
 
 Rules:
 - Email matching is case-insensitive.
-- Password matching is exact after trimming spaces at the beginning/end.
-- Use a unique password for Apply Vault; never reuse one of your real account passwords.
-- Avoid passwords made only of numbers. The script formats the Password column as text, but a mixed password is safer and clearer.
-- If an email appears more than once, the **lowest/newest row wins**. This lets you keep an audit trail instead of deleting old rows.
+- Password matching is exact after trimming beginning/end spaces.
+- Status must be `ALLOW`.
+- If an email appears multiple times, the newest/lower row wins.
+- To revoke access, change the newest row to `REVOKED`.
 
-## Revoke access
+### Access Requests
 
-Find the user's newest row in `Vault Access` and change:
+V5 uses these columns automatically:
 
-`ALLOW` → `REVOKED`
+| Timestamp | Request ID | First Name | Last Name | Mobile | Email | University / Affiliation | University Entry Year | Reason for Access | Status |
+|---|---|---|---|---|---|---|---|---|---|
 
-That user will fail the next verification. An already-open vault session is rechecked about once per minute and will be terminated when the new status is seen.
+If the old six-column request layout exists, `setupVault()` migrates it to the new structure and keeps the existing requests.
 
-You can also append a newer row for the same email with Status `REVOKED`; newest row wins.
+## Approve a new request
 
-## Change someone's password
+1. Open the `Access Requests` tab.
+2. Review the applicant.
+3. Open `Vault Access`.
+4. Add their email.
+5. Assign a unique access key/password.
+6. Set Status to `ALLOW`.
+7. Send the applicant their email + access key.
 
-Edit the Password cell on that person's newest `ALLOW` row. The old password stops working. Open sessions are revalidated, so they will be terminated after the next check and must sign in with the new password.
+They can then sign in immediately. You do not need to redeploy anything when you add, remove, revoke, or change a user's password.
 
-## Approve a request
+## Email notification
 
-Requests arrive in two places:
-- Your email (`mehrsh3d@gmail.com`)
-- The `Access Requests` tab, if the Apps Script URL is connected
+Every successful access request is also emailed to:
 
-To approve someone, copy their email into `Vault Access`, assign any password you want, and set Status to `ALLOW`. Then send them the password yourself.
+`mehrsh3d@gmail.com`
 
-## Edit the content people see after login
+The email includes:
+- request reference ID
+- first and last name
+- mobile number
+- email
+- university / affiliation
+- university entry year
+- reason for access
+- the exact admin action required to approve them
 
-The private content is in:
+## Security note
 
-`apply-vault-private.html`
+Credentials are checked against a private Google Sheet and the raw password is not sent in the verification URL; the browser sends a SHA-256 credential signature.
 
-Open that file in VS Code or GitHub's editor. Search for:
-
-`EDITABLE APPLY VAULT CONTENT START`
-
-Everything until:
-
-`EDITABLE APPLY VAULT CONTENT END`
-
-is the content shown after access is granted.
-
-The page is divided into `<section>` blocks such as:
-- `id="experience"` — your personal application experience
-- `id="universities"` — university search
-- `id="professors"` — professor/research fit
-- `id="cv"` — academic CV
-- `id="sop"` — SOP
-- `id="emailing"` — professor emails
-- `id="funding"` — funding
-- `id="interview"` — interviews
-- `id="resources"` — templates/resources
-
-For a simple text change, edit only the text between HTML tags and keep the surrounding tags/IDs intact.
-
-Example:
-
-```html
-<p class="body-copy">Your new paragraph goes here.</p>
-```
-
-After editing `apply-vault-private.html`, commit/upload it to GitHub. GitHub Pages will publish the new version automatically after the deployment finishes.
-
-## Important security note
-
-This is a strong **access gate for a public portfolio site**, with credentials checked against a private Google Sheet and no raw password stored in the browser. However, GitHub Pages is static hosting. If `apply-vault-private.html` lives in a public GitHub repository, its HTML source is still technically public to a determined person who knows how to inspect the repository or fetch the file directly.
-
-Do not put highly sensitive documents, private IDs, financial information, unreleased confidential research, or secrets in this page. For true private-content protection, move the protected content behind server-side authentication or a private storage/backend service.
+However, the site is hosted on GitHub Pages, which is static hosting. A page stored in a public repository is not suitable for highly sensitive/private documents even if navigation to it is gated. Do not put IDs, financial data, confidential research, secrets, or other high-risk material in `apply-vault-private.html` unless the protected content is later moved behind real server-side authentication.
