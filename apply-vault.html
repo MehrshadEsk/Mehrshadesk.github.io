@@ -56,8 +56,28 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
 
 .footer{position:relative;z-index:2;width:min(1200px,calc(100% - 96px));margin:0 auto;padding:0 0 28px;display:flex;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a2a59e}
 
-@media(max-width:950px){.workspace{grid-template-columns:1fr;gap:38px;padding-top:48px}.context{padding-top:0}.context h1{max-width:720px}.meta-grid{max-width:100%}}
-@media(max-width:700px){.site-header{height:76px}.page{min-height:calc(100vh - 76px)}.nav,.workspace,.footer{width:min(100% - 32px,1200px)}.brand{gap:12px}.brand-mark{font-size:31px}.brand-name{font-size:11px}.node-status{display:none}.back-link{font-size:11px}.workspace{padding:38px 0 42px}.context h1{font-size:39px}.context p{font-size:11px}.auth-panel,.request-panel{padding:24px 18px}.login-grid{grid-template-columns:1fr 50px}.input-cell:nth-child(2){grid-row:2;grid-column:1;border-left:0;border-top:1px solid var(--line)}.verify-btn{grid-row:1/3;grid-column:2;height:116px;width:50px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-head{gap:14px}.security-mark{width:36px;height:36px}.window-title{display:none}.meta-grid{grid-template-columns:1fr}.meta-item:nth-child(even){padding-left:0;border-left:0}.meta-item:nth-child(odd){padding-right:0}.footer{font-size:7px}.footer span:last-child{display:none}}
+/* V6 — quieter page, stronger terminal focus */
+.page:before{opacity:.62;mask-image:linear-gradient(to bottom,rgba(0,0,0,.58),transparent 76%)}
+.workspace{width:min(860px,calc(100% - 96px));padding:58px 0 72px;display:block}
+.vault-window{animation:vaultEnter .62s cubic-bezier(.16,1,.3,1) both}
+@keyframes vaultEnter{from{opacity:0;transform:translateY(16px) scale(.992);box-shadow:0 8px 30px rgba(29,31,27,.05)}to{opacity:1;transform:none}}
+.auth-panel{padding:32px 34px 28px}
+.console{background:linear-gradient(180deg,#0d0f0c,#11130f)}
+.console-top{height:33px;background:rgba(255,255,255,.012)}
+.console-log{height:236px;padding:10px 16px 13px;font-size:8px;line-height:1.42;scroll-behavior:auto}
+.log-line{gap:9px;white-space:nowrap;animation:logIn .07s linear forwards}
+.log-line .time{min-width:62px;color:#474c44}
+.log-line .prefix{min-width:10px;color:#a15c43}
+.log-line .msg{overflow:hidden;text-overflow:clip}
+.log-line.code .msg{color:#a9b2a4}
+.log-line.hot .msg{color:#d8ded3}
+.console:after{content:'';position:absolute;left:0;right:0;bottom:2px;height:22px;pointer-events:none;background:linear-gradient(to top,rgba(13,15,12,.96),transparent)}
+.console-progress{height:1px}.console-wrap.open .console-progress i{animation:scan .48s linear infinite}
+.request-panel{padding:30px 34px 34px}.request-heading{margin-bottom:20px}.request-heading p{max-width:580px}
+.footer{width:min(860px,calc(100% - 96px));padding-bottom:24px}
+
+@media(max-width:950px){.workspace{padding-top:46px}}
+@media(max-width:700px){.site-header{height:76px}.page{min-height:calc(100vh - 76px)}.nav,.workspace,.footer{width:min(100% - 32px,860px)}.brand{gap:12px}.brand-mark{font-size:31px}.brand-name{font-size:11px}.node-status{display:none}.back-link{font-size:11px}.workspace{padding:38px 0 42px}.auth-panel,.request-panel{padding:24px 18px}.login-grid{grid-template-columns:1fr 50px}.input-cell:nth-child(2){grid-row:2;grid-column:1;border-left:0;border-top:1px solid var(--line)}.verify-btn{grid-row:1/3;grid-column:2;height:116px;width:50px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-head{gap:14px}.security-mark{width:36px;height:36px}.window-title{display:none}.footer{font-size:7px}.footer span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -69,31 +89,13 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
       <div class="brand-name">mehrshad <span>/eskandarpour</span></div>
     </a>
     <div class="nav-right">
-      <div class="node-status">restricted node</div>
       <a class="back-link" href="index.html#home">Back to portfolio ↗</a>
     </div>
   </div>
 </header>
 
 <main class="page">
-  <div class="binary-rail" aria-hidden="true">
-    <span>01001101 01000101 01001000 01010010 01010011 01001000 01000001 01000100 / ACCESS NODE / 6G / RESEARCH / AUTH</span>
-    <span>10110010 10111010 10110111 10101100 10111000 / VERIFY / HASH / POLICY / ALLOW / SESSION</span>
-  </div>
-
   <div class="workspace">
-    <section class="context" aria-labelledby="vault-title">
-      <div class="kicker">// Apply Vault · Restricted access</div>
-      <h1 id="vault-title">Research application material, behind one gate.</h1>
-      <p>This area contains private application material and is available only to approved visitors. Use the credentials assigned to your email, or request access if your identity is not yet registered.</p>
-      <div class="meta-grid" aria-label="Vault metadata">
-        <div class="meta-item"><b>Identity</b>Email-based username</div>
-        <div class="meta-item"><b>Policy</b>Manual approval</div>
-        <div class="meta-item"><b>Registry</b>Private access sheet</div>
-        <div class="meta-item"><b>Session</b>Revalidated on entry</div>
-      </div>
-    </section>
-
     <section class="vault-window" id="vault-window" aria-label="Apply Vault access terminal">
       <div class="window-bar">
         <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -130,7 +132,7 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
         </form>
       </div>
 
-      <div class="console-wrap" id="console-wrap" aria-live="polite">
+      <div class="console-wrap" id="console-wrap" aria-live="off">
         <div class="console-inner">
           <div class="console">
             <div class="console-top"><span>authorization trace</span><span class="console-live">live process</span></div>
@@ -271,29 +273,69 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
     line.innerHTML = `<span class="time">${traceTime()}</span><span class="prefix">${prefix}</span><span class="msg"></span>`;
     line.querySelector('.msg').textContent = message;
     consoleLog.appendChild(line);
-    while(consoleLog.children.length > 12) consoleLog.removeChild(consoleLog.firstElementChild);
+    while(consoleLog.children.length > 34) consoleLog.removeChild(consoleLog.firstElementChild);
     consoleLog.scrollTop = consoleLog.scrollHeight;
   }
 
-  async function runTrace(email){
+  function randomHex(length=12){
+    const chars = '0123456789abcdef';
+    let out = '';
+    for(let i=0;i<length;i++) out += chars[Math.floor(Math.random()*chars.length)];
+    return out;
+  }
+
+  function randomInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+  function buildTraceLine(domain, requestId, n){
+    const shard = ['AUTH-A1','AUTH-B4','POLICY-02','REGISTRY-7','VAULT-RX'][n % 5];
+    const lines = [
+      `0x${randomHex(8)}  mov  r${n%8}, 0x${randomHex(12)}   ; credential buffer`,
+      `sha256.block[${String(n%64).padStart(2,'0')}] = ${randomHex(32)}`,
+      `registry.scan  shard=${shard}  cursor=0x${randomHex(10)}  rows=${randomInt(32,512)}`,
+      `acl.lookup("${domain}") -> policy/${randomHex(6)} :: pending`,
+      `tls.session  rx=${randomInt(120,940)}kb  tx=${randomInt(32,360)}kb  nonce=${randomHex(14)}`,
+      `policy.graph.walk  node=${randomHex(8)}  depth=${randomInt(2,9)}  scope=vault.read`,
+      `mem[0x${randomHex(8)}] <- 0x${randomHex(16)}  verify.flag=${n%3}`,
+      `auth.kernel::compare(sig:${randomHex(18)}, ref:${randomHex(18)})`,
+      `route /identity/${requestId.toLowerCase()}/${randomHex(6)} -> ${shard}`,
+      `entropy.pool += ${randomHex(24)}  quality=${randomInt(91,99)}.${randomInt(10,99)}%`,
+      `packet ${String(n).padStart(4,'0')}  [${randomHex(4)}:${randomHex(4)}]  ${randomHex(28)}`,
+      `policy.cache  key=usr_${randomHex(10)}  ttl=${randomInt(18,90)}ms  hit=${n%4!==0}`
+    ];
+    return lines[n % lines.length];
+  }
+
+  function startTrace(email){
     consoleLog.innerHTML = '';
     consoleWrap.classList.add('open');
-    const id = Math.random().toString(16).slice(2,10).toUpperCase();
+    const requestId = Math.random().toString(16).slice(2,10).toUpperCase();
     const domain = email.split('@')[1] || 'unknown';
-    const steps = [
-      [`vault@node01:~$ authorize --request ${id}`, 'dim', '$'],
-      ['Initializing secure browser client', 'dim', '·'],
-      [`Identity normalized / domain:${domain}`, 'dim', '·'],
-      ['Generating SHA-256 credential signature', 'dim', '·'],
-      ['Opening remote authorization registry', 'dim', '·'],
-      ['Querying latest identity policy', 'dim', '·'],
-      ['Comparing credential signature', 'dim', '·'],
-      ['Waiting for authorization response', 'dim', '·']
-    ];
-    for(const [msg,type,prefix] of steps){
-      addLog(msg,type,prefix);
-      await sleep(reduceMotion ? 0 : 78 + Math.random()*48);
+    let stopped = false;
+    let n = 0;
+    let timer = 0;
+
+    addLog(`vault@node01:~$ authorize --request ${requestId}`, 'hot', '$');
+    addLog(`handshake.init domain=${domain} protocol=AV/2.6`, 'code', '>');
+
+    const pump = () => {
+      if(stopped) return;
+      const burst = n % 7 === 0 ? 2 : 1;
+      for(let i=0;i<burst;i++){
+        addLog(buildTraceLine(domain, requestId, n++), n%9===0 ? 'hot' : 'code', n%5===0 ? '›' : '·');
+      }
+      timer = window.setTimeout(pump, 18 + Math.random()*24);
+    };
+
+    if(reduceMotion){
+      for(let i=0;i<7;i++) addLog(buildTraceLine(domain, requestId, n++), 'code', '·');
+    }else{
+      pump();
     }
+
+    return {
+      stop(){ stopped = true; clearTimeout(timer); },
+      requestId
+    };
   }
 
   function setIdleState(){
@@ -366,18 +408,25 @@ body.granted .vault-window{box-shadow:0 34px 110px rgba(70,117,82,.16);transform
     stateTitle.textContent = 'Processing credentials…';
     stateCopy.textContent = 'Running the identity against the private authorization registry.';
 
+    let trace = null;
     try{
-      const trace = runTrace(email);
+      const started = performance.now();
+      trace = startTrace(email);
       const credential = await makeCredentialHash(email, password);
-      const remotePromise = remoteAllowed(email, credential);
-      await trace;
-      const remote = await remotePromise;
-      await sleep(reduceMotion ? 0 : 160);
+      const remote = await remoteAllowed(email, credential);
+      const elapsed = performance.now() - started;
+      const minimumVisualTime = reduceMotion ? 0 : 1450;
+      if(elapsed < minimumVisualTime) await sleep(minimumVisualTime - elapsed);
+      trace.stop();
+      addLog('authorization.response received / resolving policy', 'hot', '>');
+      await sleep(reduceMotion ? 0 : 120);
       if(remote === true) grant(email, credential);
       else deny(email, remote === null);
     }catch(_){
+      if(trace) trace.stop();
       deny(email, !remoteConfigured);
     }finally{
+      if(trace) trace.stop();
       verifyBtn.disabled = false;
     }
   });
