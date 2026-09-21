@@ -5,22 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#faf8ff">
+  <meta name="theme-color" content="#f7f7f2">
   <title>m. | کلاس‌های برنامه‌نویسی و هوش مصنوعی</title>
-  <meta name="description" content="دوره‌های برنامه‌نویسی، بازی‌سازی و هوش مصنوعی برای دانش‌آموزان با مسیرهای آموزشی پروژه‌محور.">
-  <link rel="stylesheet" href="learn.css?v=3">
+  <meta name="description" content="دوره‌های آنلاین برنامه‌نویسی، بازی‌سازی و هوش مصنوعی با مهرشاد اسکندرپور؛ از شروع کدنویسی تا پروژه‌های پیشرفته.">
+  <link rel="stylesheet" href="learn.css?v=2">
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"></div>
-<a class="skip-link" href="#courses-flow">رفتن به دوره‌ها</a>
+<a class="skip-link" href="#courses">رفتن به دوره‌ها</a>
 <header class="site-header">
   <nav class="container nav" aria-label="ناوبری اصلی">
     <a class="logo" href="#top" aria-label="m. آموزش">m<span>.</span></a>
     <div class="nav-links">
-      <a href="#courses-flow">دوره‌ها</a>
-      <a href="#path">مسیر یادگیری</a>
-      <a href="#payment">شهریه</a>
-      <a href="#teacher">مدرس</a>
+      <a href="#courses">دوره‌ها</a><a href="#path">از کجا شروع کنم؟</a><a href="#payment">شهریه</a><a href="#parents">اطلاعات کلاس</a>
     </div>
     <a class="mini-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">ثبت‌نام <span>↖</span></a>
   </nav>
@@ -28,251 +25,136 @@
 <main id="top">
   <section class="hero container">
     <div class="hero-copy" data-reveal>
-      <div class="hero-badge"><span class="spark">✦</span> کلاس‌های آنلاین برنامه‌نویسی برای دانش‌آموزها</div>
-      <h1>هر دوره، <em>دنیای خودش</em> را دارد.</h1>
-      <p>اسم هر دوره، جزئیات مهمش و زیرش یک موشن اختصاصی می‌بینی تا قبل از ثبت‌نام، حس همان مسیر آموزشی را بگیری. این صفحه برای دانش‌آموزهای ۱۰ تا ۱۲ ساله طراحی شده؛ ساده، روشن و درعین‌حال حرفه‌ای.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#courses-flow">شروع دیدن دوره‌ها <span>↓</span></a>
-        <a class="btn btn-secondary" href="#payment">محاسبه شهریه</a>
-      </div>
-      <div class="trust-row"><span><b>۶</b> مسیر آموزشی</span><span><b>زنده</b> + ویدئوی ضبط‌شده</span><span><b>پروژه‌محور</b> و قابل‌فهم</span></div>
+      <div class="hero-badge"><span class="spark">✦</span> یاد بگیر · بساز · تجربه کن</div>
+      <h1>از اولین خط کد،<br><em>چیزی واقعی بساز.</em></h1>
+      <p>از اولین خط کد تا ساخت بازی و سیستم‌های هوشمند؛ شش مسیر یادگیری با کلاس‌های آنلاین، تمرین عملی و ویدئوی ضبط‌شدهٔ جلسات.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#courses">دوره‌هامو ببین <span>↓</span></a><a class="btn btn-secondary" href="#path">از کجا شروع کنم؟</a></div>
+      <div class="trust-row"><span><b>۶</b> مسیر یادگیری</span><span><b>۱:۱</b> امکان کلاس خصوصی</span><span><b>●</b> آنلاین و زنده</span></div>
     </div>
-    <div class="hero-stage" aria-hidden="true" data-reveal>
-      <div class="hero-orb orb-a"></div>
-      <div class="hero-orb orb-b"></div>
-      <div class="hero-monitor">
-        <div class="monitor-top"><i></i><i></i><i></i><span>learning-lab</span></div>
-        <div class="monitor-grid"></div>
-        <div class="monitor-card card-python">Python</div>
-        <div class="monitor-card card-cpp">C++</div>
-        <div class="monitor-card card-game">Game</div>
-        <div class="monitor-card card-ai">AI</div>
-        <div class="monitor-card card-ml">ML</div>
-        <div class="monitor-card card-algo">Algo</div>
-        <div class="hero-beam"></div>
-      </div>
-      <div class="hero-mini hero-mini-code">
-        <strong>کد</strong>
-        <span>if idea:</span>
-        <span>build()</span>
-      </div>
-      <div class="hero-mini hero-mini-stars">
-        <span>★</span><span>✦</span><span>✶</span>
+    <div class="hero-playground" aria-hidden="true" data-reveal>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <div class="float-tag tag-python">Python</div><div class="float-tag tag-ai">AI ✦</div><div class="float-tag tag-cpp">C++</div>
+      <div class="hero-window">
+        <div class="window-bar"><div><i></i><i></i><i></i></div><span>my_first_project.py</span></div>
+        <div class="hero-code" dir="ltr">
+          <span><b>01</b><code><em>idea</em> = "my game"</code></span>
+          <span><b>02</b><code><i>learn</i>(idea)</code></span>
+          <span><b>03</b><code><i>build</i>(idea)</code></span>
+          <span class="run-line"><b>04</b><code>▶ <strong>run()</strong></code></span>
+        </div>
+        <div class="mini-world"><div class="mini-character"><i></i><i></i></div><div class="mini-star">★</div><div class="mini-platform"></div></div>
+        <div class="success-chip">✓ پروژه آماده‌ست!</div>
       </div>
     </div>
   </section>
 
   <section class="intro-strip" aria-label="ویژگی‌های کلاس">
-    <div class="container strip-grid"><span>⌁ مناسب شروع از صفر</span><span>◉ هر دوره موشن اختصاصی</span><span>↻ کلاس آنلاین و ضبط‌شده</span><span>☻ پروژه واقعی در پایان</span></div>
+    <div class="container strip-grid"><span>⌁ آموزش متناسب با سطح تو</span><span>◉ پروژه در هر مسیر</span><span>↻ ویدئوی ضبط‌شده برای مرور</span><span>☻ سؤال پرسیدن کاملاً آزاده</span></div>
   </section>
 
-  <section class="flow-head container" id="courses-flow" data-reveal>
-    <span class="overline">COURSE EXPERIENCE</span>
-    <h2>اول دوره را ببین؛ بعد برایش ثبت‌نام کن.</h2>
-    <p>این بار دوره‌ها به‌صورت پشت‌سرهم چیده شده‌اند: اول اسم و جزئیات، بعد موشن و انیمیشن حرفه‌ای همان دوره، و بعد می‌روی سراغ دورهٔ بعدی.</p>
-  </section>
-
-  <section class="course-showcase theme-1" id="course-01">
-    <div class="container showcase-grid">
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">01</span><div><span class="tiny-label" dir="ltr">PYTHON / FOUNDATIONS</span><h2>پایتون مقدماتی</h2></div></div>
-        <p class="lead">یک شروع آرام و محکم برای دانش‌آموزی که می‌خواهد از اولین خط کد، برنامه‌نویسی را درست و پروژه‌محور یاد بگیرد.</p>
-        <div class="detail-pills"><span>بدون پیش‌نیاز</span><span>۲۴ جلسه</span><span>هر جلسه ۱٫۵ ساعت</span><span>۲ جلسه در هفته</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>متغیرها، شرط، حلقه، توابع، فایل و خطایابی.</p></article>
-          <article><strong>حس این دوره</strong><p>شفاف، قابل‌فهم و مناسب ساخت اولین پروژه واقعی.</p></article>
-          <article><strong>پروژه پایانی</strong><p>ساخت یک برنامهٔ مدیریت کارها با ذخیره‌سازی اطلاعات.</p></article>
-        </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۲۴٫۵ میلیون تومان</strong></div><div class="deal"><del>۳۵ میلیون</del><span>۳۰٪ تخفیف</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="01" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="0">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card python-motion" aria-hidden="true">
-          <div class="motion-top"><i></i><i></i><i></i><span>hello_python.py</span></div>
-          <div class="python-screen">
-            <div class="line typing line-1"><span class="num">01</span><code><em>name</em> = <span class="string">"دانش‌آموز"</span></code></div>
-            <div class="line typing line-2"><span class="num">02</span><code><span class="kw">for</span> step <span class="kw">in</span> <span class="func">range</span>(3):</code></div>
-            <div class="line typing line-3"><span class="num">03</span><code>&nbsp;&nbsp;&nbsp;&nbsp;<span class="func">print</span>(<span class="string">"I can code!"</span>)</code></div>
-            <div class="line output-line"><span class="num">▶</span><code class="output-text">I can code!</code></div>
-          </div>
-          <div class="python-bubbles"><span>{ }</span><span>()</span><span>[ ]</span><span>#</span></div>
-          <div class="python-output">
-            <div class="out-card out-a"><small>موضوع ۱</small><strong>منطق برنامه‌نویسی</strong></div>
-            <div class="out-card out-b"><small>موضوع ۲</small><strong>ساختار داده</strong></div>
-            <div class="out-card out-c"><small>پروژه</small><strong>To‑Do App</strong></div>
+  <section class="section container" id="courses">
+    <div class="section-heading" data-reveal><div><span class="overline">COURSES / 01—06</span><h2>کدوم دنیا رو می‌خوای بسازی؟</h2></div><p>برای دیدن جزئیات لازم نیست همه‌چیز را یک‌جا بخوانی؛ روی هر دوره بزن و مسیرش را ببین.</p></div>
+    <div class="course-grid">
+      <article class="course-card theme-1" id="course-01" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="کد پایتون در حال ساخته شدن"><rect x="30" y="22" width="180" height="102" rx="18" class="v-panel"/><circle cx="49" cy="42" r="4" class="v-dot"/><circle cx="62" cy="42" r="4" class="v-dot"/><path d="M55 63h67M55 79h105M55 95h78" class="v-line"/><rect x="134" y="58" width="24" height="10" rx="5" class="v-chip code-chip"/><path d="M166 103h17v-17" class="v-cursor"/></svg><span class="level-pill">شروع عالی</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">01</span><span dir="ltr">Python</span></div>
+          <h3>پایتون مقدماتی</h3>
+          <p class="course-desc">اولین قدم، یک پایهٔ محکم.</p>
+          <div class="quick-facts"><span>✦ بدون پیش‌نیاز</span><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span></div>
+          <div class="price-row"><div><strong>۲۴٫۵</strong><span>میلیون تومان</span></div><div class="deal"><del>۳۵</del><span>۳۰٪ تخفیف</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="01" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="0">محاسبه شهریه <span>↙</span></button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="course-showcase theme-2" id="course-02">
-    <div class="container showcase-grid reverse">
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card cpp-motion" aria-hidden="true">
-          <div class="pipeline">
-            <div class="block src"><small>source</small><strong>main.cpp</strong></div>
-            <div class="pipe"><span></span><span></span><span></span></div>
-            <div class="gearbox"><div class="gear gear-big"></div><div class="gear gear-small"></div><label>compile</label></div>
-            <div class="pipe pipe-second"><span></span><span></span><span></span></div>
-            <div class="block exe"><small>output</small><strong>app.exe</strong></div>
-          </div>
-          <div class="memory-rack">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <div class="cpp-tags"><b>class</b><b>vector</b><b>loop</b><b>logic</b></div>
-        </div>
-      </div>
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">02</span><div><span class="tiny-label" dir="ltr">C++ / FOUNDATIONS</span><h2>++C مقدماتی</h2></div></div>
-        <p class="lead">برای دانش‌آموزی که دوست دارد منطق برنامه‌نویسی را دقیق‌تر، ساختاریافته‌تر و نزدیک‌تر به طرز کار ماشین یاد بگیرد.</p>
-        <div class="detail-pills"><span>بدون پیش‌نیاز</span><span>۲۴ جلسه</span><span>هر جلسه ۱٫۵ ساعت</span><span>۲ جلسه در هفته</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>ورودی/خروجی، شرط، حلقه، توابع، آرایه، vector و مبانی شیءگرایی.</p></article>
-          <article><strong>حس این دوره</strong><p>تحلیلی، منظم و مناسب دانش‌آموزی که مسئله‌حل‌کردن را دوست دارد.</p></article>
-          <article><strong>پروژه پایانی</strong><p>ساخت برنامهٔ کنسولی مدیریت نمرات.</p></article>
-        </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۲۴٫۵ میلیون تومان</strong></div><div class="deal"><del>۳۵ میلیون</del><span>۳۰٪ تخفیف</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="02" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="1">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="course-showcase theme-3" id="course-03">
-    <div class="container showcase-grid">
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">03</span><div><span class="tiny-label" dir="ltr">PYTHON / PROBLEM SOLVING</span><h2>پایتون پیشرفته</h2></div></div>
-        <p class="lead">وقتی مبانی را بلدی، وقتش می‌رسد روی الگوریتم، تحلیل مسئله و ساخت راه‌حل‌های تمیز و سریع کار کنی.</p>
-        <div class="detail-pills"><span>بعد از پایتون مقدماتی</span><span>۲۴ جلسه</span><span>هر جلسه ۱٫۵ ساعت</span><span>حل مسئله و الگوریتم</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>الگوریتم، ساختار داده، بازگشت، گراف و الگوهای رایج حل مسئله.</p></article>
-          <article><strong>حس این دوره</strong><p>مثل حل معما با کد؛ هر مسئله را مرحله‌به‌مرحله می‌شکنی.</p></article>
-          <article><strong>پروژه پایانی</strong><p>حل مجموعه‌مسئله‌ها و پیاده‌سازی یک مسیریاب.</p></article>
-        </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۲۸ میلیون تومان</strong></div><div class="deal"><del>۴۰ میلیون</del><span>۳۰٪ تخفیف</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="03" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="2">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card algo-motion" aria-hidden="true">
-          <div class="algo-graph">
-            <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span><span class="node n4"></span><span class="node n5"></span><span class="node n6 goal"></span>
-            <i class="edge e1"></i><i class="edge e2"></i><i class="edge e3"></i><i class="edge e4"></i><i class="edge e5"></i><i class="edge e6"></i>
-            <div class="runner"></div>
-          </div>
-          <div class="algo-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="algo-labels"><b>BFS</b><b>DFS</b><b>DP</b><b>Greedy</b></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="course-showcase theme-4" id="course-04">
-    <div class="container showcase-grid reverse">
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card game-motion" aria-hidden="true">
-          <div class="game-hud"><span>score 120</span><span>lives ●●●</span></div>
-          <div class="game-world">
-            <div class="layer mountains"></div>
-            <div class="layer clouds"></div>
-            <div class="platform p1"></div><div class="platform p2"></div><div class="platform p3"></div>
-            <div class="coin coin-1"></div><div class="coin coin-2"></div><div class="coin coin-3"></div>
-            <div class="enemy"></div>
-            <div class="player"><i class="eye left"></i><i class="eye right"></i></div>
+      </article>
+      <article class="course-card theme-2" id="course-02" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="چرخ‌دنده و منطق سی پلاس پلاس"><rect x="27" y="21" width="186" height="103" rx="20" class="v-panel"/><g class="gear"><circle cx="91" cy="74" r="27" class="gear-ring"/><circle cx="91" cy="74" r="10" class="gear-core"/><path d="M91 38v10M91 100v10M55 74h10M117 74h10M66 49l7 7M109 92l7 7M116 49l-7 7M73 92l-7 7" class="gear-teeth"/></g><text x="137" y="84" class="cpp-text">C++</text></svg><span class="level-pill">شروع عالی</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">02</span><span dir="ltr">C++</span></div>
+          <h3>++C مقدماتی</h3>
+          <p class="course-desc">منطق برنامه‌نویسی، نزدیک‌تر به ماشین.</p>
+          <div class="quick-facts"><span>✦ بدون پیش‌نیاز</span><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span></div>
+          <div class="price-row"><div><strong>۲۴٫۵</strong><span>میلیون تومان</span></div><div class="deal"><del>۳۵</del><span>۳۰٪ تخفیف</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="02" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="1">محاسبه شهریه <span>↙</span></button>
           </div>
         </div>
-      </div>
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">04</span><div><span class="tiny-label" dir="ltr">C++ / GAME DEVELOPMENT</span><h2>++C پیشرفته</h2></div></div>
-        <p class="lead">اگر دوست داری با کد چیزی قابل‌دیدن بسازی، این مسیر تو را به سمت ساخت یک بازی دوبعدی واقعی می‌برد.</p>
-        <div class="detail-pills"><span>بعد از C++ مقدماتی</span><span>۲۴ جلسه</span><span>هر جلسه ۱٫۵ ساعت</span><span>بازی‌سازی ۲بعدی</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>معماری بازی، حرکت، برخورد، امتیاز، منو و تجربهٔ کاربر.</p></article>
-          <article><strong>حس این دوره</strong><p>پرانرژی، خلاق و مناسب دانش‌آموزی که می‌خواهد خروجی‌اش را ببیند.</p></article>
-          <article><strong>پروژه پایانی</strong><p>ساخت یک بازی دوبعدی با امتیاز، برخورد و مرحله.</p></article>
-        </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۲۸ میلیون تومان</strong></div><div class="deal"><del>۴۰ میلیون</del><span>۳۰٪ تخفیف</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="04" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="3">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="course-showcase theme-5" id="course-05">
-    <div class="container showcase-grid">
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">05</span><div><span class="tiny-label" dir="ltr">MACHINE LEARNING / RL</span><h2>ماشین لرنینگ</h2></div></div>
-        <p class="lead">در این مسیر وارد دنیای عامل، محیط و پاداش می‌شوی و می‌بینی ماشین چطور با تجربه، بهتر تصمیم می‌گیرد.</p>
-        <div class="detail-pills"><span>پایتون + ریاضی پایه</span><span>۱۵ جلسه</span><span>هر جلسه ۲ ساعت</span><span>یادگیری تقویتی</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>مبانی ML، عامل، محیط، پاداش، Q-learning و RL عمیق.</p></article>
-          <article><strong>حس این دوره</strong><p>هوشمند، تحلیلی و شبیه آموزش دادن به یک عامل برای تصمیم‌گیری.</p></article>
-          <article><strong>پروژه پایانی</strong><p>آموزش و ارزیابی یک عامل در محیط شبیه‌سازی ساده.</p></article>
-        </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۴۵ میلیون تومان</strong></div><div class="deal deal-empty"><span>شهریه کامل دوره</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="05" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="4">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card rl-motion" aria-hidden="true">
-          <div class="rl-board">
-            <span class="cell reward-cell"></span>
-            <span class="cell obstacle o1"></span>
-            <span class="cell obstacle o2"></span>
-            <div class="agent-piece"></div>
-            <div class="agent-trace"><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="rl-values"><b>Q(s,a)</b><span>+12</span><span>+4</span><span>+21</span></div>
-          <div class="rl-chips"><em>agent</em><em>reward</em><em>policy</em></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="course-showcase theme-6" id="course-06">
-    <div class="container showcase-grid reverse">
-      <div class="showcase-motion" data-reveal>
-        <div class="motion-card ai-motion" aria-hidden="true">
-          <div class="network">
-            <div class="layer layer-1"><span></span><span></span><span></span></div>
-            <div class="layer layer-2"><span></span><span></span><span></span><span></span></div>
-            <div class="layer layer-3"><span></span><span></span><span></span></div>
-            <i class="link l1"></i><i class="link l2"></i><i class="link l3"></i><i class="link l4"></i><i class="link l5"></i><i class="link l6"></i><i class="link l7"></i><i class="link l8"></i><i class="link l9"></i>
-            <div class="signal s1"></div><div class="signal s2"></div><div class="signal s3"></div>
-          </div>
-          <div class="ai-output-cards">
-            <div class="mini-panel panel-chat"><small>Output</small><strong>Chatbot</strong></div>
-            <div class="mini-panel panel-rag"><small>System</small><strong>RAG</strong></div>
-            <div class="mini-panel panel-llm"><small>Model</small><strong>LLM</strong></div>
+      </article>
+      <article class="course-card theme-3" id="course-03" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="مسیر الگوریتمی"><rect x="24" y="18" width="192" height="109" rx="22" class="v-panel"/><path d="M51 98C78 31 106 116 132 58s50 38 62-9" class="route-base"/><path d="M51 98C78 31 106 116 132 58s50 38 62-9" class="route-run"/><circle cx="51" cy="98" r="7" class="route-node"/><circle cx="132" cy="58" r="7" class="route-node"/><circle cx="194" cy="49" r="9" class="route-goal"/></svg><span class="level-pill">مرحله بعد</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">03</span><span dir="ltr">Algorithms</span></div>
+          <h3>پایتون پیشرفته</h3>
+          <p class="course-desc">با رویکرد حل مسئله و طراحی الگوریتم.</p>
+          <div class="quick-facts"><span>✦ بعد از پایتون مقدماتی</span><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span></div>
+          <div class="price-row"><div><strong>۲۸</strong><span>میلیون تومان</span></div><div class="deal"><del>۴۰</del><span>۳۰٪ تخفیف</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="03" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="2">محاسبه شهریه <span>↙</span></button>
           </div>
         </div>
-      </div>
-      <div class="showcase-copy" data-reveal>
-        <div class="title-row"><span class="course-index">06</span><div><span class="tiny-label" dir="ltr">ADVANCED AI</span><h2>هوش مصنوعی پیشرفته</h2></div></div>
-        <p class="lead">این مسیر برای دانش‌آموزی است که می‌خواهد از مدل‌ها فقط استفاده نکند؛ بلکه آن‌ها را بهتر بفهمد و با آن‌ها سیستم بسازد.</p>
-        <div class="detail-pills"><span>پایتون + ML + ریاضی مرتبط</span><span>۱۵ جلسه</span><span>هر جلسه ۲ ساعت</span><span>Deep Learning + LLM</span></div>
-        <div class="summary-list">
-          <article><strong>چی یاد می‌گیری؟</strong><p>یادگیری عمیق، ترنسفورمر، LLM، RAG و ارزیابی سیستم‌های مبتنی بر مدل.</p></article>
-          <article><strong>حس این دوره</strong><p>پیشرفته، مدرن و مناسب ساخت دستیارها و سیستم‌های هوشمند.</p></article>
-          <article><strong>پروژه پایانی</strong><p>ساخت نمونهٔ دستیار پرسش‌وپاسخ مبتنی بر اسناد.</p></article>
+      </article>
+      <article class="course-card theme-4" id="course-04" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="ساخت بازی دوبعدی"><rect x="24" y="18" width="192" height="109" rx="22" class="v-panel"/><path d="M44 103h152" class="ground"/><g class="pixel-player"><rect x="66" y="77" width="23" height="23" rx="3" class="player-body"/><rect x="71" y="83" width="4" height="4" class="player-eye"/><rect x="81" y="83" width="4" height="4" class="player-eye"/></g><g class="coin"><circle cx="158" cy="64" r="13" class="coin-ring"/><path d="M158 56v16M153 59h8M153 69h8" class="coin-mark"/></g><path d="M112 95l8-8 8 8 8-8" class="game-trail"/></svg><span class="level-pill">پروژه‌محور</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">04</span><span dir="ltr">Game dev</span></div>
+          <h3>++C پیشرفته</h3>
+          <p class="course-desc">با رویکرد بازی‌سازی و توسعهٔ یک بازی دوبعدی.</p>
+          <div class="quick-facts"><span>✦ بعد از C++ مقدماتی</span><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span></div>
+          <div class="price-row"><div><strong>۲۸</strong><span>میلیون تومان</span></div><div class="deal"><del>۴۰</del><span>۳۰٪ تخفیف</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="04" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="3">محاسبه شهریه <span>↙</span></button>
+          </div>
         </div>
-        <div class="tuition-row"><div><small>شهریه دوره</small><strong>۵۵ میلیون تومان</strong></div><div class="deal deal-empty"><span>شهریه کامل دوره</span></div></div>
-        <div class="action-row"><button class="btn btn-soft" data-open="06" aria-haspopup="dialog">جزئیات کامل دوره <span>＋</span></button><button class="btn btn-ghost payment-jump" data-payment="5">محاسبه شهریه <span>↙</span></button></div>
-      </div>
-    </div>
+      </article>
+      <article class="course-card theme-5" id="course-05" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="عامل یادگیری تقویتی و پاداش"><rect x="24" y="18" width="192" height="109" rx="22" class="v-panel"/><g class="gridlines"><path d="M62 39v67M99 39v67M136 39v67M173 39v67M44 61h148M44 84h148"/></g><path d="M53 96L88 72l38 13 56-35" class="agent-route"/><circle cx="53" cy="96" r="9" class="agent"/><path d="M182 39l4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1z" class="reward"/></svg><span class="level-pill">پیشرفته</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">05</span><span dir="ltr">Reinforcement learning</span></div>
+          <h3>ماشین لرنینگ</h3>
+          <p class="course-desc">مبتنی بر یادگیری تقویتی و تصمیم‌گیری با پاداش.</p>
+          <div class="quick-facts"><span>✦ پایتون + ریاضی</span><span>◷ ۱۵ جلسه · هر جلسه ۲ ساعت</span></div>
+          <div class="price-row"><div><strong>۴۵</strong><span>میلیون تومان</span></div><div class="deal deal-empty"><span>شهریه کامل دوره</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="05" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="4">محاسبه شهریه <span>↙</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="course-card theme-6" id="course-06" data-reveal>
+        <div class="course-visual"><svg viewBox="0 0 240 145" role="img" aria-label="شبکه هوش مصنوعی"><rect x="24" y="18" width="192" height="109" rx="22" class="v-panel"/><g class="net-lines"><path d="M62 48l50 26-50 27M112 74l61-28M112 74l61 56M62 48l111 82M62 101l111-55"/></g><g class="net-nodes"><circle cx="62" cy="48" r="10"/><circle cx="62" cy="101" r="10"/><circle cx="112" cy="74" r="12"/><circle cx="173" cy="46" r="10"/><circle cx="173" cy="102" r="10"/></g><circle cx="112" cy="74" r="4" class="brain-core"/></svg><span class="level-pill">پیشرفته</span></div>
+        <div class="course-body">
+          <div class="course-meta"><span class="course-no">06</span><span dir="ltr">Deep learning</span></div>
+          <h3>هوش مصنوعی پیشرفته</h3>
+          <p class="course-desc">از درک مدل تا ساخت یک سیستم.</p>
+          <div class="quick-facts"><span>✦ ML + ریاضی</span><span>◷ ۱۵ جلسه · هر جلسه ۲ ساعت</span></div>
+          <div class="price-row"><div><strong>۵۵</strong><span>میلیون تومان</span></div><div class="deal deal-empty"><span>شهریه کامل دوره</span></div></div>
+          <div class="course-buttons">
+            <button class="btn btn-soft" data-open="06" aria-haspopup="dialog">سرفصل و پروژه <span>＋</span></button>
+            <button class="btn btn-ghost payment-jump" data-payment="5">محاسبه شهریه <span>↙</span></button>
+          </div>
+        </div>
+      </article></div>
   </section>
 
   <section class="section path-section" id="path">
     <div class="container">
-      <div class="section-heading compact" data-reveal><div><span class="overline">YOUR PATH</span><h2>نمی‌دونی از کجا شروع کنی؟</h2></div><p>این نقشه مسیر را راحت می‌کند.</p></div>
+      <div class="section-heading compact" data-reveal><div><span class="overline">YOUR PATH</span><h2>نمی‌دونی از کجا شروع کنی؟</h2></div><p>فقط ببین الان کجای مسیری.</p></div>
       <div class="path-map" data-reveal>
         <div class="path-line" aria-hidden="true"></div>
-        <div class="path-stop start"><span class="stop-no">۱</span><div><small>اگر هنوز کدنویسی نکردی</small><strong>پایتون مقدماتی یا C++ مقدماتی</strong><p>برای ساختن پایه‌های فکری و کدنویسی.</p></div></div>
-        <div class="path-stop"><span class="stop-no">۲</span><div><small>اگر پایه‌ها را بلدی</small><strong>پایتون پیشرفته یا C++ پیشرفته</strong><p>یکی برای الگوریتم، یکی برای بازی‌سازی.</p></div></div>
-        <div class="path-stop"><span class="stop-no">۳</span><div><small>اگر پایتون و ریاضی داری</small><strong>ماشین لرنینگ و هوش مصنوعی</strong><p>برای ورود به مسیرهای هوشمندتر و پژوهشی‌تر.</p></div></div>
+        <div class="path-stop start"><span class="stop-no">۱</span><div><small>اگر هنوز کدنویسی نکردی</small><strong>پایتون مقدماتی یا C++ مقدماتی</strong><p>یکی را انتخاب کن و پایه‌ها را قدم‌به‌قدم بساز.</p></div></div>
+        <div class="path-stop"><span class="stop-no">۲</span><div><small>وقتی پایه‌ها را بلدی</small><strong>حل مسئله یا بازی‌سازی</strong><p>پایتون پیشرفته برای الگوریتم؛ C++ پیشرفته برای ساخت بازی.</p></div></div>
+        <div class="path-stop"><span class="stop-no">۳</span><div><small>وقتی پایتون و ریاضی آماده است</small><strong>ماشین لرنینگ و هوش مصنوعی</strong><p>وارد پروژه‌های هوشمندتر و مدل‌های یادگیرنده شو.</p></div></div>
       </div>
     </div>
   </section>
 
   <section class="section container" id="payment">
-    <div class="section-heading" data-reveal><div><span class="overline">PRICE CALCULATOR</span><h2>شهریه را راحت حساب کن.</h2></div><p>کافی است دوره و تعداد دانش‌آموزها را انتخاب کنی تا سهم هر نفر را ببینی.</p></div>
+    <div class="section-heading" data-reveal><div><span class="overline">PRICE CALCULATOR</span><h2>شهریه را راحت حساب کن.</h2></div><p>برای کلاس خصوصی یا گروهی، مبلغ هر نفر را همین‌جا ببین.</p></div>
     <div class="calculator" data-reveal>
       <div class="calculator-controls">
         <div class="calc-step"><span>۱</span><div><label for="course-select">دوره را انتخاب کن</label><select id="course-select"><option value="0">پایتون مقدماتی</option><option value="1">C++ مقدماتی</option><option selected value="2">پایتون پیشرفته</option><option value="3">C++ پیشرفته</option><option value="4">ماشین لرنینگ</option><option value="5">هوش مصنوعی پیشرفته</option></select></div></div>
@@ -289,12 +171,12 @@
 
   <section class="section parent-section" id="parents">
     <div class="container parent-grid">
-      <div class="parent-intro" data-reveal><span class="overline">FOR STUDENTS & PARENTS</span><h2>کلاس چطور برگزار می‌شود؟</h2><p>پیش از شروع، سطح، هدف و سرعت یادگیری بررسی می‌شود تا کلاس با دانش‌آموز هماهنگ باشد.</p><div class="parent-sticker">آنلاین + زنده + ضبط‌شده <span>●</span></div></div>
+      <div class="parent-intro" data-reveal><span class="overline">FOR STUDENTS & PARENTS</span><h2>کلاس چطور برگزار می‌شود؟</h2><p>قبل از شروع، سطح و هدف یادگیری بررسی می‌شود تا تمرین‌ها و سرعت کلاس با دانش‌آموز هماهنگ باشد.</p><div class="parent-sticker">آنلاین + زنده + ضبط‌شده <span>●</span></div></div>
       <div class="info-cards">
-        <article class="info-card" data-reveal><span>01</span><div><h3>خصوصی و آنلاین</h3><p>کلاس‌ها زنده برگزار می‌شوند و ویدئوی جلسات برای مرور در اختیار دانش‌آموز قرار می‌گیرد.</p></div></article>
-        <article class="info-card" data-reveal><span>02</span><div><h3>گروهی با انتخاب خودتان</h3><p>اگر کلاس گروهی می‌خواهید، هم‌گروهی‌هایتان را خودتان انتخاب می‌کنید و با هم درخواست می‌دهید.</p></div></article>
-        <article class="info-card" data-reveal><span>03</span><div><h3>پرداخت و زمان‌بندی</h3><p>شهریه را یکجا یا در ۳ قسط ماهانه طی ۳ ماه پرداخت کنید. زمان شروع با هماهنگی تعیین می‌شود.</p></div></article>
-        <article class="info-card" data-reveal><span>04</span><div><h3>ثبت درخواست</h3><p>فرم ثبت‌نام فقط برای ثبت درخواست است و هماهنگی نهایی قبل از شروع کلاس انجام می‌شود.</p></div></article>
+        <article class="info-card" data-reveal><span>01</span><div><h3>خصوصی و آنلاین</h3><p>کلاس‌ها به‌صورت آنلاین زنده برگزار و ضبط می‌شوند. ویدئوی جلسات برای مرور مطالب در اختیار دانش‌آموز قرار می‌گیرد.</p></div></article>
+        <article class="info-card" data-reveal><span>02</span><div><h3>کلاس گروهی، با انتخاب خودتان</h3><p>اگر کلاس گروهی می‌خواهید، هم‌گروهی‌هایتان را خودتان انتخاب می‌کنید و با هم درخواست می‌دهید. هزینهٔ پایه بین دانش‌آموزان تقسیم می‌شود.</p></div></article>
+        <article class="info-card" data-reveal><span>03</span><div><h3>پرداخت و زمان‌بندی</h3><p>شهریه را یکجا یا در ۳ قسط ماهانه طی ۳ ماه پرداخت کنید. روز، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز تعیین می‌شود.</p></div></article>
+        <article class="info-card" data-reveal><span>04</span><div><h3>ثبت درخواست، بدون پرداخت آنلاین</h3><p>فرم ثبت‌نام فقط درخواست شرکت در دوره است. هماهنگی نهایی پیش از شروع کلاس انجام می‌شود.</p></div></article>
       </div>
     </div>
     <details class="fine-print container" data-reveal><summary>جزئیات دقیق محاسبه برای والدین</summary><p>در کلاس گروهی، هزینهٔ پایه بین دانش‌آموزان تقسیم و سهم هر نفر رو به بالا به مضرب ۱۰۰ هزار تومان گرد می‌شود. در پرداخت اقساطی، قسط پایهٔ کلاس به مضرب ۵۰۰ هزار تومان و سهم نهایی هر نفر به مضرب ۱۰۰ هزار تومان رو به بالا گرد می‌شود. با توجه به تفاوت سرعت یادگیری، مسئولیت انتخاب هم‌گروهی و هماهنگی سطح و سرعت گروه بر عهدهٔ ثبت‌نام‌کنندگان است.</p></details>
@@ -361,6 +243,5 @@
       <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
-<script src="learn.js?v=3"></script>
-</body>
-</html>
+<script src="learn.js?v=2"></script>
+</body></html>
