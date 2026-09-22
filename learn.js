@@ -4,18 +4,7 @@ const nf=new Intl.NumberFormat('fa-IR',{maximumFractionDigits:0});
 const two=new Intl.NumberFormat('fa-IR',{minimumIntegerDigits:2,useGrouping:false});
 const courseSelect=document.getElementById('course-select');
 const students=document.getElementById('students');
-const firstInstallmentDate=document.getElementById('first-installment-date');
 const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
-const persianDate=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'long',day:'numeric'});
-function isoLocal(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),d=String(date.getDate()).padStart(2,'0');return `${y}-${m}-${d}`}
-function parseLocalDate(value){if(!value)return new Date();const [y,m,d]=value.split('-').map(Number);return new Date(y,m-1,d)}
-function addMonthsClamped(date,months){const d=new Date(date.getFullYear(),date.getMonth(),1);const wanted=date.getDate();d.setMonth(d.getMonth()+months);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(wanted,last));return d}
-function updateInstallmentDates(){
- if(!firstInstallmentDate)return;
- if(!firstInstallmentDate.value)firstInstallmentDate.value=isoLocal(new Date());
- const base=parseLocalDate(firstInstallmentDate.value);
- [0,1,2].forEach((offset,i)=>{const el=document.getElementById(`installment-date-${i+1}`);if(el)el.textContent=persianDate.format(addMonthsClamped(base,offset))});
-}
 function calculate(){
  const n=clamp(Math.floor(Number(students.value)||1),1,4);students.value=n;
  const total=tuition[Number(courseSelect.value)];
@@ -27,10 +16,9 @@ function calculate(){
  document.getElementById('cash-total').textContent='مجموع پرداخت کلاس: '+nf.format(cash*n)+' تومان';
  document.getElementById('install-total').textContent='مجموع ۳ قسط هر نفر: '+nf.format(monthly*3)+' تومان';
  document.querySelectorAll('.month-value').forEach(el=>el.textContent=nf.format(monthly)+' تومان');
- updateInstallmentDates();
  document.getElementById('minus').disabled=n===1;document.getElementById('plus').disabled=n===4;
 }
-courseSelect?.addEventListener('change',calculate);students?.addEventListener('change',calculate);firstInstallmentDate?.addEventListener('change',calculate);
+courseSelect?.addEventListener('change',calculate);students?.addEventListener('change',calculate);
 document.getElementById('minus')?.addEventListener('click',()=>{students.value=Number(students.value)-1;calculate()});
 document.getElementById('plus')?.addEventListener('click',()=>{students.value=Number(students.value)+1;calculate()});
 document.querySelectorAll('.payment-jump').forEach(btn=>btn.addEventListener('click',()=>{courseSelect.value=btn.dataset.payment;calculate();document.getElementById('payment').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});setTimeout(()=>courseSelect.focus({preventScroll:true}),350)}));
