@@ -310,6 +310,32 @@ body.home-page .about-line:hover{transform:translateY(-4px);border-color:var(--l
 body.home-page .about-line h3{font-size:18px;letter-spacing:-.025em}
 body.home-page .about-line p{font-size:13px;line-height:1.8;margin-bottom:0}
 
+/* Editorial alignment — long-form copy */
+body.home-page .lead,
+body.home-page .about-line p,
+body.home-page #research .research-card p,
+body.home-page .timeline-row p:not(.org),
+body.home-page .teaching-main p,
+body.home-page .education-head p,
+body.home-page .thesis p,
+body.home-page .academic-ref-link p,
+body.home-page .pub h3,
+body.home-page .contact p:not(.kicker){
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  overflow-wrap:break-word;
+}
+
+/* Keep compact metadata and labels naturally aligned. */
+body.home-page .org,
+body.home-page .date,
+body.home-page .pub p,
+body.home-page .education-facts strong{
+  text-align:left;
+}
+
 /* Research */
 body.home-page #research .research-cards{
   display:grid!important;

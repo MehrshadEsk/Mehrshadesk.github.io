@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#f5f7f5">
+  <meta name="theme-color" content="#f3eee4">
   <title>m. | کلاس‌های برنامه‌نویسی و هوش مصنوعی</title>
   <meta name="description" content="دوره‌های آنلاین برنامه‌نویسی، بازی‌سازی و هوش مصنوعی با مهرشاد اسکندرپور؛ از شروع کدنویسی تا پروژه‌های پیشرفته.">
   <style>
@@ -130,9 +130,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}[data-reveal]{opacity:1;transform:none}}
 
   </style>
-  <link rel="stylesheet" href="learn-pro.css?v=2">
+  <link rel="stylesheet" href="learn-pro.css?v=3">
+  <link rel="stylesheet" href="subpage-theme.css?v=1">
 </head>
-<body data-sale-end="2026-10-09T23:59:59+03:30">
+<body class="learn-page" data-sale-end="2026-10-09T23:59:59+03:30">
 <div class="scroll-progress" aria-hidden="true"></div>
 <a class="skip-link" href="#courses">رفتن به دوره‌ها</a>
 <header class="site-header">
@@ -175,9 +176,9 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
   </section>
 
   <section class="section container" id="courses">
-    <div class="section-heading" data-reveal><div><span class="overline">COURSES / 01—06</span><h2>کدوم دنیا رو می‌خوای بسازی؟</h2></div><p>برای دیدن جزئیات لازم نیست همه‌چیز را یک‌جا بخوانی؛ روی هر دوره بزن و مسیرش را ببین.</p></div>
+    <div class="section-heading" data-reveal><div><span class="overline">COURSES / 01—06</span><h2>کدوم دنیا رو می‌خوای بسازی؟</h2></div></div>
     <div class="sale-overview" data-reveal aria-label="تخفیف دوره‌ها">
-      <div class="sale-overview-copy"><span class="sale-kicker"><i></i> تخفیف فعال روی ۴ دوره</span><strong>تا ۳۰٪ تخفیف ثبت‌نام</strong><small>قیمت قبل و قیمت فعلی روی هر دوره مشخص شده است.</small></div>
+      <div class="sale-overview-copy"><span class="sale-kicker"><i></i> تخفیف فعال روی ۴ دوره</span><strong>تا ۳۰٪ تخفیف ثبت‌نام</strong></div>
       <div class="master-countdown" data-countdown aria-label="زمان باقی‌مانده تا پایان تخفیف">
         <div><b data-unit="days">۰۰</b><span>روز</span></div><em>:</em><div><b data-unit="hours">۰۰</b><span>ساعت</span></div><em>:</em><div><b data-unit="minutes">۰۰</b><span>دقیقه</span></div><em>:</em><div><b data-unit="seconds">۰۰</b><span>ثانیه</span></div>
       </div>
@@ -298,18 +299,20 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
   </section>
 
   <section class="section container" id="payment">
-    <div class="section-heading" data-reveal><div><span class="overline">PRICE CALCULATOR</span><h2>شهریه را راحت حساب کن.</h2></div><p>برای کلاس خصوصی یا گروهی، مبلغ هر نفر را همین‌جا ببین.</p></div>
+    <div class="section-heading" data-reveal><div><span class="overline">PRICE CALCULATOR</span><h2>تعرفه کلاس‌های خصوصی و نیمه‌خصوصی</h2></div><p>برای کلاس خصوصی یا نیمه‌خصوصی، مبلغ هر نفر را همین‌جا ببین.</p></div>
     <div class="calculator" data-reveal>
       <div class="calculator-controls">
         <div class="calc-step"><span>۱</span><div><label for="course-select">دوره را انتخاب کن</label><select id="course-select"><option value="0">پایتون مقدماتی</option><option value="1">++C مقدماتی</option><option selected value="2">پایتون پیشرفته</option><option value="3">++C پیشرفته</option><option value="4">ماشین لرنینگ</option><option value="5">هوش مصنوعی پیشرفته</option></select></div></div>
-        <div class="calc-step"><span>۲</span><div><label for="students">چند نفر با هم کلاس دارید؟</label><div class="counter"><button id="minus" type="button" aria-label="کم کردن تعداد">−</button><input id="students" type="number" inputmode="numeric" min="1" max="100" step="1" value="1"><button id="plus" type="button" aria-label="زیاد کردن تعداد">+</button></div></div></div>
-        <p class="calc-hint">اگر تنها ثبت‌نام می‌کنی، تعداد را روی ۱ بگذار. برای کلاس گروهی، هم‌گروهی‌ها را خودتان انتخاب می‌کنید.</p>
+        <div class="calc-step"><span>۲</span><div><label for="students">چند نفر با هم کلاس دارید؟</label><div class="counter"><button id="minus" type="button" aria-label="کم کردن تعداد">−</button><input id="students" type="number" inputmode="numeric" min="1" max="4" step="1" value="1"><button id="plus" type="button" aria-label="زیاد کردن تعداد">+</button></div></div></div>
+        <div class="calc-step calc-date-step"><span>۳</span><div><label for="first-installment-date">تاریخ پرداخت قسط اول</label><input class="date-input" id="first-installment-date" type="date"><small>قسط دوم و سوم به‌ترتیب یک و دو ماه بعد محاسبه می‌شوند.</small></div></div>
+        <p class="calc-hint">اگر تنها ثبت‌نام می‌کنی، تعداد را روی ۱ بگذار. کلاس نیمه‌خصوصی برای ۲ تا ۴ نفر است و هم‌گروهی‌ها را خودتان انتخاب می‌کنید.</p>
       </div>
       <div class="calculator-results" aria-live="polite" aria-atomic="true">
         <article class="result-card cash-card"><span class="result-icon">✓</span><small>پرداخت یکجا / هر نفر</small><div class="amount"><strong id="cash"></strong><span>تومان</span></div><p id="cash-total"></p></article>
-        <article class="result-card installment-card"><span class="result-icon">۳</span><small>هر قسط ماهانه / هر نفر</small><div class="amount"><strong id="monthly"></strong><span>تومان</span></div><p id="install-total"></p><div class="month-dots"><span>ماه ۱ <b class="month-value"></b></span><span>ماه ۲ <b class="month-value"></b></span><span>ماه ۳ <b class="month-value"></b></span></div></article>
+        <article class="result-card installment-card"><span class="result-icon">۳</span><small>پرداخت اقساطی / هر نفر</small><div class="amount"><strong id="monthly"></strong><span>تومان</span></div><p id="install-total"></p><div class="installment-schedule" aria-label="زمان‌بندی سه قسط"><div><span><b>قسط اول</b><small id="installment-date-1"></small></span><strong class="month-value"></strong></div><div><span><b>قسط دوم</b><small id="installment-date-2"></small></span><strong class="month-value"></strong></div><div><span><b>قسط سوم</b><small id="installment-date-3"></small></span><strong class="month-value"></strong></div></div><p class="installment-note">هر سه قسط مبلغ یکسان دارند؛ تاریخ‌های بالا بر اساس تاریخ قسط اول محاسبه می‌شوند.</p></article>
       </div>
     </div>
+    <details class="fine-print payment-details" data-reveal><summary><span>جزئیات دقیق محاسبه برای والدین</span><i>+</i></summary><p>در کلاس نیمه‌خصوصی (۲ تا ۴ نفره)، هزینهٔ پایه بین دانش‌آموزان تقسیم و سهم هر نفر رو به بالا به مضرب ۱۰۰ هزار تومان گرد می‌شود. در پرداخت اقساطی، قسط پایهٔ کلاس به مضرب ۵۰۰ هزار تومان و سهم نهایی هر نفر به مضرب ۱۰۰ هزار تومان رو به بالا گرد می‌شود. با توجه به تفاوت سرعت یادگیری، مسئولیت انتخاب هم‌گروهی و هماهنگی سطح و سرعت گروه بر عهدهٔ ثبت‌نام‌کنندگان است.</p></details>
     <noscript><p class="noscript">برای محاسبهٔ تعاملی پرداخت، جاوااسکریپت را فعال کنید.</p></noscript>
   </section>
 
@@ -318,12 +321,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="parent-intro" data-reveal><span class="overline">FOR STUDENTS & PARENTS</span><h2>کلاس چطور برگزار می‌شود؟</h2><p>قبل از شروع، سطح و هدف یادگیری بررسی می‌شود تا تمرین‌ها و سرعت کلاس با دانش‌آموز هماهنگ باشد.</p><div class="parent-sticker">آنلاین + زنده + ضبط‌شده <span>●</span></div></div>
       <div class="info-cards">
         <article class="info-card" data-reveal><span>01</span><div><h3>خصوصی و آنلاین</h3><p>کلاس‌ها به‌صورت آنلاین زنده برگزار و ضبط می‌شوند. ویدئوی جلسات برای مرور مطالب در اختیار دانش‌آموز قرار می‌گیرد.</p></div></article>
-        <article class="info-card" data-reveal><span>02</span><div><h3>کلاس گروهی، با انتخاب خودتان</h3><p>اگر کلاس گروهی می‌خواهید، هم‌گروهی‌هایتان را خودتان انتخاب می‌کنید و با هم درخواست می‌دهید. هزینهٔ پایه بین دانش‌آموزان تقسیم می‌شود.</p></div></article>
-        <article class="info-card" data-reveal><span>03</span><div><h3>پرداخت و زمان‌بندی</h3><p>شهریه را یکجا یا در ۳ قسط ماهانه طی ۳ ماه پرداخت کنید. روز، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز تعیین می‌شود.</p></div></article>
+        <article class="info-card" data-reveal><span>02</span><div><h3>کلاس نیمه‌خصوصی، با انتخاب خودتان</h3><p>برای کلاس ۲ تا ۴ نفره، هم‌گروهی‌هایتان را خودتان انتخاب می‌کنید و با هم درخواست می‌دهید. هزینهٔ پایه بین دانش‌آموزان تقسیم می‌شود.</p></div></article>
+        <article class="info-card" data-reveal><span>03</span><div><h3>پرداخت و زمان‌بندی</h3><p>شهریه را یکجا یا در ۳ قسط ماهانه پرداخت کنید. تاریخ دقیق هر سه قسط در محاسبه‌گر بالا نمایش داده می‌شود؛ روز، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز تعیین می‌شود.</p></div></article>
         <article class="info-card" data-reveal><span>04</span><div><h3>ثبت درخواست، بدون پرداخت آنلاین</h3><p>فرم ثبت‌نام فقط درخواست شرکت در دوره است. هماهنگی نهایی پیش از شروع کلاس انجام می‌شود.</p></div></article>
       </div>
     </div>
-    <details class="fine-print container" data-reveal><summary>جزئیات دقیق محاسبه برای والدین</summary><p>در کلاس گروهی، هزینهٔ پایه بین دانش‌آموزان تقسیم و سهم هر نفر رو به بالا به مضرب ۱۰۰ هزار تومان گرد می‌شود. در پرداخت اقساطی، قسط پایهٔ کلاس به مضرب ۵۰۰ هزار تومان و سهم نهایی هر نفر به مضرب ۱۰۰ هزار تومان رو به بالا گرد می‌شود. با توجه به تفاوت سرعت یادگیری، مسئولیت انتخاب هم‌گروهی و هماهنگی سطح و سرعت گروه بر عهدهٔ ثبت‌نام‌کنندگان است.</p></details>
+    
   </section>
 
   <section class="section container teacher-section teacher-profile" id="teacher" data-reveal>
@@ -357,7 +360,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span><span>◉ ۲ جلسه در هفته · ۳ ماه · بدون استراحت</span><span>⌁ بدون نیاز به سابقهٔ برنامه‌نویسی</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>شروع برنامه‌نویسی</strong><p>نصب پایتون و محیط توسعه، اجرای برنامه، متغیرها و انواع داده</p></div></li><li><span>02</span><div><strong>منطق و جریان اجرا</strong><p>عملگرها، شرط‌ها، حلقه‌ها و تمرین تفکر الگوریتمی</p></div></li><li><span>03</span><div><strong>ساختارهای داده</strong><p>رشته، لیست، تاپل، مجموعه و دیکشنری</p></div></li><li><span>04</span><div><strong>توابع و سازمان‌دهی کد</strong><p>پارامتر، مقدار بازگشتی، دامنهٔ متغیر و ماژول</p></div></li><li><span>05</span><div><strong>فایل و خطایابی</strong><p>خواندن و نوشتن فایل، مدیریت استثنا و دیباگ</p></div></li><li><span>06</span><div><strong>پروژهٔ پایانی</strong><p>طراحی مرحله‌ای پروژه، تست ورودی‌ها و بازبینی کد</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>ساخت یک برنامهٔ مدیریت کارها با ذخیره‌سازی اطلاعات.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
     <dialog class="course-dialog theme-2" id="detail-02" aria-labelledby="title-02">
@@ -365,7 +368,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span><span>◉ ۲ جلسه در هفته · ۳ ماه · بدون استراحت</span><span>⌁ بدون نیاز به سابقهٔ برنامه‌نویسی</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>ابزار و مبانی</strong><p>کامپایلر، محیط توسعه، ورودی و خروجی و انواع داده</p></div></li><li><span>02</span><div><strong>کنترل جریان</strong><p>شرط‌ها، حلقه‌ها و حل مسائل پایه</p></div></li><li><span>03</span><div><strong>توابع</strong><p>تعریف تابع، پارامترها، ارجاع و محدودهٔ متغیرها</p></div></li><li><span>04</span><div><strong>داده‌ها و حافظه</strong><p>آرایه، رشته، vector و آشنایی با اشاره‌گر</p></div></li><li><span>05</span><div><strong>مبانی شیءگرایی</strong><p>ساختار، کلاس، شیء، سازنده و کپسوله‌سازی</p></div></li><li><span>06</span><div><strong>پروژه و دیباگ</strong><p>فایل، خطایابی و توسعهٔ یک پروژهٔ کنسولی</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>ساخت یک برنامهٔ کنسولی مدیریت نمرات.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
     <dialog class="course-dialog theme-3" id="detail-03" aria-labelledby="title-03">
@@ -373,7 +376,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span><span>◉ ۲ جلسه در هفته · ۳ ماه · بدون استراحت</span><span>⌁ تسلط به مبانی پایتون</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>تحلیل مسئله</strong><p>شکستن مسئله، انتخاب مدل و تحلیل پیچیدگی زمانی و فضایی</p></div></li><li><span>02</span><div><strong>ساختارهای داده</strong><p>پشته، صف، جدول درهم‌سازی و heap</p></div></li><li><span>03</span><div><strong>الگوهای حل مسئله</strong><p>دو اشاره‌گر، پنجرهٔ لغزان و جست‌وجوی دودویی</p></div></li><li><span>04</span><div><strong>بازگشت و بهینه‌سازی</strong><p>بازگشت، عقب‌گرد، الگوریتم حریصانه و برنامه‌ریزی پویا</p></div></li><li><span>05</span><div><strong>درخت و گراف</strong><p>نمایش گراف، پیمایش BFS و DFS و کوتاه‌ترین مسیر</p></div></li><li><span>06</span><div><strong>کیفیت راه‌حل</strong><p>تست مرزی، پروفایلینگ و مقایسهٔ راه‌حل‌ها</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>حل و تحلیل مجموعه‌مسئله‌ها و پیاده‌سازی یک مسیریاب.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
     <dialog class="course-dialog theme-4" id="detail-04" aria-labelledby="title-04">
@@ -381,7 +384,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۲۴ جلسه · هر جلسه ۱٫۵ ساعت</span><span>◉ ۲ جلسه در هفته · ۳ ماه · بدون استراحت</span><span>⌁ تسلط به مبانی ++C و کلاس‌ها</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>C++ مدرن</strong><p>مدیریت منابع، RAII، اشاره‌گر هوشمند و کتابخانهٔ استاندارد</p></div></li><li><span>02</span><div><strong>معماری بازی</strong><p>حلقهٔ بازی، زمان‌بندی، حالت‌ها و جداسازی منطق از نمایش</p></div></li><li><span>03</span><div><strong>گرافیک دوبعدی</strong><p>پنجره، sprite، ورودی و رسم با کتابخانه‌ای مانند SFML</p></div></li><li><span>04</span><div><strong>حرکت و برخورد</strong><p>بردارها، حرکت مستقل از نرخ فریم و تشخیص برخورد</p></div></li><li><span>05</span><div><strong>منطق و تجربهٔ بازی</strong><p>امتیاز، صدا، منو، مراحل و رفتار سادهٔ دشمن</p></div></li><li><span>06</span><div><strong>پروژهٔ نهایی</strong><p>دیباگ، بهینه‌سازی پایه، ساخت نسخهٔ اجرایی و بازبینی</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>ساخت یک بازی دوبعدی کوچک با امتیاز، برخورد و مراحل.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
     <dialog class="course-dialog theme-5" id="detail-05" aria-labelledby="title-05">
@@ -389,7 +392,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۱۵ جلسه · هر جلسه ۲ ساعت</span><span>◉ ۲ جلسه در هفته · ۲ ماه · با ۱۵ دقیقه استراحت</span><span>⌁ پایتون، مبانی احتمال و جبر خطی</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>پایه‌های یادگیری ماشین</strong><p>داده، تفکیک آموزش و آزمون، رگرسیون و طبقه‌بندی</p></div></li><li><span>02</span><div><strong>مبانی یادگیری تقویتی</strong><p>عامل، محیط، حالت، عمل، پاداش و فرایند تصمیم مارکوف</p></div></li><li><span>03</span><div><strong>ارزش و سیاست</strong><p>معادلهٔ بلمن، تکرار ارزش و تکرار سیاست</p></div></li><li><span>04</span><div><strong>یادگیری از تعامل</strong><p>Monte Carlo، TD، الگوریتم‌های SARSA و Q-learning</p></div></li><li><span>05</span><div><strong>یادگیری تقویتی عمیق</strong><p>مبانی شبکهٔ عصبی، DQN و آشنایی با Policy Gradient</p></div></li><li><span>06</span><div><strong>آزمایش و ارزیابی</strong><p>محیط Gymnasium، اکتشاف، نمودار پاداش و مقایسهٔ نتایج</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>آموزش و ارزیابی یک عامل در محیط شبیه‌سازی ساده.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
     <dialog class="course-dialog theme-6" id="detail-06" aria-labelledby="title-06">
@@ -397,7 +400,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:#7b8795;font-s
       <div class="dialog-summary"><span>◷ ۱۵ جلسه · هر جلسه ۲ ساعت</span><span>◉ ۲ جلسه در هفته · ۲ ماه · با ۱۵ دقیقه استراحت</span><span>⌁ پایتون، مبانی یادگیری ماشین و ریاضیات مرتبط</span></div>
       <ol class="syllabus"><li><span>01</span><div><strong>یادگیری عمیق</strong><p>تانسورها، پس‌انتشار، بهینه‌سازها و آموزش با PyTorch</p></div></li><li><span>02</span><div><strong>معماری‌های پایه</strong><p>شبکه‌های کانولوشنی، مدل‌های توالی و انتقال یادگیری</p></div></li><li><span>03</span><div><strong>ترنسفورمرها</strong><p>Attention، embedding و مبانی مدل‌های زبانی بزرگ</p></div></li><li><span>04</span><div><strong>کار با مدل‌های زبانی</strong><p>طراحی پرامپت، خروجی ساختاریافته و آشنایی با تنظیم مدل</p></div></li><li><span>05</span><div><strong>سامانه‌های مبتنی بر مدل</strong><p>بازیابی و تولید پاسخ (RAG)، جست‌وجوی برداری و اتصال ابزار</p></div></li><li><span>06</span><div><strong>ارزیابی و ارائه</strong><p>کیفیت پاسخ، خطا و توهم مدل، حریم خصوصی و ارائهٔ پروژه</p></div></li></ol>
       <div class="project-box"><span>پروژه‌ای که می‌سازی</span><strong>ساخت نمونهٔ دستیار پرسش‌وپاسخ مبتنی بر اسناد و ارزیابی آن.</strong></div>
-      <p class="dialog-note">این سرفصل‌ها مسیر پیشنهادی دوره‌اند؛ عمق مباحث و پروژه با توجه به سطح دانش‌آموز تنظیم می‌شود. روزها، ساعت و تاریخ شروع کلاس با هماهنگی دانش‌آموز مشخص می‌شود.</p>
+      
       <a class="btn btn-primary dialog-cta" href="https://forms.gle/Vv51w4j4UyGpomxy9" target="_blank" rel="noopener noreferrer">درخواست ثبت‌نام <span>↖</span></a>
     </dialog>
 <script src="learn.js?v=3"></script>
