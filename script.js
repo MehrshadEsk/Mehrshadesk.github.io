@@ -1,2 +1,72 @@
-(()=>{'use strict';const tabs=[...document.querySelectorAll('[role=tab]')];const panels=[...document.querySelectorAll('[role=tabpanel]')];function activate(id,focus=false){const selected=tabs.find(t=>t.dataset.tab===id);if(!selected)return;tabs.forEach(t=>{const on=t===selected;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});panels.forEach(p=>{p.hidden=p.id!==id;p.classList.remove('panel-enter');if(!p.hidden){void p.offsetWidth;p.classList.add('panel-enter')}});if(focus){selected.focus();selected.scrollIntoView({block:'nearest',inline:'nearest'})}}tabs.forEach((t,i)=>{t.addEventListener('click',()=>{activate(t.dataset.tab);history.replaceState(null,'','#'+t.dataset.tab)});t.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();activate(tabs[n].dataset.tab,true);history.replaceState(null,'','#'+tabs[n].dataset.tab)}})});function fromHash(scroll){const id=location.hash.slice(1);if(tabs.some(t=>t.dataset.tab===id)){activate(id);if(scroll)document.getElementById('workspace').scrollIntoView({block:'start'})}}window.addEventListener('hashchange',()=>fromHash(true));fromHash(false);document.querySelectorAll('a[href="#research"]').forEach(a=>a.addEventListener('click',()=>{activate('research');document.getElementById('workspace').scrollIntoView({block:'start'})}));const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear()})();
-(()=>{const img=document.querySelector('.hero-portrait');if(!img)return;const fallback=()=>{if(img.dataset.fallback){const src=img.dataset.fallback;delete img.dataset.fallback;img.src=src;}};img.addEventListener('error',fallback,{once:true});if(img.complete&&!img.naturalWidth)fallback();})();
+(()=>{
+  'use strict';
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const intro = document.getElementById('site-intro');
+  if (!reduced) document.body.classList.add('motion-ready');
+
+  if (intro) {
+    if (reduced) {
+      intro.remove();
+    } else {
+      window.setTimeout(() => intro.classList.add('is-ready'), 620);
+      window.setTimeout(() => intro.classList.add('is-leaving'), 1120);
+      window.setTimeout(() => intro.remove(), 1640);
+    }
+  }
+
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+
+  const portrait = document.querySelector('.hero-portrait');
+  if (portrait) {
+    const fallback = () => {
+      if (!portrait.dataset.fallback) return;
+      const src = portrait.dataset.fallback;
+      delete portrait.dataset.fallback;
+      portrait.src = src;
+    };
+    portrait.addEventListener('error', fallback, {once:true});
+    if (portrait.complete && !portrait.naturalWidth) fallback();
+  }
+
+  const reveals = [...document.querySelectorAll('.reveal')];
+  if (reduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach((el, index) => {
+      el.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 55}ms`);
+      observer.observe(el);
+    });
+  }
+
+  const header = document.querySelector('.site-header');
+  let lastY = window.scrollY;
+  const updateHeader = () => {
+    const y = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', y > 18);
+    document.documentElement.style.setProperty('--scroll-y', `${y}px`);
+    lastY = y;
+  };
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, {passive:true});
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const id = link.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'start'});
+      history.replaceState(null, '', id);
+    });
+  });
+})();
