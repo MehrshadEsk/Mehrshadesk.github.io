@@ -45,6 +45,7 @@ function setupVault() {
 }
 
 function doPost(e) {
+  if (String((e && e.parameter && e.parameter.action) || "").startsWith("farmad_")) return farmadPost_(e);
   try {
     const data = (e && e.parameter) || {};
     if (String(data.website || '').trim()) return textResponse_('accepted'); // honeypot
@@ -321,3 +322,82 @@ function htmlEscape_(value) {
 function textResponse_(message) {
   return ContentService.createTextOutput(message).setMimeType(ContentService.MimeType.TEXT);
 }
+
+
+/**
+ * فارماد — سرویس مستقل گزارش‌های بازدید.
+ * This file is appended to the existing script. Run setupFarmad once.
+ */
+const FARMAD_HEADERS=['ID','Owner','Author','Location','Data','Photos','Status','Review','Version','Created','Updated','LastOperation'];
+function setupFarmad(){
+ const ss=getSpreadsheet_();PropertiesService.getScriptProperties().setProperty('FARMAD_SHEET_ID',ss.getId());
+ let users=ss.getSheetByName('Farmad Users');if(!users){users=ss.insertSheet('Farmad Users');users.appendRow(['Email','Password Hash','Name','Role','Status']);}
+ users.setFrozenRows(1);users.getRange('A:B').setNumberFormat('@');
+ let reports=ss.getSheetByName('Farmad Reports');if(!reports){reports=ss.insertSheet('Farmad Reports');reports.appendRow(FARMAD_HEADERS);}
+ reports.setFrozenRows(1);reports.getRange('A:L').setNumberFormat('@');
+ const props=PropertiesService.getScriptProperties();if(!props.getProperty('FARMAD_FOLDER_ID'))props.setProperty('FARMAD_FOLDER_ID',DriveApp.createFolder('Farmad — Private inspection photos').getId());
+ return 'Farmad ready. Create users with addFarmadUser from the setup menu.';
+}
+function onOpen(){SpreadsheetApp.getUi().createMenu('فارماد').addItem('ساخت حساب کاربری','addFarmadUser').addToUi();}
+function addFarmadUser(){
+ const ui=SpreadsheetApp.getUi();const e=ui.prompt('ایمیل کاربر').getResponseText().trim().toLowerCase();if(!isValidEmail_(e))throw Error('Invalid email');
+ const p=ui.prompt('رمز اختصاصی (حداقل ۱۲ کاراکتر)').getResponseText();if(p.length<12)throw Error('Password must be at least 12 characters');
+ const name=ui.prompt('نام و نام خانوادگی').getResponseText().trim();const role=ui.prompt('نقش: ADMIN برای شرکت یا FIELD برای بازدیدکننده').getResponseText().trim().toUpperCase();if(!['ADMIN','FIELD'].includes(role))throw Error('Invalid role');
+ farmadSheet_('Farmad Users').appendRow([e,credentialHash_(e,p),name,role,'ALLOW']);
+}
+function farmadSheet_(name){const id=PropertiesService.getScriptProperties().getProperty('FARMAD_SHEET_ID');if(!id)throw Error('راه‌اندازی فارماد هنوز انجام نشده است.');return SpreadsheetApp.openById(id).getSheetByName(name);}
+function farmadUser_(email){const rows=farmadSheet_('Farmad Users').getDataRange().getDisplayValues();for(let i=rows.length-1;i>0;i--)if(rows[i][0].toLowerCase()===email)return {email:email,hash:rows[i][1],name:rows[i][2],role:rows[i][3],allowed:rows[i][4]==='ALLOW'};return null;}
+function farmadJson_(obj){return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);}
+function farmadPost_(e){
+ const p=e.parameter||{};try{
+ const cache=CacheService.getScriptCache();
+ if(p.action==='farmad_login'){
+ const email=normalizeEmail_(p.email),key='farmad_attempt_'+sha256Hex_(email),n=Number(cache.get(key)||0);if(n>=10)throw Error('تلاش‌های ورود زیاد است؛ ۱۵ دقیقه دیگر امتحان کنید.');cache.put(key,String(n+1),900);
+ const u=farmadUser_(email);if(!u||!u.allowed||!timingSafeEqual_(u.hash,String(p.credential||'')))throw Error('ایمیل یا رمز صحیح نیست یا دسترسی غیرفعال شده است.');
+ const token=Utilities.getUuid()+Utilities.getUuid();cache.put('farmad_session_'+sha256Hex_(token),JSON.stringify({email:email,hash:u.hash}),21600);cache.remove(key);return farmadJson_({ok:true,token:token,user:{email:u.email,name:u.name,role:u.role}});
+ }
+ const session=JSON.parse(cache.get('farmad_session_'+sha256Hex_(String(p.token||'')))||'null');if(!session)throw Error('نشست پایان یافته؛ دوباره وارد شوید.');
+ const u=farmadUser_(session.email);if(!u||!u.allowed||!timingSafeEqual_(u.hash,session.hash))throw Error('دسترسی غیرفعال شده؛ دوباره وارد شوید.');
+ if(p.action==='farmad_logout'){cache.remove('farmad_session_'+sha256Hex_(p.token));return farmadJson_({ok:true});}
+ const sheet=farmadSheet_('Farmad Reports'),rows=sheet.getDataRange().getDisplayValues();
+ const unpack=r=>({id:r[0],owner:r[1],author:r[2],location:r[3],data:JSON.parse(r[4]),photos:JSON.parse(r[5]),status:r[6],review:r[7],version:Number(r[8]),created:r[9],updated:r[10]});
+ if(p.action==='farmad_list')return farmadJson_({ok:true,user:{email:u.email,name:u.name,role:u.role},reports:rows.slice(1).filter(r=>r[0]&&(u.role==='ADMIN'||r[1]===u.email)).map(unpack)});
+ const payload=JSON.parse(p.payload||'{}');
+ if(p.action==='farmad_photo'){
+ const record=rows.slice(1).find(r=>(u.role==='ADMIN'||r[1]===u.email)&&JSON.parse(r[5]).some(f=>f.id===payload.id));if(!record)throw Error('دسترسی به عکس مجاز نیست.');
+ const file=DriveApp.getFileById(payload.id);return farmadJson_({ok:true,image:'data:'+file.getMimeType()+';base64,'+Utilities.base64Encode(file.getBlob().getBytes())});
+ }
+ if(!['farmad_save','farmad_review'].includes(p.action))throw Error('درخواست نامعتبر است.');
+ const lock=LockService.getScriptLock();lock.waitLock(20000);try{
+ const fresh=sheet.getDataRange().getDisplayValues();let index=fresh.findIndex((r,i)=>i>0&&r[0]===payload.id),old=index>0?unpack(fresh[index]):null;
+ if(payload.id&&!old)throw Error('گزارش یافت نشد.');if(old&&u.role!=='ADMIN'&&old.owner!==u.email)throw Error('دسترسی به گزارش مجاز نیست.');
+ if(old&&payload.operation&&fresh[index][11]===payload.operation)return farmadJson_({ok:true,report:old});
+ if(old&&Number(payload.version)!==old.version)throw Error('گزارش هم‌زمان تغییر کرده؛ نسخه جدید را باز کنید.');
+ const now=new Date().toISOString();
+ if(p.action==='farmad_review'){
+ if(u.role!=='ADMIN'||!old)throw Error('فقط مدیر شرکت مجاز است.');if(!['approved','changes','pending'].includes(payload.status))throw Error('وضعیت نامعتبر است.');
+ old.status=payload.status;old.review=String(payload.review||'').slice(0,4000);old.version++;old.updated=now;
+ }else{
+ const d=payload.data||{},spec={type:['زمان‌دار','چشمک‌زن'],structure:['دستکدار','مونو','گاما'],power:['برقی','سولار'],battery:['اسیدی','لیتیومی','فاقد باتری'],cable:['زمینی','هوایی'],condition:['سالم','دارای نقص']};
+ for(const k of ['pole','location','inspector','date'])if(!String(d[k]||'').trim())throw Error('مشخصات اصلی را تکمیل کنید.');
+ for(const k of Object.keys(spec))if(!spec[k].includes(d[k]))throw Error('گزینه‌های تجهیزات را تکمیل کنید.');
+ for(const k of ['three','two','one','countdown','solar']){if(d[k]===''||d[k]===undefined||!Number.isInteger(Number(d[k]))||Number(d[k])<0||Number(d[k])>1000)throw Error('تعداد تجهیزات نامعتبر است.');d[k]=Number(d[k]);}
+ if(d.lat===''||d.lng===''||!Number.isFinite(Number(d.lat))||!Number.isFinite(Number(d.lng))||Math.abs(Number(d.lat))>90||Math.abs(Number(d.lng))>180)throw Error('موقعیت پایه را ثبت کنید.');
+ const allowedKeys=['pole','location','contractor','inspector','date','type','structure','power','battery','cable','condition','three','two','one','countdown','solar','notes','lat','lng','accuracy'];
+ const cleaned={};allowedKeys.forEach(k=>{if(d[k]!==undefined)cleaned[k]=typeof d[k]==='number'?d[k]:String(d[k]).trim().slice(0,k==='notes'?4000:300);});
+ const pics=payload.photos||[];if(!Array.isArray(pics)||pics.length<1||pics.length>6)throw Error('بین یک تا شش عکس لازم است.');
+ const saved=[],newFiles=[];try{
+ for(const photo of pics){
+ if(photo.id){const existing=old&&old.photos.find(f=>f.id===photo.id);if(!existing)throw Error('عکس متعلق به گزارش نیست.');saved.push(existing);}
+ else{if(!/^data:image\/jpeg;base64,/.test(photo.image||'')||photo.image.length>1400000)throw Error('حجم یا نوع عکس نامعتبر است.');const bytes=Utilities.base64Decode(photo.image.split(',')[1]);if((bytes[0]&255)!==255||(bytes[1]&255)!==216)throw Error('عکس معتبر نیست.');const file=DriveApp.getFolderById(PropertiesService.getScriptProperties().getProperty('FARMAD_FOLDER_ID')).createFile(Utilities.newBlob(bytes,'image/jpeg','pole-'+cleaned.pole+'.jpg'));newFiles.push(file);saved.push({id:file.getId(),name:file.getName()});}
+ }
+ const report={id:old?old.id:payload.operation||Utilities.getUuid(),owner:old?old.owner:u.email,author:old?old.author:u.name,location:cleaned.location,data:cleaned,photos:saved,status:'pending',review:'',version:old?old.version+1:1,created:old?old.created:now,updated:now};
+ if(!old){const duplicate=fresh.slice(1).find(r=>r[0]===report.id);if(duplicate){newFiles.forEach(f=>f.setTrashed(true));return farmadJson_({ok:true,report:unpack(duplicate)});}}
+ const values=farmadValues_(report,payload.operation);if(old)sheet.getRange(index+1,1,1,12).setValues([values]);else sheet.appendRow(values);return farmadJson_({ok:true,report:report});
+ }catch(err){newFiles.forEach(f=>f.setTrashed(true));throw err;}
+ }
+ sheet.getRange(index+1,1,1,12).setValues([farmadValues_(old,payload.operation)]);return farmadJson_({ok:true,report:old});
+ }finally{lock.releaseLock();}
+ }catch(err){console.error(err);return farmadJson_({ok:false,error:err.message||'ثبت انجام نشد؛ دوباره تلاش کنید.'});}
+}
+function farmadValues_(r,op){return [r.id,r.owner,r.author,r.location,JSON.stringify(r.data),JSON.stringify(r.photos),r.status,r.review,r.version,r.created,r.updated,op||''].map(v=>{const s=String(v);return /^[=+\-@]/.test(s)?"'"+s:s;});}
