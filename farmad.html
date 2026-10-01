@@ -118,7 +118,7 @@ function text(s,x,y,size=24,color=ink,bold=false,align='right'){ctx.direction=al
 function lines(s,width,size=24){ctx.font=size+'px Vazir';const out=[];for(const para of String(s||'—').split('\n')){let line='';for(const ch of para){if(ctx.measureText(line+ch).width>width){out.push(line);line='';}line+=ch;}out.push(line||' ');}return out;}
 function fitted(s,x,y,w,h,size=24,bold=false){let ls;while(size>=12){ls=lines(s,w,size);if(ls.length*(size*1.55)<=h)break;size--;}if(ls.length*size*1.55>h)throw Error('متن واردشده بیش از ظرفیت گزارش دوصفحه‌ای است؛ لطفاً آن را کوتاه‌تر کنید.');ls.forEach((v,i)=>text(v,x,y+size+i*size*1.55,size,ink,bold));}
 function rule(y){box(80,y,1080,1,'#dfe5e8',0);}
-function page(title,n){c=document.createElement('canvas');c.width=1240;c.height=1754;ctx=c.getContext('2d');box(0,0,1240,1754,'#fff',0);box(1124,78,36,6,teal,0);text('شرکت توسعه پایدار فارمد',1160,125,24,navy,true);text('بازدید چراغ‌های راهنمایی و رانندگی · اسلامشهر',1160,162,19,muted);text(title,1160,238,43,navy,true);rule(275);rule(1650);text('مهرشاد اسکندرپور · گزارش بازدید میدانی',1160,1692,18,muted);text(n+' / ۲',80,1692,18,muted,false,'left');pages.push(c);}
+function page(title,n){c=document.createElement('canvas');c.width=1240;c.height=1754;ctx=c.getContext('2d');box(0,0,1240,1754,'#fff',0);box(1124,78,36,6,teal,0);text('شرکت توسعه پایدار فارمد',1160,125,24,navy,true);text('بازدید چراغ‌های راهنمایی و رانندگی · اسلامشهر',1160,162,19,muted);text(title,1160,238,43,navy,true);rule(275);rule(1650);text('مهرشاد اسکندرپور',1160,1692,18,muted);text(n+' / ۲',80,1692,18,muted,false,'left');pages.push(c);}
 function section(title,y){text(title,1160,y,25,teal,true);}
 function cell(k,x,y,w,h){const label=fields.find(f=>f[0]===k)?.[1]||k;text(label,x+w-20,y+26,19,muted);fitted(String(r.data[k]??'—'),x+w-20,y+37,w-40,h-45,25,true);}
 page('گزارش بازدید میدانی','۱');
@@ -126,7 +126,7 @@ box(80,304,1080,135,'#f3f6f6');text('مکان بازدید',1138,339,19,muted);f
 section('اطلاعات بازدید',493);['contractor','date','inspector'].forEach((k,i)=>cell(k,80+(2-i)*365,516,350,112));rule(652);
 section('مشخصات و وضعیت تجهیزات',707);const keys=['type','structure','power','battery','cable','condition'];keys.forEach((k,i)=>{const xx=80+(2-i%3)*365,yy=730+Math.floor(i/3)*116;box(xx,yy,350,104,'#f7f8f9');cell(k,xx,yy,350,104);});
 section('تعداد تجهیزات',1028);['three','two','one','countdown','solar'].forEach((k,i)=>{const x=80+(4-i)*218;box(x,1053,208,116,'#f0f5f4');text(fields.find(f=>f[0]===k)[1].replace('تعداد ',''),x+104,1088,18,muted,false,'center');text(Number(r.data[k]||0).toLocaleString('fa-IR'),x+104,1140,36,teal,true,'center');});
-section('توضیحات و نواقص',1232);box(80,1256,1080,300,'#f7f8f9');fitted(r.data.notes||'توضیحی ثبت نشده است.',1134,1275,1028,254,25);
+section('توضیحات',1232);box(80,1256,1080,300,'#f7f8f9');fitted(r.data.notes||'توضیحی ثبت نشده است.',1134,1275,1028,254,25);
 text('زمان تهیه: '+new Date(r.updated).toLocaleString('fa-IR'),1160,1611,17,muted);text(r.id,80,1611,15,muted,false,'left');
 page('موقعیت و مستندات تصویری','۲');fitted(r.data.location,1160,297,1080,62,24,true);
 text('مختصات جغرافیایی',1160,395,20,muted);text(Number(r.data.lat).toFixed(6)+' , '+Number(r.data.lng).toFixed(6),80,395,24,navy,false,'left');
