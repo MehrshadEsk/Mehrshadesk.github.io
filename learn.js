@@ -49,11 +49,4 @@ function updateCountdown(){
 }
 updateCountdown();setInterval(updateCountdown,1000);
 
-// Subtle pointer physics: depth without changing layout or content.
-if(!reduced&&matchMedia('(pointer:fine)').matches){
- const hero=document.querySelector('.hero-playground');const win=document.querySelector('.hero-window');
- hero?.addEventListener('pointermove',e=>{if(!win)return;const r=hero.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;win.style.transform=`rotateX(${-y*4.5}deg) rotateY(${x*5.5}deg) translate3d(${x*4}px,${y*3}px,0)`;win.style.setProperty('--mx',`${(x+.5)*100}%`);win.style.setProperty('--my',`${(y+.5)*100}%`)});
- hero?.addEventListener('pointerleave',()=>{if(win)win.style.transform='' });
- document.querySelectorAll('.course-card').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width;const y=(e.clientY-r.top)/r.height;card.style.setProperty('--spot-x',`${x*100}%`);card.style.setProperty('--spot-y',`${y*100}%`);card.style.transform=`perspective(900px) rotateX(${(0.5-y)*2.2}deg) rotateY(${(x-0.5)*2.8}deg) translateY(-5px)`});card.addEventListener('pointerleave',()=>card.style.transform='')});
-}
 })();

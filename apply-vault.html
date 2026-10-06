@@ -1,353 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex,nofollow,noarchive" />
-<meta name="theme-color" content="#fafaf9" />
+<meta charset="utf-8">
+<script src="theme-init.js?v=20261006"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#f7f8fa">
 <title>Apply Vault — Private Access</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-:root{
-  --bg:#fafaf9;
-  --paper:#ffffff;
-  --text:#252622;
-  --muted:#777871;
-  --soft:#a7a8a2;
-  --line:#dedfd9;
-  --line-soft:#ecece8;
-  --accent:#c34b29;
-  --accent-soft:#f8eee9;
-  --success:#4f7f5d;
-  --success-soft:#f2f7f3;
-  --danger:#b94d43;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-body{font-family:var(--sans);min-height:100vh}
-a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-button{border:0}
-::selection{background:#f5d6c6}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
-.site-header{
-  height:82px;
-  border-bottom:1px solid var(--line);
-  background:rgba(250,250,249,.92);
-  backdrop-filter:blur(18px);
-  display:flex;
-  align-items:center;
-  position:relative;
-  z-index:20;
-}
-.nav{
-  width:min(1180px,calc(100% - 72px));
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-}
-.brand{display:flex;align-items:center;gap:16px;line-height:1.35}
-.brand-mark{font-family:var(--mono);font-size:35px;font-weight:600;letter-spacing:-4px}
-.brand-mark span{color:var(--accent)}
-.brand-name{font-family:var(--mono);font-size:12px;letter-spacing:-.01em}
-.brand-name span{display:block;color:var(--muted)}
-.back-link{
-  font-family:var(--mono);
-  font-size:11px;
-  color:var(--muted);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  transition:color .2s ease;
-}
-.back-link:hover{color:var(--text)}
-.back-link i{font-style:normal;color:var(--accent)}
-
-.page{
-  width:min(920px,calc(100% - 72px));
-  margin:0 auto;
-  padding:86px 0 48px;
-}
-.intro{margin-bottom:38px}
-.eyebrow{
-  font-family:var(--mono);
-  font-size:10px;
-  line-height:1.4;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:18px;
-}
-.intro h1{
-  margin:0;
-  font-size:clamp(42px,6vw,68px);
-  line-height:.98;
-  letter-spacing:-.065em;
-  font-weight:500;
-}
-.intro p{
-  max-width:570px;
-  margin:20px 0 0;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.75;
-}
-
-.vault-card{
-  position:relative;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:2px;
-  overflow:hidden;
-  box-shadow:0 18px 54px rgba(35,36,32,.055);
-}
-.card-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:28px;
-  padding:30px 32px 26px;
-  border-bottom:1px solid var(--line-soft);
-}
-.state-label{
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-.card-head h2{
-  margin:0;
-  font-size:24px;
-  line-height:1.2;
-  letter-spacing:-.035em;
-  font-weight:500;
-}
-.card-head p{
-  margin:8px 0 0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  max-width:510px;
-}
-.access-badge{
-  flex:0 0 auto;
-  font-family:var(--mono);
-  font-size:8px;
-  line-height:1;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--muted);
-  border:1px solid var(--line);
-  padding:9px 10px;
-}
-
-.auth-panel{padding:28px 32px 30px}
-.login-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:grid;gap:8px}
-.field.full{grid-column:1/-1}
-.field label,
-.input-cell label{
-  font-family:var(--mono);
-  font-size:8px;
-  line-height:1.4;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:#6f716b;
-}
-.field label span{color:var(--accent)}
-.input-cell{display:grid;gap:8px}
-.input-cell input,
-.field input,
-.field textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:0;
-  background:#fff;
-  color:var(--text);
-  outline:0;
-  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
-}
-.input-cell input,.field input{height:50px;padding:0 14px;font-size:13px}
-.field textarea{min-height:110px;resize:vertical;padding:13px 14px;font-size:13px;line-height:1.6}
-.input-cell input::placeholder,.field input::placeholder,.field textarea::placeholder{color:#b1b2ad}
-.input-cell input:focus,.field input:focus,.field textarea:focus{
-  border-color:#b8b9b3;
-  box-shadow:0 0 0 3px rgba(37,38,34,.035);
-}
-.field input[readonly]{background:#f7f7f5;color:#74766f}
-.auth-actions{
-  margin-top:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-}
-.verify-btn,.submit-request{
-  cursor:pointer;
-  background:var(--text);
-  color:#fff;
-  min-height:48px;
-  padding:0 18px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:.105em;
-  text-transform:uppercase;
-  transition:background .18s ease,transform .18s ease,opacity .18s ease;
-}
-.verify-btn:hover,.submit-request:hover{background:var(--accent)}
-.verify-btn:active,.submit-request:active{transform:translateY(1px)}
-.verify-btn:disabled,.submit-request:disabled{cursor:wait;opacity:.56}
-.verify-btn .arrow,.submit-request .arrow{font-size:14px;line-height:1}
-.login-note{
-  font-family:var(--mono);
-  font-size:8px;
-  letter-spacing:.035em;
-  color:#989a94;
-}
-.mini-status{display:flex;align-items:center;gap:8px}
-.mini-status:before{content:'';width:5px;height:5px;border-radius:50%;background:#a8aaa4}
-
-.console-wrap{
-  display:grid;
-  grid-template-rows:0fr;
-  opacity:0;
-  transition:grid-template-rows .3s ease,opacity .2s ease;
-}
-.console-wrap.open{grid-template-rows:1fr;opacity:1}
-.console-inner{min-height:0;overflow:hidden}
-.console{
-  border-top:1px solid var(--line-soft);
-  background:#fbfbf9;
-}
-.console-top{
-  min-height:43px;
-  padding:0 32px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  font-family:var(--mono);
-  font-size:8px;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  color:#8f918a;
-}
-.console-live{display:flex;align-items:center;gap:8px;color:#6f716b}
-.console-live:before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.1s ease-in-out infinite}
-.console-log{display:none}
-.console-progress{height:1px;background:var(--line-soft);overflow:hidden}
-.console-progress i{display:block;height:100%;width:24%;background:var(--accent);transform:translateX(-110%)}
-.console-wrap.open .console-progress i{animation:scan .85s ease-in-out infinite}
-@keyframes scan{to{transform:translateX(430%)}}
-@keyframes pulse{50%{opacity:.35}}
-
-.request-shell{
-  display:grid;
-  grid-template-rows:0fr;
-  opacity:0;
-  transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1),opacity .25s ease;
-}
-.request-shell.open{grid-template-rows:1fr;opacity:1}
-.request-inner{min-height:0;overflow:hidden}
-.request-panel{border-top:1px solid var(--line);padding:30px 32px 32px;background:#fff}
-.request-heading{margin-bottom:24px}
-.denied-badge{
-  font-family:var(--mono);
-  font-size:8px;
-  letter-spacing:.11em;
-  text-transform:uppercase;
-  color:var(--danger);
-  margin-bottom:10px;
-}
-.request-heading h3{margin:0;font-size:20px;letter-spacing:-.025em;font-weight:500}
-.request-heading p{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.7;max-width:610px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 14px}
-.submit-request{width:100%;margin-top:18px;justify-content:space-between}
-.submit-request strong{font-weight:500}
-.honeypot{position:absolute!important;left:-99999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
-.request-success{display:none;border:1px solid #dce6df;background:var(--success-soft);padding:16px 17px;margin-top:14px}
-.request-success.show{display:block;animation:rise .3s ease}
-.request-success b{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--success);text-transform:uppercase}
-.request-success p{font-size:11px;line-height:1.65;color:#68746b;margin:6px 0 0}
-.request-success code{color:var(--text);font-family:var(--mono);font-size:10px}
-@keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-
-.result-overlay{
-  position:absolute;
-  inset:0;
-  z-index:12;
-  background:rgba(255,255,255,.97);
-  display:grid;
-  place-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .25s ease,visibility .25s ease;
-}
-.result-overlay.show{opacity:1;visibility:visible}
-.result-card{text-align:center;max-width:360px;padding:32px}
-.result-icon{
-  width:42px;height:42px;border-radius:50%;margin:0 auto 18px;
-  border:1px solid #cbd9ce;background:var(--success-soft);display:grid;place-items:center;color:var(--success);font-size:18px
-}
-.result-card .small{font-family:var(--mono);font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:var(--success);margin-bottom:8px}
-.result-card h3{margin:0;font-size:24px;letter-spacing:-.035em;font-weight:500}
-.result-card p{margin:9px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
-body.granted .vault-card{box-shadow:0 20px 60px rgba(70,117,82,.08)}
-
-.page-foot{
-  margin-top:22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  color:#a0a19b;
-  font-family:var(--mono);
-  font-size:8px;
-  line-height:1.6;
-  letter-spacing:.075em;
-  text-transform:uppercase;
-}
-.page-foot span:last-child{text-align:right}
-
-@media(max-width:700px){
-  .site-header{height:72px}
-  .nav,.page{width:min(100% - 32px,920px)}
-  .brand{gap:12px}.brand-mark{font-size:30px}.brand-name{font-size:10px}
-  .back-link{font-size:9px}.back-link span{display:none}
-  .page{padding:58px 0 34px}
-  .intro{margin-bottom:28px}.intro h1{font-size:clamp(40px,15vw,58px)}.intro p{font-size:13px}
-  .card-head,.auth-panel,.request-panel{padding-left:20px;padding-right:20px}
-  .card-head{padding-top:24px;padding-bottom:22px}.access-badge{display:none}
-  .login-grid,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
-  .auth-actions{align-items:flex-start;flex-direction:column}.verify-btn{width:100%;justify-content:space-between}
-  .console-top{padding:0 20px}
-  .page-foot{display:block}.page-foot span{display:block}.page-foot span+span{margin-top:4px;text-align:left}
-}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
-</style>
-</head>
-<body>
+<link rel="stylesheet" href="styles.css?v=20261006"><link rel="stylesheet" href="subpage-theme.css?v=20261006"><link rel="icon" href="favicon.ico"></head>
+<body class="vault-page">
 <header class="site-header">
   <div class="nav">
     <a class="brand" href="index.html#home" aria-label="Mehrshad Eskandarpour home">
       <div class="brand-mark">m<span>.</span></div>
       <div class="brand-name">mehrshad <span>/eskandarpour</span></div>
     </a>
-    <a class="back-link" href="index.html#home"><span>Back to portfolio</span><i>↗</i></a>
-  </div>
+    <div class="header-tools"><a class="back-link" href="index.html#home"><span>Back to portfolio</span><i>↗</i></a>
+  <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch to dark theme"><svg class="moon" aria-hidden="true" viewbox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><svg class="sun" aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg></button></div></div>
 </header>
 
 <main class="page">
@@ -372,11 +40,11 @@ body.granted .vault-card{box-shadow:0 20px 60px rgba(70,117,82,.08)}
         <div class="login-grid">
           <div class="input-cell">
             <label for="verify-email">Temporary Access Name (TAN)</label>
-            <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="name@example.com" required />
+            <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="name@example.com" required>
           </div>
           <div class="input-cell">
             <label for="verify-password">Temporary Access Pass (TAP)</label>
-            <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="Enter access pass" required />
+            <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="Enter access pass" required>
           </div>
         </div>
         <div class="auth-actions">
@@ -406,14 +74,14 @@ body.granted .vault-card{box-shadow:0 20px 60px rgba(70,117,82,.08)}
           </div>
 
           <form id="request-form" novalidate>
-            <input class="honeypot" id="request-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input class="honeypot" id="request-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-grid">
-              <div class="field"><label for="first-name">First name <span>*</span></label><input id="first-name" name="firstName" maxlength="80" autocomplete="given-name" required /></div>
-              <div class="field"><label for="last-name">Last name <span>*</span></label><input id="last-name" name="lastName" maxlength="80" autocomplete="family-name" required /></div>
-              <div class="field"><label for="mobile">Mobile number <span>*</span></label><input id="mobile" name="mobile" type="tel" maxlength="30" autocomplete="tel" placeholder="+1 416 555 0123" required /></div>
-              <div class="field"><label for="request-email">Email address <span>*</span></label><input id="request-email" name="email" type="email" maxlength="180" autocomplete="email" readonly required /></div>
-              <div class="field"><label for="affiliation">University / affiliation <span>*</span></label><input id="affiliation" name="affiliation" maxlength="180" placeholder="University, lab, company…" required /></div>
-              <div class="field"><label for="entry-year">University entry year <span>*</span></label><input id="entry-year" name="entryYear" type="number" inputmode="numeric" min="1950" max="2100" placeholder="2024" required /></div>
+              <div class="field"><label for="first-name">First name <span>*</span></label><input id="first-name" name="firstName" maxlength="80" autocomplete="given-name" required></div>
+              <div class="field"><label for="last-name">Last name <span>*</span></label><input id="last-name" name="lastName" maxlength="80" autocomplete="family-name" required></div>
+              <div class="field"><label for="mobile">Mobile number <span>*</span></label><input id="mobile" name="mobile" type="tel" maxlength="30" autocomplete="tel" placeholder="+1 416 555 0123" required></div>
+              <div class="field"><label for="request-email">Email address <span>*</span></label><input id="request-email" name="email" type="email" maxlength="180" autocomplete="email" readonly required></div>
+              <div class="field"><label for="affiliation">University / affiliation <span>*</span></label><input id="affiliation" name="affiliation" maxlength="180" placeholder="University, lab, company…" required></div>
+              <div class="field"><label for="entry-year">University entry year <span>*</span></label><input id="entry-year" name="entryYear" type="number" inputmode="numeric" min="1950" max="2100" placeholder="2024" required></div>
               <div class="field full"><label for="reason">Reason for access <span>*</span></label><textarea id="reason" name="reason" maxlength="1200" placeholder="Briefly explain why you are requesting access to the Apply Vault." required></textarea></div>
             </div>
             <button class="submit-request" id="request-btn" type="submit"><strong>Submit access request</strong><span class="arrow">↗</span></button>
@@ -680,5 +348,5 @@ body.granted .vault-card{box-shadow:0 20px 60px rgba(70,117,82,.08)}
 })();
 </script>
 <script src="screen-protection.js"></script>
-</body>
+<script src="design.js?v=20261006" defer></script></body>
 </html>
