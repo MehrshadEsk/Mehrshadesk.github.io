@@ -38,7 +38,7 @@
 .plus{font-size:1.5rem;line-height:1;transition:transform .2s}.ref-card.open .plus{transform:rotate(45deg)}
 .letter-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}.ref-card.open .letter-wrap{grid-template-rows:1fr}.letter-inner{overflow:hidden;min-height:0}
 .letter-text{padding:32px 36px;margin:0 0 28px 96px;background:var(--paper);border:1px solid var(--line);border-radius:2px}
-.letter-text p{font-family:Georgia,'Times New Roman',serif;font-size:1.0625rem;line-height:1.9;margin-bottom:20px;color:var(--text);max-width:82ch}.letter-text p:last-child{margin-bottom:0}
+.letter-text p{font-family:var(--font);font-size:1.0625rem;line-height:1.9;margin-bottom:20px;color:var(--text);max-width:82ch}.letter-text p:last-child{margin-bottom:0}
 .professor-info{margin:0 0 30px 96px;border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .professor-info div{display:flex;flex-direction:column;gap:8px}.professor-info span{font:400 .75rem/1.6 var(--mono);color:var(--muted)}.professor-info strong{font-weight:400;font-size:.875rem}.professor-info a{color:var(--accent);overflow-wrap:anywhere}
 /* Contact composer */
@@ -90,3 +90,43 @@
 .signal-map svg text{fill:var(--muted);font-family:var(--mono)}
 .signal-map svg text.code{fill:var(--accent)}
 .signal-map svg [fill='#355746']{fill:var(--accent)}
+/* Signal & Form: reference archive, contact studio and private access panel. */
+.references-page .hero,.contact-page .hero{padding:76px 0 72px}
+.references-page .hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr);gap:72px}
+.references-page h1{font-size:clamp(3.2rem,5.2vw,5.6rem);line-height:1.03}
+.references-page .hero-meta span{font-size:.6rem;border-radius:3px;padding:7px 10px;background:var(--surface-2)}
+.signal-map{border-radius:130px 5px 5px 5px;background:var(--paper);box-shadow:14px 14px 0 var(--surface-2)}
+.signal-map::before{top:42px;left:70px;font-size:.58rem;letter-spacing:.08em}.signal-map::after{font-size:.58rem;left:24px;bottom:24px}
+.signal-map svg{min-height:390px}.signal-map svg text{font-family:var(--mono)!important;fill:var(--muted)!important}.signal-map svg text.code{fill:var(--accent)!important}
+.references-page .section{padding:76px 0}.references-page .section-head{grid-template-columns:184px minmax(0,1fr);gap:64px;margin-bottom:42px}
+.section-no{font-size:.65rem}.references-page .section h2{font-size:clamp(2.4rem,3.8vw,4rem)}
+.toolbar{padding:18px 0;margin-bottom:0}.filter-btn{font-size:.65rem;border-radius:3px;padding:10px 14px}.filter-btn.is-active{background:var(--button);color:var(--button-ink);border-color:var(--button)}.expand-all{font-size:.65rem}
+.ref-head{grid-template-columns:70px minmax(0,1fr) 130px;gap:28px;padding:36px 12px 36px 0;transition:background .2s}
+.ref-head:hover{background:var(--surface-2)}.ref-no{font-size:.65rem}.school-kicker{font-size:.6rem;letter-spacing:.07em;margin-bottom:16px}
+.ref-main h2,.ref-main h3{font-family:var(--display);font-size:2.35rem!important;line-height:1.13;margin-bottom:20px}
+.role-chip{font-size:.6rem;border-radius:3px;background:var(--surface-2)}.ref-main blockquote{font-size:1rem;line-height:1.9}.application{font-size:.6rem}.ref-toggle{font-size:.6rem;gap:16px;padding-top:8px}.plus{border:1px solid var(--line);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-size:1.2rem}
+.letter-text{padding:38px 42px;margin-left:98px;background:var(--surface-2);border-radius:5px}.letter-text p{font-family:var(--display);font-size:1.2rem;line-height:1.85}.professor-info{margin-left:98px;gap:28px}.professor-info span{font-size:.6rem}.professor-info strong{font-size:.85rem;line-height:1.8}
+.contact-page .hero{background:var(--surface-2)}.contact-page .hero h1{font-size:clamp(3.5rem,6.1vw,6.8rem)}.contact-page .lede{max-width:70ch}.email-hero{margin-top:36px;gap:26px}.email-address{font-size:clamp(1.4rem,2.6vw,2.2rem)}.copy-btn{font-size:.7rem;border-color:var(--line);border-radius:4px;padding:12px 16px}
+.contact-page .contact-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:72px;padding:72px 0 84px}
+.composer{padding:34px;border:1px solid var(--line);border-radius:5px}.composer-head{margin-bottom:32px}.composer-head h2{font-size:2.3rem}.composer-head>span{font-size:.6rem}.field{gap:11px}.field label{font-size:.7rem}.form-grid{gap:24px 20px}.send-row{margin-top:28px}.micro{font-size:.75rem;line-height:1.85}.note-no{font-size:.6rem;letter-spacing:.05em}.note h3{font-family:var(--display);font-size:2rem;line-height:1.2}.note p{font-size:.95rem;line-height:1.9}.side .note{padding:30px 0}.channels a{font-size:.85rem;padding:16px 0}.toast{background:var(--teal);color:white;border-radius:4px;font-size:.75rem}
+.vault-page .page{width:min(1180px,calc(100% - 112px));display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.25fr);align-items:start;gap:0 80px;padding:112px 0 80px}
+.vault-page .intro{margin:0;padding-top:16px;position:sticky;top:140px}.vault-page .intro::before{content:'';display:block;width:60px;height:60px;margin-bottom:38px;background:var(--surface-2) url('assets/vault-symbol.svg') center/34px no-repeat;border:1px solid var(--line);border-radius:5px}
+.vault-page .intro h1{font-size:clamp(3.4rem,5vw,5.5rem);line-height:1.02}.vault-page .intro p{font-size:1rem;line-height:1.9;margin-top:28px;max-width:35ch}.vault-page .eyebrow{font-size:.6rem}
+.vault-card{border-radius:6px;box-shadow:var(--shadow)}.card-head{padding:34px;background:var(--surface-2);gap:20px}.state-label{font-size:.6rem;letter-spacing:.08em;margin-bottom:18px}.card-head h2{font-size:2.3rem;line-height:1.1}.card-head p{font-size:.9rem;line-height:1.85;margin-top:20px}.access-badge{font-size:.58rem;color:var(--accent);border-radius:30px;border-color:var(--line);padding:7px 11px;white-space:nowrap}
+.auth-panel{padding:34px}.login-grid{grid-template-columns:1fr;gap:24px}.input-cell{gap:11px}.input-cell label{font-size:.75rem;color:var(--text)}.auth-actions{margin-top:30px;gap:16px}.login-note{font-size:.58rem}.mini-status::before{background:var(--accent)}.verify-btn{min-height:48px;font-size:.75rem;gap:26px}
+.console-top{padding-inline:34px;font-size:.6rem}.console-progress{height:2px}.request-panel{padding:34px}.denied-badge{font-size:.6rem}.request-heading h3{font-family:var(--display);font-size:2.3rem}.request-heading p{font-size:.95rem;line-height:1.9}.submit-request{margin-top:28px}.request-success{border-radius:4px}.result-card h3{font-family:var(--display);font-size:2.7rem}.result-card p{font-size:.95rem}.result-card .small{font-size:.6rem}.page-foot{grid-column:2;margin-top:22px;font-size:.55rem;gap:14px;flex-wrap:wrap}.private-page{background:var(--surface-2)}.private-page>p{border:1px solid var(--line);border-radius:6px;background:var(--paper);font-family:var(--display);font-size:2.5rem;box-shadow:var(--shadow)}
+.error-page{background:var(--surface-2)}.error-page main{padding:48px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}.error-page small{font-size:.6rem}.error-page h1{font-size:clamp(3.5rem,7vw,6rem)}.error-page a{font-size:.8rem;background:var(--button);color:var(--button-ink)}
+@media(max-width:1100px){.references-page .hero-grid{gap:42px}.references-page .section-head{grid-template-columns:140px 1fr;gap:42px}.vault-page .page{width:calc(100% - 72px);gap:0 44px}.vault-page .intro h1{font-size:4.3rem}.contact-page .contact-grid{gap:38px}.composer{padding:28px}}
+@media(max-width:850px){.references-page .hero-grid{grid-template-columns:1fr}.signal-map{width:100%;max-width:620px;justify-self:center}.references-page .section-head{grid-template-columns:1fr;gap:20px}.contact-page .contact-grid{grid-template-columns:1fr;gap:44px}.vault-page .page{grid-template-columns:1fr;gap:36px;padding-top:56px;max-width:660px}.vault-page .intro{position:static}.vault-page .intro::before{margin-bottom:26px}.vault-page .intro p{max-width:55ch}.page-foot{grid-column:1;margin-top:0}.side{display:grid;grid-template-columns:1fr 1fr;gap:28px}.professor-info{grid-template-columns:1fr 1fr}.ref-head{grid-template-columns:50px minmax(0,1fr) 105px;gap:20px}.letter-text,.professor-info{margin-left:70px}}
+@media(max-width:600px){
+ .references-page .hero,.references-page .section,.contact-page .hero{padding:48px 0}.references-page h1{font-size:3.25rem}.signal-map svg{min-height:0}.signal-map{border-top-left-radius:90px;box-shadow:8px 8px 0 var(--surface-2)}.signal-map::before{font-size:.48rem;top:24px;left:48px}.signal-map::after{font-size:.48rem;left:16px;bottom:16px}
+ .ref-head{grid-template-columns:1fr;gap:18px;padding:28px 0}.ref-toggle{justify-content:flex-start}.ref-main h2,.ref-main h3{font-size:2rem!important}.letter-text{margin-left:0;padding:26px 22px}.professor-info{margin-left:0;grid-template-columns:1fr}.toolbar{gap:14px}.letter-text p{font-size:1.1rem}.contact-page .hero h1{font-size:3.75rem}
+ .contact-page .contact-grid{padding:44px 0 54px}.composer{padding:26px 20px}.composer-head h2{font-size:2.1rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.side{display:block}.side .note+.note{margin-top:16px}.email-hero{gap:18px}.email-address{font-size:1.5rem}
+ .vault-page .page{width:calc(100% - 40px);padding:40px 0 50px;gap:32px}.vault-page .intro h1{font-size:4rem}.card-head,.auth-panel,.request-panel{padding:26px 22px}.card-head h2{font-size:2.2rem}.access-badge{display:block;font-size:.5rem}.auth-actions{flex-direction:column;align-items:stretch;gap:20px}.console-top{padding-inline:22px;flex-wrap:wrap}.page-foot{flex-direction:column;gap:8px}.vault-page .back-link span{display:inline}.error-page{padding:20px}.error-page main{padding:36px 24px}.error-page h1{font-size:3.3rem}.private-page>p{font-size:2rem;margin:20px}
+}
+.references-page h1{font-size:clamp(2.7rem,4.2vw,4.5rem);line-height:1.14}
+.letter-text p{font-family:var(--font);font-size:1rem;line-height:1.95;text-align:justify;text-align-last:start}
+.contact-page .hero h1{font-size:clamp(3rem,5.1vw,5.3rem);line-height:1.12}
+.vault-page .intro h1{font-size:clamp(2.6rem,4vw,4.1rem)}
+.ref-main h2,.ref-main h3{font-size:1.75rem!important;line-height:1.35}
+@media(max-width:600px){.references-page h1{font-size:clamp(1.7rem,7.5vw,2.5rem)}.contact-page .hero h1{font-size:clamp(1.8rem,8.2vw,2.8rem)}.vault-page .intro h1{font-size:clamp(2rem,8vw,2.7rem)}.ref-main h2,.ref-main h3{font-size:1.5rem!important}}

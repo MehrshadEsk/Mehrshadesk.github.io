@@ -2,25 +2,34 @@
 
 ## Visual direction
 
-A precise editorial identity: cool white and charcoal surfaces, cobalt accents, large sans-serif headings, monospaced indices, thin rules, and restrained corner rounding. A corresponding dark theme uses the same hierarchy and is saved across pages.
+Signal & Form is a warm, minimal editorial identity for an engineer and researcher. Brown, sand, teal and white establish a consistent hierarchy without a collection of unrelated themes. Restrained corner rounding, thin rules, local monospaced fonts and quiet technical accents connect the pages.
 
-The homepage separates the identity and portrait from the full biography. The biography uses two columns on larger screens and a single reading column on smaller screens. An index beside each main section makes the long portfolio easier to scan. Publications use compact rows rather than an accumulation of boxes.
+The home page has a large two-line identity, an asymmetric portrait frame and a custom signal motif. Research cards have four purpose-built SVG glyphs, with a teal feature card. The long biography stays complete in one justified reading column on desktop and phones. Section indices remain beside the content on wider screens. Experience and publications use readable rows; teaching and education use compact, deliberate panels.
 
-Research pages, recommendation letters, the teaching archive, Persian learning pages, the contact composer, authorization states, and the 404 page use the same design foundations. Responsive rules account for smaller screens, and reduced-motion preferences are respected.
+Research pages pair large headings with the original technical canvas scenes, now using the requested palette. Reference letters keep their filters, disclosures and interactive network. The contact composer has a defined writing panel. The vault uses a two-column introduction and a restrained credential panel, stacking on phones. The Persian learning page carries the same colors through its course catalogue, syllabuses, sale countdowns, learning path and tuition calculator.
 
-## Preservation and repairs
+The alternate theme uses brown surfaces, white text and sand accents; primary actions remain teal. Themes are saved across editable pages. Keyboard focus, mobile navigation, content access without JavaScript, and reduced-motion preferences are supported.
 
-- The text-node comparison preserves all authored text from the 15 editable HTML files, including the complete biography, descriptions, paper titles, and recommendation letters.
-- `time.html` and `farmad.html` are byte-for-byte identical to the uploaded originals. Neither references the redesigned shared files.
-- The malformed homepage nesting and missing footer/script placement are repaired.
-- The embedded portrait and Persian font are materialized as local assets. Missing favicon sizes are supplied. Latin fonts are local and include their license.
-- Contact-form labels are associated with their fields. The broken JavaScript newline in the contact composer is repaired. Its Gmail draft no longer triggers a second mail-app fallback after opening a tab with `noopener`.
-- Reference disclosures expose their state and keep collapsed letters outside the keyboard tab order. Existing SVG reference nodes also support Enter and Space.
-- Hidden vault panels are kept outside the keyboard tab order. Credential checks, access configuration, and the backend are unchanged.
-- The old blocking homepage introduction is removed from the runtime. Excessive tilt, sales shimmer, and decorative layers are reduced on the learning page; its existing courses, prices, countdowns, syllabus dialogs, and calculator remain.
+## Content and functionality
 
-## Verification
+- A normalized text comparison confirms identical authored wording in all 15 editable HTML files, including reference letters and the full biography.
+- SHA-256 and byte comparisons confirm that `time.html` and `farmad.html` are identical to the supplied originals.
+- Access configuration, Google Apps Script backend, screen-protection logic and custom-domain configuration are unchanged.
+- Existing routes, external links, course prices, tuition logic and sale deadline are preserved.
+- The legacy application-journey redirects still point to the existing vault routes.
+- SVG viewBox attributes are corrected. Programming-style Latin and Persian fonts and a vault symbol are local assets; no new production package is required.
+- Mobile course layout and countdown layout are corrected. Calculator controls remain separate from the results and clickable at narrow widths.
 
-Passed: local image and font references, HTML navigation targets, unique IDs, text preservation, protected-file comparison, JavaScript syntax, and CSS brace/string balance. Interaction checks in a DOM emulation covered theme preference, tuition calculation and participant limits, course dialog events, recommendation-letter filters/disclosures, contact-draft URL construction, and empty vault credential validation.
+## Validation completed
 
-A visual desktop/mobile browser review could not be completed: this environment's browser security policy blocked the local preview. Responsive layouts have been reviewed in the source but have not been visually browser-verified. Live access verification, actual access requests, and external form submissions were not exercised. No emails were sent and the live domain was not changed.
+Local Chromium review covered 12 visual pages at widths of 1440, 768, 390 and 320 pixels: 48 responsive renders. These pages have no document-level horizontal overflow or JavaScript runtime errors. Portraits and local fonts load. Desktop and phone screenshots were reviewed for the home page, research, references, contact, teaching, vault, courses and calculator. Dark rendering was checked across eight page types.
+
+Interaction checks passed for mobile-menu opening, closing, Escape handling and section selection; saved theme persistence; reference-letter opening and closing, filters and expand-all; course dialogs; tuition values, course selection and participant limits; empty vault credential validation; and navigation without JavaScript. A contact-composer test captured the prefilled Gmail URL locally without opening a draft or sending an email.
+
+Local links and anchors, unique IDs, image/font references, CSS parsing and JavaScript syntax checks passed.
+
+No live access credentials were used. Real authorization, access requests, registration submissions and external services were not exercised. The live website has not been changed.
+
+## Typography update
+
+Consolas is the preferred font throughout editable pages. Bundled DejaVu Sans Mono regular and bold provide a consistent fallback and Persian glyph shaping. The serif display treatment is removed. Paragraph and letter text is justified with natural alignment on the last line. The full biography is one column at every viewport size. Responsive heading sizes are adjusted for the wider monospaced characters. The original authored wording and both protected pages remain unchanged.

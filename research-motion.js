@@ -19,11 +19,11 @@
   if (!mode) return;
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let ACCENT = '#355746';
-  let INK = '#151513';
-  let PAPER = '#fafaf9';
-  let MUTED = '#b8b0a5';
-  let SOFT = '#e8e3dc';
+  let ACCENT = '#097c87';
+  let INK = '#703f37';
+  let PAPER = '#ffffff';
+  let MUTED = '#c8b7a5';
+  let SOFT = '#c8b7a5';
 
   function updatePalette(){
     const css = getComputedStyle(document.documentElement);
@@ -239,7 +239,7 @@
     // Mesh edges.
     edges.forEach((e,i)=>{
       const active = [2,7,8,9,14,15].includes(e[0]) && [2,7,8,9,14,15].includes(e[1]);
-      line(c,P[e[0]],P[e[1]], active ? ACCENT : '#ada59b', active?1.35:1, active?.28:.25);
+      line(c,P[e[0]],P[e[1]], active ? ACCENT : SOFT, active?1.35:1, active?.28:.25);
     });
 
     // Soft interference / RF field arcs.
@@ -273,7 +273,7 @@
     // Nodes with independent energy arcs.
     P.forEach((p,i)=>{
       const hot=[2,7,8,9,14].includes(i);
-      circle(c,p.x,p.y,hot?7.2:5.4,'rgba(255,255,255,.96)',hot?ACCENT:'#9f978d',hot?1.45:1.05,1);
+      circle(c,p.x,p.y,hot?7.2:5.4,PAPER,hot?ACCENT:SOFT,hot?1.45:1.05,1);
       circle(c,p.x,p.y,1.55,hot?ACCENT:INK,null,1,hot?.9:.55);
       if(hot){
         const a=t*.55+i*.9, span=Math.PI*(.55+.32*hash(i+3));
@@ -286,7 +286,7 @@
     for(let i=0;i<20;i++){
       const x=fract(hash(i)*.9 + t*(.0035+.001*hash(i+8)))*w;
       const y=(.08+hash(i+33)*.84)*h + Math.sin(t*.35+i)*5;
-      circle(c,x,y,1.1, i%5===0?ACCENT:'#a9a197',null,1,i%5===0?.32:.18);
+      circle(c,x,y,1.1, i%5===0?ACCENT:SOFT,null,1,i%5===0?.32:.18);
     }
   }
 
@@ -319,7 +319,7 @@
         const p3={x:s.x+Math.cos(a-.42)*19,y:s.y+Math.sin(a-.42)*19};
         poly(c,[p1,p2,p3],ACCENT,'rgba(223,79,47,.07)',1,.72);
       }
-      circle(c,s.x,s.y,4.7,'#fff',ACCENT,1.4,1);
+      circle(c,s.x,s.y,4.7,PAPER,ACCENT,1.4,1);
       glowDot(c,s.x,s.y,1.8,.75);
     });
 
@@ -376,7 +376,7 @@
     // Side-channel traces — three coherent layers with moving acquisition head.
     for(let row=0;row<3;row++){
       const y=top+row*h*.135;
-      c.save(); c.strokeStyle=row===1?ACCENT:'#9e968c'; c.lineWidth=row===1?1.6:1; c.globalAlpha=row===1?.55:.28;
+      c.save(); c.strokeStyle=row===1?ACCENT:SOFT; c.lineWidth=row===1?1.6:1; c.globalAlpha=row===1?.55:.28;
       c.beginPath();
       const n=130;
       for(let i=0;i<=n;i++){
@@ -399,7 +399,7 @@
       const q=hash(r*cols+col+14);
       const hot=Math.sin(t*.85+q*9+r*.7+col*.4)>.72;
       const x=mx+col*(cw+6), y=my+r*(ch+6);
-      c.save();c.globalAlpha=hot?.78:.34;c.fillStyle=hot?'rgba(223,79,47,.13)':'rgba(255,255,255,.8)';c.strokeStyle=hot?ACCENT:'#afa79d';c.lineWidth=hot?1.25:1;c.fillRect(x,y,cw,ch);c.strokeRect(x+.5,y+.5,cw-1,ch-1);c.restore();
+      c.save();c.globalAlpha=hot?.78:.34;c.fillStyle=hot?SOFT:PAPER;c.strokeStyle=hot?ACCENT:SOFT;c.lineWidth=hot?1.25:1;c.fillRect(x,y,cw,ch);c.strokeRect(x+.5,y+.5,cw-1,ch-1);c.restore();
       if(hot && (r+col)%3===0) glowDot(c,x+cw/2,y+ch/2,1.5,.52);
     }
 
@@ -416,10 +416,10 @@
     chain.forEach((b,i)=>{
       if(i<chain.length-1){
         const nb=chain[i+1];
-        line(c,{x:b.x+b.s/2,y:b.y},{x:nb.x-nb.s/2,y:nb.y},i===2?ACCENT:'#9f978e',1.2,i===2?.45:.30);
+        line(c,{x:b.x+b.s/2,y:b.y},{x:nb.x-nb.s/2,y:nb.y},i===2?ACCENT:SOFT,1.2,i===2?.45:.30);
         const u=fract(t*.18+i*.23); const p=mixPoint({x:b.x+b.s/2,y:b.y},{x:nb.x-nb.s/2,y:nb.y},u); glowDot(c,p.x,p.y,1.8,(1-Math.abs(.5-u))*.52);
       }
-      c.save();c.translate(b.x,b.y);c.rotate((i%2?1:-1)*.012*Math.sin(t*.7+i));c.fillStyle='rgba(255,255,255,.88)';c.strokeStyle=i===2?ACCENT:'#9f978e';c.lineWidth=i===2?1.5:1;c.fillRect(-b.s/2,-b.s/2,b.s,b.s);c.strokeRect(-b.s/2+.5,-b.s/2+.5,b.s-1,b.s-1);
+      c.save();c.translate(b.x,b.y);c.rotate((i%2?1:-1)*.012*Math.sin(t*.7+i));c.fillStyle=PAPER;c.strokeStyle=i===2?ACCENT:SOFT;c.lineWidth=i===2?1.5:1;c.fillRect(-b.s/2,-b.s/2,b.s,b.s);c.strokeRect(-b.s/2+.5,-b.s/2+.5,b.s-1,b.s-1);
       // internal coded bit pattern: pure geometry, no glyphs.
       for(let r=0;r<4;r++)for(let q=0;q<4;q++) if(hash(i*31+r*7+q)>.50){c.fillStyle=(i===2&&hash(r*8+q)>.72)?'rgba(223,79,47,.52)':'rgba(21,21,19,.18)';c.fillRect(-b.s*.31+q*b.s*.16,-b.s*.31+r*b.s*.16,b.s*.07,b.s*.07);}
       c.restore();
@@ -455,7 +455,7 @@
       const spread=(1-u)*h*.20 + 6;
       const y=h*.42 + (hash(i+12)-.5)*spread + Math.sin(t*.7+i)*2;
       const rr=1.2+hash(i+30)*1.6;
-      circle(c,x,y,rr,i%6===0?ACCENT:'#948c82',null,1,i%6===0?.48:.22);
+      circle(c,x,y,rr,i%6===0?ACCENT:SOFT,null,1,i%6===0?.48:.22);
     }
 
     // Compression funnel / latent bottleneck.
@@ -464,7 +464,7 @@
     c.beginPath();c.moveTo(x1,h*.17);c.lineTo(x2,h*.40);c.lineTo(x1,h*.67);c.stroke();
     c.beginPath();c.moveTo(x1,h*.67);c.lineTo(x2,h*.44);c.lineTo(x1,h*.17);c.stroke();
     c.restore();
-    circle(c,x2,h*.42,8,'rgba(255,255,255,.96)',ACCENT,1.4,1);
+    circle(c,x2,h*.42,8,PAPER,ACCENT,1.4,1);
     circle(c,x2,h*.42,2.1,ACCENT,null,1,.85);
     for(let k=0;k<3;k++) circle(c,x2,h*.42,15+k*10,null,ACCENT,1,.05+.025*Math.sin(t*.8+k));
 
@@ -474,7 +474,7 @@
       [.61,.57],[.73,.57],[.86,.61],[.68,.78],[.82,.79]
     ].map((p,i)=>({x:p[0]*w,y:p[1]*h+Math.sin(t*.24+i)*2}));
     const E=[[0,1],[0,3],[1,2],[1,4],[2,5],[3,4],[3,6],[4,5],[4,7],[5,8],[6,7],[6,9],[7,8],[7,10],[8,10],[9,10],[1,3],[4,8]];
-    E.forEach((e,i)=>line(c,G[e[0]],G[e[1]],i%5===0?ACCENT:'#9f978d',i%5===0?1.25:1,i%5===0?.32:.22));
+    E.forEach((e,i)=>line(c,G[e[0]],G[e[1]],i%5===0?ACCENT:SOFT,i%5===0?1.25:1,i%5===0?.32:.22));
 
     // Information pulses expanding from bottleneck through chosen graph routes.
     const routes=[[0,1,4,7,10],[3,4,5,8],[6,7,8,10]];
@@ -488,7 +488,7 @@
 
     G.forEach((p,i)=>{
       const active=.5+.5*Math.sin(t*.66+i*1.31);
-      circle(c,p.x,p.y,4.8,'rgba(255,255,255,.96)',active>.72?ACCENT:'#9b9389',active>.72?1.3:1,.95);
+      circle(c,p.x,p.y,4.8,PAPER,active>.72?ACCENT:SOFT,active>.72?1.3:1,.95);
       circle(c,p.x,p.y,1.25,active>.72?ACCENT:INK,null,1,.48+.35*active);
     });
 

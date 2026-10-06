@@ -3,8 +3,8 @@
   "short_name": "Mehrshad",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7f8fa",
-  "theme_color": "#f7f8fa",
+  "background_color": "#ffffff",
+  "theme_color": "#703f37",
   "icons": [
     {
       "src": "/assets/favicon-192.png?v=2",
