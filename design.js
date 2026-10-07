@@ -12,7 +12,7 @@
    const label = persian ? (dark ? 'تغییر به زمینه روشن' : 'تغییر به زمینه تیره') : `Switch to ${dark ? 'light' : 'dark'} theme`;
    toggle.setAttribute('aria-label', label);toggle.setAttribute('title', label);toggle.setAttribute('aria-pressed', String(dark));
   }
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#703f37' : '#ffffff');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#264653' : '#f4f1de');
   if (save) { try { localStorage.setItem('mehrshad-theme', root.dataset.theme); } catch {} }
   window.dispatchEvent(new Event('site-theme-change'));
  }

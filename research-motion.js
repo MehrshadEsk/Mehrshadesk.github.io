@@ -19,11 +19,11 @@
   if (!mode) return;
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let ACCENT = '#097c87';
-  let INK = '#703f37';
-  let PAPER = '#ffffff';
-  let MUTED = '#c8b7a5';
-  let SOFT = '#c8b7a5';
+  let ACCENT = '#264653';
+  let INK = '#264653';
+  let PAPER = '#f4f1de';
+  let MUTED = '#F8B195';
+  let SOFT = '#F8B195';
 
   function updatePalette(){
     const css = getComputedStyle(document.documentElement);
@@ -145,12 +145,12 @@
 
   function drawBackdrop(c, w, h, t, px, py) {
     c.save();
-    c.fillStyle = 'rgba(255,255,255,.01)';
+    c.fillStyle = 'rgba(244,241,222,.01)';
     c.fillRect(0, 0, w, h);
 
     const grid = Math.max(28, Math.min(38, w / 17));
     c.lineWidth = 1;
-    c.strokeStyle = 'rgba(43,38,33,.047)';
+    c.strokeStyle = 'rgba(38,70,83,.047)';
     const ox = ((t * 2.2 + px * 8) % grid);
     const oy = ((t * 1.2 + py * 7) % grid);
     c.beginPath();
@@ -158,7 +158,7 @@
     for (let y = -grid + oy; y <= h + grid; y += grid) { c.moveTo(0, y); c.lineTo(w, y); }
     c.stroke();
 
-    c.strokeStyle = 'rgba(223,79,47,.055)';
+    c.strokeStyle = 'rgba(248,177,149,.055)';
     c.beginPath();
     for (let x = grid * 4 + ox; x <= w + grid; x += grid * 4) { c.moveTo(x, 0); c.lineTo(x, h); }
     for (let y = grid * 4 + oy; y <= h + grid; y += grid * 4) { c.moveTo(0, y); c.lineTo(w, y); }
@@ -168,8 +168,8 @@
 
   function drawVignette(c, w, h) {
     const g = c.createRadialGradient(w * .5, h * .48, Math.min(w,h) * .17, w * .5, h * .48, Math.max(w,h) * .72);
-    g.addColorStop(0, 'rgba(250,250,249,0)');
-    g.addColorStop(1, 'rgba(250,250,249,.42)');
+    g.addColorStop(0, 'rgba(244,241,222,0)');
+    g.addColorStop(1, 'rgba(244,241,222,.42)');
     c.fillStyle = g;
     c.fillRect(0,0,w,h);
   }
@@ -244,7 +244,7 @@
 
     // Soft interference / RF field arcs.
     c.save();
-    c.strokeStyle='rgba(91,83,75,.14)'; c.lineWidth=1;
+    c.strokeStyle='rgba(146,162,166,.14)'; c.lineWidth=1;
     const src={x:w*.93,y:h*.17};
     for(let r=38;r<180;r+=25){
       c.beginPath(); c.arc(src.x,src.y,r,Math.PI*.62,Math.PI*1.28); c.stroke();
@@ -304,7 +304,7 @@
     cells.forEach((s,i)=>{
       const load=.55+.32*Math.sin(t*.42+s.phase);
       const pts=[]; for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3;pts.push({x:s.x+Math.cos(a)*s.r,y:s.y+Math.sin(a)*s.r});}
-      poly(c,pts,ACCENT,`rgba(223,79,47,${.018+.018*load})`,1,.22+.10*load);
+      poly(c,pts,ACCENT,`rgba(248,177,149,${.018+.018*load})`,1,.22+.10*load);
       circle(c,s.x,s.y,s.r*.47,null,ACCENT,1,.065+.04*load);
       circle(c,s.x,s.y,s.r*.72,null,ACCENT,1,.045+.03*load);
     });
@@ -317,7 +317,7 @@
         const p1={x:s.x+Math.cos(a)*8,y:s.y+Math.sin(a)*8};
         const p2={x:s.x+Math.cos(a+.42)*19,y:s.y+Math.sin(a+.42)*19};
         const p3={x:s.x+Math.cos(a-.42)*19,y:s.y+Math.sin(a-.42)*19};
-        poly(c,[p1,p2,p3],ACCENT,'rgba(223,79,47,.07)',1,.72);
+        poly(c,[p1,p2,p3],ACCENT,'rgba(248,177,149,.07)',1,.72);
       }
       circle(c,s.x,s.y,4.7,PAPER,ACCENT,1.4,1);
       glowDot(c,s.x,s.y,1.8,.75);
@@ -350,7 +350,7 @@
         const rp=10+28*fract(t*.8+ui*.21);
         circle(c,u.p.x,u.p.y,rp,null,ACCENT,1,(1-fract(t*.8+ui*.21))*.22*handover);
       }
-      circle(c,u.p.x,u.p.y,4.1,'rgba(255,255,255,.95)',ACCENT,1.15,.95);
+      circle(c,u.p.x,u.p.y,4.1,'rgba(244,241,222,.95)',ACCENT,1.15,.95);
       circle(c,u.p.x,u.p.y,1.35,INK,null,1,.68);
     });
 
@@ -363,7 +363,7 @@
     });
 
     // Handover corridor through the system.
-    c.save(); c.strokeStyle='rgba(21,21,19,.12)'; c.lineWidth=1; c.setLineDash([4,7]);
+    c.save(); c.strokeStyle='rgba(38,70,83,.12)'; c.lineWidth=1; c.setLineDash([4,7]);
     c.beginPath(); c.moveTo(w*.06,h*.80); c.bezierCurveTo(w*.34,h*.20,w*.63,h*.86,w*.95,h*.23); c.stroke(); c.restore();
   }
 
@@ -390,7 +390,7 @@
       c.stroke(); c.restore();
     }
     const scanX=left+(right-left)*fract(t*.10);
-    c.save(); const g=c.createLinearGradient(scanX-40,0,scanX+40,0);g.addColorStop(0,'rgba(223,79,47,0)');g.addColorStop(.5,'rgba(223,79,47,.11)');g.addColorStop(1,'rgba(223,79,47,0)');c.fillStyle=g;c.fillRect(scanX-40,top-18,80,h*.31);c.restore();
+    c.save(); const g=c.createLinearGradient(scanX-40,0,scanX+40,0);g.addColorStop(0,'rgba(248,177,149,0)');g.addColorStop(.5,'rgba(248,177,149,.11)');g.addColorStop(1,'rgba(248,177,149,0)');c.fillStyle=g;c.fillRect(scanX-40,top-18,80,h*.31);c.restore();
     line(c,{x:scanX,y:top-16},{x:scanX,y:top+h*.29},ACCENT,1,.22);
 
     // Feature/key inference matrix.
@@ -421,7 +421,7 @@
       }
       c.save();c.translate(b.x,b.y);c.rotate((i%2?1:-1)*.012*Math.sin(t*.7+i));c.fillStyle=PAPER;c.strokeStyle=i===2?ACCENT:SOFT;c.lineWidth=i===2?1.5:1;c.fillRect(-b.s/2,-b.s/2,b.s,b.s);c.strokeRect(-b.s/2+.5,-b.s/2+.5,b.s-1,b.s-1);
       // internal coded bit pattern: pure geometry, no glyphs.
-      for(let r=0;r<4;r++)for(let q=0;q<4;q++) if(hash(i*31+r*7+q)>.50){c.fillStyle=(i===2&&hash(r*8+q)>.72)?'rgba(223,79,47,.52)':'rgba(21,21,19,.18)';c.fillRect(-b.s*.31+q*b.s*.16,-b.s*.31+r*b.s*.16,b.s*.07,b.s*.07);}
+      for(let r=0;r<4;r++)for(let q=0;q<4;q++) if(hash(i*31+r*7+q)>.50){c.fillStyle=(i===2&&hash(r*8+q)>.72)?'rgba(248,177,149,.52)':'rgba(38,70,83,.18)';c.fillRect(-b.s*.31+q*b.s*.16,-b.s*.31+r*b.s*.16,b.s*.07,b.s*.07);}
       c.restore();
     });
 
@@ -460,7 +460,7 @@
 
     // Compression funnel / latent bottleneck.
     c.save();
-    c.strokeStyle='rgba(21,21,19,.13)';c.lineWidth=1;
+    c.strokeStyle='rgba(38,70,83,.13)';c.lineWidth=1;
     c.beginPath();c.moveTo(x1,h*.17);c.lineTo(x2,h*.40);c.lineTo(x1,h*.67);c.stroke();
     c.beginPath();c.moveTo(x1,h*.67);c.lineTo(x2,h*.44);c.lineTo(x1,h*.17);c.stroke();
     c.restore();
@@ -502,7 +502,7 @@
       const sx=x0+i*18;
       const x=lerp(sx,tx,compression*.72);
       const ww=11, hh=7;
-      c.save();c.globalAlpha=.18+.24*(1-compression);c.fillStyle=i%4===0?'rgba(223,79,47,.23)':'rgba(21,21,19,.12)';c.fillRect(x,baseY+Math.sin(i+t)*1.2,ww,hh);c.restore();
+      c.save();c.globalAlpha=.18+.24*(1-compression);c.fillStyle=i%4===0?'rgba(248,177,149,.23)':'rgba(38,70,83,.12)';c.fillRect(x,baseY+Math.sin(i+t)*1.2,ww,hh);c.restore();
     }
   }
 
