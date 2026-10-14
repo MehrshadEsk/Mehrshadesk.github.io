@@ -1,9 +1,0 @@
-EDITORIAL REDESIGN — 14 OCTOBER 2026
-
-Copy the contents of this project folder to the existing repository root in a separate review branch. Include CNAME, .nojekyll, assets and learn. Remove only the obsolete files enumerated in REDESIGN_REPORT.md. Preserve existing Git metadata and workflows outside the original ZIP.
-
-No backend publication is needed for this redesign. access-config.js and google-apps-script.gs are unchanged. The attendance service is a separate existing integration.
-
-The course discount deadline in the original source has passed. Confirm the course amounts and payment schedule before publication. Real authorization, enrollment, email delivery, GPS and live attendance were not exercised.
-
-See DEPLOYMENT.md for deployment and rollback instructions. This package has not been published.
