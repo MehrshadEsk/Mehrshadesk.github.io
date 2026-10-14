@@ -30,7 +30,7 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: #070a0d;
+        background: #292C23;
         color: #fff;
         font: 600 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         text-align: center;

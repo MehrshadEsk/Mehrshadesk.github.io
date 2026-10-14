@@ -1,51 +1,34 @@
-# Mehrshad Eskandarpour — Signal & Form
+# Mehrshad Eskandarpour — Editorial portfolio
 
-A complete static redesign for **mehrshadesk.ir**. The site runs without a build step, a framework, or new production dependencies.
+A buildless GitHub Pages project for `mehrshadesk.ir`, redesigned on 14 October 2026. The original English portfolio and Persian course catalogue retain their research, publications, employment, education, recommendation letters, syllabuses and operational flows.
 
-## Preview
+The shared visual system uses warm cream `#FAF7F0`, sand `#E3D9C8`, olive `#72785A`, charcoal `#292C23`, and restrained vermilion `#F25432`. Space Grotesk and Estedad are bundled locally as WOFF2 in weights 400–700; their OFL licenses are included. The supplied new portrait replaces both previous profile images. The portrait displays in its original colors; no grayscale filter is applied.
 
-Open `index.html`, or serve the project folder locally:
+## Structure
+
+| Files | Purpose |
+|---|---|
+| `styles.css`, `theme-init.js`, `design.js` | Shared tokens, type, components, saved appearance and accessible navigation |
+| `index.html`, `home.css`, `script.js` | Portfolio; complete biography in a disclosure; full original record retained |
+| `learn.html`, `learn/index.html`, `learn.css`, `learn.js` | Course catalogue, six original syllabuses, tuition calculator and enrollment links |
+| `research-*.html`, `research-theme.css`, `research-motion.css`, `research-motion.js` | All five original research URLs, four animated research systems, mobile scenes and static fallback posters |
+| `academic-references.html`, `contact.html`, `subpage-theme.css` | Letters, filters, contact composer and access-page presentation |
+| `teaching-assistantships.html`, `teaching-assistantships.css` | Original semester and course archive |
+| `apply-vault*.html`, `access-config.js`, `google-apps-script.gs` | Original access service integration and protected landing page |
+| `time.html`, `time-ui.css`, `time-app.js` | Attendance tool; original operational logic and endpoint |
+| `farmad.html`, `farmad-ui.css`, `farmad-app.js` | Field report tool; image attachments, location, preview and PDF export |
+| `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml` | Existing static deployment and indexing configuration |
+
+No production dependencies, framework migration, package installation or build step is required. Preserve the existing repository metadata and hosting settings when copying these files. See `DEPLOYMENT.md` for exact instructions and `REDESIGN_REPORT.md` for verification, file changes, deletions and limitations.
+
+## Local preview
 
 ```sh
 python3 -m http.server 8000
 ```
 
-Visit `http://localhost:8000`. Local fonts, images and SVG artwork are included.
+Open `http://localhost:8000`. Real access authorization, attendance records and enrollment depend on existing external services; those services were not modified or exercised during verification. This package has not been pushed or deployed.
 
-## Design
+## Research visualizations
 
-The requested palette is the foundation of every editable page:
-
-- Brown `#703f37`: identity, headings, body text and the alternate theme.
-- Sand `#c8b7a5`: rules, frames and warm neutral surfaces.
-- Teal `#097c87`: actions, research details and signal artwork.
-- White `#ffffff`: the primary background and contrasting text.
-
-Tinted surfaces are derived from these colors. All editable pages use Consolas where available, with bundled DejaVu Sans Mono as the programming-style fallback, including Persian character support. Headings, paragraphs, controls and technical indices share the monospaced font stack. Paragraphs are justified, and the biography has one reading column at every screen size. A custom portrait frame, signal ornament and four research glyphs give the site a coherent identity.
-
-The home page, all research directions, academic references, teaching history, contact page, learning catalogue, access vault and error page share the system. Both themes, narrow-screen layouts, keyboard navigation and reduced-motion preferences are supported.
-
-## Preservation
-
-All authored text in the 15 editable HTML files is preserved. Bio, research descriptions, publications, experience, education, course information and recommendation letters retain their original wording.
-
-`time.html` and `farmad.html` are byte-for-byte unchanged and remain independent of the shared design files. Existing link destinations, access configuration, Google Apps Script backend, domain and access-protection code are preserved.
-
-## Main files
-
-- `styles.css`: shared monospaced typography, palette, headers, controls and responsive foundations.
-- `home.css`: portfolio layout and indexed sections.
-- `research-theme.css`, `research-motion.js`: research journals and canvas illustrations.
-- `subpage-theme.css`: reference archive, contact studio, authorization panel and error states.
-- `teaching-assistantships.css`: semester ledger.
-- `learn.css`, `learn-pro.css`: Persian catalogue, course illustrations, dialogs and tuition workspace.
-- `theme-init.js`, `design.js`, `script.js`, `learn.js`: appearance preferences, mobile navigation and existing interactions.
-- `assets/`: bundled fonts, portrait, favicons and vault symbol. Font licensing is included.
-
-## Deployment
-
-Upload the **contents of this folder** to the root of the existing GitHub Pages repository. Include `assets/`, `CNAME` and `.nojekyll`. Replace the corresponding old files together so the shared styles and HTML stay in sync. The stylesheet/script version strings have been updated to refresh cached assets.
-
-The backend needs no deployment for these design changes. Keep the existing access setup and administration guides for backend configuration.
-
-This package has not been published to the live domain. See `DESIGN_NOTES.md` for validation details.
+`research-motion.js` contains four hand-authored vector scene renderers and responsive mobile variants. The browser upgrades static fallback posters to native SVG animation. Animations pause when offscreen or the tab is hidden, respect reduced motion, and share a persisted user pause setting. The diagrams are conceptual illustrations and contain no invented experimental measurements. English and Persian prose is justified; the portrait is in color and its location badge is removed.

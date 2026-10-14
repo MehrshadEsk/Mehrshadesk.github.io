@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mehrshadesk.ir/</loc><priority>1.0</priority></url>
-  <url><loc>https://mehrshadesk.ir/research-wireless-systems.html</loc><priority>0.8</priority></url>
-  <url><loc>https://mehrshadesk.ir/research-intelligent-ran.html</loc><priority>0.8</priority></url>
-  <url><loc>https://mehrshadesk.ir/research-cryptography-coding.html</loc><priority>0.8</priority></url>
+  <url><loc>https://mehrshadesk.ir/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/learn.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/contact.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/academic-references.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/teaching-assistantships.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/research-wireless-systems.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/research-intelligent-ran.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/research-cryptography-coding.html</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://mehrshadesk.ir/research-intelligent-processing-efficient-ai.html</loc><lastmod>2026-10-14</lastmod></url>
 </urlset>

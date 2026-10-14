@@ -1,23 +1,16 @@
-MEHRSHAD PORTFOLIO — DEPLOY CHECKLIST
+PRE-PUBLICATION
+1. Back up the current repository and confirm GitHub Pages branch/root settings.
+2. Use a separate branch; copy the CONTENTS of mehrshadesk to the repository root.
+3. Keep CNAME, .nojekyll, assets, learn, existing .git metadata and existing workflows.
+4. Remove only the obsolete files listed in REDESIGN_REPORT.md.
+5. Confirm the course pricing, expired discount and payment dates.
+6. Review desktop/mobile screenshots and the verification limitations.
+7. Commit and review a PR before merging into the deployment branch.
 
-1) Extract this ZIP.
-2) Open your GitHub repository: MehrshadEsk/Mehrshadesk.github.io
-3) Upload/replace ALL files and the assets folder in the repository root.
-4) Keep the branch as main.
-5) Commit the changes.
-6) GitHub Pages will continue using mehrshadesk.ir through the included CNAME file.
+POST-PUBLICATION
+8. Check /, /learn/, /learn.html, all research URLs, contact, references and teaching.
+9. Check anonymous Vault redirects and approved access with a real test account.
+10. Verify registration, GPS, live attendance and map services as appropriate.
+11. Check a nested missing URL renders a styled 404.
 
-Visual theme controls:
-- Click the diamond icon in the top navigation
-- Or press T
-- Quick navigation: Cmd/Ctrl + K
-
-Important:
-- The References & Recommendations area contains a clearly marked template.
-  Replace it with verified recommendation quotes before treating that area as final content.
-
-APPLY VAULT V5 BACKEND UPDATE
-- After uploading the website files, open the connected Google Sheet -> Extensions -> Apps Script.
-- Replace the old script with google-apps-script.gs and run setupVault() once.
-- Deploy -> Manage deployments -> edit the existing Web App -> New version -> Deploy.
-- Keep the existing /exec URL in access-config.js.
+No backend changes are required for this design update. The live site has not been changed by this task. Full instructions: DEPLOYMENT.md.

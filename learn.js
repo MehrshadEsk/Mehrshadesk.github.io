@@ -28,25 +28,5 @@ let lastTrigger=null;
 document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>{lastTrigger=btn;const d=document.getElementById('detail-'+btn.dataset.open);d?.showModal();document.body.style.overflow='hidden'}));
 document.querySelectorAll('dialog').forEach(d=>{d.querySelector('.dialog-close')?.addEventListener('click',()=>d.close());d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()});d.addEventListener('close',()=>{document.body.style.overflow='';lastTrigger?.focus()})});
 
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduced&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -35px'});document.querySelectorAll('[data-reveal]').forEach((el,i)=>{el.style.animationDelay=(i%4)*55+'ms';io.observe(el)})}else document.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('is-visible'));
-
-let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;const bar=document.querySelector('.scroll-progress');if(bar)bar.style.width=(max>0?scrollY/max*100:0)+'%';ticking=false})},{passive:true});
-
-// Countdown is controlled from one editable data-sale-end value on <body>.
-const deadline=new Date(document.body.dataset.saleEnd||'').getTime();
-const countdowns=[...document.querySelectorAll('[data-countdown]')];
-function updateCountdown(){
- if(!Number.isFinite(deadline))return;
- let diff=Math.max(0,deadline-Date.now());
- const days=Math.floor(diff/86400000);diff%=86400000;
- const hours=Math.floor(diff/3600000);diff%=3600000;
- const minutes=Math.floor(diff/60000);diff%=60000;
- const seconds=Math.floor(diff/1000);
- const values={days,hours,minutes,seconds};
- countdowns.forEach(box=>{Object.entries(values).forEach(([unit,value])=>{const el=box.querySelector(`[data-unit="${unit}"]`);if(el)el.textContent=two.format(value)});box.classList.toggle('countdown-ended',deadline<=Date.now())});
- document.querySelectorAll('.has-sale').forEach(card=>card.classList.toggle('countdown-ended',deadline<=Date.now()));
-}
-updateCountdown();setInterval(updateCountdown,1000);
 
 })();
