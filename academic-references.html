@@ -1,355 +1,259 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-<meta charset="utf-8">
-<script src="theme-init.js?v=20261014-editorial"></script><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<script src="theme-init.js?v=20261014-editorial"></script><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Academic References — Mehrshad Eskandarpour</title>
-<meta name="description" content="Academic recommendations for Mehrshad Eskandarpour from faculty members at Iran University of Science and Technology (IUST).">
-<meta name="author" content="Mehrshad Eskandarpour">
-<meta name="theme-color" content="#FAF7F0">
-<link rel="canonical" href="https://mehrshadesk.ir/academic-references.html">
-<link rel="stylesheet" href="styles.css?v=20261014-motion-v2"><link rel="stylesheet" href="subpage-theme.css?v=20261014-motion-v2"><link rel="icon" href="favicon.ico"></head>
+<meta content="Academic recommendations for Mehrshad Eskandarpour from faculty members at Iran University of Science and Technology (IUST)." name="description"/>
+<meta content="Mehrshad Eskandarpour" name="author"/>
+<meta content="#FAF7F0" name="theme-color"/>
+<link href="https://mehrshadesk.ir/academic-references.html" rel="canonical"/>
+<link href="styles.css?v=20261014-motion-v2" rel="stylesheet"/><link href="subpage-theme.css?v=20261014-motion-v2" rel="stylesheet"/><link href="favicon.ico" rel="icon"/><style id="academic-minimal-styles">
+/* Minimal academic references page; styles are scoped to avoid affecting other pages. */
+.references-page {
+  --ar-bg: #faf8f3;
+  --ar-ink: #282824;
+  --ar-muted: #777771;
+  --ar-soft: #9d9b93;
+  --ar-rule: #dcd9d1;
+  --ar-hover: rgba(31, 31, 26, 0.028);
+  color: var(--ar-ink);
+  background: var(--ar-bg);
+}
+html[data-theme="dark"] .references-page,
+html.dark .references-page,
+body.references-page[data-theme="dark"] {
+  --ar-bg: #181a18;
+  --ar-ink: #eae8df;
+  --ar-muted: #aaa9a1;
+  --ar-soft: #918f87;
+  --ar-rule: #3b3d38;
+  --ar-hover: rgba(255,255,255,.035);
+}
+.references-page .ar-main { min-height: 65vh; padding: clamp(76px, 10vw, 138px) 0 125px; background: var(--ar-bg); color:var(--ar-ink); }
+.references-page .ar-container { width: min(100% - 48px, 920px); margin: 0 auto; }
+.references-page .ar-intro { margin-bottom: clamp(48px, 7vw, 78px); }
+.references-page .ar-overline { font-size: 11px; font-weight: 650; letter-spacing: .16em; color: var(--ar-muted); text-transform: uppercase; margin: 0 0 17px; }
+.references-page .ar-intro h1 { font-family: inherit; font-size: clamp(42px, 6vw, 68px); font-weight: 550; line-height: 1.08; letter-spacing: -.055em; margin: 0; color: var(--ar-ink); }
+.references-page .ar-description { max-width: 680px; margin: 19px 0 0; font-size: 15px; line-height: 1.75; font-weight: 400; color: var(--ar-muted); }
+.references-page .ar-list-heading { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; padding: 0 0 18px; border-bottom: 1px solid var(--ar-ink); }
+.references-page .ar-list-heading h2 { font: inherit; font-size: 12px; letter-spacing: .1em; font-weight: 650; text-transform: uppercase; margin: 0; color: var(--ar-ink); }
+.references-page .ar-count { font-size: 12px; color: var(--ar-muted); }
+.references-page .ar-item { border-bottom: 1px solid var(--ar-rule); scroll-margin-top: 100px; }
+.references-page .ar-heading { margin: 0; padding: 0; font: inherit; }
+.references-page .ar-trigger { appearance: none; -webkit-appearance: none; display: grid; grid-template-columns: 42px minmax(0, 1fr) 136px; align-items: center; width: 100%; gap: 13px; border: 0; border-radius: 0; background: transparent; color: inherit; cursor: pointer; padding: 28px 3px 27px 0; text-align: left; font-family: inherit; transition: background-color .2s ease; }
+.references-page .ar-trigger:hover { background: var(--ar-hover); }
+.references-page .ar-trigger:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.references-page .ar-num { align-self: start; margin-top: 5px; font-size: 12px; color: var(--ar-soft); font-variant-numeric: tabular-nums; }
+.references-page .ar-person { display: block; min-width: 0; }
+.references-page .ar-name { display: block; font-size: clamp(18px, 2.25vw, 22px); font-weight: 520; line-height: 1.34; letter-spacing: -.022em; margin: 0; color: var(--ar-ink); }
+.references-page .ar-affiliation { display: block; margin-top: 8px; font-size: 13px; font-weight: 400; line-height: 1.5; color: var(--ar-muted); }
+.references-page .ar-action { display: flex; align-items: center; justify-content: end; gap: 14px; color: var(--ar-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; white-space: nowrap; }
+.references-page .ar-chevron { display: inline-block; width: 9px; height: 9px; flex: none; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+.references-page .ar-trigger[aria-expanded="true"] .ar-chevron { transform: rotate(225deg) translateY(-1px); }
+.references-page .ar-trigger[aria-expanded="true"] .ar-action { color: var(--ar-ink); }
+.references-page .ar-panel[hidden] { display: none !important; }
+.references-page .ar-panel { padding: 4px 0 42px 55px; }
+.references-page .ar-letter { width: min(100%, 740px); font-size: 15px; line-height: 1.84; color: var(--ar-ink); }
+.references-page .ar-letter p { margin: 0 0 17px; }
+.references-page .ar-letter p:last-child { margin-bottom: 0; }
+.references-page .ar-meta { width: min(100%, 740px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 36px; row-gap: 20px; padding-top: 24px; margin-top: 30px; border-top: 1px solid var(--ar-rule); }
+.references-page .ar-meta-item { min-width: 0; }
+.references-page .ar-meta-label { display: block; margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ar-soft); }
+.references-page .ar-meta-value { display: block; margin: 0; font-size: 13px; line-height: 1.55; font-weight: 450; overflow-wrap: anywhere; color: var(--ar-ink); }
+.references-page .ar-meta-value a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ar-rule); color: inherit; }
+.references-page .ar-meta-value a:hover { text-decoration-color: currentColor; }
+.references-page .ar-footnote { margin: 25px 0 0; font-size: 12px; color: var(--ar-soft); }
+@media (max-width: 640px) {
+ .references-page .ar-main { padding: 74px 0 90px; }
+ .references-page .ar-container { width: min(100% - 36px, 920px); }
+ .references-page .ar-intro { margin-bottom: 46px; }
+ .references-page .ar-trigger { grid-template-columns: 25px minmax(0, 1fr) 22px; gap: 10px; padding: 24px 0; }
+ .references-page .ar-action span:first-child { display: none; }
+ .references-page .ar-person { padding-right: 5px; }
+ .references-page .ar-panel { padding: 4px 0 35px 35px; }
+ .references-page .ar-letter { font-size: 14px; line-height: 1.82; }
+ .references-page .ar-meta { grid-template-columns: 1fr; row-gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .references-page .ar-trigger, .references-page .ar-chevron { transition: none; }
+}
+</style>
+</head>
 <body class="references-page">
-
-<a class="skip" href="#main-content">Skip to content</a><header class="site-header"><div class="container nav"><a class="brand" href="index.html" aria-label="Mehrshad Eskandarpour home"><span class="mark">m<i>.</i></span><span class="brand-name">mehrshad<span>/eskandarpour</span></span></a><nav class="portfolio-nav" id="portfolio-navigation" aria-label="Main navigation"><a href="index.html#research">Research</a><a href="index.html#publications">Publications</a><a href="learn/">Courses</a><a href="contact.html">Contact</a></nav><div class="header-tools"><a class="header-link" href="index.html">Portfolio ↗</a><button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg></button><button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="portfolio-navigation"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg></button></div></div></header><main id="main-content">
-<section class="hero">
-  <div class="shell hero-grid">
-    <div>
-      <div class="eyebrow">[ ACADEMIC REFERENCES · IUST ]</div>
-      <h1>People who trusted my work enough to put it <em>in writing.</em></h1>
-      <p class="lede">
-        Seven academic recommendations from faculty members at Iran University of Science and Technology,
-        spanning telecommunications, wireless systems, programming, cryptography, circuits and computer engineering.
-        No portraits, no decorative faculty wall — just the academic signal and the record behind it.
-      </p>
-      <div class="hero-meta">
-        <span>07 FACULTY REFERENCES</span>
-        <span>02 IUST SCHOOLS</span>
-        <span>ELECTRICAL + COMPUTER ENGINEERING</span>
-        <span>2026 LETTER SET</span>
-      </div>
-    </div>
-
-    <nav class="reference-network" aria-label="Jump to a recommendation"><button class="ref-node" data-target="ref01" type="button">Hossein Soleimani</button><button class="ref-node" data-target="ref02" type="button">Mohammad Reza Jahed-Motlagh</button><button class="ref-node" data-target="ref03" type="button">Amir Saman Nooramin</button><button class="ref-node" data-target="ref04" type="button">Mohammad Javad Jannati</button><button class="ref-node" data-target="ref05" type="button">Mehrdad Ashtiani</button><button class="ref-node" data-target="ref06" type="button">Ehsan Darestani Farahani</button><button class="ref-node" data-target="ref07" type="button">Tayebe Rafiei</button></nav></div>
-</section>
-
-<section class="section">
-  <div class="shell">
-    <div class="section-head">
-      <div class="section-no">01 / REFERENCE INDEX</div>
-      <div>
-        <h2>Seven faculty perspectives.<br>One academic record.</h2>
-        <p class="intro">Use the filters, open any recommendation, or use a reference shortcut above. The complete recommendation text is shown inside each record, followed by the recommender’s academic information.</p>
-      </div>
-    </div>
-
-    <div class="toolbar">
-      <div class="filters">
-        <button class="filter-btn is-active" type="button" data-filter="all">ALL · 07</button>
-        <button class="filter-btn" type="button" data-filter="ee">ELECTRICAL ENGINEERING · 04</button>
-        <button class="filter-btn" type="button" data-filter="ce">COMPUTER ENGINEERING · 03</button>
-      </div>
-      <button class="expand-all" type="button" id="expandAll">EXPAND ALL ↘</button>
-    </div>
-
-    <div class="ref-list">
-      
-<article class="ref-card" id="ref01" data-school="ee">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref01-letter">
-    <div class="ref-no">REF 01</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Electrical Engineering · IUST</div>
-      <h2>Hossein Soleimani, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">THESIS SUPERVISOR</span><span class="role-chip">RESEARCH SUPERVISOR</span><span class="role-chip">CO-AUTHOR</span><span class="role-chip">COURSE INSTRUCTOR</span></div>
-      <blockquote>“He selected a challenging and timely problem at the intersection of wireless networks and machine learning.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Master’s · Electrical &amp; Computer Engineering</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref01-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To Whom It May Concern:</p>
+<a class="skip" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="container nav"><a aria-label="Mehrshad Eskandarpour home" class="brand" href="index.html"><span class="mark">m<i>.</i></span><span class="brand-name">mehrshad<span>/eskandarpour</span></span></a><nav aria-label="Main navigation" class="portfolio-nav" id="portfolio-navigation"><a href="index.html#research">Research</a><a href="index.html#publications">Publications</a><a href="learn/">Courses</a><a href="contact.html">Contact</a></nav><div class="header-tools"><a class="header-link" href="index.html">Portfolio ↗</a><button aria-label="Switch to dark theme" aria-pressed="false" class="theme-toggle" type="button"><svg aria-hidden="true" class="moon" viewbox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><svg aria-hidden="true" class="sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg></button><button aria-controls="portfolio-navigation" aria-expanded="false" aria-label="Open navigation" class="nav-toggle" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg></button></div></div></header>
+<main id="main-content" class="ar-main">
+ <div class="ar-container">
+   <div class="ar-intro">
+     <p class="ar-overline">Iran University of Science and Technology</p>
+     <h1>Academic references</h1>
+     <p class="ar-description">Recommendation letters from seven faculty members at IUST. Select a name to read the full letter.</p>
+   </div>
+   <section class="ar-references" aria-labelledby="ar-references-label">
+      <div class="ar-list-heading"><h2 id="ar-references-label">Recommendations</h2><span class="ar-count">07 letters</span></div>
+      <div class="ar-list"><article class="ar-item" id="ref01">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref01-letter" aria-expanded="false">
+        <span class="ar-num">01</span>
+        <span class="ar-person"><span class="ar-name">Hossein Soleimani, Ph.D.</span><span class="ar-affiliation">School of Electrical Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref01-letter" hidden>
+      <div class="ar-letter"><p>To Whom It May Concern:</p>
 <p>I am pleased to recommend Mr. Mehrshad Eskandarpour for admission to the Master’s program in Electrical and Computer Engineering. I have known Mehrshad as his instructor and research supervisor during his B.Sc. in Electrical Engineering, and I have also worked closely with him as a co-author on multiple research manuscripts.</p>
 <p>Mehrshad’s bachelor’s project, titled “Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty,” showcases both technical depth and research maturity. He selected a challenging and timely problem at the intersection of wireless networks and machine learning, designed a clear methodology, and executed it with care—demonstrating strong skills in problem formulation, experimental design, and critical analysis of results. His written reports were precise and well-structured, and his presentations were clear and data-driven.</p>
 <p>Our collaboration has already resulted in six manuscripts, two published and four currently under review, reflecting his productivity, discipline, and ability to work in a team. In our research workflow, Mehrshad consistently takes initiative: he surveys literature efficiently, implements and tests ideas reliably, and turns around revisions quickly and accurately. When I ask for additional analyses or improvements, he delivers high-quality results on short timelines without sacrificing rigor.</p>
 <p>Mehrshad also served as a Teaching Assistant for my Signals and Systems and Communication Systems courses. In that role, he supported students effectively and handled technical questions with clarity and patience. He is organized, dependable, and attentive to detail—qualities that make him an asset in both teaching and research environments.</p>
 <p>Beyond technical competence, what distinguishes Mehrshad is his motivation and professional work ethic. He is proactive, responsive, and focused. He asks good questions, incorporates feedback constructively, and maintains a high standard of integrity and thoroughness in all tasks.</p>
 <p>Given his strong foundational knowledge, demonstrated research capability, and excellent attitude, I recommend Mehrshad Eskandarpour strongly for your Master’s program.</p>
-<p>Please feel free to contact me if I can provide any additional information.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Hossein Soleimani, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Electrical Engineering Assistant Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Electrical Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Sep / 5</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:hsoleimani@iust.ac.ir">hsoleimani@iust.ac.ir ↗</a></strong></div>
-      </div>
+<p>Please feel free to contact me if I can provide any additional information.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Electrical Engineering Assistant Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Electrical Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Sep / 5</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:hsoleimani@iust.ac.ir">hsoleimani@iust.ac.ir ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref02" data-school="ce">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref02-letter">
-    <div class="ref-no">REF 02</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Computer Engineering · IUST</div>
-      <h2>Mohammad Reza Jahed-Motlagh</h2>
-      <div class="roles"><span class="role-chip">COURSE INSTRUCTOR</span><span class="role-chip">HEAD TA SUPERVISOR</span><span class="role-chip">PROGRAMMING MENTOR</span></div>
-      <blockquote>“In my experience, he is one of the best Teaching Assistants I have ever had.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Master’s · Data Science / AI / CS / CE</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref02-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To the Graduate Admissions Committee,</p>
+  </article>
+<article class="ar-item" id="ref02">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref02-letter" aria-expanded="false">
+        <span class="ar-num">02</span>
+        <span class="ar-person"><span class="ar-name">Mohammad Reza Jahed-Motlagh</span><span class="ar-affiliation">School of Computer Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref02-letter" hidden>
+      <div class="ar-letter"><p>To the Graduate Admissions Committee,</p>
 <p>I am pleased to strongly recommend Mr. Mehrshad Eskandarpour for admission to your Master’s program in Data Science, Artificial Intelligence, Computer Science, Computer Engineering, or a closely related field. Although his academic background is in Electrical Engineering with a focus on Telecommunications, I am confident that his strong programming foundation, analytical ability, and technical maturity make him highly capable of succeeding in a computer-focused graduate program.</p>
 <p>I have worked closely with Mehrshad as a course instructor and observed his performance over an exceptional period of 8 consecutive semesters, from his second through ninth semester. During this time, he served as a Teaching Assistant, and frequently as Head TA, for C++ Computer Programming, Python Programming and Advanced Programming. To the best of my knowledge, he has the highest levels of TA experience across the entire university, covering multiple demanding courses. In my experience, he is one of the best Teaching Assistants I have ever had.</p>
 <p>Mehrshad’s responsibilities went far beyond grading: he led tutorials, designed programming assignments, prepared grading rules, supported exams and quizzes, helped students with debugging and problem-solving, and mentored junior TAs, all while managing large classes of more than 150 students. His strong foundation for graduate study in AI, Data Science, and Computer-related fields is also clear from both his academic record and technical experience. He earned 20/20 in Signals and Systems and 19.7/20 in Logical Circuits, both the top score in the class. Combined with his extensive work in C++, Python, and Advanced Programming, as well as his published journal papers, these achievements demonstrate exceptional analytical ability, computational thinking, and research potential for a Bachelor’s student.</p>
-<p>Mehrshad is intelligent, reliable, disciplined, and highly responsible. He learns quickly, thinks critically, communicates clearly, and consistently delivers excellent work under demanding conditions. I am confident that he is fully capable of making this academic transition and thriving in a rigorous graduate program. I recommend Mr. Eskandarpour without reservation and believe he will be a valuable addition to your department.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Mohammad Reza Jahed-Motlagh</strong></div>
-        <div><span>POSITION</span><strong>Control Engineering Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Computer Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Nov / 1</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:jahedmr@iust.ac.ir">jahedmr@iust.ac.ir ↗</a></strong></div>
-      </div>
+<p>Mehrshad is intelligent, reliable, disciplined, and highly responsible. He learns quickly, thinks critically, communicates clearly, and consistently delivers excellent work under demanding conditions. I am confident that he is fully capable of making this academic transition and thriving in a rigorous graduate program. I recommend Mr. Eskandarpour without reservation and believe he will be a valuable addition to your department.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Control Engineering Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Computer Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Nov / 1</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:jahedmr@iust.ac.ir">jahedmr@iust.ac.ir ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref03" data-school="ee">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref03-letter">
-    <div class="ref-no">REF 03</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Electrical Engineering · IUST</div>
-      <h2>Amir Saman Nooramin, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">COURSE INSTRUCTOR</span><span class="role-chip">TA SUPERVISOR</span><span class="role-chip">RESEARCH COLLABORATOR</span><span class="role-chip">CO-AUTHOR</span></div>
-      <blockquote>“Mehrshad is one of the strongest undergraduate students I have worked with at IUST.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Graduate admission · Scholarship / Fellowship</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref03-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To Whom It May Concern,</p>
+  </article>
+<article class="ar-item" id="ref03">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref03-letter" aria-expanded="false">
+        <span class="ar-num">03</span>
+        <span class="ar-person"><span class="ar-name">Amir Saman Nooramin, Ph.D.</span><span class="ar-affiliation">School of Electrical Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref03-letter" hidden>
+      <div class="ar-letter"><p>To Whom It May Concern,</p>
 <p>It is my great pleasure to strongly recommend Mr. Mehrshad Eskandarpour for admission to your graduate program. I have known Mehrshad as his instructor in Electromagnetics, Fields &amp; Waves, and Telecommunication Circuits, and later worked with him as a Teaching Assistant and research collaborator. Through these different roles, I have seen his academic strength, work ethic, and research ability closely.</p>
 <p>Mehrshad first stood out in my Electromagnetics course, one of the most challenging core courses in our curriculum, where he earned 19.6/20, the highest grade in the class. After that, I invited him to serve as a TA, and he worked with me for 4 semesters in Electromagnetics and Fields &amp; Waves. He helped prepare quizzes and assignments, developed simulations and teaching materials, and led tutorials where he explained difficult concepts clearly and confidently. In my Telecommunication Circuits course, he also performed very well, especially in the lab, showing both strong theoretical understanding and practical skill.</p>
 <p>I also had the opportunity to collaborate with Mehrshad on a published journal article titled “Potential Impacts of Radiofrequency Electromagnetic Fields on the Central Nervous System, Brain Neurotransmitter Dynamics and Reproductive System,” published in the AUT Journal of Electrical Engineering in 2025. His contribution to this interdisciplinary research was thoughtful, independent, and mature, which is especially impressive for an undergraduate student.</p>
-<p>Mehrshad is one of the strongest undergraduate students I have worked with at IUST. He combines academic excellence, teaching ability, research experience, and a responsible personality. He consistently delivers accurate, high-quality work and responds well to feedback. I strongly recommend Mr. Eskandarpour for admission to your graduate program and for any scholarships or fellowships for which he may be considered.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Amir Saman Nooramin, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Electrical Engineering Assistant Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Electrical Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Oct / 28</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:a_nooramin@iust.ac.ir">a_nooramin@iust.ac.ir ↗</a></strong></div>
-      </div>
+<p>Mehrshad is one of the strongest undergraduate students I have worked with at IUST. He combines academic excellence, teaching ability, research experience, and a responsible personality. He consistently delivers accurate, high-quality work and responds well to feedback. I strongly recommend Mr. Eskandarpour for admission to your graduate program and for any scholarships or fellowships for which he may be considered.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Electrical Engineering Assistant Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Electrical Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Oct / 28</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:a_nooramin@iust.ac.ir">a_nooramin@iust.ac.ir ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref04" data-school="ee">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref04-letter">
-    <div class="ref-no">REF 04</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Electrical Engineering · IUST</div>
-      <h2>Mohammad Javad Jannati, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">COURSE INSTRUCTOR</span><span class="role-chip">HEAD TA SUPERVISOR</span><span class="role-chip">RESEARCH COLLABORATOR</span><span class="role-chip">CO-AUTHOR</span></div>
-      <blockquote>“I fully support his admission and recommend him for scholarship consideration with confidence.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Western University · EE (Telecommunications &amp; AI) · Scholarship</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref04-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>Dear Members of the Admissions Committee,</p>
+  </article>
+<article class="ar-item" id="ref04">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref04-letter" aria-expanded="false">
+        <span class="ar-num">04</span>
+        <span class="ar-person"><span class="ar-name">Mohammad Javad Jannati, Ph.D.</span><span class="ar-affiliation">School of Electrical Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref04-letter" hidden>
+      <div class="ar-letter"><p>Dear Members of the Admissions Committee,</p>
 <p>It is my genuine recommendation that Mr. Mehrshad Eskandarpour be admitted to the Master’s program in Electrical Engineering (Telecommunications an AI) at Western University, Canada, with full consideration for scholarships.</p>
 <p>Mehrshad was in my Signals &amp; Systems course and later in the master’s level in my Cryptography course, in which he enrolled voluntary as bachelor student, at the Iran University of Science and Technology (IUST); he achieved full marks (20/20) in both. Subsequently, I appointed him as a Teaching Assistant for Signals &amp; Systems and Cryptography across three semesters, during which he also served as head TA for Signals &amp; Systems. His responsibilities included leading review sessions, preparing assignments, grading, and coordinating with fellow assistants. In every role he was reliable, clear in his explanations, and consistently responsive to students.</p>
 <p>Our collaboration has extended beyond the classroom to Four journal papers in cryptography and speech processing, two are published and two are under review. Mehrshad managed literature review, implementation, and manuscript preparation to a high and met all agreed timelines. Looking ahead, he plans to work at the intersection of Electrical and Computer Engineering and applied machine learning, while maintaining his interest in Telecommunications. His background in machine learning, his reinforcement-learning publications, and the researches cited above form a solid foundation for advanced study and impactful research. He also demonstrates the personal qualities essential for success in a rigorous Master’s program: work ethic, curiosity, clear communication, and teamwork.</p>
-<p>Based on my direct instruction, supervision, and co-authorship with him over multiple semesters, I fully support his admission and recommend him for scholarship consideration with confidence.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Mohammad Javad Jannati, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Electrical Engineering Assistant Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Electrical Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Sep / 26</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:m_jannati@iust.ac.ir">m_jannati@iust.ac.ir ↗</a></strong></div>
-      </div>
+<p>Based on my direct instruction, supervision, and co-authorship with him over multiple semesters, I fully support his admission and recommend him for scholarship consideration with confidence.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Electrical Engineering Assistant Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Electrical Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Sep / 26</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:m_jannati@iust.ac.ir">m_jannati@iust.ac.ir ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref05" data-school="ce">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref05-letter">
-    <div class="ref-no">REF 05</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Computer Engineering · IUST</div>
-      <h2>Mehrdad Ashtiani, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">ACADEMIC REFERENCE</span><span class="role-chip">COMPUTER ENGINEERING</span></div>
-      <blockquote>“In my view, Mehrshad has one of the strongest academic CVs at IUST.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Master’s · ECE / Computer / Data Science</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref05-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To the Graduate Admissions Committee,</p>
+  </article>
+<article class="ar-item" id="ref05">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref05-letter" aria-expanded="false">
+        <span class="ar-num">05</span>
+        <span class="ar-person"><span class="ar-name">Mehrdad Ashtiani, Ph.D.</span><span class="ar-affiliation">School of Computer Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref05-letter" hidden>
+      <div class="ar-letter"><p>To the Graduate Admissions Committee,</p>
 <p>I am pleased to strongly recommend Mr. Mehrshad Eskandarpour for admission to your Master’s program in Electrical and Computer Engineering, Computer and Data Science. Mehrshad’s profile stands out because his preparation for graduate studies is not limited to one area; it is supported by strong coursework, extensive teaching experience, and early research achievements. While he completed his Bachelor’s studies in Electrical Engineering with a focus on Telecommunications, his academic path has been strongly connected to computation, programming, and analytical problem-solving. He achieved 20/20 in Signals and Systems and 19.7/20 in Logical Circuits, 19.6/20 in Electromagnetics, 20/20 in Cryptography all among the top grades in his class, and he has maintained excellent performance in other demanding technical courses as well.</p>
 <p>In addition to his coursework, Mehrshad has built an exceptional record of academic service. Over his 4.5 years of undergraduate study, he served as a Teaching Assistant about 25 times in several courses, including C++ Computer Programming, Python Programming, Advanced Programming, Signals and Systems. This level of TA experience is extremely rare for an undergraduate student and shows his deep technical understanding, reliability, and ability to work confidently in computer-related subjects. His research record is equally impressive: he has published around 10 journal papers, topics on Reinforcement Learning, Machine Learning, Wireless Networks and LLM, which is an outstanding accomplishment at the Bachelor’s level. Taken together, these achievements make him one of the strongest students at IUST and demonstrate that he is highly prepared to pursue graduate study in AI, Data and Computer Science, Electrical and Computer Engineering.</p>
-<p>In my view, Mehrshad has one of the strongest academic CVs at IUST. I am confident that he can successfully transition from Electrical Engineering and Telecommunications to AI, Data Science, Computer Science, or Computer Engineering, and thrive in a rigorous thesis-based Master’s program. I recommend him without reservation.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Mehrdad Ashtiani, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Assistant Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Computer Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Oct / 27</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:m_ashtiani@iust.ac.ir">m_ashtiani@iust.ac.ir ↗</a></strong></div>
-      </div>
+<p>In my view, Mehrshad has one of the strongest academic CVs at IUST. I am confident that he can successfully transition from Electrical Engineering and Telecommunications to AI, Data Science, Computer Science, or Computer Engineering, and thrive in a rigorous thesis-based Master’s program. I recommend him without reservation.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Assistant Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Computer Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Oct / 27</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:m_ashtiani@iust.ac.ir">m_ashtiani@iust.ac.ir ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref06" data-school="ee">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref06-letter">
-    <div class="ref-no">REF 06</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Electrical Engineering · IUST</div>
-      <h2>Ehsan Darestani Farahani, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">COURSE INSTRUCTOR</span><span class="role-chip">TA SUPERVISOR</span><span class="role-chip">ELECTRICAL CIRCUITS</span></div>
-      <blockquote>“He has the intellectual curiosity, diligence, and character to succeed at the highest levels.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Graduate program · Advanced academic opportunity</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref06-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To Whom It May Concern,</p>
+  </article>
+<article class="ar-item" id="ref06">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref06-letter" aria-expanded="false">
+        <span class="ar-num">06</span>
+        <span class="ar-person"><span class="ar-name">Ehsan Darestani Farahani, Ph.D.</span><span class="ar-affiliation">School of Electrical Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref06-letter" hidden>
+      <div class="ar-letter"><p>To Whom It May Concern,</p>
 <p>I am pleased to write this letter of recommendation for Mr. Mehrshad Eskandarpour, who is completed his Bachelor of Science in Electrical Engineering at Iran University of Science and Technology. I have known Mehrshad for over two years, first as his instructor and later as his supervisor when he served as my teaching assistant in the Electrical Circuits course during one semester. Throughout this time, he has consistently demonstrated exceptional academic ability, strong work ethic, and admirable personal qualities.</p>
 <p>Mehrshad is a highly capable and intelligent student with a sharp analytical mind. He excels in understanding complex circuit theories and applying them effectively to both theoretical and practical problems. As my teaching assistant, he showed remarkable responsibility, preparing tutorial materials, conducting review sessions, and assisting students with lab experiments, all while maintaining his own outstanding academic performance. Beyond technical skills, Mehrshad possesses excellent communication abilities and a courteous, professional demeanor. He interacts respectfully with peers and faculty alike, and his positive attitude creates a supportive learning environment.</p>
-<p>I have no hesitation in strongly recommending Mehrshad for admission to your graduate program or any advanced academic opportunity. He has the intellectual curiosity, diligence, and character to succeed at the highest levels. Please feel free to contact me if you require any further information.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Ehsan Darestani Farahani, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Electrical Engineering Assistant Professor</strong></div>
-        <div><span>SCHOOL</span><strong>School of Electrical Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Nov / 3</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:e.darestani@gmail.com">e.darestani@gmail.com ↗</a></strong></div>
-      </div>
+<p>I have no hesitation in strongly recommending Mehrshad for admission to your graduate program or any advanced academic opportunity. He has the intellectual curiosity, diligence, and character to succeed at the highest levels. Please feel free to contact me if you require any further information.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Electrical Engineering Assistant Professor</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Electrical Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Nov / 3</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:e.darestani@gmail.com">e.darestani@gmail.com ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-<article class="ref-card" id="ref07" data-school="ce">
-  <button class="ref-head" type="button" aria-expanded="false" aria-controls="ref07-letter">
-    <div class="ref-no">REF 07</div>
-    <div class="ref-main">
-      <div class="school-kicker">School of Computer Engineering · IUST</div>
-      <h2>Tayebe Rafiei, Ph.D.</h2>
-      <div class="roles"><span class="role-chip">COURSE INSTRUCTOR</span><span class="role-chip">HEAD TA SUPERVISOR</span><span class="role-chip">PYTHON</span><span class="role-chip">C++ PROGRAMMING</span></div>
-      <blockquote>“Students trusted his guidance, and other TAs relied on his organization and technical judgment.”</blockquote>
-      <div class="application"><span>APPLICATION SCOPE</span>Graduate program · CS / CE / Data Science / AI</div>
-    </div>
-    <div class="ref-toggle"><span class="toggle-label">READ LETTER</span><span class="plus">+</span></div>
-  </button>
-  <div class="letter-wrap" id="ref07-letter" inert="" aria-hidden="true">
-    <div class="letter-inner">
-      <div class="letter-text">
-        <p>To the Graduate Admissions Committee,</p>
+  </article>
+<article class="ar-item" id="ref07">
+    <h3 class="ar-heading">
+      <button class="ar-trigger" type="button" aria-controls="ref07-letter" aria-expanded="false">
+        <span class="ar-num">07</span>
+        <span class="ar-person"><span class="ar-name">Tayebe Rafiei, Ph.D.</span><span class="ar-affiliation">School of Computer Engineering · IUST</span></span>
+        <span class="ar-action"><span>Read letter</span><span class="ar-chevron" aria-hidden="true"></span></span>
+      </button>
+    </h3>
+    <div class="ar-panel" id="ref07-letter" hidden>
+      <div class="ar-letter"><p>To the Graduate Admissions Committee,</p>
 <p>I am pleased to strongly recommend Mr. Mehrshad Eskandarpour for admission to your graduate program. I have known Mehrshad since his first semester, when he took Computer Programming under my supervision, and later worked closely with him for several semesters as Head Teaching Assistant in programming courses offered by the Computer Engineering department.</p>
 <p>Mehrshad was one of the most active and capable students in my Computer Programming course. Although his final grade did not fully reflect his ability due to illness during the COVID period, which prevented him from attending the final examination, his performance throughout the semester was exceptional. He was highly engaged in online classes, submitted all assignments on time, and completed one of the best programming projects in the class. From the beginning, he showed strong logical thinking, programming talent, and discipline.</p>
 <p>Because of his strong performance and reliability, I later selected him as Head TA for Python Programming for five semesters and C++ Computer Programming for three semesters. In these roles, Mehrshad consistently demonstrated excellent command of programming concepts, strong leadership, and mature academic judgment. He helped design assignments, manage grading procedures, support students with debugging and problem-solving, coordinate other TAs, and maintain fair and consistent standards across large classes.</p>
 <p>What impressed me most was his ability to explain programming concepts clearly and practically. Students trusted his guidance, and other TAs relied on his organization and technical judgment. He handled demanding responsibilities with professionalism, patience, and accuracy, far beyond what is normally expected from an undergraduate student.</p>
-<p>Based on my direct experience supervising him in multiple programming courses, I am confident that Mehrshad has the technical foundation, programming ability, and academic maturity to succeed in a graduate program in Computer Science, Computer Engineering, Data Science and AI related fields. I recommend him without reservation.</p>
-      </div>
-      <div class="professor-info">
-        <div><span>RECOMMENDER</span><strong>Tayebe Rafiei, Ph.D.</strong></div>
-        <div><span>POSITION</span><strong>Computer Engineering Lecturer</strong></div>
-        <div><span>SCHOOL</span><strong>School of Computer Engineering</strong></div>
-        <div><span>INSTITUTION</span><strong>Iran University of Science &amp; Technology (IUST)</strong></div>
-        <div><span>LETTER DATE</span><strong>2026 / Nov / 2</strong></div>
-        <div><span>EMAIL</span><strong><a href="mailto:rafiei.ta@gmail.com">rafiei.ta@gmail.com ↗</a></strong></div>
-      </div>
+<p>Based on my direct experience supervising him in multiple programming courses, I am confident that Mehrshad has the technical foundation, programming ability, and academic maturity to succeed in a graduate program in Computer Science, Computer Engineering, Data Science and AI related fields. I recommend him without reservation.</p></div>
+      <div class="ar-meta"><div class="ar-meta-item"><span class="ar-meta-label">Position</span><span class="ar-meta-value">Computer Engineering Lecturer</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Department</span><span class="ar-meta-value">School of Computer Engineering</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Letter date</span><span class="ar-meta-value">2026 / Nov / 2</span></div>
+<div class="ar-meta-item"><span class="ar-meta-label">Email</span><span class="ar-meta-value"><a href="mailto:rafiei.ta@gmail.com">rafiei.ta@gmail.com ↗</a></span></div></div>
     </div>
-  </div>
-</article>
-    </div>
-  </div>
-</section>
-
+  </article></div>
+   </section>
+ </div>
 </main>
-
 <footer class="shell">
-  <span>© 2026 Mehrshad Eskandarpour</span>
-  <a href="index.html#education">Education ↑</a>
+<span>© 2026 Mehrshad Eskandarpour</span>
+<a href="index.html#education">Education ↑</a>
 </footer>
-
 <script>
-const cards = [...document.querySelectorAll(".ref-card")];
-const heads = [...document.querySelectorAll(".ref-head")];
-const filterButtons = [...document.querySelectorAll(".filter-btn")];
-const networkNodes = [...document.querySelectorAll(".ref-node")];
-const expandAll = document.getElementById("expandAll");
-
-function setCardOpen(card, open) {
-  const head = card.querySelector(".ref-head");
-  card.classList.toggle("open", open);
-  head.setAttribute("aria-expanded", open ? "true" : "false");
-  const letter = card.querySelector(".letter-wrap");
-  letter.inert = !open;
-  letter.setAttribute("aria-hidden", String(!open));
-  const label = card.querySelector(".toggle-label");
-  if (label) label.textContent = open ? "CLOSE LETTER" : "READ LETTER";
-}
-
-heads.forEach(head => {
-  head.addEventListener("click", () => {
-    const card = head.closest(".ref-card");
-    setCardOpen(card, !card.classList.contains("open"));
-  });
-});
-
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("is-active"));
-    btn.classList.add("is-active");
-    const filter = btn.dataset.filter;
-    cards.forEach(card => {
-      card.hidden = !(filter === "all" || card.dataset.school === filter);
+(function () {
+  const triggers = document.querySelectorAll('.ar-trigger');
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+      const opening = trigger.getAttribute('aria-expanded') !== 'true';
+      trigger.setAttribute('aria-expanded', String(opening));
+      panel.hidden = !opening;
     });
   });
-});
-
-networkNodes.forEach(node => {
-  node.setAttribute("tabindex", "0");
-  node.setAttribute("role", "button");
-  node.addEventListener("keydown", event => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); node.dispatchEvent(new Event("click")); } });
-  node.addEventListener("click", () => {
-    networkNodes.forEach(n => n.classList.remove("is-active"));
-    node.classList.add("is-active");
-    const card = document.getElementById(node.dataset.target);
-    if (!card) return;
-    card.hidden = false;
-    setCardOpen(card, true);
-    card.classList.add("is-highlight");
-    card.scrollIntoView({behavior:"smooth", block:"start"});
-    setTimeout(() => card.classList.remove("is-highlight"), 1800);
-  });
-});
-
-let allExpanded = false;
-expandAll.addEventListener("click", () => {
-  allExpanded = !allExpanded;
-  cards.filter(c => !c.hidden).forEach(c => setCardOpen(c, allExpanded));
-  expandAll.textContent = allExpanded ? "COLLAPSE ALL ↗" : "EXPAND ALL ↘";
-});
+})();
 </script>
-<script src="design.js?v=20261014-editorial" defer></script></body>
+<script src="design.js?v=20261014-editorial" defer></script>
+</body>
 </html>
