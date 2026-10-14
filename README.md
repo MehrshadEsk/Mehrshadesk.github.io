@@ -9,7 +9,7 @@ The shared visual system uses warm cream `#FAF7F0`, sand `#E3D9C8`, olive `#7278
 | Files | Purpose |
 |---|---|
 | `styles.css`, `theme-init.js`, `design.js` | Shared tokens, type, components, saved appearance and accessible navigation |
-| `index.html`, `home.css`, `script.js` | Portfolio; complete biography in a disclosure; full original record retained |
+| `index.html`, `home.css`, `script.js` | Portfolio; full biography displayed openly, separate work and professional experience groups |
 | `learn.html`, `learn/index.html`, `learn.css`, `learn.js` | Course catalogue, six original syllabuses, tuition calculator and enrollment links |
 | `research-*.html`, `research-theme.css`, `research-motion.css`, `research-motion.js` | All five original research URLs, four animated research systems, mobile scenes and static fallback posters |
 | `academic-references.html`, `contact.html`, `subpage-theme.css` | Letters, filters, contact composer and access-page presentation |
@@ -32,3 +32,7 @@ Open `http://localhost:8000`. Real access authorization, attendance records and 
 ## Research visualizations
 
 `research-motion.js` contains four hand-authored vector scene renderers and responsive mobile variants. The browser upgrades static fallback posters to native SVG animation. Animations pause when offscreen or the tab is hidden, respect reduced motion, and share a persisted user pause setting. The diagrams are conceptual illustrations and contain no invented experimental measurements. English and Persian prose is justified; the portrait is in color and its location badge is removed.
+
+## Homepage content revision
+
+The full authored biography uses the same indexed section layout as the research and experience panels. The homepage has no Learn link or course callout. Work experiences and Professional experiences are separate groups with the supplied appointment types and dates; MCI Hamrahe Avval / NAK is included with a concise role-based description. The five existing role descriptions are retained. The portrait is larger. All five research pages omit the Questions section while retaining their papers and animations.
