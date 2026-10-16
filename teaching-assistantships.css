@@ -115,27 +115,21 @@
   line-height: 1.3;
   letter-spacing: -.04em;
 }
-.ta-page-body .ta-list-head,
+/* Three-column register: number, course + professor, appointment role. */
+.ta-page-body .ta-course-list {
+  min-width: 0;
+  border-top: 1px solid var(--ink);
+}
 .ta-page-body .ta-course-row {
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 92px minmax(140px, .56fr);
+  grid-template-columns: 30px minmax(0, 1fr) 92px;
   align-items: center;
-  column-gap: clamp(10px, 1.6vw, 24px);
+  column-gap: clamp(12px, 1.8vw, 25px);
 }
-.ta-page-body .ta-list-head {
-  padding: 11px 14px;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ta-rule);
-  color: var(--ta-quiet);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .055em;
-}
-.ta-page-body .ta-course-list { min-width: 0; }
 .ta-page-body .ta-course-row {
   position: relative;
-  min-height: 65px;
-  padding: 15px 14px;
+  min-height: 74px;
+  padding: 13px 14px;
   border-bottom: 1px solid var(--ta-rule);
   transition: background-color .19s ease, color .19s ease;
 }
@@ -152,7 +146,9 @@
 .ta-page-body .ta-course-row:hover { background-color: var(--ta-blue-hover); }
 .ta-page-body .ta-course-row:hover::before { background-color: var(--ta-blue-line); }
 .ta-page-body .ta-row-num { color: var(--ta-quiet); font-size: 10px; font-variant-numeric: tabular-nums; }
+.ta-page-body .ta-course-detail { display: block; min-width: 0; }
 .ta-page-body .ta-course-name {
+  display: block;
   min-width: 0;
   font-size: 15px;
   font-weight: 500;
@@ -162,7 +158,13 @@
 }
 .ta-page-body .ta-position { color: var(--ta-secondary); font-size: 11px; font-weight: 500; white-space: nowrap; }
 .ta-page-body .ta-position-head { color: var(--ta-blue-line); font-weight: 600; }
-.ta-page-body .ta-supervisor { color: var(--ta-secondary); font-size: 12px; line-height: 1.6; }
+.ta-page-body .ta-supervisor {
+  display: block;
+  margin-top: 3px;
+  color: var(--ta-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
 .ta-page-body .ta-course-row:hover .ta-course-name,
 .ta-page-body .ta-course-row:hover .ta-position,
 .ta-page-body .ta-course-row:hover .ta-supervisor,
@@ -185,8 +187,7 @@
 
 @media (max-width: 900px) {
   .ta-page-body .ta-year-group { grid-template-columns: 122px minmax(0, 1fr); column-gap: 26px; }
-  .ta-page-body .ta-list-head,
-  .ta-page-body .ta-course-row { grid-template-columns: 23px minmax(0, 1fr) 75px 126px; column-gap: 10px; }
+  .ta-page-body .ta-course-row { grid-template-columns: 23px minmax(0, 1fr) 75px; column-gap: 12px; }
   .ta-page-body .ta-course-name { font-size: 14px; }
   .ta-page-body .ta-supervisor { font-size: 11px; }
 }
@@ -203,20 +204,17 @@
   .ta-page-body .ta-year-heading h3 { font-size: 45px; }
   .ta-page-body .ta-semester + .ta-semester { margin-top: 32px; }
   .ta-page-body .ta-semester-heading { padding-bottom: 13px; }
-  .ta-page-body .ta-list-head { display: none; }
   .ta-page-body .ta-course-row {
     grid-template-columns: 23px minmax(0, 1fr) auto;
-    grid-template-rows: auto auto;
     column-gap: 10px;
-    row-gap: 5px;
     min-height: 0;
-    padding: 15px 10px;
+    padding: 14px 10px;
     align-items: start;
   }
-  .ta-page-body .ta-row-num { grid-column: 1; grid-row: 1; padding-top: 3px; }
-  .ta-page-body .ta-course-name { grid-column: 2; grid-row: 1; font-size: 14px; }
-  .ta-page-body .ta-position { grid-column: 3; grid-row: 1; padding-top: 3px; font-size: 10px; }
-  .ta-page-body .ta-supervisor { grid-column: 2 / 4; grid-row: 2; font-size: 11px; }
+  .ta-page-body .ta-row-num { padding-top: 3px; }
+  .ta-page-body .ta-course-name { font-size: 14px; }
+  .ta-page-body .ta-position { padding-top: 3px; font-size: 10px; }
+  .ta-page-body .ta-supervisor { font-size: 11px; }
   .ta-page-body .ta-archive { padding-bottom: 76px; }
   .ta-page-body .ta-footer .container { width: calc(100% - 40px); padding: 18px 0; min-height: 0; }
 }
