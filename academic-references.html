@@ -54,7 +54,9 @@ body.references-page[data-theme="dark"] {
 .references-page .ar-trigger[aria-expanded="true"] .ar-action { color: var(--ar-ink); }
 .references-page .ar-panel[hidden] { display: none !important; }
 .references-page .ar-panel { padding: 4px 0 42px 55px; }
-.references-page .ar-letter { width: min(100%, 740px); font-size: 15px; line-height: 1.84; color: var(--ar-ink); }
+/* The same powder blue used by the Home portfolio sidebar, applied only to the actual letters. */
+.references-page .ar-letter { width: min(100%, 740px); padding: 34px 38px; background: #cbdff1; border: 1px solid #a8c0d4; color: #203e55; font-size: 15px; line-height: 1.84; }
+.references-page .ar-letter p { color: inherit; }
 .references-page .ar-letter p { margin: 0 0 17px; }
 .references-page .ar-letter p:last-child { margin-bottom: 0; }
 .references-page .ar-meta { width: min(100%, 740px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 36px; row-gap: 20px; padding-top: 24px; margin-top: 30px; border-top: 1px solid var(--ar-rule); }
@@ -72,7 +74,7 @@ body.references-page[data-theme="dark"] {
  .references-page .ar-action span:first-child { display: none; }
  .references-page .ar-person { padding-right: 5px; }
  .references-page .ar-panel { padding: 4px 0 35px 35px; }
- .references-page .ar-letter { font-size: 14px; line-height: 1.82; }
+ .references-page .ar-letter { padding: 24px 22px; font-size: 14px; line-height: 1.82; }
  .references-page .ar-meta { grid-template-columns: 1fr; row-gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
