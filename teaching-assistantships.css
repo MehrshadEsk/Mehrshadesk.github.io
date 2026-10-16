@@ -1,8 +1,8 @@
-/* Teaching Assistantships — restrained academic archive with intentional hierarchy. */
+/* Teaching Assistantships — minimal academic list, without cards or boxed tiles. */
 .ta-page-body {
   --ta-panel: #fffdf9;
   --ta-side: #e4edf4;
-  --ta-rail: #cbdff1; /* Home sidebar blue */
+  --ta-rail: #cbdff1;
   --ta-deep: #264761;
   --ta-border: #d8dfdf;
   --ta-subtle: #526777;
@@ -15,8 +15,10 @@
   --ta-border: #58685f;
   --ta-subtle: #c3cfce;
 }
+
+/* Original headline and introduction are retained. */
 .ta-page-body .ta-hero {
-  padding: clamp(64px, 8.5vw, 112px) 0 76px;
+  padding: clamp(64px, 8.5vw, 112px) 0 58px;
 }
 .ta-page-body .ta-hero-copy { max-width: 850px; }
 .ta-page-body .ta-eyebrow { margin-bottom: 25px; font-size: 10px; letter-spacing: .15em; }
@@ -33,104 +35,27 @@
   font-size: clamp(15px, 1.45vw, 18px);
   line-height: 1.8;
 }
-.ta-page-body .ta-hero-actions { margin-top: 32px; }
-.ta-page-body .ta-primary {
-  gap: 34px;
-  min-height: 47px;
-  padding: 12px 17px;
-  color: var(--ink);
-  border: 1px solid var(--ta-border);
-  background: transparent;
-  font-size: 12px;
-}
-.ta-page-body .ta-primary span { color: var(--ta-deep); font-size: 18px; }
-.ta-page-body .ta-primary:hover { border-color: var(--ta-deep); background: var(--ta-side); }
-.ta-page-body .ta-hero-summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  margin-top: 70px;
-  padding-top: 22px;
-  border-top: 1px solid var(--ta-border);
-}
-.ta-page-body .ta-hero-summary > div {
-  display: flex;
-  flex-direction: column;
-  min-width: 165px;
-  gap: 0;
-  padding: 0 42px 0 0;
-  margin-right: 42px;
-  border-right: 1px solid var(--ta-border);
-}
-.ta-page-body .ta-hero-summary > div:last-child { border: 0; margin-right: 0; }
-.ta-page-body .ta-hero-summary strong {
-  font-size: clamp(29px, 3vw, 40px);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -.06em;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.ta-page-body .ta-hero-summary span {
-  display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: .02em;
-}
 
-/* Year navigation is deliberately understated; the cards are the primary content. */
+/* Year headings, followed by eight unboxed semester lists. */
 .ta-page-body .ta-history-section {
-  padding: clamp(58px, 7vw, 96px) 0 112px;
+  padding: clamp(36px, 5vw, 68px) 0 100px;
   border-top: 1px solid var(--ta-border);
 }
-.ta-page-body .ta-section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 30px;
-  margin-bottom: 63px;
-}
-.ta-page-body .ta-section-no { font-size: 10px; letter-spacing: .13em; color: var(--ta-deep); margin-bottom: 20px; }
-.ta-page-body .ta-section-head h2 {
-  margin: 0;
-  font-size: clamp(31px, 4.1vw, 52px);
-  letter-spacing: -.055em;
-  line-height: 1.12;
-}
-.ta-page-body .ta-heading-period { color: var(--ta-deep); }
-.ta-page-body .ta-section-description {
-  margin: 16px 0 0;
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--muted);
-  max-width: 560px;
-}
-.ta-page-body .ta-year-nav { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 6px; }
-.ta-page-body .ta-year-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  padding: 9px 12px;
-  min-height: 38px;
-  color: var(--ink);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  border: 1px solid var(--ta-border);
-}
-.ta-page-body .ta-year-nav a span { color: var(--ta-subtle); }
-.ta-page-body .ta-year-nav a:hover, .ta-page-body .ta-year-nav a:focus-visible { background: var(--ta-side); border-color: var(--ta-deep); }
 .ta-page-body .ta-year-group { scroll-margin-top: 110px; }
-.ta-page-body .ta-year-group + .ta-year-group { margin-top: 66px; }
+.ta-page-body .ta-year-group + .ta-year-group { margin-top: 62px; }
 .ta-page-body .ta-year-heading {
   display: flex;
   align-items: baseline;
   gap: 16px;
   border-bottom: 1px solid var(--ta-border);
   padding-bottom: 15px;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
-.ta-page-body .ta-year-label { font-size: 10px; letter-spacing: .13em; color: var(--ta-subtle); }
+.ta-page-body .ta-year-label {
+  font-size: 10px;
+  letter-spacing: .13em;
+  color: var(--ta-subtle);
+}
 .ta-page-body .ta-year-heading h3 {
   font-size: 30px;
   font-weight: 500;
@@ -140,120 +65,158 @@
   letter-spacing: -.055em;
   font-variant-numeric: tabular-nums;
 }
-.ta-page-body .ta-year-count { font-size: 11px; color: var(--muted); margin-left: auto; }
-.ta-page-body .ta-year-semesters { display: grid; gap: 15px; }
-
-/* Each semester is an individual two-part folio: a blue term rail + course tiles. */
+.ta-page-body .ta-year-count {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.ta-page-body .ta-year-semesters { display: block; }
 .ta-page-body .semester-card {
-  display: grid;
-  grid-template-columns: minmax(200px, 236px) minmax(0, 1fr);
-  gap: 0;
-  background: var(--ta-panel);
-  border: 1px solid var(--ta-border);
-  overflow: hidden;
+  display: block;
+  padding: 21px 0 28px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.ta-page-body .semester-card + .semester-card {
+  border-top: 1px solid var(--ta-border);
+  padding-top: 32px;
 }
 .ta-page-body .semester-meta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-  padding: 30px 24px 28px;
-  background: var(--ta-side);
-  border-right: 1px solid var(--ta-border);
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  margin-bottom: 13px;
+  background: transparent;
+  border: 0;
 }
 .ta-page-body .semester-index {
-  display: block;
-  margin-bottom: 38px;
-  font-size: 52px;
+  flex-shrink: 0;
+  width: 32px;
+  margin: 0;
+  font-size: 26px;
   font-weight: 400;
-  letter-spacing: -.075em;
+  letter-spacing: -.055em;
   line-height: 1;
   color: var(--ta-deep);
-  opacity: .6;
+  opacity: .7;
   font-variant-numeric: tabular-nums;
 }
-.ta-page-body .semester-meta > div { width: 100%; }
+.ta-page-body .semester-meta > div { min-width: 0; }
 .ta-page-body .semester-term {
-  display: inline-block;
-  padding-bottom: 7px;
+  display: block;
+  padding: 0 0 4px;
   color: var(--ta-deep);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .12em;
 }
 .ta-page-body .semester-meta h3 {
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 600;
   line-height: 1.25;
-  letter-spacing: -.045em;
+  letter-spacing: -.04em;
   margin: 0;
   color: var(--ink);
 }
 .ta-page-body .semester-volume {
-  margin: auto 0 0;
-  padding-top: 35px;
-  text-align: left;
+  margin: 0 0 0 auto;
+  padding: 0;
+  text-align: right;
   color: var(--ta-subtle);
   font-size: 10px;
   line-height: 1.6;
 }
 .ta-page-body .semester-volume span { margin: 0 4px; }
+
+/* A true single-column text list: one appointment per line, without squares. */
 .ta-page-body .course-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  padding: 18px;
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 48px;
   min-width: 0;
 }
 .ta-page-body .course-row {
-  min-width: 0;
-  min-height: 148px;
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: flex-start;
   gap: 18px;
-  padding: 20px 20px 16px;
-  border: 1px solid var(--ta-border);
-  background: var(--bg);
-  transition: border-color .2s ease, background-color .2s ease;
+  min-height: 0;
+  margin: 0;
+  padding: 10px 0 10px 18px;
+  border: 0;
+  border-bottom: 1px solid var(--ta-border);
+  background: transparent;
+  transition: none;
 }
-.ta-page-body .course-row:hover { border-color: var(--ta-deep); background: var(--ta-panel); }
-.ta-page-body .course-row > div { min-width: 0; }
+.ta-page-body .course-row:last-child { border-bottom: 0; }
+.ta-page-body .course-row::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  left: 2px;
+  top: 19px;
+  border-radius: 50%;
+  background: var(--ta-deep);
+}
+.ta-page-body .course-row:hover { border-color: var(--ta-border); background: transparent; }
+.ta-page-body .course-row > div {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 3px 10px;
+  min-width: 0;
+}
 .ta-page-body .course-row h4 {
-  margin: 0 0 8px;
+  margin: 0;
   color: var(--ink);
-  font-size: clamp(15px, 1.42vw, 17px);
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: -.027em;
-  line-height: 1.4;
+  letter-spacing: -.02em;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
-.ta-page-body .course-row p { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0; }
-.ta-page-body .role {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  border: 1px solid var(--ta-border);
-  padding: 4px 8px;
-  font-size: 9px;
-  font-weight: 600;
+.ta-page-body .course-row p {
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.5;
-  letter-spacing: .07em;
+  margin: 0;
+}
+.ta-page-body .course-row p::before { content: "— "; }
+.ta-page-body .role,
+.ta-page-body .role-head {
+  display: inline-block;
+  flex-shrink: 0;
+  align-self: baseline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  line-height: 1.5;
   white-space: nowrap;
   color: var(--muted);
-  background: transparent;
 }
-.ta-page-body .role-head {
-  border-color: var(--ta-rail);
-  background: var(--ta-side);
-  color: var(--ta-deep);
-}
+.ta-page-body .role-head { color: var(--ta-deep); }
 
+/* Existing portfolio return link and site footer remain as-is. */
 .ta-page-body .ta-footer-cta { padding: 58px 0 68px; border-top: 1px solid var(--ta-border); }
-.ta-page-body .ta-footer-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 45px; }
+.ta-page-body .ta-footer-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 45px;
+}
 .ta-page-body .ta-footer-cta h2 { font-size: clamp(25px, 2.8vw, 35px); margin-bottom: 13px; }
-.ta-page-body .ta-footer-cta p:not(.ta-section-no) { font-size: 13px; line-height: 1.75; max-width: 575px; color: var(--muted); }
 .ta-page-body .ta-footer-cta-inner > a {
   display: inline-flex;
   align-items: center;
@@ -266,60 +229,29 @@
 .ta-page-body .ta-footer { display: block; }
 .ta-page-body .ta-footer .container { width: min(var(--width), calc(100% - 80px)); margin: auto; }
 
-@media (max-width: 1040px) {
-  .ta-page-body .ta-section-head { align-items: flex-start; flex-direction: column; gap: 24px; }
-  .ta-page-body .semester-card { grid-template-columns: 205px minmax(0, 1fr); }
-  .ta-page-body .semester-meta { padding: 25px 20px; }
-  .ta-page-body .course-list { padding: 13px; gap: 9px; }
-  .ta-page-body .course-row { padding: 17px; }
-}
 @media (max-width: 760px) {
-  .ta-page-body .ta-hero { padding: 48px 0 54px; }
+  .ta-page-body .ta-hero { padding: 48px 0 45px; }
   .ta-page-body .ta-hero h1 { font-size: clamp(46px, 9vw, 64px); }
-  .ta-page-body .ta-hero-summary { margin-top: 46px; }
-  .ta-page-body .ta-hero-summary > div { min-width: 0; margin-right: 18px; padding-right: 18px; }
-  .ta-page-body .ta-hero-summary strong { font-size: 29px; }
-  .ta-page-body .ta-hero-summary span { font-size: 10px; }
-  .ta-page-body .ta-history-section { padding: 54px 0 72px; }
-  .ta-page-body .ta-section-head { margin-bottom: 45px; }
-  .ta-page-body .ta-year-group + .ta-year-group { margin-top: 49px; }
-  .ta-page-body .semester-card { grid-template-columns: minmax(0, 1fr); }
-  .ta-page-body .semester-meta {
-    display: grid;
-    grid-template-columns: 58px minmax(0, 1fr);
-    column-gap: 16px;
-    align-items: center;
-    padding: 19px;
-    border-right: 0;
-    border-bottom: 1px solid var(--ta-border);
-  }
-  .ta-page-body .semester-index { font-size: 42px; margin: 0; }
-  .ta-page-body .semester-meta h3 { font-size: 21px; }
-  .ta-page-body .semester-volume { grid-column: 2; padding: 4px 0 0; margin: 0; }
-  .ta-page-body .course-list { padding: 12px; }
-  .ta-page-body .course-row { min-height: 137px; }
+  .ta-page-body .ta-history-section { padding: 42px 0 72px; }
+  .ta-page-body .ta-year-group + .ta-year-group { margin-top: 48px; }
+  .ta-page-body .semester-meta { gap: 12px; }
+  .ta-page-body .semester-meta h3 { font-size: 19px; }
+  .ta-page-body .semester-index { width: 28px; font-size: 23px; }
+  .ta-page-body .course-list { margin-left: 40px; }
   .ta-page-body .ta-footer-cta-inner { align-items: flex-start; flex-direction: column; gap: 10px; }
   .ta-page-body .ta-footer .container { width: calc(100% - 40px); }
 }
 @media (max-width: 560px) {
   .ta-page-body .ta-eyebrow { font-size: 9px; line-height: 1.8; }
-  .ta-page-body .ta-hero-summary { justify-content: space-between; }
-  .ta-page-body .ta-hero-summary > div { padding-right: 10px; margin-right: 0; flex: 1; }
-  .ta-page-body .ta-hero-summary > div + div { padding-left: 12px; }
-  .ta-page-body .ta-hero-summary strong { font-size: 26px; }
-  .ta-page-body .ta-year-nav { gap: 7px; }
-  .ta-page-body .ta-year-nav a { padding: 8px 10px; }
   .ta-page-body .ta-year-heading { gap: 12px; }
-  .ta-page-body .course-list { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .ta-page-body .course-row { min-height: 0; flex-direction: row; align-items: flex-end; padding: 17px; gap: 12px; }
-  .ta-page-body .course-row h4 { font-size: 16px; }
-  .ta-page-body .course-row .role { flex-shrink: 0; }
+  .ta-page-body .semester-meta { display: grid; grid-template-columns: 28px minmax(0, 1fr); }
+  .ta-page-body .semester-volume { grid-column: 2; margin: 0; text-align: left; }
+  .ta-page-body .course-list { margin-left: 0; }
+  .ta-page-body .course-row { gap: 12px; }
+  .ta-page-body .course-row h4 { font-size: 14px; }
 }
 @media (max-width: 380px) {
-  .ta-page-body .course-row { flex-direction: column; align-items: flex-start; }
+  .ta-page-body .course-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .ta-page-body .ta-year-heading h3 { font-size: 26px; }
   .ta-page-body .ta-year-count { font-size: 10px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ta-page-body .course-row { transition: none; }
 }
