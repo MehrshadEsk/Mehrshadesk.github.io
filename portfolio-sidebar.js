@@ -1,4 +1,4 @@
-/* Connected navigation, section transitions, and an accessible mobile drawer. */
+/* Active section links and an accessible mobile drawer. */
 (() => {
   'use strict';
 
@@ -8,20 +8,15 @@
   const backdrop = document.querySelector('[data-sidebar-backdrop]');
   const content = document.getElementById('portfolio-content');
   const toolbar = document.querySelector('.portfolio-topbar');
-  const track = document.querySelector('.sidebar-nav-track');
-  if (!sidebar || !toggle || !close || !backdrop || !content || !toolbar || !track) return;
+  if (!sidebar || !toggle || !close || !backdrop || !content || !toolbar) return;
 
   const mobile = window.matchMedia('(max-width: 1024px)');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const links = [...sidebar.querySelectorAll('.sidebar-nav-link[href^="#"]')];
   const sections = links.map(link => document.getElementById(link.hash.slice(1)));
-  const counter = sidebar.querySelector('[data-section-number]');
   const location = toolbar.querySelector('[data-current-section]');
   let isOpen = false;
   let scheduled = false;
   let activeIndex = -1;
-  let motionFrame = 0;
-  let motionTimer = 0;
 
   function focusableElements() {
     return [...sidebar.querySelectorAll('a[href], button:not([disabled])')]
@@ -56,32 +51,6 @@
     else if (restoreFocus) toggle.focus();
   }
 
-  function alignMarker(link) {
-    if (!link) return;
-    const height = link.offsetHeight;
-    const offset = link.offsetTop;
-    const firstCenter = (links[0]?.offsetHeight || height) / 2;
-    track.style.setProperty('--active-offset', `${offset}px`);
-    track.style.setProperty('--active-height', `${height}px`);
-    track.style.setProperty('--rail-progress', `${Math.max(0, offset + height / 2 - firstCenter)}px`);
-  }
-
-  function animateSelection(link) {
-    window.clearTimeout(motionTimer);
-    window.cancelAnimationFrame(motionFrame);
-    sidebar.classList.remove('is-section-changing');
-    for (const item of links) item.classList.remove('is-arriving');
-    if (reducedMotion.matches || document.hidden) return;
-    motionFrame = window.requestAnimationFrame(() => {
-      sidebar.classList.add('is-section-changing');
-      link.classList.add('is-arriving');
-      motionTimer = window.setTimeout(() => {
-        sidebar.classList.remove('is-section-changing');
-        link.classList.remove('is-arriving');
-      }, 900);
-    });
-  }
-
   function updateActiveSection() {
     scheduled = false;
     // Account for the site's anchor spacing and sticky top toolbar.
@@ -102,12 +71,9 @@
         if (index === nextIndex) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       }
-      if (counter) counter.textContent = String(nextIndex + 1).padStart(2, '0');
       if (location) location.textContent = active.querySelector('.sidebar-link-label').textContent.trim();
-      if (activeIndex >= 0) animateSelection(active);
       activeIndex = nextIndex;
     }
-    alignMarker(active);
   }
 
   function queueUpdate() {
@@ -161,12 +127,6 @@
     if (!mobile.matches && document.activeElement === close) links[activeIndex]?.focus();
     queueUpdate();
   });
-  reducedMotion.addEventListener('change', () => {
-    window.clearTimeout(motionTimer);
-    window.cancelAnimationFrame(motionFrame);
-    sidebar.classList.remove('is-section-changing');
-    for (const link of links) link.classList.remove('is-arriving');
-  });
   window.addEventListener('scroll', queueUpdate, { passive: true });
   window.addEventListener('resize', queueUpdate, { passive: true });
   window.addEventListener('hashchange', queueUpdate);
@@ -178,5 +138,4 @@
   document.fonts?.ready.then(queueUpdate);
   setOpen(false);
   updateActiveSection();
-  window.requestAnimationFrame(() => sidebar.classList.add('sidebar-ready'));
 })();
