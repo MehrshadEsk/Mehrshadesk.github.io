@@ -176,3 +176,104 @@
   .portfolio-sidebar, .portfolio-topbar, .sidebar-backdrop { display: none !important; }
   .portfolio-content { margin-left: 0; }
 }
+
+/* Distinct, consistent chapters across the main portfolio. */
+.home-page {
+  --chapter-surface: #fffdf8;
+  --chapter-alternate: #edf3f8;
+  --chapter-border: #9eafbd;
+  --chapter-accent: #42677f;
+  --chapter-card: #fffdf8;
+}
+:root[data-theme="dark"] .home-page {
+  --chapter-surface: #30362e;
+  --chapter-alternate: #292f2b;
+  --chapter-border: #5a6c64;
+  --chapter-accent: #bed8e9;
+  --chapter-card: #343b32;
+}
+.home-page .panel,
+.home-page .contact {
+  position: relative;
+  padding-block: 88px;
+  border-top: 2px solid var(--chapter-border);
+  background: var(--chapter-surface);
+}
+.home-page #research,
+.home-page #publications,
+.home-page #education { background: var(--chapter-alternate); }
+.home-page .panel::before,
+.home-page .contact::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: var(--content-gutter);
+  width: 64px;
+  height: 3px;
+  background: var(--chapter-accent);
+  pointer-events: none;
+}
+.home-page .panel .section-marker {
+  align-self: start;
+  padding-top: 14px;
+  border-top: 2px solid var(--chapter-border);
+  color: var(--chapter-accent);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+.home-page .panel .section-marker span {
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: .09em;
+}
+.home-page .section-content > .section-title:first-child {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--chapter-border);
+  margin-bottom: 32px;
+}
+.home-page .experience-group + .experience-group {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 2px solid var(--chapter-border);
+}
+
+/* Both degrees use the same complete card and field structure. */
+.home-page .education-card {
+  padding: 28px;
+  border: 1px solid var(--chapter-border);
+  background: var(--chapter-card);
+}
+.home-page .education-card + .education-card { margin-top: 24px; }
+.home-page .education-card .education-facts { gap: 20px 24px; margin-block: 24px; }
+.home-page .education-card .education-facts > div {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.home-page .education-card .thesis { padding-top: 18px; border-top: 1px solid var(--line); }
+.home-page .education-card .thesis p { margin-bottom: 0; }
+.home-page .academic-ref-link { margin-top: 32px; }
+.home-page .contact { padding-block: 72px; }
+
+@media (max-width: 760px) {
+  .home-page .panel { padding-block: 56px; }
+  .home-page .contact { padding-block: 48px; }
+  .home-page .panel .section-marker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 0 18px;
+    border-top: 0;
+    border-bottom: 1px solid var(--chapter-border);
+    font-size: 16px;
+  }
+  .home-page .panel .section-marker span { margin: 0; font-size: 11px; }
+  .home-page .section-content > .section-title:first-child { padding-bottom: 20px; margin-bottom: 28px; }
+  .home-page .experience-group + .experience-group { margin-top: 40px; padding-top: 28px; }
+  .home-page .education-card { padding: 22px; }
+  .home-page .education-card .education-head h2 { font-size: 22px; line-height: 1.3; }
+}
