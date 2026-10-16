@@ -21,68 +21,108 @@
 <link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png">
 <link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png">
 <link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180">
-<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261016-sidebar"></head>
+<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261016-signal-v2"></head>
 <body class="home-page">
 <a class="skip" href="#about">
    Skip to content
   </a>
-<header class="portfolio-mobile-header">
-  <a class="mobile-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview">
-    <span class="mark" aria-hidden="true">m<i>.</i></span>
-    <span class="mobile-brand-name">Mehrshad Eskandarpour</span>
-  </a>
-  <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="portfolio-sidebar" aria-expanded="false" aria-label="Open navigation">
-    <span>Menu</span>
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg>
-  </button>
-</header>
 <aside class="portfolio-sidebar" id="portfolio-sidebar" aria-label="Portfolio navigation">
   <div class="sidebar-brand-row">
     <a class="sidebar-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview">
-      <span class="mark" aria-hidden="true">m<i>.</i></span>
+      <span class="sidebar-monogram"><span class="mark" aria-hidden="true">m<i>.</i></span><span class="sidebar-orbit" aria-hidden="true"></span></span>
       <span class="sidebar-edition">PERSONAL<br>PORTFOLIO</span>
     </a>
     <button class="sidebar-close" type="button" data-sidebar-close aria-label="Close navigation">
       <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg>
     </button>
   </div>
-  <div class="sidebar-profile">
-    <a class="sidebar-name" href="#home">Mehrshad<br>Eskandarpour</a>
-    <p class="sidebar-role">Wireless Communication Engineer</p>
-    <p class="sidebar-topics">Networks · Research · AI</p>
+  <div class="sidebar-signal" aria-hidden="true">
+    <svg viewBox="0 0 220 82" fill="none">
+      <path class="signal-guide" d="M8 10v62m51-62v62m51-62v62m51-62v62m51-62v62M8 18h204M8 64h204"/>
+      <path class="signal-baseline" d="M8 41h204"/>
+      <path class="signal-wave" d="M8 41h30c9 0 9-23 18-23s9 46 18 46 9-46 18-46 9 46 18 46 9-46 18-46 9 23 18 23h66"/>
+      <path class="signal-packet" pathLength="100" d="M8 41h30c9 0 9-23 18-23s9 46 18 46 9-46 18-46 9 46 18 46 9-46 18-46 9 23 18 23h66"/>
+      <circle class="signal-endpoint" cx="8" cy="41" r="3"/>
+      <circle class="signal-endpoint signal-endpoint-last" cx="212" cy="41" r="3"/>
+    </svg>
   </div>
   <nav class="sidebar-nav" aria-labelledby="sidebar-navigation-label">
-    <p class="sidebar-eyebrow" id="sidebar-navigation-label">Navigation</p>
-    <a class="sidebar-nav-link" href="#home" aria-current="location">Overview</a>
-    <a class="sidebar-nav-link" href="#about">Biography</a>
-    <a class="sidebar-nav-link" href="#research">Research interests</a>
-    <a class="sidebar-nav-link" href="#experience">Experience</a>
-    <a class="sidebar-nav-link" href="#publications">Publications</a>
-    <a class="sidebar-nav-link" href="#teaching">Teaching</a>
-    <a class="sidebar-nav-link" href="#education">Education</a>
-    <a class="sidebar-nav-link" href="#contact">Contact</a>
+    <div class="sidebar-nav-heading">
+      <span class="sidebar-eyebrow" id="sidebar-navigation-label">On this page</span>
+      <span class="sidebar-position" aria-hidden="true"><span data-section-number>01</span><span class="sidebar-position-total"> / 08</span></span>
+    </div>
+    <div class="sidebar-nav-track">
+      <span class="sidebar-rail" aria-hidden="true"><span class="sidebar-rail-fill"></span></span>
+      <span class="sidebar-active-marker" aria-hidden="true"></span>
+      <ol class="sidebar-nav-list">
+        <li><a class="sidebar-nav-link" href="#home" aria-current="location">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Overview</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">01</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#about">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Biography</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">02</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#research">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Research interests</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">03</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#experience">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Experience</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">04</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#publications">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Publications</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">05</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#teaching">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Teaching</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">06</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#education">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Education</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">07</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+        <li><a class="sidebar-nav-link" href="#contact">
+          <span class="sidebar-node" aria-hidden="true"></span>
+          <span class="sidebar-link-label">Contact</span>
+          <span class="sidebar-link-end" aria-hidden="true"><span class="sidebar-link-number">08</span><span class="sidebar-link-arrow">→</span></span>
+        </a></li>
+      </ol>
+    </div>
   </nav>
   <div class="sidebar-bottom">
-    <div class="sidebar-focus">
-      <p class="sidebar-eyebrow">Current focus</p>
-      <p class="sidebar-focus-copy">Wireless systems &amp;<br>intelligent networks.</p>
-    </div>
+    <span class="sidebar-eyebrow">Connect</span>
     <div class="sidebar-social" aria-label="Professional profiles and email">
       <a href="https://www.linkedin.com/in/mehrshadesk" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
       <a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Scholar <span aria-hidden="true">↗</span></a>
       <a href="mailto:mehrsh3d@gmail.com">Email <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="sidebar-utility">
-      <span class="sidebar-copyright">© 2026 · MEHRSHAD E.</span>
-      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
-        <svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg>
-        <svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg>
-      </button>
-    </div>
   </div>
 </aside>
 <div class="sidebar-backdrop" data-sidebar-backdrop hidden aria-hidden="true"></div>
-<div class="portfolio-content" id="portfolio-content"><main id="home" tabindex="-1"><section class="hero container"><div class="hero-label">
+<div class="portfolio-content" id="portfolio-content">
+<header class="portfolio-topbar">
+  <a class="mobile-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview"><span class="mark" aria-hidden="true">m<i>.</i></span></a>
+  <div class="topbar-context"><span class="topbar-kicker">Portfolio</span><span class="topbar-separator" aria-hidden="true">/</span><span class="topbar-location" data-current-section>Overview</span></div>
+  <div class="topbar-actions">
+    <button class="theme-toggle main-theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg>
+      <svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg>
+    </button>
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="portfolio-sidebar" aria-expanded="false" aria-label="Open navigation">
+      <span>Menu</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg>
+    </button>
+  </div>
+</header>
+<main id="home" tabindex="-1"><section class="hero container"><div class="hero-label">
 <span class="accent">
       [
      </span>
@@ -690,5 +730,5 @@
    </a>
 </footer>
 </div>
-<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-sidebar" defer></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
+<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-signal-v2" defer></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
 </html>

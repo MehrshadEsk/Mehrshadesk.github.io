@@ -1,4 +1,4 @@
-/* Active section navigation and the accessible mobile sidebar. */
+/* Connected navigation, section transitions, and an accessible mobile drawer. */
 (() => {
   'use strict';
 
@@ -7,14 +7,21 @@
   const close = document.querySelector('[data-sidebar-close]');
   const backdrop = document.querySelector('[data-sidebar-backdrop]');
   const content = document.getElementById('portfolio-content');
-  const mobileHeader = document.querySelector('.portfolio-mobile-header');
-  if (!sidebar || !toggle || !close || !backdrop || !content || !mobileHeader) return;
+  const toolbar = document.querySelector('.portfolio-topbar');
+  const track = document.querySelector('.sidebar-nav-track');
+  if (!sidebar || !toggle || !close || !backdrop || !content || !toolbar || !track) return;
 
   const mobile = window.matchMedia('(max-width: 1024px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const links = [...sidebar.querySelectorAll('.sidebar-nav-link[href^="#"]')];
-  const sections = links.map(link => document.getElementById(link.hash.slice(1))).filter(Boolean);
+  const sections = links.map(link => document.getElementById(link.hash.slice(1)));
+  const counter = sidebar.querySelector('[data-section-number]');
+  const location = toolbar.querySelector('[data-current-section]');
   let isOpen = false;
   let scheduled = false;
+  let activeIndex = -1;
+  let motionFrame = 0;
+  let motionTimer = 0;
 
   function focusableElements() {
     return [...sidebar.querySelectorAll('a[href], button:not([disabled])')]
@@ -28,7 +35,6 @@
     toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
     backdrop.hidden = !isOpen;
     content.inert = isOpen;
-    mobileHeader.inert = isOpen;
     sidebar.inert = mobile.matches && !isOpen;
 
     if (mobile.matches) {
@@ -50,25 +56,58 @@
     else if (restoreFocus) toggle.focus();
   }
 
+  function alignMarker(link) {
+    if (!link) return;
+    const height = link.offsetHeight;
+    const offset = link.offsetTop;
+    const firstCenter = (links[0]?.offsetHeight || height) / 2;
+    track.style.setProperty('--active-offset', `${offset}px`);
+    track.style.setProperty('--active-height', `${height}px`);
+    track.style.setProperty('--rail-progress', `${Math.max(0, offset + height / 2 - firstCenter)}px`);
+  }
+
+  function animateSelection(link) {
+    window.clearTimeout(motionTimer);
+    window.cancelAnimationFrame(motionFrame);
+    sidebar.classList.remove('is-section-changing');
+    for (const item of links) item.classList.remove('is-arriving');
+    if (reducedMotion.matches || document.hidden) return;
+    motionFrame = window.requestAnimationFrame(() => {
+      sidebar.classList.add('is-section-changing');
+      link.classList.add('is-arriving');
+      motionTimer = window.setTimeout(() => {
+        sidebar.classList.remove('is-section-changing');
+        link.classList.remove('is-arriving');
+      }, 900);
+    });
+  }
+
   function updateActiveSection() {
     scheduled = false;
-    // Include the existing page's 100px anchor offset and section spacing.
+    // Account for the site's anchor spacing and sticky top toolbar.
     const readingLine = mobile.matches ? 144 : 160;
-    let active = sections[0]?.id;
-    for (const section of sections) {
-      if (section.getBoundingClientRect().top <= readingLine) active = section.id;
+    let nextIndex = 0;
+    for (let index = 0; index < sections.length; index++) {
+      if (sections[index]?.getBoundingClientRect().top <= readingLine) nextIndex = index;
     }
-
-    // The last section can be shorter than the viewport.
     const page = document.documentElement;
     if (window.scrollY > 0 && Math.ceil(window.scrollY + window.innerHeight) >= page.scrollHeight - 4) {
-      active = sections.at(-1)?.id;
+      nextIndex = links.length - 1;
     }
+    const active = links[nextIndex];
+    if (!active) return;
 
-    for (const link of links) {
-      if (link.hash === `#${active}`) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
+    if (nextIndex !== activeIndex) {
+      for (const [index, link] of links.entries()) {
+        if (index === nextIndex) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+      if (counter) counter.textContent = String(nextIndex + 1).padStart(2, '0');
+      if (location) location.textContent = active.querySelector('.sidebar-link-label').textContent.trim();
+      if (activeIndex >= 0) animateSelection(active);
+      activeIndex = nextIndex;
     }
+    alignMarker(active);
   }
 
   function queueUpdate() {
@@ -84,7 +123,6 @@
   sidebar.addEventListener('click', event => {
     const link = event.target.closest('a');
     if (!link || !mobile.matches || !isOpen) return;
-    // Leave modifier-clicks and new tabs to the browser.
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || link.target === '_blank') return;
     const target = link.hash && document.getElementById(link.hash.slice(1));
     setOpen(false);
@@ -116,12 +154,19 @@
 
   mobile.addEventListener('change', () => {
     const focusedInSidebar = sidebar.contains(document.activeElement);
-    const focusedInHeader = mobileHeader.contains(document.activeElement);
+    const focusedOnToggle = document.activeElement === toggle;
     setOpen(false, mobile.matches && focusedInSidebar);
-    if (!mobile.matches && focusedInHeader) links[0]?.focus();
+    if (!mobile.matches && focusedOnToggle) links[activeIndex]?.focus();
+    // The mobile-only close control disappears on desktop.
+    if (!mobile.matches && document.activeElement === close) links[activeIndex]?.focus();
     queueUpdate();
   });
-
+  reducedMotion.addEventListener('change', () => {
+    window.clearTimeout(motionTimer);
+    window.cancelAnimationFrame(motionFrame);
+    sidebar.classList.remove('is-section-changing');
+    for (const link of links) link.classList.remove('is-arriving');
+  });
   window.addEventListener('scroll', queueUpdate, { passive: true });
   window.addEventListener('resize', queueUpdate, { passive: true });
   window.addEventListener('hashchange', queueUpdate);
@@ -133,4 +178,5 @@
   document.fonts?.ready.then(queueUpdate);
   setOpen(false);
   updateActiveSection();
+  window.requestAnimationFrame(() => sidebar.classList.add('sidebar-ready'));
 })();
