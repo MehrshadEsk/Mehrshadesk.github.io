@@ -21,12 +21,68 @@
 <link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png">
 <link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png">
 <link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180">
-<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"></head>
+<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261016-sidebar"></head>
 <body class="home-page">
 <a class="skip" href="#about">
    Skip to content
   </a>
-<header class="site-header"><div class="container nav"><a class="brand" href="index.html" aria-label="Mehrshad Eskandarpour home"><span class="mark">m<i>.</i></span><span class="brand-name">mehrshad<span>/eskandarpour</span></span></a><nav class="portfolio-nav" id="portfolio-navigation" aria-label="Main navigation"><a href="#research">Research</a><a href="#publications">Publications</a><a href="#teaching">Teaching</a><a href="contact.html">Contact</a></nav><div class="header-tools"><button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg></button><button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="portfolio-navigation"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg></button></div></div></header><main id="home"><section class="hero container"><div class="hero-label">
+<header class="portfolio-mobile-header">
+  <a class="mobile-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview">
+    <span class="mark" aria-hidden="true">m<i>.</i></span>
+    <span class="mobile-brand-name">Mehrshad Eskandarpour</span>
+  </a>
+  <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="portfolio-sidebar" aria-expanded="false" aria-label="Open navigation">
+    <span>Menu</span>
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg>
+  </button>
+</header>
+<aside class="portfolio-sidebar" id="portfolio-sidebar" aria-label="Portfolio navigation">
+  <div class="sidebar-brand-row">
+    <a class="sidebar-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview">
+      <span class="mark" aria-hidden="true">m<i>.</i></span>
+      <span class="sidebar-edition">PERSONAL<br>PORTFOLIO</span>
+    </a>
+    <button class="sidebar-close" type="button" data-sidebar-close aria-label="Close navigation">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
+  </div>
+  <div class="sidebar-profile">
+    <a class="sidebar-name" href="#home">Mehrshad<br>Eskandarpour</a>
+    <p class="sidebar-role">Wireless Communication Engineer</p>
+    <p class="sidebar-topics">Networks · Research · AI</p>
+  </div>
+  <nav class="sidebar-nav" aria-labelledby="sidebar-navigation-label">
+    <p class="sidebar-eyebrow" id="sidebar-navigation-label">Navigation</p>
+    <a class="sidebar-nav-link" href="#home" aria-current="location">Overview</a>
+    <a class="sidebar-nav-link" href="#about">Biography</a>
+    <a class="sidebar-nav-link" href="#research">Research interests</a>
+    <a class="sidebar-nav-link" href="#experience">Experience</a>
+    <a class="sidebar-nav-link" href="#publications">Publications</a>
+    <a class="sidebar-nav-link" href="#teaching">Teaching</a>
+    <a class="sidebar-nav-link" href="#education">Education</a>
+    <a class="sidebar-nav-link" href="#contact">Contact</a>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="sidebar-focus">
+      <p class="sidebar-eyebrow">Current focus</p>
+      <p class="sidebar-focus-copy">Wireless systems &amp;<br>intelligent networks.</p>
+    </div>
+    <div class="sidebar-social" aria-label="Professional profiles and email">
+      <a href="https://www.linkedin.com/in/mehrshadesk" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Scholar <span aria-hidden="true">↗</span></a>
+      <a href="mailto:mehrsh3d@gmail.com">Email <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="sidebar-utility">
+      <span class="sidebar-copyright">© 2026 · MEHRSHAD E.</span>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg>
+        <svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" data-sidebar-backdrop hidden aria-hidden="true"></div>
+<div class="portfolio-content" id="portfolio-content"><main id="home" tabindex="-1"><section class="hero container"><div class="hero-label">
 <span class="accent">
       [
      </span>
@@ -633,5 +689,6 @@
     Back to top ↑
    </a>
 </footer>
-<script src="design.js?v=20261014-editorial" defer></script><script src="script.js?v=20261014-editorial"></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
+</div>
+<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-sidebar" defer></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
 </html>
