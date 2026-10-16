@@ -12,11 +12,23 @@
 
   const mobile = window.matchMedia('(max-width: 1024px)');
   const links = [...sidebar.querySelectorAll('.sidebar-nav-link[href^="#"]')];
+  const navList = sidebar.querySelector('.sidebar-nav-list');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const sections = links.map(link => document.getElementById(link.hash.slice(1)));
   const location = toolbar.querySelector('[data-current-section]');
   let isOpen = false;
   let scheduled = false;
   let activeIndex = -1;
+  let labelAnimation;
+
+  // Move one shared highlight to the selected item, including when a link wraps.
+  function updateIndicator() {
+    const active = links[activeIndex];
+    if (!navList || !active) return;
+    navList.style.setProperty('--active-y', `${active.offsetTop}px`);
+    navList.style.setProperty('--active-height', `${active.offsetHeight}px`);
+    navList.classList.add('has-moving-indicator');
+  }
 
   function focusableElements() {
     return [...sidebar.querySelectorAll('a[href], button:not([disabled])')]
@@ -71,9 +83,22 @@
         if (index === nextIndex) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       }
-      if (location) location.textContent = active.querySelector('.sidebar-link-label').textContent.trim();
+      if (location) {
+        location.textContent = active.querySelector('.sidebar-link-label').textContent.trim();
+        if (activeIndex !== -1 && !reducedMotion.matches && location.animate) {
+          labelAnimation?.cancel();
+          labelAnimation = location.animate(
+            [
+              { opacity: 0.35, transform: 'translateY(4px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ],
+            { duration: 300, easing: 'cubic-bezier(.22, 1, .36, 1)' }
+          );
+        }
+      }
       activeIndex = nextIndex;
     }
+    updateIndicator();
   }
 
   function queueUpdate() {
@@ -138,4 +163,8 @@
   document.fonts?.ready.then(queueUpdate);
   setOpen(false);
   updateActiveSection();
+  // The first paint is static; subsequent section changes glide smoothly.
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => navList?.classList.add('indicator-animated'));
+  });
 })();
