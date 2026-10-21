@@ -1,356 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
 <head>
-<meta charset="utf-8">
-<script src="theme-init.js?v=20261014-editorial"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="theme-color" content="#FAF7F0">
-<title>Apply Vault — Private Access</title>
-<link rel="stylesheet" href="styles.css?v=20261014-motion-v2"><link rel="stylesheet" href="subpage-theme.css?v=20261014-motion-v2"><link rel="icon" href="favicon.ico"></head>
-<body class="vault-page">
-<a class="skip" href="#main-content">Skip to content</a><header class="site-header"><div class="container nav"><a class="brand" href="index.html" aria-label="Mehrshad Eskandarpour home"><span class="mark">m<i>.</i></span><span class="brand-name">mehrshad<span>/eskandarpour</span></span></a><nav class="portfolio-nav" id="portfolio-navigation" aria-label="Main navigation"><a href="index.html#research">Research</a><a href="index.html#publications">Publications</a><a href="learn/">Courses</a><a href="contact.html">Contact</a></nav><div class="header-tools"><a class="header-link" href="index.html">Portfolio ↗</a><button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg></button><button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="portfolio-navigation"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg></button></div></div></header><main class="page" id="main-content">
-  <section class="intro" aria-labelledby="page-title">
-    <div class="eyebrow">Private access / Apply Vault</div>
-    <h1 id="page-title">Apply Vault.</h1>
-    <p>Private application records and supporting material. Access is limited to registered visitors with a temporary credential.</p>
-  </section>
-
-  <section class="vault-card" id="vault-window" aria-label="Apply Vault access">
-    <div class="card-head">
-      <div>
-        <div class="state-label" id="state-eyebrow">Authorization required</div>
-        <h2 id="state-title">Enter your credentials.</h2>
-        <p id="state-copy">Use the temporary access details assigned to you.</p>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#FAF7F0">
+  <title>Apply Vault — Private Access</title>
+  <link rel="icon" href="favicon.ico">
+  <script src="theme-init.js?v=20261014-editorial"></script>
+  <link rel="stylesheet" href="apply-vault.css?v=20261021-compact">
+</head>
+<body>
+  <main class="vault-minimal" aria-label="Apply Vault">
+    <form id="verify-form" class="vault-login" novalidate>
+      <div class="vault-field">
+        <label for="verify-email">TAN</label>
+        <input id="verify-email" name="email" type="email" inputmode="email" autocomplete="username" placeholder="Temporary access name" aria-label="Temporary Access Name (TAN)" required>
       </div>
-      <div class="access-badge" aria-hidden="true">Restricted</div>
-    </div>
+      <div class="vault-field">
+        <label for="verify-password">TAP</label>
+        <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="Temporary access pass" aria-label="Temporary Access Pass (TAP)" required>
+      </div>
+      <div class="vault-actions">
+        <button type="submit" class="vault-button vault-button--primary" id="verify-btn">Submit <span aria-hidden="true">↗</span></button>
+        <button type="button" class="vault-button vault-button--secondary" id="request-access" aria-expanded="false" aria-controls="request-shell">Request <span aria-hidden="true">+</span></button>
+      </div>
+    </form>
+    <p class="vault-notice" id="vault-status" role="status" aria-live="polite" hidden></p>
 
-    <div class="auth-panel">
-      <form id="verify-form" novalidate>
-        <div class="login-grid">
-          <div class="input-cell">
-            <label for="verify-email">Temporary Access Name (TAN)</label>
-            <input id="verify-email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="name@example.com" required>
-          </div>
-          <div class="input-cell">
-            <label for="verify-password">Temporary Access Pass (TAP)</label>
-            <input id="verify-password" name="password" type="password" autocomplete="current-password" placeholder="Enter access pass" required>
-          </div>
+    <section class="request-shell" id="request-shell" aria-label="Access request" hidden>
+      <form id="request-form" novalidate>
+        <div class="request-fields" role="group" aria-label="Access request details">
+          <div class="mini-field"><label for="first-name">First name</label><input id="first-name" name="firstName" maxlength="80" autocomplete="given-name" required></div>
+          <div class="mini-field"><label for="last-name">Last name</label><input id="last-name" name="lastName" maxlength="80" autocomplete="family-name" required></div>
+          <div class="mini-field"><label for="mobile">Mobile</label><input id="mobile" name="mobile" type="tel" maxlength="30" autocomplete="tel" required></div>
+          <div class="mini-field"><label for="request-email">Email</label><input id="request-email" name="email" type="email" maxlength="180" autocomplete="email" required></div>
+          <div class="mini-field"><label for="affiliation">Affiliation</label><input id="affiliation" name="affiliation" maxlength="180" required></div>
+          <div class="mini-field mini-field--year"><label for="entry-year">Entry year</label><input id="entry-year" name="entryYear" type="number" inputmode="numeric" min="1950" max="2100" required></div>
+          <div class="mini-field mini-field--reason"><label for="reason">Reason for access</label><textarea id="reason" name="reason" maxlength="1200" rows="1" required></textarea></div>
         </div>
-        <div class="auth-actions">
-          <div class="login-note"><span class="mini-status" id="mini-status">Awaiting credentials</span></div>
-          <button class="verify-btn" id="verify-btn" type="submit"><span>Open vault</span><span class="arrow">↗</span></button>
-        </div>
+        <button type="submit" id="request-btn" class="request-send">Send request <span aria-hidden="true">↗</span></button>
+        <input id="request-website" class="honeypot" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
+        <p id="request-status" class="request-notice" role="status" aria-live="polite" hidden></p>
       </form>
-    </div>
-<button type="button" id="request-access" class="btn btn-secondary">Request access ↗</button>
-
-    <div class="console-wrap" id="console-wrap" aria-live="polite">
-      <div class="console-inner">
-        <div class="console">
-          <div class="console-top"><span>Verifying credentials</span><span class="console-live">Secure check in progress</span></div>
-          <div class="console-log" id="console-log"></div>
-          <div class="console-progress"><i></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="request-shell" id="request-shell">
-      <div class="request-inner">
-        <div class="request-panel">
-          <div class="request-heading">
-            <div class="denied-badge">Access not registered</div>
-            <h3>Request access.</h3>
-            <p>If you do not have an active credential, submit your details below. Your request will be sent to the vault administrator for review.</p>
-          </div>
-
-          <form id="request-form" novalidate><p id="request-error" role="alert" hidden></p>
-            <input class="honeypot" id="request-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <div class="form-grid">
-              <div class="field"><label for="first-name">First name <span>*</span></label><input id="first-name" name="firstName" maxlength="80" autocomplete="given-name" required></div>
-              <div class="field"><label for="last-name">Last name <span>*</span></label><input id="last-name" name="lastName" maxlength="80" autocomplete="family-name" required></div>
-              <div class="field"><label for="mobile">Mobile number <span>*</span></label><input id="mobile" name="mobile" type="tel" maxlength="30" autocomplete="tel" placeholder="+1 416 555 0123" required></div>
-              <div class="field"><label for="request-email">Email address <span>*</span></label><input id="request-email" name="email" type="email" maxlength="180" autocomplete="email" required></div>
-              <div class="field"><label for="affiliation">University / affiliation <span>*</span></label><input id="affiliation" name="affiliation" maxlength="180" placeholder="University, lab, company…" required></div>
-              <div class="field"><label for="entry-year">University entry year <span>*</span></label><input id="entry-year" name="entryYear" type="number" inputmode="numeric" min="1950" max="2100" placeholder="2024" required></div>
-              <div class="field full"><label for="reason">Reason for access <span>*</span></label><textarea id="reason" name="reason" maxlength="1200" placeholder="Briefly explain why you are requesting access to the Apply Vault." required></textarea></div>
-            </div>
-            <button class="submit-request" id="request-btn" type="submit"><strong>Submit access request</strong><span class="arrow">↗</span></button>
-            <div class="request-success" id="request-success" role="status">
-              <b>Request transmitted</b>
-              <p>Your request has been transmitted for review. Await administrator confirmation. Reference: <code id="request-ref">—</code></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="result-overlay" id="result-overlay" aria-hidden="true">
-      <div class="result-card">
-        <div class="result-icon" aria-hidden="true">✓</div>
-        <div class="small">Authorization complete</div>
-        <h3>Access granted.</h3>
-        <p>Secure session established. Opening the vault…</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="page-foot" aria-hidden="true">
-    <span>Private materials · controlled access</span>
-    <span>Mehrshad Eskandarpour</span>
-  </div>
-</main>
-
-<script src="access-config.js"></script>
-<script>
-(() => {
-  'use strict';
-
-  const cfg = window.MEHRSHAD_ACCESS || {};
-  const DEST = cfg.privateJourneyUrl || 'apply-vault-private.html';
-  const API = String(cfg.apiUrl || '').trim();
-  const remoteConfigured = /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API);
-  const $ = id => document.getElementById(id);
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const verifyForm = $('verify-form');
-  const verifyEmail = $('verify-email');
-  const verifyPassword = $('verify-password');
-  const verifyBtn = $('verify-btn');
-  const miniStatus = $('mini-status');
-  const stateEyebrow = $('state-eyebrow');
-  const stateTitle = $('state-title');
-  const stateCopy = $('state-copy');
-  const consoleWrap = $('console-wrap');
-  const consoleLog = $('console-log');
-  const requestShell = $('request-shell');
-  const requestForm = $('request-form');
-  const requestBtn = $('request-btn');
-  const requestSuccess = $('request-success');
-  const requestRef = $('request-ref');
-  const requestEmail = $('request-email');
-  const resultOverlay = $('result-overlay');
-
-  function storageSet(key, value){ try{ sessionStorage.setItem(key, value); }catch(_){} }
-  function storageRemove(key){ try{ sessionStorage.removeItem(key); }catch(_){} }
-  function clearSession(){
-    storageRemove('applicationJourneyAuthorized');
-    storageRemove('applicationJourneyEmail');
-    storageRemove('applicationJourneyCredential');
-  }
-
-  async function sha256(text){
-    if(!window.crypto || !window.crypto.subtle) return '';
-    const bytes = new TextEncoder().encode(text);
-    const digest = await crypto.subtle.digest('SHA-256', bytes);
-    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
-  async function makeCredentialHash(email, password){
-    return sha256(String(email).trim().toLowerCase() + '\n' + String(password).trim());
-  }
-
-  function remoteAllowed(email, credential){
-    return new Promise(resolve => {
-      if(!remoteConfigured){ resolve(null); return; }
-      const cb = 'vault_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-      const script = document.createElement('script');
-      let finished = false;
-      const finish = value => {
-        if(finished) return;
-        finished = true;
-        clearTimeout(timer);
-        try{ delete window[cb]; }catch(_){ window[cb] = undefined; }
-        script.remove();
-        resolve(value);
-      };
-      const timer = setTimeout(() => finish(null), 7000);
-      window[cb] = data => finish(!!(data && data.allowed === true));
-      script.onerror = () => finish(null);
-      script.src = `${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
-      document.body.appendChild(script);
-    });
-  }
-
-  function addLog(message){
-    const line = document.createElement('div');
-    line.textContent = message;
-    consoleLog.appendChild(line);
-  }
-
-  function setIdleState(){
-    stateEyebrow.textContent = 'Authorization required';
-    stateTitle.textContent = 'Enter your credentials.';
-    stateCopy.textContent = 'Use the temporary access details assigned to you.';
-    miniStatus.textContent = 'Awaiting credentials';
-  }
-
-  function deny(email, offline=false){
-    clearSession();
-    document.body.classList.remove('granted');
-    consoleWrap.classList.remove('open');
-    stateEyebrow.textContent = offline ? 'Verification unavailable' : 'Access not registered';
-    stateTitle.textContent = offline ? 'Verification service unavailable.' : 'Credential not recognized.';
-    stateCopy.textContent = offline
-      ? 'You can still submit an access request below.'
-      : 'This email is not currently registered for Apply Vault access.';
-    miniStatus.textContent = offline ? 'Service unavailable' : 'Access denied';
-    requestEmail.value = email;
-    requestShell.classList.add('open');
-    requestSuccess.classList.remove('show');
-    setTimeout(() => $('first-name').focus({preventScroll:true}), reduceMotion ? 0 : 420);
-  }
-
-  function grant(email, credential){
-    document.body.classList.add('granted');
-    requestShell.classList.remove('open');
-    consoleWrap.classList.remove('open');
-    miniStatus.textContent = 'Access granted';
-    stateEyebrow.textContent = 'Authorization accepted';
-    stateTitle.textContent = 'Access granted.';
-    stateCopy.textContent = 'Credential verified. Establishing your private session.';
-    storageSet('applicationJourneyAuthorized','1');
-    storageSet('applicationJourneyEmail',email);
-    storageSet('applicationJourneyCredential',credential);
-    verifyPassword.value = '';
-    setTimeout(() => resultOverlay.classList.add('show'), reduceMotion ? 0 : 140);
-    setTimeout(() => location.href = DEST, reduceMotion ? 220 : 1150);
-  }
-
-  verifyForm.addEventListener('submit', async event => {
-    event.preventDefault();
-    const email = verifyEmail.value.trim().toLowerCase();
-    const password = verifyPassword.value;
-    requestShell.classList.remove('open');
-    requestSuccess.classList.remove('show');
-    resultOverlay.classList.remove('show');
-    document.body.classList.remove('granted');
-
-    if(!validEmail(email)){
-      stateEyebrow.textContent = 'Check your details';
-      stateTitle.textContent = 'Enter a valid email.';
-      stateCopy.textContent = 'Use the email address registered for vault access.';
-      miniStatus.textContent = 'Invalid email';
-      verifyEmail.focus();
-      return;
-    }
-    if(!password.trim()){
-      stateEyebrow.textContent = 'Check your details';
-      stateTitle.textContent = 'Access pass required.';
-      stateCopy.textContent = 'Enter the temporary access pass assigned to this email.';
-      miniStatus.textContent = 'Access pass required';
-      verifyPassword.focus();
-      return;
-    }
-
-    verifyBtn.disabled = true;
-    consoleLog.innerHTML = '';
-    addLog('verification started');
-    consoleWrap.classList.add('open');
-    miniStatus.textContent = 'Verifying credentials';
-    stateEyebrow.textContent = 'Verification in progress';
-    stateTitle.textContent = 'Checking access…';
-    stateCopy.textContent = 'Validating your credential against the private access registry.';
-
-    let remote = null;
-    try{
-      const started = performance.now();
-      const credential = await makeCredentialHash(email, password);
-      remote = await remoteAllowed(email, credential);
-      const elapsed = performance.now() - started;
-      const minimumVisualTime = reduceMotion ? 0 : 650;
-      if(elapsed < minimumVisualTime) await sleep(minimumVisualTime - elapsed);
-      if(remote === true) grant(email, credential);
-      else deny(email, remote === null);
-    }catch(_){
-      deny(email, !remoteConfigured);
-    }finally{
-      verifyBtn.disabled = false;
-    }
-  });
-
-  function makeRequestId(){
-    return 'AV-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,8).toUpperCase();
-  }
-
-  function cleanValue(id){ return $(id).value.trim(); }
-
-  function validateRequest(){
-    const data = {
-      firstName: cleanValue('first-name'),
-      lastName: cleanValue('last-name'),
-      mobile: cleanValue('mobile'),
-      email: cleanValue('request-email').toLowerCase(),
-      affiliation: cleanValue('affiliation'),
-      entryYear: cleanValue('entry-year'),
-      reason: cleanValue('reason'),
-      website: cleanValue('request-website')
-    };
-    const order = [
-      ['first-name', data.firstName], ['last-name', data.lastName], ['mobile', data.mobile],
-      ['request-email', validEmail(data.email)], ['affiliation', data.affiliation],
-      ['entry-year', /^\d{4}$/.test(data.entryYear) && +data.entryYear >= 1950 && +data.entryYear <= 2100],
-      ['reason', data.reason]
-    ];
-    $('request-error').hidden=true;
-    for(const [id] of order)$(id).removeAttribute('aria-invalid');
-    for(const [id, value] of order){ if(!value){
-      $(id).setAttribute('aria-invalid','true');
-      $('request-error').textContent='Please check '+$(id).closest('.field').querySelector('label').textContent.replace('*','').trim().toLowerCase()+'.';
-      $('request-error').hidden=false;$(id).focus();return null;
-    } }
-    return data;
-  }
-
-  async function transmitRequest(data){
-    if(!remoteConfigured) throw new Error('Access endpoint is not configured.');
-    const requestId = makeRequestId();
-    const fd = new FormData();
-    fd.set('action','request');
-    fd.set('requestId',requestId);
-    fd.set('firstName',data.firstName);
-    fd.set('lastName',data.lastName);
-    fd.set('mobile',data.mobile);
-    fd.set('email',data.email);
-    fd.set('affiliation',data.affiliation);
-    fd.set('entryYear',data.entryYear);
-    fd.set('reason',data.reason);
-    fd.set('website',data.website);
-    await fetch(API,{method:'POST',mode:'no-cors',body:fd,keepalive:true});
-    return requestId;
-  }
-
-  requestForm.addEventListener('submit', async event => {
-    event.preventDefault();
-    const data = validateRequest();
-    if(!data) return;
-    requestBtn.disabled = true;
-    requestBtn.querySelector('strong').textContent = 'Sending request…';
-    requestSuccess.classList.remove('show');
-    try{
-      const id = await transmitRequest(data);
-      requestRef.textContent = id;
-      requestSuccess.classList.add('show');
-      requestBtn.querySelector('strong').textContent = 'Request submitted';
-      requestBtn.querySelector('.arrow').textContent = '✓';
-    }catch(_){
-      requestBtn.querySelector('strong').textContent = 'Could not send — retry';
-      requestBtn.disabled = false;
-    }
-  });
-
-  $('request-access')?.addEventListener('click', () => {
-    clearSession();requestShell.classList.add('open');requestSuccess.classList.remove('show');
-    stateEyebrow.textContent='Request authorization';stateTitle.textContent='Request access.';
-    stateCopy.textContent='Submit your details for administrator review.';
-    requestEmail.value=verifyEmail.value.trim();requestShell.scrollIntoView({behavior:reduceMotion?'auto':'smooth'});
-    setTimeout(()=>$('first-name').focus({preventScroll:true}),0);
-  });
-  setIdleState();
-})();
-</script>
-<script src="screen-protection.js"></script>
-<script src="design.js?v=20261014-editorial" defer></script></body>
+    </section>
+  </main>
+  <script src="access-config.js"></script>
+  <script src="apply-vault.js?v=20261021-compact" defer></script>
+  <script src="screen-protection.js" defer></script>
+</body>
 </html>
