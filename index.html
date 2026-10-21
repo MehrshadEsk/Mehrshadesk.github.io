@@ -1,331 +1,577 @@
 <!DOCTYPE html>
-<!-- Replacement for existing GitHub Pages repository: index.html only. All other existing files remain untouched. -->
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8fafc">
-  <meta name="author" content="Mehrshad Eskandarpour">
-  <link rel="canonical" href="https://mehrshadesk.ir/">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="apple-touch-icon" href="assets/favicon-180.png">
-  <meta property="og:url" content="https://mehrshadesk.ir/">
-  <meta property="og:image" content="https://mehrshadesk.ir/assets/mehrshad-home-portrait.webp">
-  <meta name="description" content="Mehrshad Eskandarpour — Network and telecommunications engineer, wireless systems researcher, and educator. Explore research, engineering work, publications, and teaching.">
-  <meta property="og:title" content="Mehrshad Eskandarpour — Engineer · Researcher · Educator">
-  <meta property="og:description" content="Engineering intelligent networks and exploring the science of connectivity.">
-  <meta property="og:type" content="website">
-  <title>Mehrshad Eskandarpour — Network Engineer & Researcher</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;800&display=swap" rel="stylesheet">
-  <style>
-    @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-400.woff2') format('woff2');font-weight:400;font-display:swap}
-    @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-500.woff2') format('woff2');font-weight:500;font-display:swap}
-    @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-600.woff2') format('woff2');font-weight:600;font-display:swap}
-    @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-700.woff2') format('woff2');font-weight:700;font-display:swap}
-    :root{--ink:#102b42;--ink2:#36556d;--muted:#70869a;--blue:#267cc6;--blue2:#47add9;--cyan:#77cbdc;--border:#dce6ee;--paper:#f8fafc;--white:#fff;--soft:#edf4f8;--heading:'Space Grotesk',Inter,Arial,sans-serif;--body:Inter,Arial,sans-serif;--shadow:0 24px 70px rgba(35,83,116,.085);--radius:20px}
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:100px}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    body.modal-open{overflow:hidden}
-    button,input,textarea,select{font:inherit}
-    button{cursor:pointer}
-    a{color:inherit;text-decoration:none}
-    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #51a7d8;outline-offset:4px}
-    ::selection{background:#bbdff0;color:var(--ink)}
-    .skip{position:absolute;left:12px;top:-100px;background:#fff;z-index:999;padding:10px 16px}.skip:focus{top:12px}
-    .progress{height:3px;background:linear-gradient(90deg,#56bddb,#2675b8);position:fixed;top:0;left:0;z-index:1200;width:0;box-shadow:0 0 16px rgba(69,164,205,.4);pointer-events:none}
-    .container{width:min(1240px,calc(100% - 88px));margin-inline:auto}
-    .topbar{position:sticky;top:0;z-index:100;background:rgba(248,250,252,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(196,214,225,.76);height:81px;transition:box-shadow .3s,background .3s}
-    .topbar.is-scrolled{box-shadow:0 9px 30px rgba(21,50,80,.045);background:rgba(255,255,255,.94)}
-    .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:35px}
-    .brand{display:flex;align-items:center;gap:14px;flex-shrink:0}.brand-icon{font:700 34px/1 var(--heading);letter-spacing:-.09em;color:#196a9c}.brand-caption{display:grid;gap:1px}.brand-caption strong{font:700 10px/1.2 var(--body);letter-spacing:.115em}.brand-caption small{font:500 10px/1.1 var(--body);color:#88a0b1;letter-spacing:.10em}
-    .navlinks{display:flex;align-items:center;gap:27px;margin-left:auto}.navlinks a{font-size:12px;font-weight:600;color:#5d788d;transition:color .25s;position:relative}.navlinks a:hover,.navlinks a.active{color:#147ab4}.navlinks a:after{content:'';position:absolute;height:2px;bottom:-10px;left:0;right:100%;background:#278bc5;transition:right .25s}.navlinks a:hover:after,.navlinks a.active:after{right:0}
-    .nav-cta{white-space:nowrap;color:#fff;background:#163953;padding:11px 19px;border-radius:8px;font-size:12px;font-weight:700;transition:transform .25s,background .25s}.nav-cta:hover{background:#20658e;transform:translateY(-2px)}
-    .menu-toggle{display:none;border:1px solid var(--border);background:#fff;border-radius:9px;padding:10px;align-items:center;justify-content:center;color:var(--ink);width:42px;height:42px}
-    .menu-toggle svg{width:20px;height:20px}
-    .eyebrow{display:flex;align-items:center;gap:13px;text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.19em;color:#367aa5}.eyebrow:before{content:'';width:27px;height:1px;background:#56a2ce;display:inline-block}.eyebrow.no-line:before{display:none}
-    .hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid #e2ebf2;background:radial-gradient(ellipse at 77% 45%,#e1f1fa 0,rgba(241,248,252,.6) 36%,transparent 64%),linear-gradient(120deg,#fff 2%,#f8fbfc 65%,#f1f8fc 100%)}
-    .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(70,118,150,.034) 1px,transparent 1px),linear-gradient(90deg,rgba(70,118,150,.034) 1px,transparent 1px);background-size:55px 55px;mask-image:linear-gradient(90deg,transparent,#000 68%);pointer-events:none}
-    .hero .container{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);min-height:670px;align-items:center;position:relative}
-    .hero-copy{z-index:2;padding:86px 0 102px}.statusline{display:inline-flex;align-items:center;gap:9px;background:#edf7fb;border:1px solid #d7e9f3;border-radius:100px;padding:8px 13px;color:#45728e;font-size:10px;letter-spacing:.12em;font-weight:800;text-transform:uppercase;margin-bottom:36px}.status-dot{background:#3bb6a2;width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 4px rgba(59,182,162,.12)}
-    .hero-name{font:600 13px/1.5 var(--heading);letter-spacing:.01em;color:#327ea8;margin:0 0 16px}.hero h1{font:600 clamp(49px,5.3vw,80px)/1.06 var(--heading);letter-spacing:-.075em;margin:0 0 26px;max-width:780px}.hero h1 span{display:block;white-space:nowrap}.hero h1 .accent{background:linear-gradient(105deg,#217bb6,#6fb4ca);-webkit-background-clip:text;background-clip:text;color:transparent}.hero-desc{font-size:15px;max-width:470px;color:#59768d;line-height:1.95;margin:0 0 32px}.hero-actions{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
-    .btn{border:1px solid transparent;display:inline-flex;gap:18px;align-items:center;justify-content:center;border-radius:9px;padding:13px 21px;font-size:12px;font-weight:750;min-height:48px;transition:transform .25s,box-shadow .25s,background .25s}.btn:hover{transform:translateY(-3px)}.btn-primary{background:#1b638f;color:#fff;box-shadow:0 9px 26px rgba(39,118,169,.14)}.btn-primary:hover{background:#2b80b7;box-shadow:0 13px 30px rgba(39,118,169,.20)}.btn-secondary{background:#fff;border-color:#cadde9;color:#295a7b}.btn-secondary:hover{border-color:#8db8d3}
-    .hero-meta{display:flex;align-items:center;gap:20px;margin-top:44px;color:#8399a9;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.hero-meta i{height:1px;width:24px;background:#c4d8e6}
-    .hero-stage{position:relative;min-width:0;height:610px;display:flex;align-items:center;justify-content:center;transform:translateZ(0)}
-    #network-canvas{width:100%;height:100%;display:block;position:absolute;inset:0;touch-action:pan-y}
-    .stage-orbit{position:absolute;border:1px solid rgba(64,140,185,.10);border-radius:50%;width:450px;height:450px;pointer-events:none}.stage-orbit::after{content:'';position:absolute;inset:35px;border:1px dashed rgba(98,167,195,.13);border-radius:50%}
-    .stage-label{position:absolute;pointer-events:none;border:1px solid #d7e8f1;border-radius:9px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);box-shadow:0 16px 40px rgba(61,117,150,.06);padding:12px 14px;min-width:140px;animation:float 6s ease-in-out infinite}.stage-label strong{display:block;font:700 10px/1.3 var(--body);letter-spacing:.11em;color:#336c94}.stage-label small{font:600 9px var(--body);letter-spacing:.05em;color:#97aab7}.stage-label.one{top:16%;right:-2%}.stage-label.two{bottom:17%;left:0%;animation-delay:-2s}.stage-label .led{display:inline-block;width:6px;height:6px;border-radius:100%;background:#45bbae;margin-right:6px}
-    .stage-caption{position:absolute;right:5%;bottom:7%;font-size:9px;color:#7ba0b6;letter-spacing:.2em;font-weight:800}
-    .scroll-cue{position:absolute;bottom:24px;left:0;right:0;display:flex;justify-content:center;gap:12px;align-items:center;color:#8ba3b4;font-size:9px;font-weight:800;letter-spacing:.18em;pointer-events:none}.scroll-cue span{width:30px;height:1px;background:#a1c3d5}
-    .section{padding:114px 0}.section.white{background:#fff}.section.soft{background:#f1f6f9}.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:46px}.section-head h2{font:600 clamp(37px,4vw,59px)/1.08 var(--heading);letter-spacing:-.065em;margin:14px 0 0;max-width:750px}.section-head p{max-width:340px;color:#7a90a2;font-size:13px;margin:0 0 5px;line-height:1.8}.section-no{font:600 10px var(--body);color:#91acbd;letter-spacing:.12em}
-    .facts{border-bottom:1px solid #e1eaf0;background:#fff}.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:33px 0}.fact{display:flex;align-items:center;gap:20px;padding:4px 40px;border-right:1px solid #e3ecf2}.fact:first-child{padding-left:0}.fact:last-child{border-right:0}.fact strong{font:600 37px/1 var(--heading);letter-spacing:-.05em;color:#1d638f;white-space:nowrap}.fact span{font:600 10px/1.7 var(--body);text-transform:uppercase;letter-spacing:.12em;color:#7b93a5}
-    .about-grid{display:grid;grid-template-columns:.78fr 1.1fr;gap:92px;align-items:center}.portrait-wrap{position:relative;padding:24px 12px 30px 20px}.portrait-frame{border-radius:21px;position:relative;min-height:475px;overflow:hidden;background:linear-gradient(140deg,#dcebf5,#c4deeb 50%,#f0f6f8);box-shadow:var(--shadow)}.portrait-frame img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center top;filter:saturate(.89) contrast(1.03)}.portrait-mesh{position:absolute;inset:0;pointer-events:none;opacity:.65;mix-blend-mode:screen}.portrait-mesh svg{width:100%;height:100%}.portrait-ring{position:absolute;width:145px;height:145px;border-radius:50%;border:1px dashed rgba(68,149,190,.45);right:-27px;top:-28px;animation:spin 40s linear infinite}.portrait-sticker{position:absolute;right:-13px;bottom:53px;background:#fff;border:1px solid #dce9f0;border-radius:11px;padding:14px 17px;font:700 10px var(--body);color:#527c99;letter-spacing:.1em;box-shadow:var(--shadow)}
-    .about-body h3{font:600 clamp(30px,3.3vw,47px)/1.12 var(--heading);letter-spacing:-.055em;margin:17px 0 21px}.about-body p{color:#657f91;font-size:13px;line-height:2.05;margin:0 0 17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.tag{display:inline-flex;align-items:center;padding:7px 11px;border:1px solid #d7e7ef;border-radius:50px;background:#f5fafc;color:#547d96;font-size:10px;font-weight:700;letter-spacing:.04em}.tags.dark .tag{border-color:#c9dfea}
-    .research-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.research-card{position:relative;min-height:288px;border:1px solid #dce8f1;border-radius:17px;padding:26px;background:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:start;transition:transform .35s,border-color .35s,box-shadow .35s}.research-card:hover{transform:translateY(-7px);border-color:#9ac3d9;box-shadow:var(--shadow)}.research-card:before{content:'';position:absolute;width:190px;height:190px;border:1px solid #e2eff5;border-radius:50%;right:-65px;top:-95px;box-shadow:0 0 0 25px #f9fcfe,0 0 0 26px #eaf3f8}.research-code{font:700 10px var(--body);letter-spacing:.17em;color:#55a0c1;position:relative}.research-icon{width:51px;height:51px;display:grid;place-items:center;background:#eaf4fa;border-radius:11px;margin:38px 0 20px;color:#368abd;position:relative}.research-icon svg{width:25px;height:25px}.research-card h3{font:600 20px/1.2 var(--heading);letter-spacing:-.035em;margin:0 0 12px;position:relative}.research-card p{color:#8297a5;font-size:11px;line-height:1.75;margin:0 0 25px;position:relative}.card-arrow{color:#2383b7;font-weight:700;font-size:11px;margin-top:auto;position:relative}
-    .filter-bar{display:flex;flex-wrap:wrap;gap:9px;margin:-13px 0 26px}.filter{border:1px solid #d8e7f0;background:#fff;color:#607c91;padding:9px 15px;border-radius:40px;font-size:10px;font-weight:800;letter-spacing:.04em;transition:all .2s}.filter:hover{border-color:#8ab6d2}.filter.is-active{background:#206d9e;color:#fff;border-color:#206d9e}
-    .projects-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.project-card{position:relative;isolation:isolate;min-width:0;border:1px solid #deebf2;border-radius:16px;background:#fff;overflow:hidden;transition:box-shadow .35s,border-color .35s;transform-style:preserve-3d;cursor:pointer}.project-card:hover{box-shadow:0 30px 60px rgba(33,90,127,.13);border-color:#a8cfe2}.project-card:focus-within{outline:3px solid #8abfde}.project-visual{height:205px;position:relative;overflow:hidden;background:linear-gradient(140deg,#e9f4fa,#f7fbfd 54%,#dcebf5)}.project-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 33%,rgba(69,175,222,.19),transparent 45%),linear-gradient(rgba(99,146,169,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(99,146,169,.06) 1px,transparent 1px);background-size:auto,24px 24px,24px 24px}.project-visual svg{width:100%;height:100%;position:relative;z-index:1;transition:transform .55s cubic-bezier(.2,.7,.2,1)}.project-card:hover .project-visual svg{transform:scale(1.07) rotate(1deg)}.project-visual .signal{stroke-dasharray:7 10;animation:dash 10s linear infinite}.project-card:hover .signal{animation-duration:2.5s;stroke:#2e98c8}.project-cover-label{position:absolute;z-index:2;top:17px;left:17px;padding:6px 10px;background:#fff;border:1px solid #d4e6f1;border-radius:5px;color:#5d8ead;font-size:9px;font-weight:800;letter-spacing:.1em}.project-card-content{padding:24px}.project-meta{display:flex;justify-content:space-between;align-items:center;color:#77a0b4;font-weight:800;font-size:9px;letter-spacing:.1em;text-transform:uppercase}.project-card h3{font:600 21px/1.25 var(--heading);letter-spacing:-.04em;margin:15px 0 10px;min-height:53px}.project-card p{color:#758da0;font-size:11px;line-height:1.8;margin:0 0 24px;min-height:58px}.project-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e6eef3;padding-top:15px}.project-footer span{font-size:10px;font-weight:800;letter-spacing:.05em;color:#4187ae}.project-view{border:0;border-radius:50%;width:37px;height:37px;background:#e9f4f9;color:#2679b0;font-size:17px;display:grid;place-items:center;transition:background .3s,color .3s}.project-card:hover .project-view{background:#247db2;color:#fff}.project-card[hidden]{display:none}
-    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.skill-card{border:1px solid #dce9f1;background:#fff;padding:29px;border-radius:16px;transition:transform .3s,border-color .3s}.skill-card:hover{transform:translateY(-5px);border-color:#a7cce1}.skill-ic{width:50px;height:50px;background:#ecf6fa;display:grid;place-items:center;color:#338ab8;border-radius:11px;margin-bottom:27px}.skill-ic svg{width:24px;height:24px}.skill-card h3{font:600 21px var(--heading);letter-spacing:-.035em;margin:0 0 9px}.skill-card p{font-size:11px;color:#8aa0ad;margin:0 0 20px}.skill-list{display:flex;flex-wrap:wrap;gap:7px}.skill-list span{font-size:10px;padding:7px 10px;border-radius:6px;background:#f1f6f9;color:#607f96;font-weight:600}
-    .journey{position:relative;padding-left:37px}.journey:before{content:'';position:absolute;top:12px;bottom:8px;left:10px;width:2px;background:#d5e6ef}.journey-progress{position:absolute;left:10px;top:12px;height:var(--trail,0%);max-height:calc(100% - 20px);width:2px;background:linear-gradient(#4db5cc,#286eaa);transition:height .08s linear}.journey-item{position:relative;display:grid;grid-template-columns:195px 1fr;gap:25px;padding:0 0 37px}.journey-item:before{content:'';position:absolute;top:8px;left:-33px;width:14px;height:14px;background:#fff;border:3px solid #66b6d5;border-radius:50%;box-shadow:0 0 0 5px #f8fafc}.journey-date{font-size:10px;font-weight:800;color:#5e96b4;letter-spacing:.08em;text-transform:uppercase;padding-top:5px}.journey-body{border-bottom:1px solid #e0eaf0;padding:0 0 30px}.journey-body h3{font:600 21px/1.28 var(--heading);letter-spacing:-.038em;margin:0 0 7px}.journey-company{font-size:11px;color:#3b87b3;font-weight:800;margin-bottom:11px}.journey-body p{font-size:12px;line-height:1.9;color:#7890a1;max-width:790px;margin:0}.journey-pill{display:inline-block;background:#e9f4f9;border-radius:4px;color:#5488a9;padding:3px 8px;font-size:9px;letter-spacing:.08em;font-weight:800;margin-left:10px;vertical-align:middle}
-    .education-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:45px}.edu-card{border-radius:15px;border:1px solid #dce8f0;background:#fff;padding:27px}.edu-card small{display:block;font-size:10px;letter-spacing:.12em;color:#6a9bbc;font-weight:800}.edu-card h3{font:600 22px/1.3 var(--heading);letter-spacing:-.04em;margin:14px 0 8px}.edu-card p{color:#718b9b;font-size:11px;line-height:1.9}.edu-note{font-size:10px;color:#4d87aa;border-top:1px solid #e5edf3;padding-top:15px;margin-top:15px}
-    .publication-year{display:grid;grid-template-columns:140px 1fr;gap:30px;margin-bottom:37px}.pub-year-label{font:600 36px/1 var(--heading);letter-spacing:-.055em;color:#2f79a5;position:sticky;top:110px;height:max-content}.pub-list{position:relative;padding-left:27px;border-left:2px solid #d8eaf1}.pub-list:before{content:'';position:absolute;left:-2px;top:0;width:2px;height:var(--progress,0%);background:#2e93bc}.pub-row{position:relative;display:flex;justify-content:space-between;gap:25px;align-items:start;padding:0 0 25px;margin-bottom:25px;border-bottom:1px solid #e3edf2}.pub-row:before{content:'';position:absolute;left:-33px;top:8px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #4b9bbf}.pub-row:last-child{border-bottom:0;margin-bottom:0}.pub-row a{display:inline;font:600 15px/1.55 var(--heading);letter-spacing:-.025em;transition:color .2s}.pub-row a:hover{color:#1684be}.pub-row .pub-venue{display:block;color:#8499a8;font-size:10px;line-height:1.7;margin-top:7px}.pub-row .pub-badge{color:#4d93b9;flex-shrink:0;font-size:17px}
-    .teach-intro{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;margin-bottom:36px;background:#ecf5f9;border:1px solid #dce9f0;border-radius:14px;padding:25px 30px}.teach-intro h3{margin:6px 0;font:600 20px var(--heading)}.teach-intro p{font-size:11px;color:#7791a2;margin:0}.teach-count{font:600 33px var(--heading);color:#327da7;letter-spacing:-.05em}.years{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:27px}.year-btn{border:1px solid #d8e6ef;border-radius:8px;background:#fff;padding:10px 21px;color:#6f8b9d;font:700 12px var(--heading);transition:all .2s}.year-btn:hover{border-color:#8cbed6}.year-btn[aria-selected='true']{background:#1e6c9b;color:#fff;border-color:#1e6c9b}.semester{margin:20px 0 34px}.semester-h{display:flex;justify-content:space-between;border-bottom:1px solid #dce8ef;padding-bottom:14px;align-items:center}.semester-h h3{font:600 21px var(--heading);letter-spacing:-.04em;margin:0}.semester-h span{font-size:10px;color:#90a7b5;font-weight:700}.course-row{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #ebf0f4;padding:14px 12px;transition:background .2s,transform .2s}.course-row:hover{background:#f3f9fc;transform:translateX(4px)}.course-row strong{font:600 13px/1.45 var(--body);color:#2d4c62}.course-row small{display:block;font-size:11px;color:#8ca1b1;margin-top:2px}.role{border:1px solid #d5e8f1;background:#f3f9fc;color:#5285a5;padding:5px 8px;border-radius:5px;white-space:nowrap;font-size:9px;font-weight:800;letter-spacing:.07em}.role.head{background:#e3f3fb;color:#2e83b3}
-    .contact-section{background:#eaf3f8;position:relative;overflow:hidden}.contact-section:before{content:'';position:absolute;right:-100px;top:-130px;width:520px;height:520px;border:1px solid rgba(54,136,181,.15);border-radius:50%;box-shadow:0 0 0 80px rgba(255,255,255,.23),0 0 0 160px rgba(91,162,204,.05);pointer-events:none}.contact-grid{display:grid;grid-template-columns:.9fr 1.05fr;gap:100px;position:relative}.contact-left h2{font:600 clamp(49px,5vw,72px)/1 var(--heading);letter-spacing:-.07em;margin:24px 0}.contact-left p{max-width:375px;color:#68879b;font-size:13px;line-height:2}.contact-email{display:inline-flex;align-items:center;gap:13px;font:600 20px var(--heading);color:#2a7eac;margin-top:35px;border-bottom:1px solid #9ec3d5;padding-bottom:9px}.social-line{margin-top:25px;display:flex;gap:17px;align-items:center}.social-line a{font-weight:800;font-size:10px;letter-spacing:.08em;color:#6d90a7}.social-line a:hover{color:#1479ad}
-    .contact-form{border:1px solid #d7e5ef;border-radius:18px;background:#fff;padding:32px;box-shadow:0 30px 60px rgba(61,113,146,.065)}.contact-form h3{font:600 22px var(--heading);margin:0 0 22px;letter-spacing:-.035em}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-field{display:grid;gap:7px;margin-bottom:16px}.form-field label{font-size:10px;font-weight:800;color:#59798e;letter-spacing:.04em}.form-field input,.form-field textarea,.form-field select{background:#f9fbfd;border:1px solid #dfe9f0;border-radius:8px;padding:12px 13px;width:100%;color:#233e50;font-size:12px;outline:0;transition:border-color .2s,box-shadow .2s}.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:#70b7d5;box-shadow:0 0 0 3px #cbe8f457}.form-field textarea{height:112px;resize:vertical}.form-note{font-size:10px;color:#92a5b2;margin:12px 0 0}.form-status{color:#3786a8;font-size:11px;min-height:16px;margin-top:8px}
-    .footer{background:#f7fafc;border-top:1px solid #d9e6ee;padding:29px 0;color:#83a0b0}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:10px;font-weight:650;letter-spacing:.04em}.footer a:hover{color:#277fa9}
-    .reveal{opacity:0;transform:translateY(35px);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.25,1)}.reveal.visible{opacity:1;transform:translateY(0)}.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.28s}
-    .word-reveal{display:block;overflow:hidden}.word-reveal>span{display:block;animation:word-in 1s cubic-bezier(.18,.65,.25,1) both}.word-reveal:nth-child(2)>span{animation-delay:.15s}.word-reveal:nth-child(3)>span{animation-delay:.25s}
-    .modal-backdrop{position:fixed;inset:0;z-index:400;background:rgba(15,37,54,.49);backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .34s,visibility .34s}.modal-backdrop.open{opacity:1;visibility:visible}.modal{position:relative;width:min(850px,100%);max-height:min(90vh,950px);overflow-y:auto;border-radius:20px;background:#fff;box-shadow:0 30px 90px rgba(9,34,55,.25);transform:translateY(28px) scale(.96);opacity:.8;transition:transform .4s cubic-bezier(.18,.75,.24,1),opacity .4s}.modal-backdrop.open .modal{transform:translateY(0) scale(1);opacity:1}.modal-close{position:absolute;z-index:3;top:17px;right:17px;border:1px solid #d6e5ee;background:#fff;border-radius:100%;width:39px;height:39px;font-size:21px;color:#2b5878}.modal-visual{height:215px;background:linear-gradient(130deg,#e8f4f9,#d6e9f5);position:relative;display:grid;place-items:center;overflow:hidden}.modal-visual svg{height:100%;width:100%}.modal-contents{padding:34px 40px 38px}.modal-label{font:800 10px var(--body);color:#408cb4;letter-spacing:.15em}.modal h2{font:600 clamp(27px,4vw,40px)/1.16 var(--heading);letter-spacing:-.05em;margin:11px 0 18px}.modal p{font-size:13px;color:#667f91;line-height:1.95}.modal .tag{margin-top:4px}.modal-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #e0e9ef;padding-top:23px;margin-top:29px}.modal-small{font-size:10px;color:#869dab;font-weight:750}.modal-close-link{font-size:11px;color:#547e9b;font-weight:800;border:0;background:transparent}
-    @keyframes float{50%{transform:translateY(-13px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes dash{to{stroke-dashoffset:-170}}@keyframes word-in{from{transform:translateY(120%);opacity:0}to{transform:translateY(0);opacity:1}}
-    @media(max-width:1100px){.navlinks{gap:15px}.navlinks a{font-size:11px}.container{width:min(1240px,calc(100% - 60px))}.hero h1{font-size:clamp(44px,5.3vw,72px)}.hero-stage{height:530px}.research-grid{grid-template-columns:repeat(2,1fr)}.contact-grid{gap:55px}.about-grid{gap:50px}}
-    @media(max-width:800px){.container{width:calc(100% - 40px)}.topbar{height:69px}.brand-caption strong{font-size:9px}.menu-toggle{display:flex;margin-left:auto}.navlinks{display:none;position:absolute;top:69px;left:0;right:0;background:#fff;padding:24px 20px;box-shadow:0 20px 30px rgba(20,60,88,.08);flex-direction:column;align-items:stretch;gap:0}.navlinks.open{display:flex}.navlinks a{font-size:13px;padding:13px 5px;border-bottom:1px solid #eef2f4}.nav-cta{display:none}.hero .container{grid-template-columns:1fr;min-height:0}.hero-copy{padding:68px 0 20px}.hero h1{font-size:clamp(50px,8vw,78px)}.hero-stage{height:440px}.scroll-cue{display:none}.section{padding:83px 0}.section-head{display:block;margin-bottom:30px}.section-head p{margin-top:13px}.about-grid{grid-template-columns:1fr;gap:30px}.portrait-wrap{max-width:510px;margin:auto;width:100%}.portrait-frame{min-height:390px}.research-grid{grid-template-columns:repeat(2,1fr)}.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.skills-grid{grid-template-columns:1fr}.journey-item{grid-template-columns:155px 1fr}.publication-year{grid-template-columns:88px 1fr;gap:12px}.pub-year-label{font-size:27px}.contact-grid{grid-template-columns:1fr;gap:40px}.facts-grid{padding:20px 0}.fact{gap:10px;padding:6px 16px}.fact strong{font-size:29px}.fact span{font-size:9px}}
-    @media(max-width:540px){.container{width:calc(100% - 32px)}.brand-caption{display:none}.hero-copy{padding:59px 0 6px}.hero h1{font-size:clamp(44px,11.2vw,64px)}.hero h1 span{white-space:normal}.hero-desc{font-size:13px}.hero-stage{height:350px;margin-inline:-8px}.stage-label.one{right:0;top:12%}.stage-label.two{left:0;bottom:9%}.stage-label{min-width:105px;padding:9px 10px}.stage-orbit{width:270px;height:270px}.stage-caption{display:none}.hero-meta{margin-top:28px}.section{padding:72px 0}.section-head h2{font-size:38px}.research-grid,.projects-grid,.education-grid{grid-template-columns:1fr}.research-card{min-height:245px}.facts-grid{grid-template-columns:1fr;gap:0;padding:12px 0}.fact{border-right:0;border-bottom:1px solid #e5edf2;padding:16px 6px}.fact:last-child{border:0}.fact:first-child{padding-left:6px}.about-grid{gap:15px}.portrait-wrap{padding:8px 8px 22px}.portrait-frame{min-height:360px}.portrait-ring{right:0}.journey-item{grid-template-columns:1fr;gap:5px}.journey-date{padding:0}.journey-body h3{font-size:19px}.publication-year{grid-template-columns:1fr;gap:23px}.pub-year-label{position:static}.pub-list{margin-left:6px}.contact-form{padding:21px}.form-row{grid-template-columns:1fr;gap:0}.contact-left h2{font-size:55px}.footer-inner{align-items:start;flex-direction:column}.modal-backdrop{padding:9px}.modal-contents{padding:25px 22px}.modal-visual{height:170px}.modal-actions{align-items:start;flex-direction:column}.btn{padding:12px 15px}.hero-actions{gap:9px}}
-
-    .bio-details,.exp-details{margin-top:16px;border-top:1px solid #e0eaf1;padding-top:14px}
-    .bio-details summary,.exp-details summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:12px;color:#247cac;padding:4px 0}
-    .bio-details summary::-webkit-details-marker,.exp-details summary::-webkit-details-marker{display:none}
-    .bio-details[open] summary span,.exp-details[open] summary span{transform:rotate(90deg)}
-    .bio-details summary span,.exp-details summary span{transition:transform .25s ease}
-    .bio-details p,.exp-details p{margin-top:12px;white-space:normal}
-    .nav-education{display:none}
-    @media(max-width:800px){.nav-education{display:block}}
-    .archive-link{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px}
-    .archive-link a{font-weight:750;letter-spacing:.07em;font-size:11px;color:#2f7faf}
-    .archive-link a:hover,.hero-meta a:hover{color:#145b85}
-    .hero-meta a{color:#286e98;transition:color .2s}
-    #education{scroll-margin-top:115px}
-    .social-line{flex-wrap:wrap}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}.word-reveal>span{animation:none!important}.stage-label{animation:none!important}}
-  </style>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="progress" id="scroll-progress" aria-hidden="true"></div>
-<header class="topbar" id="topbar">
-  <nav class="nav container" aria-label="Main navigation">
-    <a class="brand" href="#home" aria-label="Mehrshad Eskandarpour — Back to top"><span class="brand-icon">m.</span><span class="brand-caption"><strong>MEHRSHAD ESKANDARPOUR</strong><small>NETWORKS · RESEARCH · SYSTEMS</small></span></a>
-    <div class="navlinks" id="navlinks">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#teaching">Teaching</a><a class="nav-education" href="#education">Education</a>
-    </div>
-    <a href="#contact" class="nav-cta">Let's connect &nbsp;↗</a>
-    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="navlinks" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<meta charset="utf-8">
+<script src="theme-init.js?v=20261014-editorial"></script><meta content="width=device-width, initial-scale=1" name="viewport">
+<title>
+   Mehrshad Eskandarpour — Wireless Network Engineer
+  </title>
+<meta content="Portfolio of Mehrshad Eskandarpour — wireless communication engineer, researcher, AI instructor and technical project manager working across wireless systems and RF, intelligent radio access networks, security and blockchain, and intelligent Learning." name="description">
+<meta content="Mehrshad Eskandarpour" name="author">
+<meta content="#FAF7F0" name="theme-color">
+<link href="https://mehrshadesk.ir/" rel="canonical">
+<link href="manifest.webmanifest" rel="manifest">
+<meta content="website" property="og:type">
+<meta content="Mehrshad Eskandarpour — Engineer &amp; Researcher" property="og:title">
+<meta content="Wireless systems and RF, intelligent radio access networks, security and blockchain, and intelligent processing and efficient AI." property="og:description">
+<meta content="https://mehrshadesk.ir/" property="og:url">
+<noscript>
+</noscript>
+<link href="/favicon.ico?v=2" rel="icon" sizes="any">
+<link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png">
+<link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png">
+<link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180">
+<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261021-portfolio-layout-v2"></head>
+<body class="home-page">
+<a class="skip" href="#about">
+   Skip to content
+  </a>
+<aside class="portfolio-sidebar" id="portfolio-sidebar" aria-label="Portfolio navigation">
+  <div class="sidebar-brand-row">
+    <a class="sidebar-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview">
+      <span class="mark" aria-hidden="true">m<i>.</i></span>
+      <span class="sidebar-edition">PERSONAL<br>PORTFOLIO</span>
+    </a>
+    <button class="sidebar-close" type="button" data-sidebar-close aria-label="Close navigation">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
+  </div>
+  <nav class="sidebar-nav" aria-label="Portfolio sections">
+    <ol class="sidebar-nav-list">
+      <li><a class="sidebar-nav-link" href="#home" aria-current="location"><span class="sidebar-link-label">Overview</span><span class="sidebar-link-number" aria-hidden="true">01</span></a></li>
+      <li><a class="sidebar-nav-link" href="#about"><span class="sidebar-link-label">Biography</span><span class="sidebar-link-number" aria-hidden="true">02</span></a></li>
+      <li><a class="sidebar-nav-link" href="#research"><span class="sidebar-link-label">Research interests</span><span class="sidebar-link-number" aria-hidden="true">03</span></a></li>
+      <li><a class="sidebar-nav-link" href="#experience"><span class="sidebar-link-label">Experience</span><span class="sidebar-link-number" aria-hidden="true">04</span></a></li>
+      <li><a class="sidebar-nav-link" href="#publications"><span class="sidebar-link-label">Publications</span><span class="sidebar-link-number" aria-hidden="true">05</span></a></li>
+      <li><a class="sidebar-nav-link" href="#teaching"><span class="sidebar-link-label">Teaching</span><span class="sidebar-link-number" aria-hidden="true">06</span></a></li>
+      <li><a class="sidebar-nav-link" href="#education"><span class="sidebar-link-label">Education</span><span class="sidebar-link-number" aria-hidden="true">07</span></a></li>
+      <li><a class="sidebar-nav-link" href="#contact"><span class="sidebar-link-label">Contact</span><span class="sidebar-link-number" aria-hidden="true">08</span></a></li>
+    </ol>
   </nav>
+  <div class="sidebar-bottom">
+    <span class="sidebar-eyebrow">Connect</span>
+    <div class="sidebar-social" aria-label="Professional profiles and email">
+      <a href="https://www.linkedin.com/in/mehrshadesk" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Scholar <span aria-hidden="true">↗</span></a>
+      <a href="mailto:mehrsh3d@gmail.com">Email <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" data-sidebar-backdrop hidden aria-hidden="true"></div>
+<div class="portfolio-content" id="portfolio-content">
+<header class="portfolio-topbar">
+  <a class="mobile-brand" href="#home" aria-label="Mehrshad Eskandarpour — overview"><span class="mark" aria-hidden="true">m<i>.</i></span></a>
+  <div class="topbar-context"><span class="topbar-kicker">Portfolio</span><span class="topbar-separator" aria-hidden="true">/</span><span class="topbar-location" data-current-section>Overview</span></div>
+  <div class="topbar-actions">
+    <button class="theme-toggle main-theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <svg class="moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"></path></svg>
+      <svg class="sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"></path></svg>
+    </button>
+    <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="portfolio-sidebar" aria-expanded="false" aria-label="Open navigation">
+      <span>Menu</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"></path></svg>
+    </button>
+  </div>
 </header>
-<main id="main">
-  <section class="hero" id="home" aria-label="Introduction">
-    <div class="container">
-      <div class="hero-copy">
-        <div class="statusline"><span class="status-dot"></span> Engineer / Researcher / Educator</div>
-        <div class="hero-name">HELLO, I'M MEHRSHAD ESKANDARPOUR.</div>
-        <h1><span class="word-reveal"><span>Engineering</span></span><span class="word-reveal"><span>the future of</span></span><span class="word-reveal"><span class="accent">connectivity.</span></span></h1>
-        <p class="hero-desc">I explore the science behind intelligent networks — turning wireless communication challenges into research, engineering solutions, and real-world impact.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#contact">Let's collaborate <span aria-hidden="true">→</span></a></div>
-        <div class="hero-meta"><span>WIRELESS NETWORKS</span><i></i><span>5G / RAN</span><i></i><span>R&D</span><i></i><a href="apply-vault.html">APPLY VAULT ↗</a></div>
+<main id="home" tabindex="-1"><section class="hero container"><div class="hero-label">
+<span class="accent">
+      [
+     </span>
+     Wireless Communication Engineer
+     <span class="accent">
+      ]
+     </span>
+</div>
+<div class="hero-grid"><div class="hero-identity"><h1>
+       Mehrshad
+       <br>
+<span>
+        Eskandarpour
+       </span>
+</h1>
+<p class="hero-summary">23 y.o. Telecom Network Engineer | Professionally troubleshooting things that worked yesterday</p><div class="hero-actions">
+
+<a class="btn primary" href="#research">Explore the research <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="apply-vault.html">Apply Vault ↗</a></div>
+</div><div class="hero-profile"><figure class="portrait-card"><img alt="Portrait of Mehrshad Eskandarpour" class="hero-portrait" fetchpriority="high" height="1536" src="assets/mehrshad-home-portrait.webp" width="1024" decoding="async">
+</figure><div class="portrait-caption"><span>MEHRSHAD ESKANDARPOUR</span></div></div></div></section><section class="panel" data-section="about" id="about" aria-label="Biography"><div class="container section-grid"><div class="section-marker" aria-hidden="true">01 /<span>BIO</span></div><div class="section-content"><p class="bio-copy">
+         Before becoming an engineer, I had already built a life that could easily belong to three entirely different people, a mathematics Olympiadist, a skilled guitarist and cajón player with a strong track record, and a competitive water polo athlete. Looking back, my career didn't become complicated; it simply continued a long-standing tradition of excelling at entirely different things, often for no apparent reason other than genuine curiosity and an inability to sit still. Btw, I'm Mehrshad Eskandarpour, a Wireless Communications Engineer who somehow turned a fascination with invisible electromagnetic waves into an entire personality, a research career, and a concerning inability to leave technical problems alone. My journey began in Control Engineering, but after just one semester of getting lost in block diagram feedback loops, realizing that no combination of PID gains could stabilize me on that path, before all of my poles migrate into the right half-plane, I discovered that the unpredictable world of wireless communications, where signals battle interference, fading, and the laws of physics, offered exactly the kind of challenges I actually wanted to solve. So I switched to Telecommunications at Iran University of Science and Technology (IUST), scoring 22.5 out of 20 in Signals and Systems and 21.6 out of 20 in Electromagnetics probably had something to do with it, too. Four years later, I had authored and co-authored 11 research papers, earned the unofficial title of "the student with the most papers," and completed 27 teaching assistantships across 8 courses, collaborating with more than 10 professors and serving as Head TA for most of them. From wireless networks and 5G to reinforcement learning, cryptography, and AI, I collected research interests like Pokémon, although Pokémon would probably have been cheaper and significantly better for my sleep schedule. And because being a student, researcher, and teaching assistant simultaneously wasn't quite enough, I decided to get my hands dirty in the real world. I started with an internship at the Telecommunication Company of Iran (TCI), where I learned the fundamentals of network cores and switching before joining Irancell Labs. At MTN Irancell, I worked on 3G, 4G, and 5G network configurations across four major regions of Iran, keeping networks operational and investigating alarms that seemed personally determined to ruin my peace. I'm currently working at MCI (Mobile Communication of Iran) known as Hamrah Aval, focusing on telecommunications transmission network optimization, where I finally developed a practical understanding of strictly increasing functions: my responsibilities keep growing, while my free time approaches zero. Somewhere along the way, I also became an AI and Programming Instructor at Irancell Academy, delivering 260 hours of instruction across four classes in just three months. After years of explaining engineering concepts at IUST, teaching AI felt like a natural progression. Apparently, I'd spent so much time trying to understand complicated things that I had become professionally qualified to explain them to others. Then came another plot twist. I applied for master's programs for the 2026 intake, received an admission offer from Finland, Belguim, Italy, and decided to turn it down. Not because I suddenly lost interest in studying abroad, but because I couldn't imagine making that move without finishing some unfinished things. So, 2027 it is. There's a particular reason for that decision, but we'll get to it. Meanwhile, in August 2026, I joined FarmadCo as a Project Manager, taking responsibility for solar-powered traffic signal infrastructure, technical teams, maintenance operations, and wireless sensor projects for data centers. My research interests have also continued expanding into wireless sensor networks, radio access networks, and intelligent systems. At this point, my professional interests are growing considerably faster than my available free time, which is already approaching a mathematically concerning limit. The publications, teaching experience, hands-on engineering work, and responsibility of managing technical projects didn't happen by accident. They took years of persistence, sacrificed weekends, unreasonable ambition, and a slightly unhealthy refusal to give up when things got difficult. And no, I'm not accepting any more responsibilities, unless they're exceptionally interesting or related to chess.</p>
+</div></div></section><section class="panel" data-section="research" id="research">
+<div class="container section-grid">
+<div class="section-marker" aria-hidden="true">02 /<span>RESEARCH</span></div><div class="section-content">
+<div class="section-title research-intro reveal">
+<div>
+<h2>
+           Four directions, One curiosity.
+          </h2>
+</div>
+<button class="research-pause" type="button" data-research-pause aria-pressed="false" aria-controls="research-preview-1 research-preview-2 research-preview-3 research-preview-4" aria-label="Pause research animations"><svg viewBox="0 0 12 12" aria-hidden="true"><g class="pause-mark"><rect x="2" y="2" width="2" height="8"></rect><rect x="8" y="2" width="2" height="8"></rect></g><path class="play-mark" d="M3 1.5 10 6l-7 4.5Z"></path></svg><span>Pause motion</span></button></div>
+<div class="research-cards">
+<a class="research-card reveal" href="research-wireless-systems.html" rel="noopener noreferrer" target="_blank">
+<div class="research-card-top">
+<span>
+            R01
+           </span></div>
+<div class="research-preview" aria-hidden="true"><div class="research-motion" id="research-preview-1" data-research-motion="wireless"><img src="assets/research-wireless.svg" width="800" height="500" loading="lazy" decoding="async" alt=""></div></div><h3>
+           Wireless Networks
+           <br>
+           &amp; RF Systems
+          </h3>
+<span class="card-arrow">
+           View field ↗
+          </span>
+</a>
+<a class="research-card reveal" href="research-intelligent-ran.html" rel="noopener noreferrer" target="_blank">
+<div class="research-card-top">
+<span>
+            R02
+           </span></div>
+<div class="research-preview" aria-hidden="true"><div class="research-motion" id="research-preview-2" data-research-motion="ran"><img src="assets/research-ran.svg" width="800" height="500" loading="lazy" decoding="async" alt=""></div></div><h3>
+           Intelligent Radio
+           <br>
+           Access Networks
+          </h3>
+<span class="card-arrow">
+           View field ↗
+          </span>
+</a>
+<a class="research-card reveal" href="research-cryptography-coding.html" rel="noopener noreferrer" target="_blank">
+<div class="research-card-top">
+<span>
+            R03
+           </span></div>
+<div class="research-preview" aria-hidden="true"><div class="research-motion" id="research-preview-3" data-research-motion="security"><img src="assets/research-security.svg" width="800" height="500" loading="lazy" decoding="async" alt=""></div></div><h3>
+           Security and Cryptography
+          </h3>
+<span class="card-arrow">
+           View field ↗
+          </span>
+</a>
+<a class="research-card reveal" href="research-intelligent-processing-efficient-ai.html" rel="noopener noreferrer" target="_blank">
+<div class="research-card-top">
+<span>
+            R04
+           </span></div>
+<div class="research-preview" aria-hidden="true"><div class="research-motion" id="research-preview-4" data-research-motion="efficient"><img src="assets/research-efficient.svg" width="800" height="500" loading="lazy" decoding="async" alt=""></div></div><h3>
+           Intelligent Learning
+           <br>
+           and Efficient Processing
+          </h3>
+<span class="card-arrow">
+           View field ↗
+          </span>
+</a>
+</div>
+</div>
+</div>
+</section><section class="panel" data-section="experience" id="experience">
+<div class="container section-grid">
+<div class="section-marker" aria-hidden="true">03 /<span>EXPERIENCE</span></div><div class="section-content">
+<section class="experience-group" aria-labelledby="work-experiences-title" id="work-experiences"><div class="section-title"><h2 id="work-experiences-title">Work experiences</h2></div><div class="timeline"><article class="timeline-row" tabindex="0"><div class="role-meta"><span class="date">OCT 2026 — PRESENT</span><span class="employment-type">Full Time</span></div><div><h3>4G/5G Radio Access Network Optimization Engineer</h3><p class="org">MCI Hamrahe Avval / NAK</p><p>Monitored and analyzed 4G/5G radio network performance using key performance indicators (KPIs), evaluated network configuration parameters, and identified performance issues affecting coverage, capacity, and service quality. Determined appropriate parameter adjustments and optimization strategies to improve network efficiency, reliability, and overall performance. Assessed the impact of proposed changes through continuous monitoring and performance analysis.</p></div></article><article class="timeline-row reveal" tabindex="0">
+<div class="role-meta"><span class="date">SEP 2025 — FEB 2026</span>
+<span class="employment-type">Full Time</span></div><div>
+<h3>Network Configuration Management</h3>
+<p class="org">MTN Irancell Labs</p>
+<p>
+            Managed Huawei 3G, 4G, and 5G network configuration across four major regions of Iran at Irancell, handling daily monitoring, alarm analysis, troubleshooting, optimization, site integration, neighboring-cell configuration and technical ticket resolution while coordinating with field and technical teams to keep the network stable and available. In practice, that meant staring at alarms until they confessed, fixing configuration issues before users noticed them, and making live network changes at hours when sensible people were asleep, all while keeping millions of connections running as if nothing had happened.
+           </p>
+</div>
+</article>
+<article class="timeline-row reveal" tabindex="0">
+<div class="role-meta"><span class="date">JUL 2025 — SEP 2025</span>
+<span class="employment-type">Part Time</span></div><div>
+<h3>Core Network &amp; Switching Technical Support Intern</h3>
+<p class="org">Telecommunication Company of Iran</p>
+<p>
+            Supported fixed-line switching operations within TCI’s telecommunications core network, diagnosing and resolving switching, signaling, connectivity, hardware, LAN, and cabling faults through system monitoring, signal analysis, and technical investigation. The role was essentially part engineering, part detective work: follow the signal, find where it disappeared, fix what broke, and restore service before anyone had time to ask why the phone was dead. It gave me hands-on exposure to core-network infrastructure, fault isolation, and real-world telecom operations, where “have you tried turning it off and on again?” is usually not an acceptable troubleshooting strategy.
+           </p>
+</div>
+</article>
+</div></section><section class="experience-group" aria-labelledby="professional-experiences-title" id="professional-experiences"><div class="section-title"><h2 id="professional-experiences-title">Professional experiences</h2></div><div class="timeline"><article class="timeline-row reveal" tabindex="0">
+<div class="role-meta"><span class="date">AUG 2026 — PRESENT</span>
+<span class="employment-type">Contract</span></div><div>
+<h3>Project Manager</h3>
+<p class="org">Farmad Co L.L.C.</p>
+<p>
+            Managed Tehran’s municipal traffic signal infrastructure, coordinating technical teams, maintenance operations, procurement, inventory, project delivery, and stakeholder communication to keep complex systems and ideally traffic moving smoothly. Alongside this work, led the development and deployment of wireless sensor systems for data-center applications, combining field engineering, operations, and intelligent monitoring. In short: traffic lights by day, wireless sensors by… also day.
+           </p>
+</div>
+</article>
+<article class="timeline-row reveal" tabindex="0">
+<div class="role-meta"><span class="date">JUL 2026 — OCT 2026</span>
+<span class="employment-type">Contract</span></div><div>
+<h3>AI &amp; Programming Instructor</h3>
+<p class="org">Irancell Academy</p>
+<p>
+            After eight consecutive semesters of teaching programming at IUST as a Head Teaching Assistant, sometimes for two professors simultaneously, I had already become fairly comfortable explaining why the code should work when it very clearly did not. I later delivered 260 hours of AI instruction across four intensive 65-hour classes, covering Artificial Intelligence, Machine Learning, prompt engineering, AI-assisted problem solving, and Python fundamentals. My focus was on making complex ideas approachable through interactive lessons, practical exercises, real-world examples, and hands-on experimentation, teaching students not just how to use AI, but how to actually think about what it is doing.
+           </p>
+</div>
+</article>
+<article class="timeline-row reveal" tabindex="0">
+<div class="role-meta"><span class="date">SEP 2024 — FEB 2026</span>
+<span class="employment-type">Part Time</span></div><div>
+<h3>Research Assistant</h3>
+<p class="org">Mobile Broadband Network Research Group at IUST</p>
+<p>
+            Conducted undergraduate research at IUST across Wireless Sensor Networks, Machine Learning, Reinforcement Learning, Deep Reinforcement Learning, and 5G communications, because apparently choosing just one research area would have been too easy. My thesis focused on DRL-based QoS-aware load balancing in 5G cellular networks under user mobility and uncertain channel conditions, using Python, NS-3, and mobility modeling to teach networks how to make better decisions than some humans do. Along the way, I authored and co-authored 11 research papers during my undergraduate studies, exploring AI based network optimization, wireless communications, and intelligent networking, essentially spending my bachelor’s degree turning difficult networking problems into publishable ones.
+           </p>
+</div>
+</article>
+</div></section></div>
+</div>
+</section><section class="panel" data-section="publications" id="publications">
+<div class="container section-grid">
+<div class="section-marker" aria-hidden="true">04 /<span>PUBLICATIONS</span></div><div class="section-content">
+<div class="section-title publications-title reveal">
+<div>
+<h2>
+           Publications.
+          </h2>
+</div>
+<a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" rel="noopener noreferrer" target="_blank">
+          View Google Scholar ↗
+         </a>
+</div>
+<div class="pub-list">
+<a class="pub reveal" data-direction="R01" href="https://doi.org/10.1049/ntw2.70036" id="publication-01" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks
+           </h3>
+<p class="pub-meta">
+IET Networks · Wiley · DOI 10.1049/ntw2.70036
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R04" href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" id="publication-02" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs
+           </h3>
+<p class="pub-meta">
+Preprint · July 2026 · Reinforcement Learning · Large Language Models
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R03" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538" id="publication-03" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            Demystifying Random Numbers in Smart Contracts: A Novel and High-Efficiency Approach for Attacking Ethereum Contracts
+           </h3>
+<p class="pub-meta">
+SSRN · Posted July 2, 2026 · Blockchain · Smart Contract Security
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R03" href="https://doi.org/10.22060/eej.2026.24478.5712" id="publication-04" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            Breaking Probabilistic Side-Channel Defenses: A Deep Learning Approach to Cryptographic Key Recovery
+           </h3>
+<p class="pub-meta">
+AUT Journal of Electrical Engineering · 58(Special Issue 1), 113–138 · DOI 10.22060/eej.2026.24478.5712
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R04" href="https://doi.org/10.1016/j.rineng.2026.109099" id="publication-05" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            VowelVC: A Neural Vowel-Centric Voice Conversion Framework with Incremental Memory Learning for Few-Shot Speaker Adaptation
+           </h3>
+<p class="pub-meta">
+Results in Engineering · Elsevier · 29, 109099 · DOI 10.1016/j.rineng.2026.109099
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R01" href="https://doi.org/10.22060/eej.2025.23753.5631" id="publication-06" rel="noopener noreferrer" target="_blank">
+<span>
+           2026
+          </span>
+<div>
+<h3>
+            Potential Impacts of Radiofrequency Electromagnetic Fields on the Central Nervous System, Brain Neurotransmitter Dynamics and Reproductive System
+           </h3>
+<p class="pub-meta">
+AUT Journal of Electrical Engineering · 58(Special Issue 1), 85–104 · DOI 10.22060/eej.2025.23753.5631
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R02" href="https://arxiv.org/abs/2510.24869" id="publication-07" rel="noopener noreferrer" target="_blank">
+<span>
+           2025
+          </span>
+<div>
+<h3>
+            Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty
+           </h3>
+<p class="pub-meta">
+arXiv · 5G · PPO · Deep Reinforcement Learning
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R01" href="https://arxiv.org/abs/2508.14676" id="publication-08" rel="noopener noreferrer" target="_blank">
+<span>
+           2025
+          </span>
+<div>
+<h3>
+            Adaptive Vision-Based Coverage Optimization in Mobile Wireless Sensor Networks: A Multi-Agent Deep Reinforcement Learning Approach
+           </h3>
+<p class="pub-meta">
+arXiv · Mobile WSN · MARL
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R01" href="https://arxiv.org/abs/2508.14679" id="publication-09" rel="noopener noreferrer" target="_blank">
+<span>
+           2025
+          </span>
+<div>
+<h3>
+            Energy-Efficient Routing Algorithm for Wireless Sensor Networks: A Multi-Agent Reinforcement Learning Approach
+           </h3>
+<p class="pub-meta">
+arXiv · Wireless Sensor Networks · MARL
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+<a class="pub reveal" data-direction="R01" href="https://doi.org/10.1155/dsn/5870686" id="publication-11" rel="noopener noreferrer" target="_blank">
+<span>
+           2025
+          </span>
+<div>
+<h3>
+            Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy
+           </h3>
+<p class="pub-meta">
+International Journal of Distributed Sensor Networks · Wiley
+           </p>
+</div>
+<b>
+           ↗
+          </b>
+</a>
+</div>
+</div>
+</div>
+</section><section class="panel" data-section="teaching" id="teaching">
+<div class="container section-grid">
+<div class="section-marker" aria-hidden="true">05 /<span>TEACHING</span></div><div class="section-content">
+<div class="section-title reveal">
+<h2>
+          Teaching and Mentoring.
+         </h2>
+</div>
+<div class="teaching-grid">
+<article class="teaching-card reveal" tabindex="0">
+  <div class="teaching-meta"><span>JUL 2026 — OCT 2026</span><span>IRANCELL ACADEMY</span></div>
+  <div class="teaching-main">
+    <div class="teaching-copy">
+      <h3>Artificial Intelligence &amp; Programming Instructor</h3>
+      <div class="teaching-details">
+        <p>After eight consecutive semesters of teaching programming at IUST as a Head Teaching Assistant, I delivered 260 hours of instruction across four 65-hour classes covering AI, machine-learning fundamentals, prompt engineering, AI-assisted problem solving and introductory Python.</p>
       </div>
-      <div class="hero-stage" id="hero-stage" aria-label="Interactive three-dimensional network visualization. Move your cursor to rotate the network.">
-        <div class="stage-orbit" aria-hidden="true"></div>
-        <canvas id="network-canvas" aria-hidden="true"></canvas>
-        <div class="stage-label one" aria-hidden="true"><strong><span class="led"></span>LINK ESTABLISHED</strong><small>NETWORK / ONLINE</small></div>
-        <div class="stage-label two" aria-hidden="true"><strong>5G · RAN · RF</strong><small>INTELLIGENT SYSTEMS</small></div>
-        <div class="stage-caption">FIG. 01 / CONNECTIVITY MODEL</div>
+    </div>
+    <strong>+550h</strong>
+  </div>
+</article>
+<article class="teaching-card reveal" tabindex="0">
+  <div class="teaching-meta"><span>2022 — 2026</span><span>IUST</span></div>
+  <div class="teaching-main">
+    <div class="teaching-copy">
+      <h3><a href="teaching-assistantships.html" rel="noopener noreferrer" target="_blank">Teaching Assistant</a></h3>
+      <div class="teaching-details">
+        <p>Completed 27 teaching assistantships across communication systems, signals &amp; systems, cryptography, electromagnetics, electronics, programming and circuits.</p>
+        <a class="btn primary" href="teaching-assistantships.html" rel="noopener noreferrer" target="_blank">View TA history ↗</a>
       </div>
     </div>
-    <div class="scroll-cue"><span></span> SCROLL TO EXPLORE <span></span></div>
-  </section>
-  <div class="facts"><div class="container facts-grid"><div class="fact"><strong>11</strong><span>Research papers<br>reported</span></div><div class="fact"><strong>27</strong><span>Teaching assistant<br>appointments</span></div><div class="fact"><strong>260h</strong><span>AI instruction<br>at Irancell Academy</span></div></div></div>
-  <section id="about" class="section white">
-    <div class="container about-grid">
-      <div class="portrait-wrap reveal"><div class="portrait-ring" aria-hidden="true"></div><div class="portrait-frame">
-        <!-- Original portrait is already included in this GitHub repository. -->
-        <img src="assets/mehrshad-home-portrait.webp" alt="Mehrshad Eskandarpour" loading="lazy" onerror="this.style.display='none'">
-        <div class="portrait-mesh" aria-hidden="true"><svg viewBox="0 0 400 490" preserveAspectRatio="xMidYMid slice" fill="none"><g stroke="#91d3f0" stroke-width="1.3" opacity=".4"><path d="M235 40 L310 92 L367 59 L386 189 L305 237 L380 307 M310 92L305 237L233 184L330 390 M305 237L380 307L330 390 L250 450 M233 184L386 189"/></g><g fill="#b7f0ff" opacity=".8"><circle cx="310" cy="92" r="4"/><circle cx="305" cy="237" r="4"/><circle cx="380" cy="307" r="3"/><circle cx="330" cy="390" r="4"/></g></svg></div>
-      </div><div class="portrait-sticker">◉ &nbsp; SIGNAL / HUMAN</div></div>
-      <div class="about-body reveal d1"><div class="eyebrow">01 / Behind the engineering</div><h3>Curiosity is the one thing I never learned to switch off.</h3>
-        <p>I'm Mehrshad, a telecommunications engineer and researcher with a long-standing fascination for the invisible systems that connect our world. What began in control engineering evolved into a deeper focus on wireless communications, intelligent radio access networks, and applied research.</p>
-        <p>My work connects the laboratory to the field: 3G/4G/5G network configuration and optimization, telecom core infrastructure, wireless sensor systems, deep reinforcement learning, and technical project delivery.</p>
-        <p>Along the way, I've worked with telecommunications operators, contributed to research papers, and taught engineering and AI. Outside engineering, my interests have included mathematics competitions, music, water polo, and chess — curiosity rarely stays in one lane.</p>
-        <details class="bio-details"><summary>Read Mehrshad's full story <span aria-hidden="true">↗</span></summary><p>Before becoming an engineer, I had already built a life that could easily belong to three entirely different people, a mathematics Olympiadist, a skilled guitarist and cajón player with a strong track record, and a competitive water polo athlete. Looking back, my career didn&#x27;t become complicated; it simply continued a long-standing tradition of excelling at entirely different things, often for no apparent reason other than genuine curiosity and an inability to sit still. Btw, I&#x27;m Mehrshad Eskandarpour, a Wireless Communications Engineer who somehow turned a fascination with invisible electromagnetic waves into an entire personality, a research career, and a concerning inability to leave technical problems alone. My journey began in Control Engineering, but after just one semester of getting lost in block diagram feedback loops, realizing that no combination of PID gains could stabilize me on that path, before all of my poles migrate into the right half-plane, I discovered that the unpredictable world of wireless communications, where signals battle interference, fading, and the laws of physics, offered exactly the kind of challenges I actually wanted to solve. So I switched to Telecommunications at Iran University of Science and Technology (IUST), scoring 22.5 out of 20 in Signals and Systems and 21.6 out of 20 in Electromagnetics probably had something to do with it, too. Four years later, I had authored and co-authored 11 research papers, earned the unofficial title of &quot;the student with the most papers,&quot; and completed 27 teaching assistantships across 8 courses, collaborating with more than 10 professors and serving as Head TA for most of them. From wireless networks and 5G to reinforcement learning, cryptography, and AI, I collected research interests like Pokémon, although Pokémon would probably have been cheaper and significantly better for my sleep schedule. And because being a student, researcher, and teaching assistant simultaneously wasn&#x27;t quite enough, I decided to get my hands dirty in the real world. I started with an internship at the Telecommunication Company of Iran (TCI), where I learned the fundamentals of network cores and switching before joining Irancell Labs. At MTN Irancell, I worked on 3G, 4G, and 5G network configurations across four major regions of Iran, keeping networks operational and investigating alarms that seemed personally determined to ruin my peace. I&#x27;m currently working at MCI (Mobile Communication of Iran) known as Hamrah Aval, focusing on telecommunications transmission network optimization, where I finally developed a practical understanding of strictly increasing functions: my responsibilities keep growing, while my free time approaches zero. Somewhere along the way, I also became an AI and Programming Instructor at Irancell Academy, delivering 260 hours of instruction across four classes in just three months. After years of explaining engineering concepts at IUST, teaching AI felt like a natural progression. Apparently, I&#x27;d spent so much time trying to understand complicated things that I had become professionally qualified to explain them to others. Then came another plot twist. I applied for master&#x27;s programs for the 2026 intake, received an admission offer from Finland, Belguim, Italy, and decided to turn it down. Not because I suddenly lost interest in studying abroad, but because I couldn&#x27;t imagine making that move without finishing some unfinished things. So, 2027 it is. There&#x27;s a particular reason for that decision, but we&#x27;ll get to it. Meanwhile, in August 2026, I joined FarmadCo as a Project Manager, taking responsibility for solar-powered traffic signal infrastructure, technical teams, maintenance operations, and wireless sensor projects for data centers. My research interests have also continued expanding into wireless sensor networks, radio access networks, and intelligent systems. At this point, my professional interests are growing considerably faster than my available free time, which is already approaching a mathematically concerning limit. The publications, teaching experience, hands-on engineering work, and responsibility of managing technical projects didn&#x27;t happen by accident. They took years of persistence, sacrificed weekends, unreasonable ambition, and a slightly unhealthy refusal to give up when things got difficult. And no, I&#x27;m not accepting any more responsibilities, unless they&#x27;re exceptionally interesting or related to chess.</p></details>
-<div class="tags"><span class="tag">Network Engineering</span><span class="tag">Wireless Systems</span><span class="tag">Telecommunications</span><span class="tag">Research & Development</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="section soft" id="research">
-    <div class="container"><div class="section-head reveal"><div><div class="eyebrow">02 / Areas of inquiry</div><h2>Four directions.<br>One curiosity.</h2></div><p>Research that meets wireless systems, intelligence, security, and efficient computing.</p></div>
-      <div class="research-grid">
-        <a class="research-card reveal" href="research-wireless-systems.html" target="_blank" rel="noopener noreferrer"><span class="research-code">RESEARCH / 01</span><span class="research-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="4" cy="12" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="20" cy="12" r="2"/><circle cx="12" cy="20" r="2"/><path d="M5.5 10.5 10.5 5.5m3 0 5 5m0 3-5 5m-3 0-5-5"/></svg></span><h3>Wireless Networks<br>& RF Systems</h3><p>Wireless sensor networks, RF fields, routing, energy efficiency, coverage, and resilience.</p><span class="card-arrow">EXPLORE DIRECTION ↗</span></a>
-        <a class="research-card reveal d1" href="research-intelligent-ran.html" target="_blank" rel="noopener noreferrer"><span class="research-code">RESEARCH / 02</span><span class="research-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20V10m-4 10h8M5 8a10 10 0 0 1 14 0M8 11a6 6 0 0 1 8 0"/><circle cx="12" cy="7" r="1.5"/></svg></span><h3>Intelligent Radio<br>Access Networks</h3><p>AI-assisted 5G RAN, QoS-aware mobility, reinforcement learning, and adaptive control.</p><span class="card-arrow">EXPLORE DIRECTION ↗</span></a>
-        <a class="research-card reveal d2" href="research-cryptography-coding.html" target="_blank" rel="noopener noreferrer"><span class="research-code">RESEARCH / 03</span><span class="research-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.5"/></svg></span><h3>Security &<br>Cryptography</h3><p>Side-channel analysis, cryptographic key recovery, smart contracts, and security research.</p><span class="card-arrow">EXPLORE DIRECTION ↗</span></a>
-        <a class="research-card reveal d3" href="research-intelligent-processing-efficient-ai.html" target="_blank" rel="noopener noreferrer"><span class="research-code">RESEARCH / 04</span><span class="research-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 8v8l8 5 8-5V8l-8-5zM4 8l8 5 8-5M12 13v8"/></svg></span><h3>Intelligent Learning<br>& Efficient AI</h3><p>Neural voice conversion, memory-augmented learning, and graph-aware prompt efficiency.</p><span class="card-arrow">EXPLORE DIRECTION ↗</span></a>
-      </div>
-    </div>
-  </section>
-  <section id="projects" class="section white">
-    <div class="container"><div class="section-head reveal"><div><div class="eyebrow">03 / Work in focus</div><h2>Selected work<br>& research.</h2></div><p>Explore technical ideas and studies. Select a card to open an interactive project overview.</p></div>
-      <div class="filter-bar reveal" role="group" aria-label="Filter projects"><button class="filter is-active" data-filter="all" aria-pressed="true">All projects</button><button class="filter" data-filter="wireless" aria-pressed="false">Wireless & RF</button><button class="filter" data-filter="ran" aria-pressed="false">5G & RAN</button><button class="filter" data-filter="security" aria-pressed="false">Security</button><button class="filter" data-filter="ai" aria-pressed="false">Efficient AI</button></div>
-      <div class="projects-grid" id="project-grid"></div>
-    </div>
-  </section>
-  <section id="skills" class="section soft"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">04 / Technical toolkit</div><h2>Skills that connect<br>the dots.</h2></div><p>Technical domains, tools, and methods drawn from engineering, research, and teaching.</p></div>
-    <div class="skills-grid">
-      <div class="skill-card reveal"><div class="skill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/><path d="M6 7h.01M6 17h.01M10 7h3M10 17h3"/></svg></div><h3>Networks & Telecom</h3><p>Communication infrastructure and radio systems</p><div class="skill-list"><span>3G / 4G / 5G</span><span>Huawei Configuration</span><span>RAN Optimization</span><span>KPIs & Alarms</span><span>Core Network</span><span>Switching & Signaling</span><span>RF Systems</span><span>Wireless Sensors</span></div></div>
-      <div class="skill-card reveal d1"><div class="skill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4H6a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h2M16 4h2a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-2M6 18h12M12 3v18M8 8l4 4 4-4"/></svg></div><h3>Intelligence & AI</h3><p>Adaptive learning and data-driven control</p><div class="skill-list"><span>Python</span><span>Machine Learning</span><span>Deep RL</span><span>PPO</span><span>Multi-Agent RL</span><span>QoS Optimization</span><span>AI Instruction</span><span>Prompt Engineering</span></div></div>
-      <div class="skill-card reveal d2"><div class="skill-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4zM8 9h8M8 13h5M8 17h8"/></svg></div><h3>Research & Systems</h3><p>Scientific investigation and real-world execution</p><div class="skill-list"><span>NS-3</span><span>Wireless Sensor Networks</span><span>Simulation</span><span>Technical Writing</span><span>Cryptography</span><span>Side-Channel Analysis</span><span>Project Management</span><span>Technical Training</span></div></div>
-    </div></div></section>
-  <section id="experience" class="section white"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">05 / The journey</div><h2>Built in the field.<br>Refined in research.</h2></div><p>From field operations to research labs, network optimization, and engineering leadership.</p></div>
-    <div class="journey" id="journey">
-      <div class="journey-progress" aria-hidden="true"></div>
-      <div class="journey-item reveal"><div class="journey-date">Oct 2026 — Present</div><div class="journey-body"><h3>4G/5G Radio Access Network Optimization Engineer <span class="journey-pill">FULL TIME</span></h3><div class="journey-company">MCI Hamrahe Avval / NAK</div><p>Analyzing radio-network KPIs, coverage, capacity, configuration parameters, and service quality to identify performance issues and guide optimization strategies.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>Monitored and analyzed 4G/5G radio network performance using key performance indicators (KPIs), evaluated network configuration parameters, and identified performance issues affecting coverage, capacity, and service quality. Determined appropriate parameter adjustments and optimization strategies to improve network efficiency, reliability, and overall performance. Assessed the impact of proposed changes through continuous monitoring and performance analysis.</p></details></div></div>
-      <div class="journey-item reveal"><div class="journey-date">Aug 2026 — Present</div><div class="journey-body"><h3>Project Manager <span class="journey-pill">CONTRACT</span></h3><div class="journey-company">Farmad Co L.L.C.</div><p>Coordinating traffic signal infrastructure, field teams, maintenance operations, project delivery, and wireless sensor systems for data-center monitoring.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>Managed Tehran’s municipal traffic signal infrastructure, coordinating technical teams, maintenance operations, procurement, inventory, project delivery, and stakeholder communication to keep complex systems and ideally traffic moving smoothly. Alongside this work, led the development and deployment of wireless sensor systems for data-center applications, combining field engineering, operations, and intelligent monitoring. In short: traffic lights by day, wireless sensors by… also day.</p></details></div></div>
-      <div class="journey-item reveal"><div class="journey-date">Jul — Oct 2026</div><div class="journey-body"><h3>AI & Programming Instructor <span class="journey-pill">CONTRACT</span></h3><div class="journey-company">Irancell Academy</div><p>Delivered 260 hours of practical instruction across four courses, spanning AI, machine learning fundamentals, Python, prompt engineering, and AI-assisted problem solving.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>After eight consecutive semesters of teaching programming at IUST as a Head Teaching Assistant, sometimes for two professors simultaneously, I had already become fairly comfortable explaining why the code should work when it very clearly did not. I later delivered 260 hours of AI instruction across four intensive 65-hour classes, covering Artificial Intelligence, Machine Learning, prompt engineering, AI-assisted problem solving, and Python fundamentals. My focus was on making complex ideas approachable through interactive lessons, practical exercises, real-world examples, and hands-on experimentation, teaching students not just how to use AI, but how to actually think about what it is doing.</p></details></div></div>
-      <div class="journey-item reveal"><div class="journey-date">Sep 2025 — Feb 2026</div><div class="journey-body"><h3>Network Configuration Management <span class="journey-pill">FULL TIME</span></h3><div class="journey-company">MTN Irancell Labs</div><p>Managed Huawei 3G/4G/5G configurations across four major regions, monitoring alarms, troubleshooting incidents, integrating sites, and resolving network tickets.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>Managed Huawei 3G, 4G, and 5G network configuration across four major regions of Iran at Irancell, handling daily monitoring, alarm analysis, troubleshooting, optimization, site integration, neighboring-cell configuration and technical ticket resolution while coordinating with field and technical teams to keep the network stable and available. In practice, that meant staring at alarms until they confessed, fixing configuration issues before users noticed them, and making live network changes at hours when sensible people were asleep, all while keeping millions of connections running as if nothing had happened.</p></details></div></div>
-      <div class="journey-item reveal"><div class="journey-date">Jul — Sep 2025</div><div class="journey-body"><h3>Core Network & Switching Technical Support Intern</h3><div class="journey-company">Telecommunication Company of Iran</div><p>Investigated switching, signaling, connectivity, hardware, LAN, and cabling issues in fixed-line core-network operations.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>Supported fixed-line switching operations within TCI’s telecommunications core network, diagnosing and resolving switching, signaling, connectivity, hardware, LAN, and cabling faults through system monitoring, signal analysis, and technical investigation. The role was essentially part engineering, part detective work: follow the signal, find where it disappeared, fix what broke, and restore service before anyone had time to ask why the phone was dead. It gave me hands-on exposure to core-network infrastructure, fault isolation, and real-world telecom operations, where “have you tried turning it off and on again?” is usually not an acceptable troubleshooting strategy.</p></details></div></div>
-      <div class="journey-item reveal"><div class="journey-date">Sep 2024 — Feb 2026</div><div class="journey-body"><h3>Research Assistant</h3><div class="journey-company">IUST · Mobile Broadband Network Research Group</div><p>Researched WSNs, learning-based optimization, and 5G mobility. Undergraduate thesis explored deep reinforcement learning for QoS-aware network management under uncertainty.</p><details class="exp-details"><summary>Full role description <span aria-hidden="true">↗</span></summary><p>Conducted undergraduate research at IUST across Wireless Sensor Networks, Machine Learning, Reinforcement Learning, Deep Reinforcement Learning, and 5G communications, because apparently choosing just one research area would have been too easy. My thesis focused on DRL-based QoS-aware load balancing in 5G cellular networks under user mobility and uncertain channel conditions, using Python, NS-3, and mobility modeling to teach networks how to make better decisions than some humans do. Along the way, I authored and co-authored 11 research papers during my undergraduate studies, exploring AI based network optimization, wireless communications, and intelligent networking, essentially spending my bachelor’s degree turning difficult networking problems into publishable ones.</p></details></div></div>
-    </div>
-    <div id="education" class="section-head reveal" style="margin:45px 0 0"><div><div class="eyebrow">Education</div><h2 style="font-size:37px">Academic foundations.</h2></div></div>
-    <div class="education-grid"><div class="edu-card reveal"><small>2021 — 2025 / COMPLETED</small><h3>B.Sc. Electrical Engineering</h3><p><strong>Telecommunication Systems & Networks</strong><br>Iran University of Science and Technology (IUST)<br>MBNRG · Supervisor: Dr. Hossein Soleimani<br>Telecom GPA: 3.6 / 4.0</p><div class="edu-note">THESIS / PPO-based deep reinforcement learning for QoS-aware handover and load balancing in 5G cellular networks.</div></div><div class="edu-card reveal d1"><small>2027 / PLANNED</small><h3>Master's Studies — Wireless Communications</h3><p>Plans for graduate studies in wireless communications and radio access networks, as described in the earlier portfolio. Institution and enrollment remain to be announced.</p><div class="edu-note">STATUS / Future study plans. Not represented as a completed or enrolled degree.</div></div></div>
-    <div class="reveal" style="margin-top:24px;border:1px solid #dce8ef;border-radius:14px;padding:22px 26px;background:#f5f9fc;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><div><div class="eyebrow no-line">Additional academic materials</div><p style="font-size:12px;color:#6c889b;margin:7px 0 0">Seven academic reference letters and a separate, access-controlled application vault.</p></div><div style="display:flex;gap:16px;flex-wrap:wrap;font-size:11px;font-weight:800;color:#307da9"><a href="academic-references.html" target="_blank" rel="noopener noreferrer">ACADEMIC REFERENCES ↗</a><a href="apply-vault.html" target="_blank" rel="noopener noreferrer">PRIVATE APPLY VAULT ↗</a></div></div>
-  </div></section>
-  <section id="publications" class="section soft"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">06 / Published research</div><h2>Ideas that make<br>it into print.</h2></div><p>A chronological record of selected publications, from wireless networks to efficient intelligence.</p></div>
-    <div id="publications-root"></div>
-    <p style="font-size:11px;color:#849cac;margin:30px 0 0">Publication list reproduced from the prior portfolio. The former portfolio reports 11 research papers; 10 entries are currently listed publicly here. <a href="https://scholar.google.com/citations?hl=en&amp;user=nWfC_IIAAAAJ" target="_blank" rel="noopener noreferrer" style="color:#287da9;font-weight:800">VIEW GOOGLE SCHOLAR ↗</a></p>
-  </div></section>
-  <section id="teaching" class="section white"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">07 / Passing knowledge forward</div><h2>Teaching &<br>mentorship.</h2></div><p>27 teaching assistant appointments, organized year by year and semester by semester.</p></div>
-    <div class="teach-intro reveal"><div><div class="eyebrow no-line">IRANCELL ACADEMY / 2026</div><h3>AI & Programming Instructor</h3><p>Four 65-hour programs covering introductory Python, AI, machine learning, and practical problem solving.</p></div><div class="teach-count">260<span style="font-size:13px">h</span></div></div>
-    <div class="eyebrow reveal" style="margin:37px 0 18px">IUST / Teaching Assistantships</div>
-    <div class="years reveal" id="teaching-years" role="tablist" aria-label="Teaching academic year"><button class="year-btn" type="button" data-year="2025" role="tab" aria-selected="true">2025</button><button class="year-btn" type="button" data-year="2024" role="tab" aria-selected="false">2024</button><button class="year-btn" type="button" data-year="2023" role="tab" aria-selected="false">2023</button><button class="year-btn" type="button" data-year="2022" role="tab" aria-selected="false">2022</button></div>
-    <div id="teaching-records" role="tabpanel" aria-live="polite"></div><div class="archive-link"><a href="teaching-assistantships.html">EXPLORE COMPLETE TEACHING ARCHIVE ↗</a><a href="learn/">TEACHING RESOURCES ↗</a></div>
-  </div></section>
-  <section id="contact" class="section contact-section"><div class="container contact-grid"><div class="contact-left reveal"><div class="eyebrow">08 / Open channel</div><h2>Let's make<br>connections.</h2><p>Have an engineering challenge, research idea, collaboration, or opportunity? Send a signal — good things start with a conversation.</p><a class="contact-email" href="mailto:mehrsh3d@gmail.com">mehrsh3d@gmail.com <span aria-hidden="true">↗</span></a><div class="social-line"><a href="https://scholar.google.com/citations?hl=en&amp;user=nWfC_IIAAAAJ" target="_blank" rel="noopener noreferrer">GOOGLE SCHOLAR ↗</a><a href="https://www.linkedin.com/in/mehrshadesk" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="https://github.com/MehrshadEsk" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="https://orcid.org/0009-0006-8597-0293" target="_blank" rel="noopener noreferrer">ORCID ↗</a></div></div>
-    <form class="contact-form reveal d1" id="contact-form"><h3>Send a message.</h3><div class="form-row"><div class="form-field"><label for="contact-name">YOUR NAME</label><input id="contact-name" name="name" required autocomplete="name" placeholder="Jane Smith"></div><div class="form-field"><label for="contact-email">YOUR EMAIL</label><input id="contact-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"></div></div><div class="form-field"><label for="contact-kind">WHAT IS THIS ABOUT?</label><select id="contact-kind" name="kind"><option>Job opportunity</option><option>Research collaboration</option><option>Freelance project</option><option>Other inquiry</option></select></div><div class="form-field"><label for="contact-message">YOUR MESSAGE</label><textarea id="contact-message" name="message" required minlength="10" placeholder="Tell me what you're working on..."></textarea></div><button class="btn btn-primary" type="submit">Continue to email <span aria-hidden="true">↗</span></button><div class="form-status" id="form-status" role="status"></div><p class="form-note">This static GitHub Pages version opens your email app with the message prefilled. It does not send messages directly from the website.</p></form>
-  </div></section>
-</main>
-<footer class="footer"><div class="container footer-inner"><span>© <span id="year">2026</span> Mehrshad Eskandarpour. Engineered with curiosity.</span><span>WIRELESS · RESEARCH · SYSTEMS</span><a href="#home">BACK TO TOP ↑</a></div></footer>
-<div class="modal-backdrop" id="project-modal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"><button class="modal-close" id="modal-close" type="button" aria-label="Close project details">×</button><div class="modal-visual" id="modal-visual"></div><div class="modal-contents"><span class="modal-label" id="modal-category"></span><h2 id="modal-title"></h2><p id="modal-description"></p><div class="tags dark" id="modal-tags"></div><div class="modal-actions"><a class="btn btn-primary" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">Read the research ↗</a><button class="modal-close-link" id="modal-close-secondary" type="button">CLOSE OVERVIEW ×</button></div></div></div></div>
-<script>
-(() => {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const navlinks = document.getElementById('navlinks');
-  const menuToggle = document.getElementById('menu-toggle');
-  menuToggle.addEventListener('click', () => {const open = navlinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded', String(open));menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');});
-  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {navlinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');}));
-  const progress = document.getElementById('scroll-progress');
-  const topbar = document.getElementById('topbar');
-  const journey = document.getElementById('journey');
-  const pubRoot = document.getElementById('publications-root');
-  let scrollY = 0;
-  const updateScroll = () => {
-    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    scrollY = window.scrollY || 0;
-    progress.style.width = (scrollY/max*100).toFixed(2) + '%';
-    topbar.classList.toggle('is-scrolled', scrollY > 15);
-    if(journey){const r=journey.getBoundingClientRect();const frac=Math.max(0,Math.min(1,(window.innerHeight*.68-r.top)/r.height));journey.style.setProperty('--trail', `${frac*100}%`);}
-    pubRoot.querySelectorAll('.pub-list').forEach(el=>{const r=el.getBoundingClientRect();el.style.setProperty('--progress', `${Math.max(0,Math.min(100,(window.innerHeight*.75-r.top)/r.height*100))}%`);});
-  };
-  window.addEventListener('scroll',updateScroll,{passive:true});window.addEventListener('resize',updateScroll,{passive:true});
-  if ('IntersectionObserver' in window && !reducedMotion){
-    const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.09,rootMargin:'0px 0px -20px 0px'});
-    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-    // Dynamically created cards get observed as well.
-    window.observeReveal = el => obs.observe(el);
-  } else {document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));window.observeReveal=el=>el.classList.add('visible');}
-  const projects = [
-    {id:'ran-ppo',category:'ran',categoryLabel:'5G / INTELLIGENT RAN',year:'2025',title:'QoS-Aware Load Balancing in 5G',short:'Deep reinforcement learning for adaptive user association and network performance under mobility and noisy observations.',description:'A research project investigating Proximal Policy Optimization (PPO) for QoS-aware cell association and load balancing in 5G cellular networks. The work studies user mobility, uncertain observations, and competing performance objectives, including throughput, latency, and handover stability.',tags:['5G','PPO','QoS','Mobility','Reinforcement Learning'],link:'https://arxiv.org/abs/2510.24869'},
-    {id:'wsn-vision',category:'wireless',categoryLabel:'WIRELESS SENSOR NETWORKS',year:'2025',title:'Adaptive Mobile Sensor Coverage',short:'A vision-based, multi-agent learning approach to wireless sensor placement and coverage optimization.',description:'Research on mobile wireless sensor networks using a camera-based evaluation approach and multi-agent reinforcement learning to improve autonomous node positioning, coverage, and energy-aware operation.',tags:['Mobile WSN','Multi-Agent RL','Coverage','Computer Vision'],link:'https://arxiv.org/abs/2508.14676'},
-    {id:'cluster-head',category:'wireless',categoryLabel:'NETWORK OPTIMIZATION',year:'2026',title:'Energy-Balanced Cluster-Head Selection',short:'Game theory and reinforcement learning for energy-aware cluster organization in wireless sensor networks.',description:'A study on cluster-head selection in wireless sensor networks, combining game-theoretic reasoning and reinforcement learning to investigate energy balance and extended network lifetime.',tags:['WSN','Game Theory','RL','Energy Efficiency'],link:'https://doi.org/10.1049/ntw2.70036'},
-    {id:'crypto',category:'security',categoryLabel:'SECURITY / CRYPTOGRAPHY',year:'2026',title:'Learning from Side-Channel Leakage',short:'Examining cryptographic key recovery using deep learning under probabilistic defensive noise.',description:'Research into the resilience of cryptographic implementations against deep-learning-assisted side-channel attacks. The work considers probabilistic defenses and what information can still be inferred from leakage traces.',tags:['Cryptography','Deep Learning','Side Channels','Key Recovery'],link:'https://doi.org/10.22060/eej.2026.24478.5712'},
-    {id:'vowelvc',category:'ai',categoryLabel:'EFFICIENT AI / SPEECH',year:'2026',title:'VowelVC: Few-Shot Voice Adaptation',short:'Vowel-centered neural voice conversion with incremental memory for low-data speaker adaptation.',description:'VowelVC investigates a neural voice conversion framework that uses informative vowel features and incremental memory learning to support adaptation from limited target-speaker data.',tags:['Voice Conversion','Memory Learning','Few-Shot AI','Speech'],link:'https://doi.org/10.1016/j.rineng.2026.109099'},
-    {id:'routing',category:'wireless',categoryLabel:'INTELLIGENT ROUTING',year:'2025',title:'Energy-Efficient WSN Routing',short:'Multi-agent reinforcement learning for routing decisions in distributed wireless sensor networks.',description:'Research on network routing policies that use multi-agent reinforcement learning to coordinate distributed decisions, with a focus on energy efficiency and practical sensor-network operation.',tags:['WSN','Routing','Multi-Agent RL','Energy'],link:'https://arxiv.org/abs/2508.14679'}
-  ];
-  const xml = (str) => String(str).replace(/[&<>"']/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
-  const illustration = index => {
-    const offset=index%4;
-    const nodes = Array.from({length:16},(_,i)=>{const a=i*2.39996+offset;const r=28+Math.sqrt(i)*15;return {x:200+Math.cos(a)*r*1.27,y:115+Math.sin(a)*r*.72}});
-    const edges = nodes.map((p,i)=>[p,nodes[(i+5)%nodes.length]]);
-    return `<svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><radialGradient id="g${index}"><stop stop-color="#81cbe9" stop-opacity=".4"/><stop offset="1" stop-color="#81cbe9" stop-opacity="0"/></radialGradient></defs><circle cx="205" cy="113" r="102" fill="url(#g${index})"/><ellipse cx="200" cy="118" rx="144" ry="68" fill="none" stroke="#9acfe6" stroke-opacity=".35" transform="rotate(-17 200 118)"/><ellipse cx="200" cy="118" rx="75" ry="121" fill="none" stroke="#82b8d5" stroke-opacity=".25" transform="rotate(30 200 118)"/>${edges.map(([a,b],i)=>`<path class="${i%3===0?'signal':''}" d="M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q 200 ${80+(i%4)*14} ${b.x.toFixed(1)} ${b.y.toFixed(1)}" fill="none" stroke="#83b6d4" stroke-width="${i%3===0?1.6:1}" stroke-opacity="${i%3===0?.8:.42}"/>`).join('')}${nodes.map((p,i)=>`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${i%4===0?5:3.4}" fill="${i%4===0?'#3587bd':'#8cc2dc'}" stroke="#f8fcff" stroke-width="1.2"/>`).join('')}<circle cx="200" cy="115" r="15" fill="#d3effb" stroke="#66b3d6" stroke-width="2"/><circle cx="200" cy="115" r="5" fill="#2c7fb3"/></svg>`;
-  };
-  const grid=document.getElementById('project-grid');
-  grid.innerHTML=projects.map((p,i)=>`<article class="project-card reveal" data-category="${p.category}" tabindex="0" role="button" aria-label="Open details: ${xml(p.title)}" data-project="${p.id}"><div class="project-visual"><span class="project-cover-label">${xml(p.categoryLabel)}</span>${illustration(i)}</div><div class="project-card-content"><div class="project-meta"><span>PROJECT / ${String(i+1).padStart(2,'0')}</span><span>${p.year}</span></div><h3>${xml(p.title)}</h3><p>${xml(p.short)}</p><div class="project-footer"><span>VIEW PROJECT DETAILS</span><span class="project-view" aria-hidden="true">↗</span></div></div></article>`).join('');
-  grid.querySelectorAll('.reveal').forEach(el=>window.observeReveal(el));
-  const modalBackdrop=document.getElementById('project-modal');const modal=modalBackdrop.querySelector('.modal');const modalClose=document.getElementById('modal-close');let previousFocus;
-  function openProject(p){previousFocus=document.activeElement;let idx=projects.indexOf(p);document.getElementById('modal-visual').innerHTML=illustration(idx);document.getElementById('modal-category').textContent=p.categoryLabel+' / '+p.year;document.getElementById('modal-title').textContent=p.title;document.getElementById('modal-description').textContent=p.description;document.getElementById('modal-tags').innerHTML=p.tags.map(t=>`<span class="tag">${xml(t)}</span>`).join('');document.getElementById('modal-link').href=p.link;modalBackdrop.classList.add('open');modalBackdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');setTimeout(()=>modalClose.focus(),60);}
-  function closeProject(){modalBackdrop.classList.remove('open');modalBackdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();}
-  grid.addEventListener('click',e=>{const card=e.target.closest('.project-card');if(card){const p=projects.find(x=>x.id===card.dataset.project);if(p)openProject(p);}});
-  grid.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.project-card')){e.preventDefault();e.target.closest('.project-card').click();}});
-  modalClose.addEventListener('click',closeProject);document.getElementById('modal-close-secondary').addEventListener('click',closeProject);modalBackdrop.addEventListener('click',e=>{if(e.target===modalBackdrop)closeProject();});
-  document.addEventListener('keydown',e=>{if(!modalBackdrop.classList.contains('open'))return;if(e.key==='Escape')closeProject();if(e.key==='Tab'){const focusables=[...modal.querySelectorAll('button,a[href]')];const first=focusables[0],last=focusables.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
-  // Restrained pointer tilt + magnetic CTA; visual effect only, keyboard interaction remains native.
-  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reducedMotion){grid.querySelectorAll('.project-card').forEach(card=>{let raf=0;card.addEventListener('pointermove',e=>{cancelAnimationFrame(raf);const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;raf=requestAnimationFrame(()=>{card.style.transform=`perspective(900px) rotateX(${-y*5}deg) rotateY(${x*5}deg) translateY(-4px)`;const arrow=card.querySelector('.project-view');arrow.style.transform=`translate(${x*9}px,${y*9}px)`;});});card.addEventListener('pointerleave',()=>{cancelAnimationFrame(raf);card.style.transition='transform .5s cubic-bezier(.18,.7,.2,1), box-shadow .35s,border-color .35s';card.style.transform='';card.querySelector('.project-view').style.transform='';setTimeout(()=>card.style.transition='',510);});});}
-  document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b));});grid.querySelectorAll('.project-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&card.dataset.category!==b.dataset.filter;});}));
-  const publications = [
-    ['2026','A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks','IET Networks · Wiley · DOI 10.1049/ntw2.70036','https://doi.org/10.1049/ntw2.70036'],
-    ['2026','Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs','Preprint · Reinforcement Learning · LLMs','https://scholar.google.com/citations?hl=en&user=nWfC_IIAAAAJ'],
-    ['2026','Demystifying Random Numbers in Smart Contracts: A Novel and High-Efficiency Approach for Attacking Ethereum Contracts','SSRN · Blockchain Security','https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538'],
-    ['2026','Breaking Probabilistic Side-Channel Defenses: A Deep Learning Approach to Cryptographic Key Recovery','AUT Journal of Electrical Engineering · DOI 10.22060/eej.2026.24478.5712','https://doi.org/10.22060/eej.2026.24478.5712'],
-    ['2026','VowelVC: A Neural Vowel-Centric Voice Conversion Framework with Incremental Memory Learning for Few-Shot Speaker Adaptation','Results in Engineering · Elsevier · DOI 10.1016/j.rineng.2026.109099','https://doi.org/10.1016/j.rineng.2026.109099'],
-    ['2026','Potential Impacts of Radiofrequency Electromagnetic Fields on the Central Nervous System, Brain Neurotransmitter Dynamics and Reproductive System','AUT Journal of Electrical Engineering · DOI 10.22060/eej.2025.23753.5631','https://doi.org/10.22060/eej.2025.23753.5631'],
-    ['2025','Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty','arXiv · 5G · PPO · Deep Reinforcement Learning','https://arxiv.org/abs/2510.24869'],
-    ['2025','Adaptive Vision-Based Coverage Optimization in Mobile Wireless Sensor Networks: A Multi-Agent Deep Reinforcement Learning Approach','arXiv · Mobile WSN · MARL','https://arxiv.org/abs/2508.14676'],
-    ['2025','Energy-Efficient Routing Algorithm for Wireless Sensor Networks: A Multi-Agent Reinforcement Learning Approach','arXiv · WSN · MARL','https://arxiv.org/abs/2508.14679'],
-    ['2025','Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy','International Journal of Distributed Sensor Networks · Wiley','https://doi.org/10.1155/dsn/5870686']
-  ];
-  pubRoot.innerHTML=['2026','2025'].map(y=>`<div class="publication-year"><div class="pub-year-label reveal">${y}.</div><div class="pub-list">${publications.filter(p=>p[0]===y).map(p=>`<div class="pub-row reveal"><div><a href="${xml(p[3])}" target="_blank" rel="noopener noreferrer">${xml(p[1])}</a><span class="pub-venue">${xml(p[2])}</span></div><span class="pub-badge" aria-hidden="true">↗</span></div>`).join('')}</div></div>`).join('');pubRoot.querySelectorAll('.reveal').forEach(window.observeReveal);
-  const teaching={
-    '2025':[
-      ['Fall 2025',[['Cryptography','Dr. M. Jannati','Head TA'],['Signals & Systems','Dr. Sh. Farahmand','TA'],['Fields & Waves','Dr. A. Cheldavi','TA'],['Electronics II','Dr. A. Ayatollahi','TA'],['Electromagnetics','Dr. A. Nooramin','Head TA'],['Computer Programming','Dr. T. Rafiei','Head TA']]],
-      ['Spring 2025',[['Communication Systems','Dr. H. Soleimani','Head TA'],['Signals & Systems','Dr. H. Soleimani','Head TA'],['Signals & Systems','Dr. A. Cheldavi','Head TA'],['Fields & Waves','Dr. A. Nooramin','Head TA'],['Computer Programming','Dr. T. Rafiei','Head TA'],['Theory of Circuits & Networks II','Dr. E. Darestani','TA']]]
-    ],
-    '2024':[
-      ['Fall 2024',[['Signals & Systems','Dr. H. Soleimani','Head TA'],['Electromagnetics','Dr. A. Nooramin','Head TA'],['Computer Programming','Dr. T. Rafiei','Head TA']]],
-      ['Spring 2024',[['Signals & Systems','Dr. M. Jannati','Head TA'],['Signals & Systems','Dr. H. Soleimani','TA'],['Computer Programming','Dr. T. Rafiei','Head TA'],['Computer Programming','Dr. M. Ashtiani','TA']]]
-    ],
-    '2023':[
-      ['Fall 2023',[['Computer Programming','Dr. T. Rafiei','Head TA'],['Electromagnetics','Dr. M. Hajiahmadi','Head TA'],['Electromagnetics','Dr. A. Nooramin','TA']]],
-      ['Spring 2023',[['Computer Programming','Dr. T. Rafiei','Head TA'],['Computer Programming','Dr. M. Ashtiani','TA']]]
-    ],
-    '2022':[
-      ['Fall 2022',[['Computer Programming','Dr. T. Rafiei','Head TA'],['Computer Programming','Dr. M. Ashtiani','TA']]],
-      ['Spring 2022',[['Computer Programming','Dr. T. Rafiei','Head TA']]]
-    ]
-  };
-  const recordsRoot=document.getElementById('teaching-records');
-  function renderTeaching(year){recordsRoot.innerHTML=teaching[year].map(([term,rows])=>`<div class="semester"><div class="semester-h"><h3>${term}</h3><span>${String(rows.length).padStart(2,'0')} APPOINTMENTS</span></div>${rows.map(([name,prof,role])=>`<div class="course-row"><div><strong>${xml(name)}</strong><small>${xml(prof)}</small></div><span class="role ${role==='Head TA'?'head':''}">${xml(role)}</span></div>`).join('')}</div>`).join('');}
-  renderTeaching('2025');document.getElementById('teaching-years').addEventListener('click',e=>{const b=e.target.closest('[data-year]');if(!b)return;document.querySelectorAll('.year-btn').forEach(x=>x.setAttribute('aria-selected',String(x===b)));renderTeaching(b.dataset.year);});
-  document.getElementById('contact-form').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const name=form.elements.name.value.trim(),email=form.elements.email.value.trim(),kind=form.elements.kind.value,message=form.elements.message.value.trim();const subject=`Portfolio inquiry: ${kind} — ${name}`;const body=`Hi Mehrshad,\n\n${message}\n\n—\nFrom: ${name}\nEmail: ${email}\nInquiry: ${kind}`;document.getElementById('form-status').textContent='Opening your email app. Please click Send there to finish.';window.location.href=`mailto:mehrsh3d@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;});
-  updateScroll();
-  // Mathematically 3D canvas visualization: spatial node positions, perspective projection,
-  // spring-like pointer rotation, orbiting data pulses, depth ordering, and scroll parallax.
-  const canvas=document.getElementById('network-canvas'),stage=document.getElementById('hero-stage');
-  const context=canvas.getContext('2d',{alpha:true});
-  if(context){
-    let w=550,h=560,dpr=1,last=0,time=0,rotY=-.4,rotX=-.12,targetX=-.12,targetY=-.4,mouseX=0,mouseY=0,paused=false;
-    const nodes=[];const edges=[];const count=85;
-    for(let i=0;i<count;i++){const yy=1-2*(i+.5)/count;const r=Math.sqrt(1-yy*yy);const th=i*Math.PI*(3-Math.sqrt(5));const jitter=.92+(Math.sin(i*11.13)*.5+.5)*.16;nodes.push({x:Math.cos(th)*r*jitter,y:yy*jitter,z:Math.sin(th)*r*jitter,weight:(i%11===0?1.65:1),phase:i*.31});}
-    nodes.forEach((a,i)=>{const matches=nodes.map((b,j)=>({j,d:(a.x-b.x)**2+(a.y-b.y)**2+(a.z-b.z)**2})).filter(v=>v.j!==i).sort((x,y)=>x.d-y.d).slice(0,i%4===0?4:3);matches.forEach(({j,d})=>{if(j>i&&d<.46)edges.push({a:i,b:j,d,phase:(i+j)*.79,speed:.28+(i%5)*.08});});});
-    function resize(){const rect=stage.getBoundingClientRect();w=Math.max(260,rect.width);h=Math.max(250,rect.height);dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';context.setTransform(dpr,0,0,dpr,0,0);}
-    window.addEventListener('resize',resize,{passive:true});resize();
-    const pointer=e=>{const rect=stage.getBoundingClientRect();mouseX=(e.clientX-rect.left)/rect.width-.5;mouseY=(e.clientY-rect.top)/rect.height-.5;targetY=-.4+mouseX*.8;targetX=-.12-mouseY*.46;};stage.addEventListener('pointermove',pointer,{passive:true});stage.addEventListener('pointerleave',()=>{mouseX=0;mouseY=0;targetX=-.12;targetY=-.4;});
-    function transform(node, t){let a=rotY+t,b=rotX;let x=node.x*Math.cos(a)-node.z*Math.sin(a),z=node.x*Math.sin(a)+node.z*Math.cos(a);let y=node.y*Math.cos(b)-z*Math.sin(b);z=node.y*Math.sin(b)+z*Math.cos(b);const persp=3.9/(3.9-z);const size=Math.min(w*.39,h*.42);return {x:w*.53+x*size*persp,y:h*.49+y*size*persp-(scrollY*.042),z:z,s:persp};}
-    const gradient=(x,y,r,a)=>{let g=context.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(66,177,220,${a})`);g.addColorStop(.35,`rgba(92,191,224,${a*.4})`);g.addColorStop(1,'rgba(87,180,223,0)');return g;};
-    function draw(now){if(document.hidden){last=now;requestAnimationFrame(draw);return;}const dt=Math.min(.05,(now-last)/1000||.016);last=now;if(!reducedMotion){time+=dt;rotY+=(targetY-rotY)*Math.min(1,dt*1.8);rotX+=(targetX-rotX)*Math.min(1,dt*1.8);}context.clearRect(0,0,w,h);
-      const ambient=context.createRadialGradient(w*.52,h*.50,0,w*.52,h*.50,w*.44);ambient.addColorStop(0,'rgba(90,186,224,.13)');ambient.addColorStop(.55,'rgba(99,186,225,.05)');ambient.addColorStop(1,'rgba(99,186,225,0)');context.fillStyle=ambient;context.beginPath();context.arc(w*.52,h*.50,w*.45,0,Math.PI*2);context.fill();
-      let projections=nodes.map(n=>transform(n,time*.095));
-      const order=edges.slice().sort((a,b)=>(projections[a.a].z+projections[a.b].z)-(projections[b.a].z+projections[b.b].z));
-      for(const e of order){const a=projections[e.a],b=projections[e.b],depth=(a.z+b.z)*.5;const alpha=Math.min(.75,Math.max(.11,.3+depth*.20));context.beginPath();context.moveTo(a.x,a.y);const curvature=(Math.sin(e.phase)*6);let mx=(a.x+b.x)/2+curvature,my=(a.y+b.y)/2-curvature;context.quadraticCurveTo(mx,my,b.x,b.y);context.strokeStyle=`rgba(48,128,178,${alpha})`;context.lineWidth=depth>.15?1.05:.7;context.stroke();
-        if(e.d<.34){const p=((time*e.speed+e.phase)%1);const inv=1-p;const px=inv*inv*a.x+2*inv*p*mx+p*p*b.x,py=inv*inv*a.y+2*inv*p*my+p*p*b.y;context.fillStyle=gradient(px,py,13,.19+Math.max(0,depth)*.12);context.beginPath();context.arc(px,py,14,0,Math.PI*2);context.fill();context.beginPath();context.arc(px,py,1.8+Math.max(0,depth)*.7,0,Math.PI*2);context.fillStyle=`rgba(45,152,206,${Math.min(.9,.58+depth*.18)})`;context.fill();}
-      }
-      projections.map((p,i)=>({...p,i})).sort((a,b)=>a.z-b.z).forEach(p=>{const radius=(nodes[p.i].weight*2.5+1.4)*p.s;const alpha=Math.min(1,Math.max(.25,.6+p.z*.2));context.fillStyle=gradient(p.x,p.y,radius*4.4,(p.z+1.4)*.12);context.beginPath();context.arc(p.x,p.y,radius*4.4,0,Math.PI*2);context.fill();context.fillStyle=`rgba(255,255,255,${alpha})`;context.beginPath();context.arc(p.x,p.y,radius+1.25,0,Math.PI*2);context.fill();context.fillStyle=nodes[p.i].weight>1?'#267fba':'#6ab0d0';context.beginPath();context.arc(p.x,p.y,radius*.72,0,Math.PI*2);context.fill();});
-      if(!reducedMotion)requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-  }
-  // Active navigation section highlighting.
-  if('IntersectionObserver' in window){const sections=[...document.querySelectorAll('main section[id]')];const navObserver=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){document.querySelectorAll('.navlinks a').forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+en.target.id));}})},{rootMargin:'-30% 0px -60% 0px'});sections.forEach(s=>navObserver.observe(s));}
-})();
-</script>
-</body>
+    <strong>×27</strong>
+  </div>
+</article>
+</div>
+</div>
+</div>
+</section><section class="panel" data-section="education" id="education">
+<div class="container section-grid">
+<div class="section-marker" aria-hidden="true">06 /<span>EDUCATION</span></div><div class="section-content">
+<!-- MASTER'S DEGREE -->
+<article class="education-card reveal">
+<span class="date">
+            2027 — ***
+           </span>
+<div><div class="education-head">
+<div>
+<h2>
+            M.Sc. Wireless Communication Engineering
+           </h2>
+<p>
+            Radio Access and Networks
+           </p>
+</div>
+</div>
+<div class="education-facts">
+<div>
+<span>
+            University
+           </span>
+<strong>
+            ***
+           </strong>
+</div>
+<div>
+<span>
+            Lab
+           </span>
+<strong>
+            ***
+           </strong>
+</div>
+<div>
+<span>
+            Supervisor
+           </span>
+<strong>
+            ***
+           </strong>
+</div>
+<div>
+<span>
+            Overall GPA
+           </span>
+<strong>
+            ***
+           </strong>
+</div>
+</div>
+<div class="thesis">
+<span>
+           MASTER'S THESIS
+          </span>
+<p>
+           ***
+          </p>
+</div>
+</div></article>
+<!-- BACHELOR'S DEGREE -->
+<article class="education-card reveal">
+<span class="date">
+            2021 — 2025
+           </span>
+<div><div class="education-head">
+<div>
+<h2>
+            B.Sc. Electrical Engineering
+           </h2>
+<p>
+            Telecommunication Systems &amp; Networks
+           </p>
+</div>
+</div>
+<div class="education-facts">
+<div>
+<span>
+            University
+           </span>
+<strong>
+            Iran University of Science and Technology (IUST)
+           </strong>
+</div>
+<div>
+<span>
+            Lab
+           </span>
+<strong>
+            Mobile Broadband Network Research Group (MBNRG)
+           </strong>
+</div>
+<div>
+<span>
+            Supervisor
+           </span>
+<strong>
+            Dr. Hossein Soleimani
+           </strong>
+</div>
+<div>
+<span>
+            Telecom GPA
+           </span>
+<strong>
+            3.6 / 4.0
+           </strong>
+</div>
+</div>
+<div class="thesis">
+<span>
+           UNDERGRADUATE THESIS
+          </span>
+<p>
+           Proximal Policy Optimization Based Deep Reinforcement Learning for QoS Aware Handover Management and Load Balancing in 5G Cellular Networks Under User Mobility and Gaussian Channel Noise.
+          </p>
+</div>
+<a class="academic-ref-button" href="academic-references.html" aria-label="View undergraduate recommendation letters from IUST">IUST recommendation letters <span aria-hidden="true">↗</span></a>
+</div></article>
+
+</div>
+</div>
+</section><section class="contact" id="contact">
+  <div class="container contact-email-wrap">
+    <a class="contact-email" href="mailto:mehrsh3d@gmail.com">mehrsh3d@gmail.com</a>
+  </div>
+</section>
+
+</main><footer class="container footer">
+<span>
+    ©
+    <span id="year">
+     2026
+    </span>
+    Mehrshad Eskandarpour
+   </span>
+<a href="#home">
+    Back to top ↑
+   </a>
+</footer>
+</div>
+<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-motion-v5" defer></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
 </html>
