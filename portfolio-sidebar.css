@@ -452,3 +452,21 @@
 @media (prefers-reduced-motion: reduce) {
   .home-page .hover-description { transition: none; }
 }
+
+
+/* 2026-10-21 Teaching/Mentoring refinement: one focused instructor entry. */
+.home-page #teaching .teaching-grid {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 860px;
+}
+.home-page #teaching .teaching-card { min-width: 0; }
+
+/* Keep the recommendation and teaching-assistantship actions together in the B.Sc. */
+.home-page .education-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.home-page .education-actions .education-recommendation-btn { margin-top: 0; }
