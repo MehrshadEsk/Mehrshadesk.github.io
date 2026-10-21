@@ -42,3 +42,81 @@
 @media(max-width:1000px){.research-stage--network,.research-stage--network .research-network-shell{min-height:460px}}
 @media(max-width:760px){.research-stage--network,.research-stage--network .research-network-shell{min-height:400px}.research-page .research-stage--network{margin-top:2px}}
 @media(max-width:520px){.research-stage--network{border-radius:24px}.research-stage--network,.research-stage--network .research-network-shell{min-height:340px}}
+
+/* Research direction illustrations / v3: four different scientific concepts. */
+.research-page .research-stage--network{
+  background:
+   radial-gradient(ellipse at 49% 48%,rgba(207,236,249,.83),rgba(242,250,254,.45) 46%,rgba(255,255,255,.90) 82%),
+   linear-gradient(126deg,#fff,#eff8fc 66%,#fff);
+  border:1px solid rgba(127,181,210,.28);
+  border-radius:25px;
+  min-height:520px;
+  box-shadow:0 30px 75px rgba(54,118,157,.075),inset 0 1px 0 rgba(255,255,255,.65);
+}
+.research-page .research-stage--network .research-network-shell{min-height:520px;}
+.research-page .research-stage--network::before{background-size:48px 48px;opacity:.78}
+.research-stage--network .research-scene-hud{
+  position:absolute;z-index:2;display:flex;flex-direction:column;gap:6px;
+  padding:15px 18px;min-width:151px;border:1px solid rgba(150,198,221,.45);
+  border-radius:12px;background:rgba(255,255,255,.82);
+  box-shadow:0 13px 29px rgba(57,123,165,.075);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  pointer-events:none;
+}
+.research-stage--network .research-scene-hud strong{
+  display:block;color:#316f9e;font-size:10px;letter-spacing:.125em;
+  font-weight:800;line-height:1.45;
+}
+.research-stage--network .research-scene-hud strong::before{
+  content:'';display:inline-block;width:7px;height:7px;margin-right:8px;
+  border-radius:50%;background:#34b5aa;box-shadow:0 0 0 4px rgba(52,181,170,.09);vertical-align:1px;
+}
+.research-stage--network .research-scene-hud span{
+  color:#8ca9bb;font-size:9px;line-height:1.6;letter-spacing:.055em;font-weight:700;
+}
+.research-stage--network .research-scene-hud--top{top:23px;right:24px}
+.research-stage--network .research-scene-hud--bottom{bottom:38px;left:23px}
+.research-stage--network .research-scene-caption{
+  position:absolute;right:25px;bottom:16px;color:#87a9bd;
+  font-size:9px;letter-spacing:.16em;font-weight:800;pointer-events:none;
+}
+.research-stage--network .research-scene-toggle{
+  position:absolute;z-index:5;top:19px;left:20px;
+  border-radius:22px;border:1px solid rgba(150,198,221,.45);
+  background:rgba(255,255,255,.74);color:#437b9d;
+  padding:8px 12px;font:700 10px/1.15 'Space Grotesk',Arial,sans-serif;
+  letter-spacing:.035em;cursor:pointer;transition:background .2s ease,border-color .2s ease;
+}
+.research-stage--network .research-scene-toggle:hover,
+.research-stage--network .research-scene-toggle:focus-visible{background:#fff;border-color:#5eabc9;outline-offset:3px}
+.research-stage--network .research-scene-toggle:disabled{opacity:.65;cursor:default}
+.research-page .research-stage--network.research-stage--security{
+  background:radial-gradient(ellipse at 47% 48%,rgba(220,235,251,.82),rgba(244,249,254,.78) 58%,#fff 94%);
+}
+.research-page .research-stage--network.research-stage--efficient{
+  background:radial-gradient(ellipse at 50% 45%,rgba(223,246,245,.84),rgba(241,250,253,.78) 57%,#fff 94%);
+}
+@media(max-width:1000px){
+  .research-page .research-stage--network,
+  .research-page .research-stage--network .research-network-shell{min-height:460px}
+  .research-stage--network .research-scene-hud{padding:10px 12px;min-width:0}
+}
+@media(max-width:760px){
+  .research-page .research-stage--network,
+  .research-page .research-stage--network .research-network-shell{min-height:410px}
+  .research-stage--network .research-scene-hud--top{top:16px;right:14px}
+  .research-stage--network .research-scene-hud--bottom{bottom:40px;left:14px}
+  .research-stage--network .research-scene-hud strong{font-size:9px}
+  .research-stage--network .research-scene-hud span{font-size:8px}
+  .research-stage--network .research-scene-caption{right:16px;bottom:16px;font-size:8px}
+  .research-stage--network .research-scene-toggle{top:16px;left:14px;font-size:9px;padding:7px 9px}
+}
+@media(max-width:520px){
+  .research-page .research-stage--network,
+  .research-page .research-stage--network .research-network-shell{min-height:360px}
+  .research-stage--network .research-scene-hud{padding:8px 10px;gap:3px}
+  .research-stage--network .research-scene-hud--bottom{bottom:39px}
+  .research-stage--network .research-scene-hud strong{font-size:8px}
+  .research-stage--network .research-scene-hud span{font-size:7px}
+  .research-stage--network .research-scene-caption{font-size:7px}
+}
