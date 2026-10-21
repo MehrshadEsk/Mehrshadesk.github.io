@@ -30,3 +30,15 @@
 @media(max-width:1000px){.research-page .hero-grid{gap:32px}.research-page .hero-grid h1{font-size:40px}.research-page .research-abstract{grid-template-columns:120px 1fr;gap:24px}.research-page .two-track{margin-inline-start:0}.research-stage-head{font-size:9px;gap:12px}.research-stage figcaption{font-size:10px}}
 @media(max-width:760px){.research-page .hero-grid{grid-template-columns:1fr;gap:24px}.research-page .hero-grid h1{font-size:clamp(34px,7vw,44px);max-width:640px;margin-bottom:8px}.research-page .research-abstract{grid-template-columns:1fr;gap:16px;margin-top:28px;padding-top:24px}.research-page .two-track{grid-template-columns:1fr;gap:12px}.home-page .research-intro{align-items:flex-start;flex-direction:column;gap:18px}.research-stage-head{font-size:9px;letter-spacing:.06em}.research-stage figcaption{font-size:10px;gap:8px}.research-preview{margin-bottom:24px}.research-pause{min-height:44px}.research-stage .research-motion{margin-block:4px;aspect-ratio:4/5}.research-stage .rs-label{font-size:12px;letter-spacing:1px}}
 @media(prefers-reduced-motion:reduce){.research-preview,.research-card{transition:none}}
+
+
+/* --- Project hero network stage --- */
+.research-stage--network{border:1px solid #d8e9f2;border-radius:28px;overflow:hidden;background:radial-gradient(ellipse at 74% 48%,rgba(225,241,250,.96) 0,rgba(241,248,252,.88) 38%,rgba(245,250,253,.74) 58%,rgba(255,255,255,.92) 100%),linear-gradient(120deg,#ffffff 2%,#f8fbfc 65%,#f1f8fc 100%);box-shadow:0 24px 70px rgba(49,99,130,.08);position:relative;isolation:isolate;min-height:520px}
+.research-stage--network::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(70,118,150,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(70,118,150,.035) 1px,transparent 1px);background-size:55px 55px;mask-image:linear-gradient(90deg,rgba(0,0,0,.1),#000 20%,#000 82%,rgba(0,0,0,.1));pointer-events:none;z-index:0}
+.research-stage--network .research-network-shell{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.research-stage--network .research-network-shell::before{content:'';position:absolute;inset:auto 18% 8% 18%;height:70px;background:radial-gradient(ellipse at center,rgba(109,183,219,.25),rgba(109,183,219,0) 74%);filter:blur(18px);pointer-events:none;z-index:0}
+.research-network-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.research-page .research-stage--network{margin-top:8px}
+@media(max-width:1000px){.research-stage--network,.research-stage--network .research-network-shell{min-height:460px}}
+@media(max-width:760px){.research-stage--network,.research-stage--network .research-network-shell{min-height:400px}.research-page .research-stage--network{margin-top:2px}}
+@media(max-width:520px){.research-stage--network{border-radius:24px}.research-stage--network,.research-stage--network .research-network-shell{min-height:340px}}

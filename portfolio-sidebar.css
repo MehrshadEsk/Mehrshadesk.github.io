@@ -335,3 +335,152 @@
   .home-page .education-card { padding: 22px; }
   .home-page .education-card .education-head h2 { font-size: 22px; line-height: 1.3; }
 }
+
+
+/* Homepage refinements, 21 Oct 2026: research, hover details, compact education and contact. */
+/* One continuous row of four on desktop; step down only when space is insufficient. */
+.home-page #research .research-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.home-page #research .research-card {
+  padding: 14px 12px;
+  transition: border-color .2s ease, background-color .2s ease, filter .22s ease;
+}
+.home-page #research .research-card-top { margin-bottom: 12px; font-size: 10px; }
+.home-page #research .research-preview { margin-bottom: 14px; }
+.home-page #research .research-card h3 { font-size: clamp(15px, 1.28vw, 19px); line-height: 1.35; margin-bottom: 14px; }
+.home-page #research .research-card .card-arrow { padding-top: 10px; font-size: 11px; }
+@media (hover: hover) {
+  .home-page #research .research-cards:hover .research-card:not(:hover) { filter: brightness(.81); }
+}
+.home-page #research .research-cards:focus-within .research-card:not(:focus-within) { filter: brightness(.81); }
+@media (min-width: 761px) and (max-width: 820px) {
+  .home-page #research .research-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .home-page #research .research-card h3 { font-size: 20px; }
+}
+@media (max-width: 760px) {
+  .home-page #research .research-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .home-page #research .research-card { padding: 14px; }
+  .home-page #research .research-card h3 { font-size: 17px; }
+}
+@media (max-width: 500px) {
+  .home-page #research .research-cards { grid-template-columns: minmax(0, 1fr); }
+  .home-page #research .research-card h3 { font-size: 21px; }
+}
+
+/* Work and professional experience: title and employer at rest, description on hover/focus. */
+.home-page #experience .timeline-row { cursor: default; }
+.home-page #experience .timeline-row > div:last-child > p:not(.org) {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  margin: 0;
+  transition: max-height .48s ease, opacity .22s ease, margin .32s ease, visibility 0s linear .48s;
+}
+.home-page #experience .timeline-row:is(:hover, :focus, :focus-within) > div:last-child > p:not(.org) {
+  max-height: 800px;
+  opacity: 1;
+  visibility: visible;
+  margin: 12px 0 0;
+  transition: max-height .55s ease, opacity .3s ease, margin .32s ease, visibility 0s;
+}
+
+/* Teaching looks like work: one horizontal row per role, details revealed by mouse or focus. */
+.home-page #teaching .teaching-grid { display: block; }
+.home-page #teaching .teaching-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+.home-page #teaching .teaching-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  line-height: 1.55;
+}
+.home-page #teaching .teaching-main { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; min-width: 0; }
+.home-page #teaching .teaching-copy { flex: 1 1 auto; min-width: 0; }
+.home-page #teaching .teaching-copy h3 { margin: 0; font-size: 21px; }
+.home-page #teaching .teaching-main > strong { flex-shrink: 0; font-size: 25px; font-weight: 500; line-height: 1.2; color: var(--muted); }
+.home-page #teaching .teaching-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height .48s ease, opacity .22s ease, margin .32s ease, visibility 0s linear .48s;
+}
+.home-page #teaching .teaching-card:is(:hover, :focus, :focus-within) .teaching-details {
+  max-height: 700px;
+  margin-top: 14px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height .55s ease, opacity .3s ease, margin .32s ease, visibility 0s;
+}
+.home-page #teaching .teaching-details p { line-height: 1.8; margin-bottom: 12px; }
+.home-page #teaching .teaching-details .btn { margin: 3px 0 2px; }
+@media (min-width: 761px) and (max-width: 1280px) {
+  .home-page #teaching .teaching-card { grid-template-columns: 110px minmax(0, 1fr); gap: 24px; }
+}
+@media (max-width: 760px) {
+  .home-page #teaching .teaching-card { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-block: 22px; }
+  .home-page #teaching .teaching-meta { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .home-page #teaching .teaching-copy h3 { font-size: 18px; }
+  .home-page #teaching .teaching-main > strong { font-size: 21px; }
+}
+
+/* Both degrees retain all fields but use less vertical space. */
+.home-page #education { padding-block: 48px; }
+.home-page #education .education-card {
+  padding: 18px 22px;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+}
+.home-page #education .education-card + .education-card { margin-top: 12px; }
+.home-page #education .education-head h2 { font-size: 21px; margin-bottom: 4px; line-height: 1.3; }
+.home-page #education .education-head p { font-size: 13px; margin-bottom: 10px; }
+.home-page #education .education-card .education-facts { gap: 10px 20px; margin-block: 12px; }
+.home-page #education .education-card .education-facts > div { padding-top: 6px; gap: 3px; }
+.home-page #education .education-card .thesis { padding-top: 10px; font-size: 13px; line-height: 1.6; }
+.home-page #education .thesis > span { margin-bottom: 5px; }
+.home-page #education .academic-ref-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  width: fit-content;
+  min-height: 37px;
+  margin-top: 14px;
+  padding: 7px 13px;
+  border: 1px solid var(--chapter-border);
+  background: transparent;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: border-color .15s ease, background-color .15s ease, color .15s ease;
+}
+.home-page #education .academic-ref-button:hover,
+.home-page #education .academic-ref-button:focus-visible { border-color: var(--accent); background: var(--accent); color: var(--charcoal); }
+@media (max-width: 760px) {
+  .home-page #education { padding-block: 38px; }
+  .home-page #education .education-card { grid-template-columns: minmax(0, 1fr); gap: 9px; padding: 16px; }
+  .home-page #education .education-head h2 { font-size: 19px; }
+}
+
+/* Short, quiet contact closing in place of the ending headline. */
+.home-page #contact { padding-block: 22px; }
+.home-page #contact .contact-email-wrap { text-align: center; }
+.home-page #contact .contact-email { display: inline-block; font-size: 12px; letter-spacing: .025em; color: var(--muted); }
+.home-page #contact .contact-email:hover,
+.home-page #contact .contact-email:focus-visible { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .home-page #research .research-card,
+  .home-page #experience .timeline-row > div:last-child > p:not(.org),
+  .home-page #teaching .teaching-details { transition: none; }
+}
