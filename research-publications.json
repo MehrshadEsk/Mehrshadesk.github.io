@@ -3,7 +3,6 @@
     "title": "A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks",
     "authors": [
       "Mehrshad Eskandarpour",
-      "Saba Pirahmadian",
       "Parham Soltani",
       "Hossein Soleimani"
     ],
@@ -65,23 +64,6 @@
     "url": "https://arxiv.org/abs/2508.14679",
     "id": "arXiv:2508.14679",
     "source": "https://arxiv.org/abs/2508.14679"
-  },
-  "cluster": {
-    "title": "Game-Theoretic and Reinforcement Learning-Based Cluster Head Selection for Energy-Efficient Wireless Sensor Network",
-    "authors": [
-      "Mehrshad Eskandarpour",
-      "Saba Pirahmadian",
-      "Parham Soltani",
-      "Hossein Soleimani"
-    ],
-    "year": "2025",
-    "venue": "arXiv",
-    "publisher": "Cornell University",
-    "kind": "Preprint",
-    "citation": "Networking and Multiagent Systems · 2508.12707",
-    "url": "https://arxiv.org/abs/2508.12707",
-    "id": "arXiv:2508.12707",
-    "source": "https://arxiv.org/abs/2508.12707"
   },
   "dual": {
     "title": "Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy",
