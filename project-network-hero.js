@@ -10,7 +10,7 @@
     if(state.pending||state.scene)return;
     state.pending=true;
     try{
-      engine ||= import('./research-3d-scenes.js?v=20261022-spatial-v7');
+      engine ||= import('./research-3d-scenes.js?v=20261022-voice-v8');
       const {createResearchScene}=await engine;
       state.scene=createResearchScene(state.host,{
         type:state.host.dataset.networkScene||state.host.dataset.researchMotion,

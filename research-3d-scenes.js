@@ -241,75 +241,158 @@ function ran(model){
   model.camera={position:v3(9,7.2,10),target:v3(0,.45,0),fov:38};
 }
 
-/* Inspired by the supplied manuscript: elliptic-curve computation in a hardware
-   wallet, with distinct real/dummy paths and an unlabeled leakage trace.
-   No cryptographic or experimental performance claims are encoded here. */
+/* Secure voice processing, with a physically separate side-channel branch.
+   Speech becomes ciphertext at the silicon; a near-field probe collects
+   synthetic leakage traces, which converge into a recovered key sculpture.
+   The signals and recovery sequence are illustrative, not attack results. */
 function security(model){
-  const C=model.C;
-  const dark=material(model,'dark',{roughness:.32,metalness:.65}),metal=material(model,'metal',{metalness:.72,roughness:.28});
-  const pearl=material(model,'pearl',{roughness:.45,metalness:.25}),teal=material(model,'teal',{emissive:C.teal,emissiveIntensity:.18});
-  const brass=material(model,'brass',{metalness:.7,roughness:.28});
-  surface(model,4.5);
-  // Machined wallet enclosure and exposed secure computation stack.
-  const wallet=new T.Group();wallet.rotation.y=-.15;wallet.position.set(0,.27,.3);model.group.add(wallet);
-  const shape=new T.Shape();const w=1.5,h=2.25,r=.22;
-  shape.moveTo(-w+r,-h);shape.lineTo(w-r,-h);shape.quadraticCurveTo(w,-h,w,-h+r);
-  shape.lineTo(w,h-r);shape.quadraticCurveTo(w,h,w-r,h);shape.lineTo(-w+r,h);shape.quadraticCurveTo(-w,h,-w,h-r);shape.lineTo(-w,-h+r);shape.quadraticCurveTo(-w,-h,-w+r,-h);
-  const enclosure=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:.22,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.07,bevelThickness:.06,curveSegments:10}),dark);
-  enclosure.rotation.x=-Math.PI/2;enclosure.castShadow=!model.compact;wallet.add(enclosure);
-  cube(model,v3(0,.26,-.77),v3(2.35,.06,1.66),metal,wallet);
-  cube(model,v3(0,.3,-.77),v3(2.06,.024,1.41),dark,wallet);
-  for(let i=0;i<2;i++)mesh(model,geometry.cylinder,metal,v3(-.42+i*.84,.28,1.55),v3(.15,.07,.15),wallet);
-  // A raised silicon die and a multilayer board suggest the arithmetic hierarchy.
-  cube(model,v3(0,.58,.55),v3(2.4,.07,1.65),material(model,'teal',{roughness:.83,metalness:.2}),wallet);
-  chip(model,v3(0,1.05,.85),{w:1.3,h:.24,d:1.22});
-  const traces=[],rays=[];
-  for(let i=0;i<10;i++){
-    const x=-1.03+i*.23;
-    traces.push([v3(x,.63,-.2),v3(x,.63,.1)],[v3(x,.63,.1),v3(x*.53,.63,.4)]);
-    ball(model,v3(x,.64,-.21),.032,brass,wallet);
+  const C=model.C,rnd=random(6238),compact=model.compact;
+  const dark=material(model,'dark',{roughness:.36,metalness:.68});
+  const metal=material(model,'metal',{roughness:.3,metalness:.78});
+  const pearl=material(model,'pearl',{roughness:.4,metalness:.35});
+  const teal=material(model,'teal',{roughness:.26,metalness:.5,emissive:C.teal,emissiveIntensity:.18});
+  const brass=material(model,'brass',{roughness:.26,metalness:.8});
+  surface(model,5.4);
+
+  // A restrained, machined silicon stack, with a sixteen-cell cipher state.
+  cube(model,v3(0,.17,-.35),v3(2.45,.16,2.12),dark);
+  cube(model,v3(0,.27,-.35),v3(2.3,.035,1.97),brass);
+  cube(model,v3(0,.32,-.35),v3(2.18,.075,1.86),metal);
+  chip(model,v3(0,.61,-.35),{w:1.48,h:.25,d:1.48});
+  const cells=[];
+  for(let x=0;x<4;x++)for(let z=0;z<4;z++){
+    const cell=cube(model,v3((x-1.5)*.255,.84,-.35+(z-1.5)*.255),v3(.21,.055,.21),(x+z)%3===0?brass:teal);
+    cells.push({cell,x,z});
   }
-  lineSegments(model,traces,lineMaterial(model,'brass',.58));
-  // The two branches of y² = x³ - x + 1 are geometric illustration only.
-  const curves=[];
-  for(const sign of [-1,1]){
-    const points=[];
-    for(let i=0;i<=120;i++){
-      const x=-1.3247+i/120*3.22,term=x*x*x-x+1;
-      if(term>=0)points.push(v3(x*1.13-.4,1.95+sign*Math.sqrt(term)*.49,-1.45));
+  const circuit=[];
+  for(let i=0;i<6;i++)for(const sign of [-1,1]){
+    const z=-1.12+i*.31;
+    circuit.push([v3(sign*.83,.37,z),v3(sign*1.03,.37,z)],[v3(sign*1.03,.37,z),v3(sign*1.03,.37,-1.28)]);
+  }
+  lineSegments(model,circuit,lineMaterial(model,'pearl',.42));
+  for(const x of [-1.05,1.05])for(const z of [-1.22,.52])mesh(model,geometry.cylinder,brass,v3(x,.38,z),v3(.045,.03,.045));
+
+  // Voiced envelopes and changing harmonics, carried by a volumetric waveform.
+  const sampleCount=compact?48:76,voiceBars=new T.InstancedMesh(geometry.cylinder,teal,sampleCount);
+  voiceBars.instanceMatrix.setUsage(T.DynamicDrawUsage);model.group.add(voiceBars);
+  const voiceLines=[-.17,0,.17].map((z,j)=>{
+    const line=polyline(model,Array.from({length:145},()=>v3()),lineMaterial(model,j===1?'teal':'metal',j===1?.82:.24));
+    line.geometry.attributes.position.setUsage(T.DynamicDrawUsage);return {line,z};
+  });
+  const mouth=v3(-4.38,1.8,-.62);
+  const acoustic=[];
+  for(let j=0;j<3;j++){
+    const ring=mesh(model,new T.TorusGeometry(.6,.018,6,44),j===0?metal:teal,mouth.clone().add(v3(j*.2,0,0)));
+    ring.rotation.y=Math.PI/2;ring.scale.setScalar(.75+j*.17);acoustic.push(ring);
+  }
+  const voiceIn=new T.CatmullRomCurve3([v3(-1.46,1.8,-.62),v3(-1.15,1.7,-.6),v3(-.98,1.04,-.5),v3(-.55,.9,-.35)]);
+  polyline(model,voiceIn.getPoints(36),lineMaterial(model,'teal',.66));
+
+  // Ciphertext is discrete and deliberately has no recognizable voice envelope.
+  const cipherPaths=[-.28,0,.28].map(z=>new T.CatmullRomCurve3([
+    v3(.55,.91,-.35+z),v3(1.12,1.11,-.68+z),v3(1.95,1.55,-1.05+z),v3(4.22,1.55,-1.05+z)
+  ]));
+  cipherPaths.forEach(path=>polyline(model,path.getPoints(50),lineMaterial(model,'teal',.22)));
+  const packetCount=compact?24:42,packets=new T.InstancedMesh(geometry.box,metal,packetCount),dummy=new T.Object3D();
+  packets.instanceMatrix.setUsage(T.DynamicDrawUsage);model.group.add(packets);
+  const packetRandom=Array.from({length:packetCount},()=>rnd());
+  const voiceTraffic=particles(model,[voiceIn],{count:5,speed:.21,r:.037});
+
+  // A copper near-field loop makes the leakage branch physically distinct.
+  const probe=new T.Group();probe.position.set(.15,1.2,.78);probe.rotation.set(-.24,0,.28);model.group.add(probe);
+  mesh(model,new T.TorusGeometry(.33,.038,8,48),brass,v3(),v3(1,1,1),probe);
+  rod(model,v3(0,-.33,0),v3(0,-.75,0),.038,dark,probe);
+  const pickup=new T.CatmullRomCurve3([v3(.13,.85,.8),v3(-.38,.62,1.28),v3(-2.25,.54,1.55),v3(-2.75,.58,1.92)]);
+  polyline(model,pickup.getPoints(60),lineMaterial(model,'brass',.68));
+  const leakTraffic=particles(model,[pickup],{count:8,speed:.095,r:.027,role:'brass'});
+  // Repeated synthetic acquisitions retain a shared component under noise.
+  const traces=[];
+  for(let j=0;j<5;j++){
+    const line=polyline(model,Array.from({length:166},()=>v3()),lineMaterial(model,j===2?'brass':'metal',j===2?.91:.34));
+    line.geometry.attributes.position.setUsage(T.DynamicDrawUsage);traces.push(line);
+    polyline(model,[v3(-2.75,.59+j*.2,1.92+j*.19),v3(.42,.59+j*.2,1.92+j*.19)],lineMaterial(model,'metal',.13));
+  }
+
+  // Candidate ridges narrow to a single coherent route through three planes.
+  const layers=[],candidateLinks=[];
+  for(let l=0;l<3;l++){
+    const layer=[];
+    for(let k=0;k<9;k++){
+      const p=v3(.8+l*.4,1.01+k*.15,2.76+(k%3-1)*.2);
+      const node=ball(model,p,k===4?.052:.027,k===4?brass:metal);layer.push({node,k,l,p});
+      if(l>0){candidateLinks.push([layers[l-1][k].p,p]);if(k%2===0)candidateLinks.push([layers[l-1][k].p,layer[0].p]);}
     }
-    const path=new T.CatmullRomCurve3(points);curves.push(path);
-    polyline(model,path.getPoints(150),lineMaterial(model,'teal',.82));
+    layers.push(layer);
   }
-  // A finite-field point set over F97, rather than a decorative random grid.
-  const points=[];
-  for(let x=0;x<97;x++)for(let y=0;y<97;y++)if((y*y-(x*x*x+2*x+3))%97===0)points.push({p:v3((x-48)*.035,1.7+(y-48)*.025,-1.56),r:.022});
-  instanceMesh(model,geometry.smallSphere,material(model,'metal',{roughness:.6,metalness:.1}),points);
-  const real=[],dummy=[];
-  for(let i=0;i<4;i++){
-    const p=v3(-2.3+i*.1,.72+i*.45,.25-i*.42),q=v3(2.2-i*.08,.68+i*.43,.3-i*.4);
-    ball(model,p,.105,teal);ball(model,q,.09,brass);
-    real.push(arc(v3(0,1.25,.85),p,.3));dummy.push(arc(v3(0,1.25,.85),q,.3));
+  lineSegments(model,candidateLinks,lineMaterial(model,'metal',.18));
+  const selected=new T.CatmullRomCurve3([v3(.42,1.05,2.25),v3(.8,1.61,2.76),v3(1.2,1.61,2.76),v3(1.6,1.61,2.76),v3(2.3,1.61,2.76)]);
+  polyline(model,selected.getPoints(50),lineMaterial(model,'brass',.7));
+  const inference=particles(model,[selected],{count:7,speed:.11,r:.034,role:'brass'});
+
+  // An actual three-dimensional key emerges from scattered byte-sized pieces.
+  const key=new T.Group();key.position.set(2.46,1.65,2.7);key.rotation.y=-.12;model.group.add(key);
+  const fragments=[];
+  function keyFragment(piece,order){
+    const home=piece.position.clone(),rotation=piece.quaternion.clone();
+    const angle=rnd()*TAU,spread=.2+rnd()*.5;
+    const from=home.clone().add(v3(-.5-rnd()*.5,Math.cos(angle)*spread,Math.sin(angle)*spread));
+    const fromRotation=new T.Quaternion().setFromEuler(new T.Euler(rnd()*1.8,rnd()*1.3,rnd()*.7)).multiply(rotation);
+    fragments.push({piece,home,rotation,from,fromRotation,order});
   }
-  [...real,...dummy].forEach((path,i)=>polyline(model,path.getPoints(24),lineMaterial(model,i<4?'teal':'brass',.28)));
-  const p1=particles(model,real,{count:12,speed:.11,r:.042});
-  const p2=particles(model,dummy,{count:10,speed:.14,r:.035,role:'brass',phase:.3});
-  const ecc=particles(model,curves,{count:6,speed:.045,r:.055,role:'brass'});
-  const wavePoints=Array.from({length:180},()=>v3()),wave=polyline(model,wavePoints,lineMaterial(model,'brass',.73));
-  wave.geometry.attributes.position.setUsage(T.DynamicDrawUsage);
-  const screenPoints=Array.from({length:100},(_,i)=>v3(-.84+i/99*1.68,.32,-.77));
-  const screen=polyline(model,screenPoints,lineMaterial(model,'teal',.9),wallet);screen.geometry.attributes.position.setUsage(T.DynamicDrawUsage);
-  model.update=t=>{
-    p1(t);p2(t);ecc(t);
-    const attr=wave.geometry.attributes.position,scr=screen.geometry.attributes.position;
-    for(let i=0;i<180;i++){
-      const u=i/179,x=-2.8+u*5.6;
-      const value=Math.sin(u*64-t*1.7)*Math.sin(u*17+t*.35)*.18+Math.sin(u*121-t*2)*.045;
-      attr.setXYZ(i,x,.7+value,2.95);if(i<100)scr.setXYZ(i,-.84+i/99*1.68,.324,-.77+Math.sin(i*.23-t*1.9)*Math.sin(i*.057)*.27);
-    }
-    attr.needsUpdate=true;scr.needsUpdate=true;
+  const bowSegments=20;
+  for(let i=0;i<bowSegments;i++){
+    const piece=mesh(model,new T.TorusGeometry(.37,.07,8,4,TAU/bowSegments*.98),brass,v3(),v3(1,1,1),key);
+    piece.quaternion.setFromAxisAngle(v3(1,0,0),Math.PI/2).multiply(new T.Quaternion().setFromAxisAngle(v3(0,0,1),i/bowSegments*TAU));
+    keyFragment(piece,i/bowSegments*.45);
+  }
+  for(let i=0;i<8;i++)keyFragment(cube(model,v3(.39+i*.17,0,0),v3(.166,.135,.16),brass,key),.35+i*.045);
+  for(let i=0;i<4;i++)keyFragment(cube(model,v3(.84+i*.23,0,.13),v3(.13,.135,i%2?.3:.41),brass,key),.65+i*.055);
+  const envelope=(u,t)=>{
+    const phase=u*2.8-t*.2;
+    const syllables=Math.pow(.5+.5*Math.sin(phase*TAU),2)*.7+Math.pow(.5+.5*Math.sin(phase*TAU*.47+.8),6)*.3;
+    return Math.sin(Math.PI*u)*(.12+1.04*syllables);
   };
-  model.camera={position:v3(8.5,7.5,10.4),target:v3(0,1.05,.1),fov:35};
+  const speech=(u,t)=>envelope(u,t)*(Math.sin(u*91-t*3.4)+.32*Math.sin(u*183-t*6.8)+.13*Math.sin(u*271-t*8.2));
+  const ease=x=>{const a=clamp(x);return a*a*(3-2*a);};
+  model.update=t=>{
+    voiceTraffic(t);leakTraffic(t);inference(t);
+    cells.forEach(({cell,x,z})=>{cell.position.y=.85+.045*(.5+.5*Math.sin(t*1.7-x*.8-z*.5));});
+    for(let i=0;i<sampleCount;i++){
+      const u=i/(sampleCount-1),value=speech(u,t);
+      dummy.position.set(-4.14+u*2.67,1.8,-.62);dummy.rotation.set(0,0,0);dummy.scale.set(.014,Math.max(.035,Math.abs(value)*1.8),.014);
+      dummy.updateMatrix();voiceBars.setMatrixAt(i,dummy.matrix);
+    }
+    voiceBars.instanceMatrix.needsUpdate=true;
+    voiceLines.forEach(({line,z})=>{
+      const a=line.geometry.attributes.position;
+      for(let i=0;i<a.count;i++){const u=i/(a.count-1);a.setXYZ(i,-4.14+u*2.67,1.8+speech(u,t)*.9,-.62+z);}
+      a.needsUpdate=true;
+    });
+    acoustic.forEach((ring,i)=>{const breath=1+.035*Math.sin(t*1.4-i*.5);ring.scale.setScalar((.75+i*.17)*breath);});
+    for(let i=0;i<packetCount;i++){
+      const u=(t*.073+i*.61803398875)%1,p=cipherPaths[i%3].getPoint(u),size=.055+packetRandom[i]*.035;
+      dummy.position.copy(p);dummy.rotation.set(t*.13+i*.79,t*.21+i*.43,0);dummy.scale.set(size,size*(.8+packetRandom[i]),size);dummy.updateMatrix();packets.setMatrixAt(i,dummy.matrix);
+    }
+    packets.instanceMatrix.needsUpdate=true;
+    traces.forEach((line,j)=>{
+      const a=line.geometry.attributes.position;
+      for(let i=0;i<a.count;i++){
+        const u=i/(a.count-1),shared=Math.exp(-(((u-.36)/.044)**2))*.53-Math.exp(-(((u-.41)/.03)**2))*.18+Math.exp(-(((u-.73)/.035)**2))*.43;
+        const noise=(Math.sin(i*2.19+j*2.7-t*.8)+.55*Math.sin(i*.83+j*3.6-t*1.2))*.033;
+        a.setXYZ(i,-2.75+u*3.17,.59+j*.2+shared+noise,1.92+j*.19);
+      }
+      a.needsUpdate=true;
+    });
+    const cycle=(t%22)/22,recovery=ease((cycle-.03)/.68)*(1-ease((cycle-.89)/.11));
+    layers.flat().forEach(({node,k,l})=>{const resolved=ease((recovery-l*.12)*2),weight=k===4?1:1-resolved*.65;node.scale.setScalar((k===4?.052:.027)*weight);});
+    key.position.y=1.65+Math.sin(t*.65)*.045;
+    fragments.forEach(({piece,home,rotation,from,fromRotation,order},i)=>{
+      const progress=ease(recovery*2-order);
+      piece.position.lerpVectors(from,home,progress);piece.position.y+=Math.sin(t*.8+i)*.025*(1-progress);
+      piece.quaternion.slerpQuaternions(fromRotation,rotation,progress);
+    });
+  };
+  model.camera={position:v3(6.5,7.4,13.8),target:v3(0,1.25,.55),fov:34};
 }
 
 /* A spatial encoder–bottleneck–decoder architecture. Nodes are arranged in real
