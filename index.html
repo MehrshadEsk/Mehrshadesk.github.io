@@ -21,7 +21,7 @@
 <link href="/assets/favicon-32.png?v=2" rel="icon" sizes="32x32" type="image/png">
 <link href="/assets/favicon-16.png?v=2" rel="icon" sizes="16x16" type="image/png">
 <link href="/assets/favicon-180.png?v=2" rel="apple-touch-icon" sizes="180x180">
-<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261015-full-portrait"><link rel="stylesheet" href="research-motion.css?v=20261014-content-v3"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261021-teaching-v2"></head>
+<link rel="stylesheet" href="styles.css?v=20261014-content-v3"><link rel="stylesheet" href="home.css?v=20261022-refinements-v4"><link rel="stylesheet" href="research-motion.css?v=20261022-refinements-v4"><link rel="stylesheet" href="portfolio-sidebar.css?v=20261022-refinements-v4"></head>
 <body class="home-page">
 <a class="skip" href="#about">
    Skip to content
@@ -46,6 +46,7 @@
       <li><a class="sidebar-nav-link" href="#teaching"><span class="sidebar-link-label">Teaching</span><span class="sidebar-link-number" aria-hidden="true">06</span></a></li>
       <li><a class="sidebar-nav-link" href="#education"><span class="sidebar-link-label">Education</span><span class="sidebar-link-number" aria-hidden="true">07</span></a></li>
       <li><a class="sidebar-nav-link" href="#contact"><span class="sidebar-link-label">Contact</span><span class="sidebar-link-number" aria-hidden="true">08</span></a></li>
+      <li><a class="sidebar-nav-link sidebar-vault-link" href="apply-vault.html"><span class="sidebar-link-label">Apply Vault <span class="sidebar-page-arrow" aria-hidden="true">↗</span></span><span class="sidebar-link-number" aria-hidden="true">09</span></a></li>
     </ol>
   </nav>
   <div class="sidebar-bottom">
@@ -88,7 +89,7 @@
         Eskandarpour
        </span>
 </h1>
-<p class="hero-summary">23 y.o. Telecom Network Engineer | Professionally troubleshooting things that worked yesterday</p><div class="hero-actions">
+<p class="hero-summary"><span class="hero-summary-role">23 y.o. Telecom Network Engineer</span><span class="hero-summary-note">Professionally troubleshooting things that worked yesterday</span></p><div class="hero-actions">
 
 <a class="btn primary" href="#research">Explore the research <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="apply-vault.html">Apply Vault ↗</a></div>
 </div><div class="hero-profile"><figure class="portrait-card"><img alt="Portrait of Mehrshad Eskandarpour" class="hero-portrait" fetchpriority="high" height="1536" src="assets/mehrshad-home-portrait.webp" width="1024" decoding="async">
@@ -103,7 +104,7 @@
            Four directions, One curiosity.
           </h2>
 </div>
-<button class="research-pause" type="button" data-research-pause aria-pressed="false" aria-controls="research-preview-1 research-preview-2 research-preview-3 research-preview-4" aria-label="Pause research animations"><svg viewBox="0 0 12 12" aria-hidden="true"><g class="pause-mark"><rect x="2" y="2" width="2" height="8"></rect><rect x="8" y="2" width="2" height="8"></rect></g><path class="play-mark" d="M3 1.5 10 6l-7 4.5Z"></path></svg><span></span></button></div>
+</div>
 <div class="research-cards">
 <a class="research-card reveal" href="research-wireless-systems.html" rel="noopener noreferrer" target="_blank">
 <div class="research-card-top">
@@ -555,53 +556,20 @@ International Journal of Distributed Sensor Networks · Wiley
 </div></article>
 </div>
 </div>
-</section><section class="contact" id="contact">
+</section><section class="contact" id="contact" aria-labelledby="contact-title">
 <div class="container contact-grid reveal">
-<div>
-<p class="kicker">
-       THE END
-      </p>
-<h2>
-       You reached the end of the website. 
-      </h2>
-<p>
-      mehrsh3d@gmail.com
-      </p>
-</div>
-<div class="contact-links">
-<a href="mailto:mehrsh3d@gmail.com">
-<span>
-        
-       </span>
-<b>
-        
-       </b>
-</a>
-<a href="https://www.linkedin.com/in/mehrshadesk" rel="noopener noreferrer" target="_blank">
-<span>
-        
-       </span>
-<b>
-        
-       </b>
-</a>
-<a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" rel="noopener noreferrer" target="_blank">
-<span>
-        
-       </span>
-<b>
-        
-       </b>
-</a>
-<a href="https://orcid.org/0009-0006-8597-0293" rel="noopener noreferrer" target="_blank">
-<span>
-        
-       </span>
-<b>
-        
-       </b>
-</a>
-</div>
+  <div class="contact-invitation">
+    <p class="kicker">CONTACT</p>
+    <h2 id="contact-title">Let’s connect.</h2>
+    <p class="contact-copy">For research collaborations, engineering opportunities, or a conversation about wireless and intelligent systems.</p>
+    <a class="contact-email" href="mailto:mehrsh3d@gmail.com"><span>mehrsh3d@gmail.com</span><span aria-hidden="true">↗</span></a>
+  </div>
+  <nav class="contact-profiles" aria-label="Research and professional profiles">
+    <p class="contact-profile-label">ELSEWHERE</p>
+    <a href="https://www.linkedin.com/in/mehrshadesk" rel="noopener noreferrer" target="_blank"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+    <a href="https://scholar.google.com/citations?user=nWfC_IIAAAAJ&amp;hl=en" rel="noopener noreferrer" target="_blank"><span>Google Scholar</span><span aria-hidden="true">↗</span></a>
+    <a href="https://orcid.org/0009-0006-8597-0293" rel="noopener noreferrer" target="_blank"><span>ORCID</span><span aria-hidden="true">↗</span></a>
+  </nav>
 </div>
 </section>
 
@@ -618,5 +586,5 @@ International Journal of Distributed Sensor Networks · Wiley
    </a>
 </footer>
 </div>
-<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-motion-v5" defer></script><script src="research-motion.js?v=20261014-motion-v2" defer></script></body>
+<script src="design.js?v=20261014-editorial" defer></script><script src="portfolio-sidebar.js?v=20261016-motion-v5" defer></script><script src="project-network-hero.js?v=20261022-research-v4" defer></script></body>
 </html>

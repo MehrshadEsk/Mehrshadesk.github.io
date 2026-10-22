@@ -470,3 +470,69 @@
   margin-top: 15px;
 }
 .home-page .education-actions .education-recommendation-btn { margin-top: 0; }
+
+/* 2026-10-22: clearer identity, compact appointments, and a complete contact close. */
+.home-page .hero-summary-role,
+.home-page .hero-summary-note { display: block; }
+.home-page .hero-summary-role { color: var(--ink); font-size: 17px; }
+.home-page .hero-summary-note { max-width: 430px; margin-top: 7px; font-size: 15px; line-height: 1.65; }
+.sidebar-page-arrow { display: inline-block; margin-left: 5px; font-size: 11px; opacity: .7; }
+
+.home-page #experience,
+.home-page #publications { padding-block: 56px; }
+.home-page #experience .experience-group > .section-title { margin-bottom: 19px; }
+.home-page #experience .experience-group h2,
+.home-page #publications .publications-title h2 { font-size: clamp(23px, 2.1vw, 28px); line-height: 1.25; margin: 0; }
+.home-page #experience .experience-group + .experience-group { margin-top: 32px; padding-top: 26px; border-top-width: 1px; }
+.home-page #experience .timeline-row { grid-template-columns: 132px minmax(0, 1fr); gap: 24px; padding-block: 17px; }
+.home-page #experience .timeline-row h3 { font-size: 17px; line-height: 1.4; letter-spacing: -.02em; margin: 0 0 5px; }
+.home-page #experience .timeline-row .org { margin: 0; font-size: 12px; line-height: 1.6; }
+.home-page #experience .role-meta { gap: 6px; }
+.home-page #experience .date { font-size: 9px; padding-top: 4px; }
+.home-page #experience .employment-type { padding: 3px 6px; font-size: 9px; }
+.home-page #experience .hover-description p { font-size: 13px; line-height: 1.8; margin-top: 9px; }
+.home-page #publications .section-content > .section-title { padding-bottom: 18px; margin-bottom: 20px; }
+.home-page #publications .publications-title > div { min-width: 0; }
+.home-page #publications .publications-title > a { font-size: 11px; }
+.home-page #publications .pub { grid-template-columns: 36px minmax(0, 1fr) 18px; gap: 16px; padding-block: 16px; }
+.home-page #publications .pub h3 { margin-bottom: 6px; font-size: 15px; line-height: 1.5; }
+.home-page #publications .pub > span:first-child { font-size: 10px; padding-top: 3px; }
+.home-page #publications .pub-meta { margin: 0; font-size: 10px; line-height: 1.65; }
+.home-page #publications .pub > b { font-size: 14px; font-weight: 400; }
+.home-page #publications .pub:hover h3 { color: var(--accent); }
+
+.home-page .contact { padding-block: 64px; }
+.home-page .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, 220px); align-items: start; gap: clamp(32px, 5vw, 80px); }
+.home-page .contact .kicker { margin: 0 0 20px; font-size: 10px; letter-spacing: .15em; color: var(--chapter-accent); }
+.home-page .contact h2 { max-width: none; margin: 0 0 18px; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -.04em; }
+.home-page .contact-copy { max-width: 460px; margin-bottom: 24px; color: var(--muted); font-size: 14px; line-height: 1.8; text-align: left; hyphens: none; }
+.home-page .contact-email { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; max-width: 100%; padding-block: 8px; border-bottom: 1px solid var(--chapter-accent); font-size: clamp(16px, 1.7vw, 22px); font-weight: 500; line-height: 1.5; }
+.home-page .contact-email > span:first-child { overflow-wrap: anywhere; }
+.home-page .contact-email > span:last-child { color: var(--chapter-accent); transition: transform 180ms ease; }
+.home-page .contact-email:hover > span:last-child { transform: translate(2px, -2px); }
+.home-page .contact-profiles { padding-top: 4px; }
+.home-page .contact-profile-label { margin: 0 0 18px; color: var(--muted); font-size: 9px; letter-spacing: .13em; text-align: left; }
+.home-page .contact-profiles > a { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 46px; padding-block: 12px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.home-page .contact-profiles > a > span:last-child { color: var(--chapter-accent); }
+@media(min-width:1025px) and (max-width:1280px){.home-page #experience .timeline-row{grid-template-columns:110px minmax(0,1fr);gap:20px}}
+@media(max-width:760px){
+  .home-page .hero-summary-role{font-size:16px}
+  .home-page .hero-summary-note{font-size:14px}
+  .home-page #experience,.home-page #publications{padding-block:40px}
+  .home-page #experience .timeline-row{grid-template-columns:1fr;gap:8px;padding-block:15px}
+  .home-page #experience .timeline-row h3{font-size:16px}
+  .home-page #experience .role-meta{flex-direction:row;align-items:center;gap:12px}
+  .home-page #experience .date{padding-top:0}
+  .home-page #experience .experience-group+.experience-group{margin-top:24px;padding-top:22px}
+  .home-page #publications .pub{grid-template-columns:30px minmax(0,1fr) 14px;gap:10px;padding-block:14px}
+  .home-page #publications .pub h3{font-size:14px;line-height:1.5}
+  .home-page #publications .publications-title{gap:14px}
+  .home-page .contact{padding-block:44px}
+  .home-page .contact-grid{grid-template-columns:1fr;gap:32px}
+  .home-page .contact h2{font-size:36px}
+  .home-page .contact-profiles{max-width:460px;width:100%}
+  .home-page .contact-profile-label{margin-bottom:9px}
+}
+
+.home-page #research .research-preview{background:#f4f9fc}
+:root[data-theme=dark] .home-page #research .research-preview{background:#142d3a}
