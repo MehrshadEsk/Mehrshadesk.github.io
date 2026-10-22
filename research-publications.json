@@ -1,0 +1,180 @@
+{
+  "iet": {
+    "title": "A Game-Theoretic Reinforcement Learning Approach to Energy-Balanced Cluster-Head Selection in Wireless Sensor Networks",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Saba Pirahmadian",
+      "Parham Soltani",
+      "Hossein Soleimani"
+    ],
+    "year": "2026",
+    "venue": "IET Networks",
+    "publisher": "Wiley / IET",
+    "kind": "Journal article",
+    "citation": "Volume 15, Issue 1 · Article e70036",
+    "url": "https://doi.org/10.1049/ntw2.70036",
+    "id": "10.1049/ntw2.70036",
+    "source": "https://api.crossref.org/works/10.1049/ntw2.70036"
+  },
+  "rf": {
+    "title": "Potential Impacts of Radiofrequency Electromagnetic Fields on the Central Nervous System, Brain Neurotransmitter Dynamics and Reproductive System",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "A. Nooramin"
+    ],
+    "year": "2025",
+    "venue": "AUT Journal of Electrical Engineering",
+    "publisher": "Amirkabir University Press",
+    "kind": "Journal article",
+    "citation": "58 (Special Issue 1) · pp. 85–104",
+    "url": "https://doi.org/10.22060/eej.2025.23753.5631",
+    "id": "10.22060/eej.2025.23753.5631",
+    "source": "https://ir.linkedin.com/in/mehrshadesk"
+  },
+  "coverage": {
+    "title": "Adaptive Vision-Based Coverage Optimization in Mobile Wireless Sensor Networks: A Multi-Agent Deep Reinforcement Learning Approach",
+    "authors": [
+      "Parham Soltani",
+      "Mehrshad Eskandarpour",
+      "Sina Heidari",
+      "Farnaz Alizadeh",
+      "Hossein Soleimani"
+    ],
+    "year": "2025",
+    "venue": "arXiv",
+    "publisher": "Cornell University",
+    "kind": "Preprint",
+    "citation": "Networking and Internet Architecture · 2508.14676",
+    "url": "https://arxiv.org/abs/2508.14676",
+    "id": "arXiv:2508.14676",
+    "source": "https://arxiv.org/abs/2508.14676"
+  },
+  "routing": {
+    "title": "Energy-Efficient Routing Algorithm for Wireless Sensor Networks: A Multi-Agent Reinforcement Learning Approach",
+    "authors": [
+      "Parham Soltani",
+      "Mehrshad Eskandarpour",
+      "Amir Ahmadizad",
+      "Hossein Soleimani"
+    ],
+    "year": "2025",
+    "venue": "arXiv",
+    "publisher": "Cornell University",
+    "kind": "Preprint",
+    "citation": "Networking and Internet Architecture · 2508.14679",
+    "url": "https://arxiv.org/abs/2508.14679",
+    "id": "arXiv:2508.14679",
+    "source": "https://arxiv.org/abs/2508.14679"
+  },
+  "cluster": {
+    "title": "Game-Theoretic and Reinforcement Learning-Based Cluster Head Selection for Energy-Efficient Wireless Sensor Network",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Saba Pirahmadian",
+      "Parham Soltani",
+      "Hossein Soleimani"
+    ],
+    "year": "2025",
+    "venue": "arXiv",
+    "publisher": "Cornell University",
+    "kind": "Preprint",
+    "citation": "Networking and Multiagent Systems · 2508.12707",
+    "url": "https://arxiv.org/abs/2508.12707",
+    "id": "arXiv:2508.12707",
+    "source": "https://arxiv.org/abs/2508.12707"
+  },
+  "dual": {
+    "title": "Enhancing Lifetime and Reliability in WSNs: Complementary of Dual-Battery Systems Energy Management Strategy",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Hossein Soleimani"
+    ],
+    "year": "2025",
+    "venue": "International Journal of Distributed Sensor Networks",
+    "publisher": "Wiley",
+    "kind": "Journal article",
+    "citation": "Volume 2025, Issue 1 · Article 5870686",
+    "url": "https://doi.org/10.1155/dsn/5870686",
+    "id": "10.1155/dsn/5870686",
+    "source": "https://api.crossref.org/works/10.1155/dsn/5870686"
+  },
+  "ran": {
+    "title": "Deep Reinforcement Learning Approach to QoS-Aware Load Balancing in 5G Cellular Networks under User Mobility and Observation Uncertainty",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Hossein Soleimani"
+    ],
+    "year": "2025",
+    "venue": "arXiv",
+    "publisher": "Cornell University",
+    "kind": "Preprint",
+    "citation": "Revised May 2026 · arXiv:2510.24869",
+    "url": "https://arxiv.org/abs/2510.24869",
+    "id": "arXiv:2510.24869",
+    "source": "https://arxiv.org/abs/2510.24869"
+  },
+  "contracts": {
+    "title": "Demystifying Random Numbers in Smart Contracts: A Novel and High-Efficiency Approach for Attacking Ethereum Contracts",
+    "authors": [
+      "Mohammad Javad Jannati",
+      "Abolfazl Iraninasab",
+      "Mehrshad Eskandarpour"
+    ],
+    "year": "2026",
+    "venue": "SSRN",
+    "publisher": "Elsevier",
+    "kind": "Preprint",
+    "citation": "Posted 2 July 2026 · 31 pages",
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538",
+    "id": "10.2139/ssrn.7038538",
+    "source": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7038538"
+  },
+  "sidechannel": {
+    "title": "Breaking Probabilistic Side-Channel Defenses: A Deep Learning Approach to Cryptographic Key Recovery",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Parham Soltani",
+      "Mohammad Javad Jannati"
+    ],
+    "year": "2026",
+    "venue": "AUT Journal of Electrical Engineering",
+    "publisher": "Amirkabir University Press",
+    "kind": "Journal article",
+    "citation": "58 (Special Issue 1) · pp. 113–138",
+    "url": "https://doi.org/10.22060/eej.2026.24478.5712",
+    "id": "10.22060/eej.2026.24478.5712",
+    "source": "https://www.researchgate.net/publication/407118077_Breaking_Probabilistic_Side-Channel_Defenses_A_Deep_Learning_Approach_to_Cryptographic_Key_Recovery"
+  },
+  "vowel": {
+    "title": "VowelVC: A Neural Vowel-Centric Voice Conversion Framework with Incremental Memory Learning for Few-Shot Speaker Adaptation",
+    "authors": [
+      "Parham Soltani",
+      "Mohammad Javad Jannati",
+      "Mehrshad Eskandarpour"
+    ],
+    "year": "2026",
+    "venue": "Results in Engineering",
+    "publisher": "Elsevier",
+    "kind": "Journal article",
+    "citation": "Volume 29 · Article 109099",
+    "url": "https://doi.org/10.1016/j.rineng.2026.109099",
+    "id": "10.1016/j.rineng.2026.109099",
+    "source": "https://api.crossref.org/works/10.1016/j.rineng.2026.109099"
+  },
+  "graph": {
+    "title": "Graph-Aware Reinforcement Learning for Reusable Prompt Compression in Black-Box LLMs",
+    "authors": [
+      "Mehrshad Eskandarpour",
+      "Parmida Haddadnejad",
+      "Mohammad Javad Jannati"
+    ],
+    "year": "2026",
+    "venue": "Author manuscript",
+    "publisher": "",
+    "kind": "Preprint",
+    "citation": "July 2026 · Graph reinforcement learning / LLMs",
+    "url": "https://scholar.google.com/citations?user=nWfC_IIAAAAJ&hl=en",
+    "id": "",
+    "source": "https://www.researchgate.net/publication/401456642_Learning_to_Compress_Prompts_with_Gist_Tokens"
+  }
+}

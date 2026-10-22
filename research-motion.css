@@ -1,46 +1,14 @@
-/* Research layouts and technical illustrations. Shared by cards and articles. */
-.research-motion{position:relative;min-width:0;width:100%;aspect-ratio:8/5;isolation:isolate}
+/* No visible text, legends, captions, buttons, or HUDs inside research visuals. */
+.research-motion{position:relative;min-width:0;width:100%;aspect-ratio:8/5;isolation:isolate;overflow:hidden}
 .research-motion>svg,.research-motion>img,.research-motion>picture,.research-motion>picture>img{width:100%;height:100%;display:block;object-fit:contain}
-.research-preview{width:100%;margin:0 0 26px;border:1px solid var(--line);background:#f0f7fa;overflow:hidden}
+.research-preview{width:100%;margin:0 0 26px;border:1px solid var(--line);background:var(--bg);overflow:hidden}
 .research-preview .research-motion{aspect-ratio:8/5}
-.research-preview .research-network-canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.research-network-canvas{display:block;position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.research-stage--network{min-width:0;position:relative;isolation:isolate;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:hidden}
+.research-network-shell{position:relative;isolation:isolate;width:100%;aspect-ratio:1.08;overflow:hidden}
+.research-network-shell>img,.research-network-shell>picture,.research-network-shell>picture>img{width:100%;height:100%;object-fit:contain;display:block}
 .home-page .research-intro{display:flex;justify-content:space-between;align-items:center;gap:24px}
 .home-page .research-intro h2{margin-bottom:0}
 .research-intro>div:first-child{min-width:0}
-.research-card:hover .research-preview{border-color:var(--olive)}
-.research-page .hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:48px;max-width:none;align-items:center}
-.research-page .hero-grid h1{font-size:clamp(34px,4.1vw,58px);line-height:1.14;max-width:580px}
-.research-page .hero-grid .eyebrow{font-size:10px;margin-bottom:25px}
-.research-page .research-abstract{display:grid;grid-template-columns:170px minmax(0,1fr);gap:40px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
-.research-abstract-label{font-size:11px;color:var(--muted);letter-spacing:.09em;padding-top:6px}
-.research-page .research-abstract .lede{margin-top:0;margin-bottom:0;max-width:950px}
-.research-page .hero-tags{margin-top:22px}
-.research-page .two-track{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-inline-start:210px}
-.research-page .track{padding-block:24px;border-top:1px solid var(--line)}
-.research-page .track-no{font-size:10px;letter-spacing:.1em;color:var(--muted);margin-bottom:18px}
-.research-page .track h3{font-size:23px;line-height:1.35}
-.research-page .track p{font-size:15px;line-height:1.9;color:var(--muted)}
-.research-page .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.research-page .chips span{font-size:9px;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);padding:5px 8px}
-
-/* Quiet instrument panels: one visual language, four distinct subjects. */
-.research-stage--network{--scene-line:#c7dce6;--scene-ink:#345b70;--scene-muted:#627f90;position:relative;isolation:isolate;min-width:0;margin:8px 0 0;overflow:hidden;border:1px solid var(--scene-line);border-radius:12px;background:linear-gradient(145deg,#fafdfe,#edf5f9);box-shadow:0 16px 48px rgb(41 85 110 / 5%)}
-.research-stage-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;padding:17px 20px;border-bottom:1px solid var(--scene-line);font-size:10px;font-weight:500;letter-spacing:.075em;line-height:1.6;color:var(--scene-ink)}
-.research-stage-model{font-size:8px;letter-spacing:.1em;color:var(--scene-muted)}
-.research-network-shell{position:relative;width:100%;aspect-ratio:4/3;isolation:isolate;overflow:hidden}
-.research-network-shell>picture,.research-network-shell>picture>img{display:block;width:100%;height:100%;object-fit:contain}
-.research-network-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
-.research-stage--network figcaption{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 16px;margin:0;padding:14px 20px;border-top:1px solid var(--scene-line);font-size:10px;line-height:1.65;color:var(--scene-ink)}
-.research-stage-key{display:inline-flex;gap:6px;align-items:center;font-size:9px;color:var(--scene-muted);white-space:nowrap}
-.research-stage-key i{width:5px;height:5px;border-radius:50%;background:#279f98}
-:root[data-theme=dark] .research-stage--network{--scene-line:#375663;--scene-ink:#c0d7e4;--scene-muted:#9eb9c8;background:linear-gradient(145deg,#142d3a,#102732);box-shadow:none}
-:root[data-theme=dark] .research-preview{background:#142d3a}
-@media(max-width:1000px){.research-page .hero-grid{gap:32px}.research-page .hero-grid h1{font-size:40px}.research-page .research-abstract{grid-template-columns:120px minmax(0,1fr);gap:24px}.research-page .two-track{margin-inline-start:0}}
-@media(max-width:760px){.research-page .hero-grid{grid-template-columns:1fr;gap:24px}.research-page .hero-grid h1{font-size:clamp(34px,7vw,44px);max-width:640px;margin-bottom:8px}.research-page .research-abstract{grid-template-columns:1fr;gap:16px;margin-top:28px;padding-top:24px}.research-page .two-track{grid-template-columns:1fr;gap:12px}.home-page .research-intro{align-items:flex-start;flex-direction:column;gap:18px}.research-preview{margin-bottom:24px}.research-stage-heading{padding:14px 16px}.research-stage--network figcaption{padding:12px 16px}}
+@media(max-width:760px){.research-network-shell{aspect-ratio:1.16}.research-stage--network{margin-inline:-10px;width:calc(100% + 20px)}.home-page .research-intro{align-items:flex-start;flex-direction:column;gap:18px}}
 @media(prefers-reduced-motion:reduce){.research-preview,.research-card{transition:none}}
-
-/* Paper rows follow the same compact reading scale as the portfolio list. */
-.research-page .paper{padding-block:20px;gap:24px}
-.research-page .paper h3{font-size:17px;line-height:1.55;margin-bottom:8px}
-.research-page .paper-meta{font-size:11px;line-height:1.7}
-@media(max-width:760px){.research-page .paper{padding-block:17px;gap:12px}.research-page .paper h3{font-size:15px}}
