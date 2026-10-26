@@ -1,79 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<script src="theme-init.js?v=20261014-editorial"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="theme-color" content="#FAF7F0">
-<title>Apply Vault</title>
-<link rel="stylesheet" href="styles.css?v=20261014-motion-v2"><link rel="stylesheet" href="subpage-theme.css?v=20261014-motion-v2"><link rel="icon" href="favicon.ico"></head>
-<body data-auth="checking" class="private-page">
-  <p id="message" role="status">Checking access…</p><main id="vault-materials" hidden><div class="eyebrow">Private access</div><h1>Apply Vault.</h1><p>No application materials are available here yet.</p><div class="hero-actions"><a class="btn" href="index.html">Return to portfolio</a><button class="btn btn-secondary" id="signout" type="button">Sign out ↗</button></div></main>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#050a08">
+  <title>Telegram: @mehesk</title>
+  <style>
+    * { box-sizing: border-box; }
 
-<script src="access-config.js"></script>
-<script>
-(() => {
-  'use strict';
-
-  const cfg = window.MEHRSHAD_ACCESS || {};
-  const API = String(cfg.apiUrl || '').trim();
-  const GATE = cfg.gateUrl || 'apply-vault.html';
-  const email = String(sessionStorage.getItem('applicationJourneyEmail') || '').trim().toLowerCase();
-  const credential = String(sessionStorage.getItem('applicationJourneyCredential') || '').trim().toLowerCase();
-  const authorized = sessionStorage.getItem('applicationJourneyAuthorized') === '1';
-  const configured = /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(API);
-  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validCredential = /^[a-f0-9]{64}$/.test(credential);
-
-  function terminate(){
-    sessionStorage.removeItem('applicationJourneyAuthorized');
-    sessionStorage.removeItem('applicationJourneyEmail');
-    sessionStorage.removeItem('applicationJourneyCredential');
-    location.replace(GATE);
-  }
-
-  function remoteCheck(){
-    return new Promise(resolve => {
-      if(!configured){ resolve(null); return; }
-      const cb = `vaultRevalidate_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-      const script = document.createElement('script');
-      let finished = false;
-      const finish = value => {
-        if(finished) return;
-        finished = true;
-        clearTimeout(timer);
-        try{ delete window[cb]; }catch(_){ window[cb] = undefined; }
-        script.remove();
-        resolve(value);
-      };
-      const timer = setTimeout(() => finish(null), 7000);
-      window[cb] = data => finish(!!(data && data.allowed === true));
-      script.onerror = () => finish(null);
-      script.src = `${API}?action=verify&email=${encodeURIComponent(email)}&credential=${encodeURIComponent(credential)}&callback=${encodeURIComponent(cb)}&_=${Date.now()}`;
-      document.body.appendChild(script);
-    });
-  }
-
-  async function validate(){
-    if(!authorized || !validEmail || !validCredential){ terminate(); return; }
-
-    if(configured){
-      try{
-        const remote = await remoteCheck();
-        if(remote !== true){ terminate(); return; }
-      }catch(_){
-        terminate();
-        return;
-      }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #050a08;
     }
 
-    document.body.dataset.auth = 'ok';document.getElementById('message').hidden=true;document.getElementById('vault-materials').hidden=false;
-  }
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
 
-  document.getElementById('signout').addEventListener('click', terminate);
-  validate();
-})();
-</script>
-<script src="screen-protection.js"></script>
-<script src="design.js?v=20261014-editorial" defer></script></body>
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, #0b2118, #050a08 70%);
+    }
+
+    .background::before {
+      content: "";
+      position: absolute;
+      inset: -64px;
+      background-image:
+        linear-gradient(#60ffab09 1px, transparent 1px),
+        linear-gradient(90deg, #60ffab09 1px, transparent 1px);
+      background-size: 64px 64px;
+      animation: drift 18s linear infinite;
+      mask-image: radial-gradient(ellipse, black, transparent 75%);
+    }
+
+    .background::after {
+      content: "";
+      position: absolute;
+      inset: -100% 0 0;
+      background: linear-gradient(
+        transparent 47%,
+        #6affac05 49%,
+        #6affac12 50%,
+        transparent 53%
+      );
+      animation: scan 10s linear infinite;
+    }
+
+    a {
+      padding: 24px;
+      color: #baffd5;
+      font-size: clamp(1.1rem, 4.5vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0.035em;
+      text-decoration: none;
+      white-space: nowrap;
+      text-shadow: 0 0 24px #69ffa83b;
+      transition: color 200ms, text-shadow 200ms;
+    }
+
+    a:hover {
+      color: #e6fff0;
+      text-shadow: 0 0 30px #69ffa877;
+    }
+
+    a:focus-visible {
+      outline: 1px solid #8fffb8;
+      outline-offset: 8px;
+      border-radius: 4px;
+    }
+
+    @keyframes drift {
+      to { transform: translate(64px, 64px); }
+    }
+
+    @keyframes scan {
+      from { transform: translateY(-25%); }
+      to { transform: translateY(75%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .background::before,
+      .background::after { animation: none; }
+      a { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="background" aria-hidden="true"></div>
+  <main>
+    <a href="https://t.me/mehesk">Telegram: @mehesk</a>
+  </main>
+</body>
 </html>
