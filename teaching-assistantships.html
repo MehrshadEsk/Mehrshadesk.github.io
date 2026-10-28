@@ -40,6 +40,11 @@ html,body{height:100%;overflow:hidden}.shell{height:100vh;height:100dvh;display:
 
 
 .shared-term .term-date::after,.shared-term::before{display:none}.term-branches{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.term-branches path{fill:none;stroke:var(--spine);stroke-width:1}.term-branches circle{fill:var(--bg);stroke:var(--spine);stroke-width:1}.term-branches .milestone-node{fill:var(--accent);stroke:var(--accent)}
+
+/* Keep the teaching title and the full university name on two distinct lines. */
+#ta-title { text-wrap:initial; }
+#ta-title .ta-title-line { display:block; white-space:nowrap; }
+#ta-title .ta-title-line + .ta-title-line { margin-top:.18em; }
 </style>
 </head>
 <body id="top">
@@ -57,8 +62,9 @@ html,body{height:100%;overflow:hidden}.shell{height:100vh;height:100dvh;display:
  </header>
  <main>
   <section class="hero" aria-labelledby="ta-title">
-   <h1 id="ta-title">Teaching Assistantships in Iran University of Science and Technology 2021–2025<span class="accent">.</span></h1>
-   <p class="intro"> <span><span class="separator" aria-hidden="true">·</span> </span></p>
+   <h1 id="ta-title"><span class="ta-title-line">Teaching Assistantships in 2021–2025<span class="accent">.</span></span>
+   <span class="ta-title-line">Iran University of Science and Technology (IUST)<span class="accent">.</span></span></h1>
+   
   </section>
   <div class="timeline-window">
   <div class="timeline" id="ta-history" role="region" tabindex="0" aria-label="Scrollable undergraduate teaching timeline, Fall 2021 to Fall 2025">
@@ -291,5 +297,31 @@ html,body{height:100%;overflow:hidden}.shell{height:100vh;height:100dvh;display:
   new ResizeObserver(connect).observe(group);
   document.fonts.ready.then(connect);connect();
  })();
- </script></body>
+ </script>
+<script>
+/* Fit each heading line within the available width without breaking the university name. */
+(() => {
+  const title = document.querySelector('#ta-title');
+  if (!title) return;
+  const lines = Array.from(title.querySelectorAll('.ta-title-line'));
+  const hero = title.closest('.hero');
+  function fitTitle() {
+    const available = title.clientWidth;
+    if (!available) return;
+    const base = parseFloat(getComputedStyle(title).fontSize);
+    for (const line of lines) {
+      line.style.fontSize = `${base}px`;
+      const needed = line.scrollWidth;
+      if (needed > available) {
+        line.style.fontSize = `${(base * (available - 2) / needed).toFixed(2)}px`;
+      }
+    }
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(fitTitle).observe(hero);
+  else window.addEventListener('resize', fitTitle, {passive:true});
+  if (document.fonts) document.fonts.ready.then(fitTitle);
+  fitTitle();
+})();
+</script>
+</body>
 </html>
