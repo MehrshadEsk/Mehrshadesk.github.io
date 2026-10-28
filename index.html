@@ -677,5 +677,34 @@ document.querySelectorAll('#experience [data-toggle-card], #teaching [data-toggl
   });
 });
 </script>
+<script>
+/* Fit the complete profile tagline onto one line without changing its words.
+   Both lines keep exactly the same type size, font and color. */
+(() => {
+  const identity = document.querySelector('.hero-identity');
+  const summary = identity?.querySelector('.hero-summary');
+  const note = summary?.querySelector('.hero-summary-note');
+  if (!identity || !summary || !note) return;
+
+  const fitTagline = () => {
+    summary.style.fontSize = '18px';
+    const available = note.clientWidth;
+    if (!available) return;
+    const needed = note.scrollWidth;
+    if (needed > available) {
+      summary.style.fontSize = `${(18 * available / needed * 0.98).toFixed(2)}px`;
+    }
+  };
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(fitTagline).observe(identity);
+  } else {
+    window.addEventListener('resize', fitTagline);
+  }
+  if (document.fonts?.ready) document.fonts.ready.then(fitTagline);
+  window.addEventListener('load', fitTagline, { once: true });
+  fitTagline();
+})();
+</script>
 </body>
 </html>

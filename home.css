@@ -121,3 +121,19 @@
   .home-page #experience .timeline-row,
   .home-page #teaching .teaching-card { transition: none; }
 }
+
+
+/* Keep the complete tagline on one line at every screen width.
+   Container-relative type keeps both profile lines identical in style and
+   scales them down together on phones rather than overflowing the page. */
+.home-page .hero-identity {
+  min-width: 0;
+  container-type: inline-size;
+}
+.home-page .hero-summary {
+  max-width: 100%;
+  font-size: min(18px, 2.8cqw);
+}
+.home-page .hero-summary .hero-summary-note {
+  white-space: nowrap;
+}
