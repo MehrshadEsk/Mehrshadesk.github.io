@@ -27,3 +27,97 @@
 @media(max-width:760px){.home-page #research .research-cards{grid-template-columns:minmax(0,1fr);gap:20px}.home-page #research .research-card{padding:22px}.home-page #research .research-preview{margin-bottom:20px}}
 @media(prefers-reduced-motion:reduce){.home-page #research .research-card{transition:none}}
 @media(max-width:760px){.home-page .hero{padding-bottom:44px}.bio-copy{font-size:15px;line-height:1.9}.role-meta{flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap}.role-meta .date{padding-top:0}.experience-group+.experience-group{margin-top:40px;padding-top:28px}}
+
+
+/* Profile summary: identical text styling for both lines. */
+.home-page .hero-summary .hero-summary-role,
+.home-page .hero-summary .hero-summary-note {
+  display: block;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-style: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: none !important;
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+/* Distinct rectangular cards, rather than horizontal divider lines. */
+.home-page #experience .timeline,
+.home-page #teaching .teaching-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+.home-page #experience .timeline-row,
+.home-page #teaching .teaching-card {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--line, #c7c7c7);
+  border-radius: 0;
+  background: var(--surface, transparent);
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+.home-page #experience .timeline-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 150px) minmax(0, 1fr);
+  gap: 24px;
+}
+.home-page #experience .timeline-row:hover,
+.home-page #experience .timeline-row.is-expanded,
+.home-page #teaching .teaching-card:hover,
+.home-page #teaching .teaching-card.is-expanded {
+  border-color: var(--accent);
+}
+.home-page #experience .timeline-row:focus-visible,
+.home-page #teaching .teaching-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.home-page #experience .timeline-row::after,
+.home-page #teaching .teaching-card::after {
+  content: '+';
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1;
+  pointer-events: none;
+}
+.home-page #experience .timeline-row.is-expanded::after,
+.home-page #teaching .teaching-card.is-expanded::after { content: '−'; }
+.home-page #experience .timeline-row h3,
+.home-page #teaching .teaching-card h3 { padding-right: 24px; }
+.home-page #experience .click-description,
+.home-page #teaching .click-description {
+  display: none !important;
+  margin-top: 18px;
+}
+.home-page #experience .timeline-row.is-expanded .click-description,
+.home-page #teaching .teaching-card.is-expanded .click-description {
+  display: block !important;
+}
+.home-page #experience .click-description p,
+.home-page #teaching .click-description p {
+  margin-bottom: 0;
+  line-height: 1.8;
+}
+.home-page #experience .experience-group + .experience-group {
+  border-top: none;
+}
+@media (max-width: 760px) {
+  .home-page #experience .timeline-row { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .home-page #experience .timeline-row,
+  .home-page #teaching .teaching-card { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page #experience .timeline-row,
+  .home-page #teaching .teaching-card { transition: none; }
+}
