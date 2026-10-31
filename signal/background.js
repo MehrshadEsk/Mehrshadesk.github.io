@@ -1,205 +1,185 @@
-/* A self-contained WebGL point-cloud volume: no CDN, fonts, trackers or libraries. */
+/* Procedural image samples, a Sobel edge map and a moving 3x3 kernel.
+   Perspective-projected voxel faces; no libraries, assets or network requests. */
 (() => {
   'use strict';
   const canvas = document.getElementById('scene');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'low-power' });
-  if (!gl) { fallback(); return; }
-  const vertex = `
-    attribute vec3 aPos;
-    attribute float aKind;
-    uniform float uTime;
-    uniform float uAspect;
-    uniform float uMobile;
-    uniform vec2 uPointer;
-    varying float vAlpha;
-    varying float vScan;
-    varying float vKind;
-    void main(){
-      float t=uTime;
-      vec3 p=aPos;
-      float kind=aKind;
-      if(kind<.5){
-        float pulse=sin(p.x*5.+t*.46)*cos(p.y*4.-t*.22)*sin(p.z*5.+t*.3);
-        p*=1.+pulse*.045;
-      }
-      float ry=t*.072+uPointer.x*.13;
-      float rx=-.24+sin(t*.11)*.07+uPointer.y*.07;
-      p.xz=mat2(cos(ry),-sin(ry),sin(ry),cos(ry))*p.xz;
-      p.yz=mat2(cos(rx),-sin(rx),sin(rx),cos(rx))*p.yz;
-      float perspective=3.8/(4.8+p.z);
-      vec2 xy=p.xy*perspective*.79;
-      xy.x/=uAspect;
-      xy+=vec2(mix(-.42,0.,uMobile),mix(.03,.19,uMobile));
-      gl_Position=vec4(xy,p.z*.08,1.);
-      float scan=exp(-pow((p.y-sin(t*.35)*1.65)*9.,2.));
-      gl_PointSize=clamp((1.8+scan*1.7)*perspective,1.,3.8);
-      vAlpha=(.22+.46*(1.-smoothstep(-1.6,1.5,p.z)))*(kind>.5?.36:1.);
-      vScan=scan;
-      vKind=kind;
-    }`;
-  const fragment = `
-    precision mediump float;
-    varying float vAlpha;
-    varying float vScan;
-    varying float vKind;
-    void main(){
-      float d=length(gl_PointCoord-.5)*2.;
-      if(d>1.) discard;
-      vec3 base=mix(vec3(.51,.12,.23),vec3(.93,.42,.15),vScan*.85);
-      if(vKind>.5)base=mix(base,vec3(.61,.25,.32),.55);
-      gl_FragColor=vec4(base,vAlpha*(1.-d*.6));
-    }`;
-  function shader(type, source) {
-    const s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error('Shader unavailable');
-    return s;
-  }
-  let program;
-  try {
-    program = gl.createProgram();
-    gl.attachShader(program, shader(gl.VERTEX_SHADER, vertex));
-    gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragment));
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('WebGL unavailable');
-  } catch { fallback(); return; }
-  gl.useProgram(program);
-  const points = [];
-  // Image samples mapped onto a displaced, spherical 3D manifold.
-  const mobile = innerWidth <= 720;
-  const rows = mobile ? 74 : 105, columns = mobile ? 122 : 182;
-  for (let y = 1; y < rows; y++) {
-    const lat = y / rows * Math.PI;
-    for (let x = 0; x < columns; x++) {
-      const lon = x / columns * Math.PI * 2;
-      const r = 1.37 + .1 * Math.sin(lat*7 + Math.cos(lon*3)) * Math.cos(lon*6) + .055*Math.sin(lat*15+lon*8);
-      const px = Math.sin(lat)*Math.cos(lon), py = Math.cos(lat), pz = Math.sin(lat)*Math.sin(lon);
-      // Open sampling seams make depth and the reconstruction structure visible.
-      if (Math.sin(lon*3+lat*2)>.97 && y%9>2) continue;
-      points.push(px*r, py*r, pz*r, 0);
-    }
-  }
-  // Three sparse, floating image planes and their 3D frame edges.
-  for (let layer=0;layer<3;layer++) {
-    const z = (layer-1)*1.62;
-    for (let y=0;y<=40;y++) for(let x=0;x<=40;x++) {
-      const edge = x===0||x===40||y===0||y===40;
-      if (!edge && (x%4!==0 || y%4!==0)) continue;
-      points.push((x/40-.5)*3.62,(y/40-.5)*3.62,z,1);
-    }
-  }
-  const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(points),gl.STATIC_DRAW);
-  const pos=gl.getAttribLocation(program,'aPos'),kind=gl.getAttribLocation(program,'aKind');
-  gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,3,gl.FLOAT,false,16,0);
-  gl.enableVertexAttribArray(kind);gl.vertexAttribPointer(kind,1,gl.FLOAT,false,16,12);
-  const uTime=gl.getUniformLocation(program,'uTime'),uAspect=gl.getUniformLocation(program,'uAspect'),uMobile=gl.getUniformLocation(program,'uMobile'),uPointer=gl.getUniformLocation(program,'uPointer');
-  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
-  let paused=reduced.matches,raf=0,elapsed=0,last=0,pointer=[0,0],lastDraw=0;
-  function size(){
-    const dpr=Math.min(devicePixelRatio||1,1.5);
-    canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);
-    gl.viewport(0,0,canvas.width,canvas.height);
-    gl.uniform1f(uAspect,innerWidth/innerHeight);gl.uniform1f(uMobile,innerWidth<=720?1:0);
-    draw();
-  }
-  function draw(){
-    gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform1f(uTime,elapsed+12);gl.uniform2fv(uPointer,pointer);
-    gl.drawArrays(gl.POINTS,0,points.length/4);
-  }
-  function tick(now){
-    if(paused||document.hidden){raf=0;return;}
-    if(last)elapsed+=Math.min((now-last)/1000,.06);last=now;
-    if(now-lastDraw>32){draw();lastDraw=now;}
-    raf=requestAnimationFrame(tick);
-  }
-  function sync(){
-    cancelAnimationFrame(raf);raf=0;last=0;
-    if(!paused&&!document.hidden)raf=requestAnimationFrame(tick);
-  }
-  reduced.addEventListener('change',e=>{paused=e.matches;sync();draw();});
-  document.addEventListener('visibilitychange',sync);
-  window.addEventListener('resize',size,{passive:true});
-  window.addEventListener('pointermove',e=>{pointer=[e.clientX/innerWidth-.5,e.clientY/innerHeight-.5];},{passive:true});
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();paused=true;sync();fallback();});
-  size();sync();
+  const N = 26;
+  const extent = 2.94;
+  const step = extent / N;
+  const pixels = [];
+  const image = [];
+  const edges = [];
+  const orange = [237, 106, 39];
+  const burgundy = [130, 30, 58];
+  let width = 0, height = 0, unit = 1, cx = 0, cy = 0;
+  let raf = 0, last = 0, drawn = 0, time = 0;
+  let pointer = [0, 0], eased = [0, 0];
+  let sinY, cosY, sinX, cosX;
 
-  function fallback() {
-    // Real perspective projection of the same sampled volume, for WebGL-disabled
-    // browsers. This path also keeps the background usable on older hardware.
-    const surface = document.createElement('canvas');
-    surface.id = 'scene'; surface.setAttribute('aria-hidden', 'true');
-    canvas.replaceWith(surface);
-    const ctx = surface.getContext('2d', { alpha: true });
-    if (!ctx) return;
-    const cloud = [];
-    const rings = innerWidth < 720 ? 43 : 60;
-    const segments = innerWidth < 720 ? 75 : 104;
-    for (let y = 1; y < rings; y++) {
-      const lat = y / rings * Math.PI;
-      for (let x = 0; x < segments; x++) {
-        const lon = x / segments * Math.PI * 2;
-        if (Math.sin(lon * 3 + lat * 2) > .97 && y % 9 > 2) continue;
-        const r = 1.37 + .1 * Math.sin(lat*7+Math.cos(lon*3))*Math.cos(lon*6) + .055*Math.sin(lat*15+lon*8);
-        cloud.push([Math.sin(lat)*Math.cos(lon)*r, Math.cos(lat)*r, Math.sin(lat)*Math.sin(lon)*r]);
-      }
+  // Synthetic grayscale image. Its samples become individual square voxels.
+  for (let row = 0; row < N; row++) {
+    image[row] = [];
+    for (let col = 0; col < N; col++) {
+      const x = (col + .5) / N * 2 - 1;
+      const y = (row + .5) / N * 2 - 1;
+      const radius = Math.hypot(x + .08, y - .06);
+      const ring = Math.exp(-Math.pow((radius - .52) * 7.2, 2));
+      const core = Math.exp(-((x - .20) ** 2 + (y + .16) ** 2) * 10);
+      const diagonal = Math.exp(-Math.pow((x + y * .65 + .24) * 4, 2)) * .22;
+      const window = Math.pow(Math.max(0, 1 - Math.max(Math.abs(x), Math.abs(y)) ** 4), 2);
+      image[row][col] = Math.min(1, (.14 + .64 * ring + .42 * core + diagonal) * window);
     }
-    let width=0,height=0,dpr=1,stopped=reduced.matches,time=12,previous=0,frame=0,painted=0;
-    let pointerX=0,pointerY=0;
-    function resize() {
-      width=innerWidth; height=innerHeight; dpr=Math.min(devicePixelRatio||1,1.3);
-      surface.width=width*dpr;surface.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);paint();
-    }
-    function project(point) {
-      const ry=time*.072+pointerX*.13,rx=-.24+Math.sin(time*.11)*.07+pointerY*.07;
-      let x=point[0]*Math.cos(ry)-point[2]*Math.sin(ry),z=point[0]*Math.sin(ry)+point[2]*Math.cos(ry);
-      const y=point[1]*Math.cos(rx)-z*Math.sin(rx);z=point[1]*Math.sin(rx)+z*Math.cos(rx);
-      const scale=3.8/(4.8+z),unit=Math.min(height*.31,width*(width<721?.38:.25));
-      return [width*(width<721?.5:.285)+x*scale*unit,height*(width<721?.40:.49)-y*scale*unit,z,y,scale];
-    }
-    function paint() {
-      ctx.clearRect(0,0,width,height);
-      // Reconstructed samples glow at the moving cross-sectional scan.
-      const scan=Math.sin(time*.35)*1.65;
-      const samples=cloud.map(p=>project(p)).sort((a,b)=>b[2]-a[2]);
-      for(const p of samples) {
-        const hit=Math.exp(-Math.pow((p[3]-scan)*9,2));
-        const alpha=.18+(.5*(1.6-p[2])/3.2);
-        ctx.fillStyle=hit>.22?`rgba(237,106,39,${Math.min(.9,alpha+hit*.35)})`:`rgba(130,30,58,${alpha})`;
-        const s=Math.max(.7,(1.15+hit*.8)*p[4]);ctx.fillRect(p[0],p[1],s,s);
-      }
-      // Perspective image planes, sampling grids and corner brackets.
-      ctx.lineWidth=.7;
-      for(let l=-1;l<=1;l++) {
-        for(let axis=0;axis<2;axis++) for(let line=0;line<=8;line++) {
-          const fixed=(line/8-.5)*3.62;
-          const a=axis?[fixed,-1.81,l*1.62]:[-1.81,fixed,l*1.62];
-          const b=axis?[fixed,1.81,l*1.62]:[1.81,fixed,l*1.62];
-          const pa=project(a),pb=project(b);
-          ctx.strokeStyle=line===0||line===8?'rgba(130,30,58,.18)':'rgba(130,30,58,.045)';
-          ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();
-        }
-        ctx.strokeStyle='rgba(237,106,39,.46)';ctx.lineWidth=1;
-        for(const x of [-1,1])for(const y of [-1,1]) {
-          const a=project([x*1.81,y*1.55,l*1.62]),b=project([x*1.81,y*1.81,l*1.62]),c=project([x*1.55,y*1.81,l*1.62]);
-          ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.lineTo(c[0],c[1]);ctx.stroke();
-        }
-      }
-    }
-    function animate(now) {
-      if(stopped||document.hidden){frame=0;return;}
-      if(previous)time+=Math.min((now-previous)/1000,.06);previous=now;
-      if(now-painted>40){paint();painted=now;}
-      frame=requestAnimationFrame(animate);
-    }
-    function state() {
-      cancelAnimationFrame(frame);previous=0;
-      if(!stopped&&!document.hidden)frame=requestAnimationFrame(animate);
-    }
-    reduced.addEventListener('change',e=>{stopped=e.matches;state();paint();});
-    document.addEventListener('visibilitychange',state);
-    window.addEventListener('resize',resize,{passive:true});
-    window.addEventListener('pointermove',e=>{pointerX=e.clientX/innerWidth-.5;pointerY=e.clientY/innerHeight-.5;},{passive:true});
-    resize();state();
   }
+  const sample = (r, c) => image[Math.max(0, Math.min(N - 1, r))][Math.max(0, Math.min(N - 1, c))];
+  for (let row = 0; row < N; row++) {
+    edges[row] = [];
+    for (let col = 0; col < N; col++) {
+      const gx = -sample(row-1,col-1) + sample(row-1,col+1) - 2*sample(row,col-1) + 2*sample(row,col+1) - sample(row+1,col-1) + sample(row+1,col+1);
+      const gy = -sample(row-1,col-1) - 2*sample(row-1,col) - sample(row-1,col+1) + sample(row+1,col-1) + 2*sample(row+1,col) + sample(row+1,col+1);
+      edges[row][col] = Math.min(1, Math.hypot(gx, gy) * .83);
+      pixels.push({ x: (col+.5)*step-extent/2, y: extent/2-(row+.5)*step, row, col, value: image[row][col], edge: edges[row][col] });
+    }
+  }
+
+  function project(x, y, z) {
+    const xx = x*cosY + z*sinY;
+    const zz = -x*sinY + z*cosY;
+    const yy = y*cosX - zz*sinX;
+    const depth = y*sinX + zz*cosX;
+    const perspective = 6.4 / (6.4-depth);
+    return [cx + xx*unit*perspective, cy - yy*unit*perspective, depth];
+  }
+  function polygon(points, fill, stroke, lineWidth = .55) {
+    ctx.beginPath();
+    ctx.moveTo(points[0][0], points[0][1]);
+    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i][0], points[i][1]);
+    ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.lineWidth = lineWidth; ctx.strokeStyle = stroke; ctx.stroke(); }
+  }
+  function rgba(color, alpha) { return `rgba(${color[0]},${color[1]},${color[2]},${alpha})`; }
+  function color(value) {
+    const blend = Math.max(0, Math.min(1, (value-.12)*1.16));
+    return burgundy.map((v, i) => Math.round(v + (orange[i]-v)*blend));
+  }
+  function frame(z, offset, opacity) {
+    const s = extent/2 + .10;
+    const corner = .19;
+    const p = (x, y) => project(x+offset, y+offset*.45, z);
+    polygon([p(-s,-s),p(s,-s),p(s,s),p(-s,s)], null, `rgba(130,30,58,${opacity*.26})`, .65);
+    for (const x of [-1, 1]) for (const y of [-1, 1]) {
+      const a = p(x*s,y*(s-corner)), b = p(x*s,y*s), c = p(x*(s-corner),y*s);
+      ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.lineTo(c[0],c[1]);
+      ctx.strokeStyle = rgba(orange, opacity); ctx.lineWidth = 1; ctx.stroke();
+    }
+  }
+  function imagePlane(z, offset, edgeMap) {
+    const half = step * .405;
+    for (const pixel of pixels) {
+      const value = edgeMap ? pixel.edge : pixel.value;
+      if (value < .035) continue;
+      const x = pixel.x+offset, y = pixel.y+offset*.45;
+      const corners = [project(x-half,y-half,z),project(x+half,y-half,z),project(x+half,y+half,z),project(x-half,y+half,z)];
+      polygon(corners, rgba(edgeMap?burgundy:orange, .025 + value*.10));
+    }
+    frame(z, offset, .26);
+  }
+  function paint() {
+    ctx.clearRect(0,0,width,height);
+    eased[0] += (pointer[0]-eased[0])*.07;
+    eased[1] += (pointer[1]-eased[1])*.07;
+    const rotationY = -.43 + Math.sin(time*.17)*.12 + eased[0]*.10;
+    const rotationX = .25 + Math.cos(time*.13)*.055 - eased[1]*.07;
+    sinY=Math.sin(rotationY);cosY=Math.cos(rotationY);sinX=Math.sin(rotationX);cosX=Math.cos(rotationX);
+
+    // A soft ground shadow separates the floating matrix from the white page.
+    const shadowY = cy + extent*unit*.63;
+    ctx.save(); ctx.translate(cx+12, shadowY); ctx.scale(1,.19);
+    const shadow = ctx.createRadialGradient(0,0,0,0,0,unit*1.62);
+    shadow.addColorStop(0,'rgba(130,30,58,.07)');shadow.addColorStop(1,'rgba(130,30,58,0)');
+    ctx.fillStyle=shadow;ctx.beginPath();ctx.arc(0,0,unit*1.62,0,Math.PI*2);ctx.fill();ctx.restore();
+
+    // Two quieter image layers reveal the depth of the processing stack.
+    imagePlane(-1.02, -.10, true);
+    imagePlane(-.55, -.04, false);
+    frame(-.08, 0, .48);
+
+    const scan = (Math.sin(time*.39-.5)*.5+.5)*(extent+.3)-extent/2-.15;
+    const kernelX = Math.round((Math.sin(time*.27)*.5+.5)*(N-5))+2;
+    const kernelY = Math.round((Math.sin(time*.19+1.1)*.5+.5)*(N-5))+2;
+    const mix = .13 + (Math.sin(time*.18)*.5+.5)*.16;
+    const faces = [];
+    const half = step*.413;
+    const baseZ = -.035;
+    const addFace = (vertices,fill,stroke) => {
+      const points = vertices.map(p=>project(p[0],p[1],p[2]));
+      faces.push({ points, fill, stroke, depth: points.reduce((sum,p)=>sum+p[2],0)/points.length });
+    };
+    for (const pixel of pixels) {
+      const {x,y,row,col} = pixel;
+      const value = pixel.value*(1-mix)+pixel.edge*mix;
+      const band = Math.exp(-Math.pow((x-scan)*6.4,2));
+      const kernel = Math.abs(col-kernelX)<=1 && Math.abs(row-kernelY)<=1;
+      const z = .025 + Math.round(value*8)/8*.59 + band*.045;
+      const x0=x-half,x1=x+half,y0=y-half,y1=y+half;
+      let front = color(value);
+      if (band>.25 || kernel) front=orange;
+      const alpha = .13 + Math.pow(value,.68)*.79 + band*.06;
+      const sideColor = color(value*.45);
+      // Positive X and Y faces are visible from the selected camera angle.
+      if (value>.075) {
+        addFace([[x1,y0,baseZ],[x1,y1,baseZ],[x1,y1,z],[x1,y0,z]],rgba(sideColor,Math.min(.65,alpha*.72)));
+        addFace([[x0,y1,baseZ],[x1,y1,baseZ],[x1,y1,z],[x0,y1,z]],rgba(front,Math.min(.68,alpha*.75)));
+      }
+      addFace([[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z]],rgba(front,Math.min(.98,alpha)),kernel?'rgba(237,106,39,.85)':null);
+    }
+    faces.sort((a,b)=>a.depth-b.depth);
+    for (const face of faces) polygon(face.points,face.fill,face.stroke);
+
+    // A thin orange scan plane travels across the square pixel volume.
+    if (scan>-extent/2 && scan<extent/2) {
+      const scanPlane=[project(scan,-extent/2,-.10),project(scan,extent/2,-.10),project(scan,extent/2,.72),project(scan,-extent/2,.72)];
+      polygon(scanPlane,'rgba(237,106,39,.035)','rgba(237,106,39,.27)',.7);
+    }
+    // The projected 3x3 kernel marks a real neighbourhood in the source image.
+    const centerX=(kernelX+.5)*step-extent/2,centerY=extent/2-(kernelY+.5)*step;
+    const h=step*1.52;
+    const kernelZ=.79;
+    const corners=[project(centerX-h,centerY-h,kernelZ),project(centerX+h,centerY-h,kernelZ),project(centerX+h,centerY+h,kernelZ),project(centerX-h,centerY+h,kernelZ)];
+    polygon(corners,'rgba(237,106,39,.025)','rgba(237,106,39,.78)',1);
+    // One faint projection ray links the filter window to the edge-map layer.
+    const source=project(centerX,centerY,-1.02),target=project(centerX,centerY,kernelZ);
+    ctx.beginPath();ctx.moveTo(source[0],source[1]);ctx.lineTo(target[0],target[1]);ctx.setLineDash([2,5]);
+    ctx.strokeStyle='rgba(130,30,58,.16)';ctx.lineWidth=.6;ctx.stroke();ctx.setLineDash([]);
+  }
+  function resize() {
+    width=innerWidth;height=innerHeight;
+    const ratio=Math.min(devicePixelRatio||1,1.5);
+    canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+    const mobile=width<=720;
+    unit=mobile?Math.min(width*.19,height*.13):Math.min(width*.112,height*.175);
+    cx=width*(mobile?.44:.285);cy=height*(mobile?.40:.515);
+    paint();
+  }
+  function animate(now) {
+    if (reduced.matches||document.hidden) { raf=0;return; }
+    if (last) time+=Math.min((now-last)/1000,.075);
+    last=now;
+    if (now-drawn>=38) { paint();drawn=now; }
+    raf=requestAnimationFrame(animate);
+  }
+  function sync() {
+    cancelAnimationFrame(raf);raf=0;last=0;
+    if (!reduced.matches&&!document.hidden) raf=requestAnimationFrame(animate);
+    else if (!document.hidden) paint();
+  }
+  reduced.addEventListener('change',sync);
+  document.addEventListener('visibilitychange',sync);
+  window.addEventListener('resize',resize,{passive:true});
+  window.addEventListener('pointermove',event=>{pointer=[event.clientX/width-.5,event.clientY/height-.5];},{passive:true});
+  resize();sync();
 })();
