@@ -470,7 +470,7 @@ function tick(now){
   animation=0;
   for(const model of instances){
     if(!model.visible||model.lost)continue;
-    const interval=1000/(model.renderer.isSoftwareRenderer?(model.compact?10:16):(model.compact?18:30));
+    const interval=1000/(model.renderer.isSoftwareRenderer?(model.compact?10:16):(model.compact?24:30));
     if(model.last&&now-model.last<interval)continue;
     const dt=model.last?Math.min(.09,(now-model.last)/1000):0;model.last=now;model.time+=dt;model.draw();
   }

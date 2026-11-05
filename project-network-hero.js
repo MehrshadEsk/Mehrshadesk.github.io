@@ -1,37 +1,63 @@
-/* Load the locally bundled 3D engine only when a research visual approaches.
-   Figures remain useful without JavaScript or WebGL. No third-party requests. */
+/* Fetch the shared 3D engine ahead of scrolling, then build each scene near view. */
 (() => {
   'use strict';
-  const hosts=[...document.querySelectorAll('[data-network-scene], [data-research-motion]')];
-  if(!hosts.length)return;
+  const hosts = [...document.querySelectorAll('[data-network-scene], [data-research-motion]')];
+  if (!hosts.length) return;
+
   let engine;
-  const states=hosts.map(host=>({host,visible:false,pending:false,scene:null}));
-  async function activate(state){
-    if(state.pending||state.scene)return;
-    state.pending=true;
-    try{
-      engine ||= import('./research-3d-scenes.js?v=20261022-voice-v8');
-      const {createResearchScene}=await engine;
-      state.scene=createResearchScene(state.host,{
-        type:state.host.dataset.networkScene||state.host.dataset.researchMotion,
-        compact:!!state.host.closest('.research-preview')
+  const states = new Map(hosts.map(host => [host, { visible: false, pending: false, scene: null }]));
+
+  function loadEngine() {
+    engine ||= import('./research-3d-scenes.js?v=20261104-loading').catch(error => {
+      engine = undefined;
+      throw error;
+    });
+    return engine;
+  }
+
+  async function activate(host, state) {
+    if (state.pending || state.scene) return;
+    state.pending = true;
+    try {
+      const { createResearchScene } = await loadEngine();
+      if (!state.visible) return;
+      state.scene = createResearchScene(host, {
+        type: host.dataset.networkScene || host.dataset.researchMotion,
+        compact: !!host.closest('.research-preview')
       });
-      state.scene.setVisible(state.visible);
-    }catch(error){
-      state.host.dataset.motionState='fallback';
-      // Static, label-free vector artwork remains in place if WebGL is absent.
-      console.info('Research visual: using the static illustration.');
+      state.scene.setVisible(true);
+    } catch {
+      host.dataset.motionState = 'fallback';
+    } finally {
+      state.pending = false;
     }
   }
-  if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>{
-      for(const entry of entries){
-        const state=states.find(s=>s.host===entry.target);
-        state.visible=entry.isIntersecting;
-        if(state.visible)activate(state);
-        state.scene?.setVisible(state.visible);
+
+  if ('IntersectionObserver' in window) {
+    const preload = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      preload.disconnect();
+      // Keep the SVG visible if preloading fails.
+      loadEngine().catch(() => {});
+    }, { rootMargin: '800px 0px' });
+
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        const state = states.get(entry.target);
+        state.visible = entry.isIntersecting;
+        if (state.scene) state.scene.setVisible(state.visible);
+        else if (state.visible) activate(entry.target, state);
       }
-    },{rootMargin:'120px 0px',threshold:0});
-    states.forEach(s=>observer.observe(s.host));
-  }else states.forEach(s=>{s.visible=true;activate(s);});
+    }, { rootMargin: '120px 0px' });
+
+    for (const host of hosts) {
+      preload.observe(host);
+      observer.observe(host);
+    }
+  } else {
+    for (const [host, state] of states) {
+      state.visible = true;
+      activate(host, state);
+    }
+  }
 })();
