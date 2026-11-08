@@ -1,0 +1,19 @@
+/* Homepage and research directions: static graphics, no visual motion.
+ * SVG artwork remains in the HTML. The dynamic 3D scene loader is not included.
+ * Navigation, accordions, theme switching and card expansion still work. */
+html {
+  scroll-behavior: auto !important;
+}
+body.home-page, body.research-page,
+body.home-page *, body.research-page *,
+body.home-page *::before, body.research-page *::before,
+body.home-page *::after, body.research-page *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+/* Guard against a canvas being added by another cached script. */
+body.home-page .research-network-canvas,
+body.research-page .research-network-canvas {
+  display: none !important;
+}
