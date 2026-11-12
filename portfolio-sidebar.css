@@ -600,9 +600,10 @@
   margin: 0 0 9px;
   font-size: 12.5px;
   line-height: 1.66;
-  text-align: left;
+  text-align: justify;
   text-align-last: left;
-  hyphens: none;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 .home-page .contact-postscript p:last-child { margin-bottom: 0; color: var(--ink); }
 .home-page .contact-actions { min-width: 0; padding-top: 4px; }
