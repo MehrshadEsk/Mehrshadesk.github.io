@@ -1,118 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600" role="img"><defs>
-  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0D2031"/><stop offset=".54" stop-color="#162F41"/><stop offset="1" stop-color="#102333"/></linearGradient>
-  <radialGradient id="aura"><stop stop-color="#258CA5" stop-opacity=".25"/><stop offset="1" stop-color="#258CA5" stop-opacity="0"/></radialGradient>
-  <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#49778E" stop-opacity=".18"/><stop offset=".52" stop-color="#72CED5" stop-opacity=".9"/><stop offset="1" stop-color="#49778E" stop-opacity=".35"/></linearGradient>
-  <filter id="halo" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="5"/></filter>
-  <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M 42 0 L 0 0 0 42" fill="none" stroke="#B6D3DD" stroke-opacity=".055" stroke-width="1"/></pattern>
-  <pattern id="dots" width="21" height="21" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".95" fill="#8AB4C3" opacity=".12"/></pattern>
-  <style>
-  .wire{fill:none;stroke:#6193A8;stroke-width:1.7;stroke-opacity:.42;stroke-linecap:round;stroke-linejoin:round}
-  .wire-strong{fill:none;stroke:url(#line);stroke-width:2.1;stroke-linecap:round}
-  .detail{fill:none;stroke:#8EC2D0;stroke-opacity:.31;stroke-width:1.35}
-  .soft{fill:#9AD0DD;opacity:.3}
-  .pulse{animation:signal 4.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
-  .pulse-later{animation-delay:-1.7s}
-  .pulse-last{animation-delay:-3.1s}
-  .trace{stroke-dasharray:5 14;animation:flow 14s linear infinite}
-  .trace-reverse{animation-direction:reverse}
-  @keyframes signal {0%,100%{opacity:.4}50%{opacity:1}}
-  @keyframes flow {to {stroke-dashoffset:-190}}
-  @media(prefers-reduced-motion: reduce){*{animation:none!important} animate,animateMotion {display:none}}
-  </style>
-</defs>
-<rect width="960" height="600" fill="url(#background)"/>
-<rect width="960" height="600" fill="url(#grid)"/>
-<rect x="24" y="24" width="912" height="552" rx="12" fill="none" stroke="#96B6C5" stroke-opacity=".17"/>
-<path d="M47 24 H24 V47 M913 24 H936 V47 M47 576 H24 V553 M913 576 H936 V553" stroke="#7FC3CE" stroke-opacity=".4" stroke-width="2" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="t d">
+  <title id="t">Secure computing illustration</title>
+  <desc id="d">A light, realistic vector illustration of a secure processor with animated data flow on a circuit board.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbfe"/>
+      <stop offset="100%" stop-color="#ebf3f8"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#edf5fb"/>
+      <stop offset="100%" stop-color="#dcebf5"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d6278"/>
+      <stop offset="100%" stop-color="#274e63"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .trace{fill:none;stroke:#8fb6cc;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5 10;animation:dash 12s linear infinite}
+      .trace.rev{animation-direction:reverse}
+      .packet{filter:url(#glow)}
+      .packet1{animation:p1 7s linear infinite}
+      .packet2{animation:p2 6s linear infinite}
+      .packet3{animation:p3 5.5s linear infinite}
+      .packet4{animation:p4 8s linear infinite}
+      .chipGlow{animation:soft 3.2s ease-in-out infinite}
+      .scan{animation:scan 3.8s ease-in-out infinite}
+      @keyframes dash{to{stroke-dashoffset:-180}}
+      @keyframes soft{0%,100%{opacity:.6}50%{opacity:1}}
+      @keyframes scan{0%{transform:translateY(-22px);opacity:0}15%{opacity:.45}50%{opacity:.6}85%{opacity:.45}100%{transform:translateY(24px);opacity:0}}
+      @keyframes p1{0%{transform:translate(0,0)}100%{transform:translate(198px,-106px)}}
+      @keyframes p2{0%{transform:translate(0,0)}100%{transform:translate(-186px,-98px)}}
+      @keyframes p3{0%{transform:translate(0,0)}100%{transform:translate(186px,88px)}}
+      @keyframes p4{0%{transform:translate(0,0)}100%{transform:translate(-198px,100px)}}
+      @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+    </style>
+  </defs>
 
-<title>Cryptographic computing processor with animated encryption and verified data flow</title>
-<ellipse cx="485" cy="302" rx="330" ry="245" fill="url(#aura)"/>
-<g fill="none" stroke="#6C9AAD" stroke-width="1.7" stroke-opacity=".5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M112 125 H151 L190 205 H349"/>
-<path d="M96 216 H147 L198 244 H349"/>
-<path d="M82 307 H138 L195 302 H349"/>
-<path d="M107 411 H155 L204 367 H349"/>
-<path d="M171 493 H198 L226 397 H349"/>
-<path d="M848 125 H813 L778 204 H614"/>
-<path d="M865 218 H816 L767 247 H614"/>
-<path d="M875 313 H819 L764 304 H614"/>
-<path d="M842 411 H801 L761 367 H614"/>
-<path d="M776 496 H754 L732 398 H614"/>
-</g>
-<circle cx="112" cy="125" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="112" cy="125" r="2" fill="#D3BE87"/>
-<circle cx="96" cy="216" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="96" cy="216" r="2" fill="#D3BE87"/>
-<circle cx="82" cy="307" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="82" cy="307" r="2" fill="#D3BE87"/>
-<circle cx="107" cy="411" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="107" cy="411" r="2" fill="#D3BE87"/>
-<circle cx="171" cy="493" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="171" cy="493" r="2" fill="#D3BE87"/>
-<circle cx="848" cy="125" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="848" cy="125" r="2" fill="#D3BE87"/>
-<circle cx="865" cy="218" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="865" cy="218" r="2" fill="#D3BE87"/>
-<circle cx="875" cy="313" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="875" cy="313" r="2" fill="#D3BE87"/>
-<circle cx="842" cy="411" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="842" cy="411" r="2" fill="#D3BE87"/>
-<circle cx="776" cy="496" r="5" fill="#183C4D" stroke="#80CFD1" stroke-width="1.3"/><circle cx="776" cy="496" r="2" fill="#D3BE87"/>
-<path d="M112 125 H151 L190 205 H349" fill="none" stroke="#73BDC8" stroke-width="1.2" opacity=".53" class="trace"/>
-<circle r="3.9" fill="#88E0D7" opacity=".92"><animateMotion dur="5.8s" begin="-0.0s" repeatCount="indefinite" path="M112 125 H151 L190 205 H349"/></circle>
-<path d="M96 216 H147 L198 244 H349" fill="none" stroke="#73BDC8" stroke-width="1.2" opacity=".53" class="trace"/>
-<path d="M82 307 H138 L195 302 H349" fill="none" stroke="#73BDC8" stroke-width="1.2" opacity=".53" class="trace"/>
-<circle r="3.9" fill="#88E0D7" opacity=".92"><animateMotion dur="5.8s" begin="-2.8s" repeatCount="indefinite" path="M82 307 H138 L195 302 H349"/></circle>
-<path d="M107 411 H155 L204 367 H349" fill="none" stroke="#73BDC8" stroke-width="1.2" opacity=".53" class="trace"/>
-<path d="M171 493 H198 L226 397 H349" fill="none" stroke="#73BDC8" stroke-width="1.2" opacity=".53" class="trace"/>
-<circle r="3.9" fill="#88E0D7" opacity=".92"><animateMotion dur="5.8s" begin="-5.6s" repeatCount="indefinite" path="M171 493 H198 L226 397 H349"/></circle>
-<path d="M614 204 H778 L813 125 H848" fill="none" stroke="#74BDC8" stroke-width="1.2" opacity=".53" class="trace trace-reverse"/>
-<circle r="3.8" fill="#D7C18B" opacity=".92"><animateMotion dur="6.4s" begin="-0.0s" repeatCount="indefinite" path="M614 204 H778 L813 125 H848"/></circle>
-<path d="M614 247 H767 L816 218 H865" fill="none" stroke="#74BDC8" stroke-width="1.2" opacity=".53" class="trace trace-reverse"/>
-<path d="M614 304 H764 L819 313 H875" fill="none" stroke="#74BDC8" stroke-width="1.2" opacity=".53" class="trace trace-reverse"/>
-<circle r="3.8" fill="#D7C18B" opacity=".92"><animateMotion dur="6.4s" begin="-4.2s" repeatCount="indefinite" path="M614 304 H764 L819 313 H875"/></circle>
-<path d="M614 367 H761 L801 411 H842" fill="none" stroke="#74BDC8" stroke-width="1.2" opacity=".53" class="trace trace-reverse"/>
-<path d="M614 398 H732 L754 496 H776" fill="none" stroke="#74BDC8" stroke-width="1.2" opacity=".53" class="trace trace-reverse"/>
-<circle r="3.8" fill="#D7C18B" opacity=".92"><animateMotion dur="6.4s" begin="-8.4s" repeatCount="indefinite" path="M614 398 H732 L754 496 H776"/></circle>
-<rect x="324" y="160" width="312" height="282" rx="28" fill="none" stroke="#A0C3CD" stroke-opacity=".22" stroke-width="1.2"/>
-<rect x="338" y="174" width="284" height="254" rx="21" fill="#153547" stroke="#8AC0C9" stroke-opacity=".6" stroke-width="1.7"/>
-<rect x="355" y="191" width="250" height="220" rx="16" fill="#1E4253" stroke="#91CED3" stroke-opacity=".31" stroke-width="1.3"/>
-<path d="M379 217 H581 M379 387 H581" stroke="#91C5CD" stroke-opacity=".18" stroke-width="1"/>
-<rect x="376" y="213" width="208" height="176" rx="12" fill="none" stroke="#D9C08C" stroke-opacity=".28" stroke-dasharray="4 8"/>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <rect x="80" y="86" width="800" height="428" rx="30" fill="url(#board)" stroke="#d0e1ec"/>
 
-<path d="M323 198 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 227 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 256 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 285 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 314 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 343 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 372 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M323 401 h-28 m342 0 h28" stroke="#A5D1D9" opacity=".75" stroke-width="3" stroke-linecap="round"/>
-<path d="M384 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M423 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M462 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M501 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M540 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M579 173 v-22 m0 277 v22" stroke="#A5D1D9" opacity=".7" stroke-width="3" stroke-linecap="round"/>
-<path d="M480 236 L536 258 V302 C536 345 510 370 480 386 C450 370 424 345 424 302 V258 Z" fill="#27586A" stroke="#A1DDDA" stroke-width="2.7" stroke-linejoin="round"/>
-<path d="M480 252 L522 269 V304 C522 335 505 354 480 368 C455 354 438 335 438 304 V269 Z" fill="#173C4B" stroke="#C5DFDF" stroke-opacity=".23" stroke-width="1.3"/>
-<path d="M462 297 V289 A18 18 0 0 1 498 289 V297" stroke="#DADFCB" fill="none" stroke-width="5" stroke-linecap="round"/>
-<rect x="454" y="296" width="52" height="47" rx="6" fill="none" stroke="#A9E2E0" stroke-width="4"/>
-<circle cx="480" cy="316" r="5" fill="#D8C58F"/>
-<path d="M480 320 V329" stroke="#D8C58F" stroke-width="3" stroke-linecap="round"/>
+  <g opacity="0.45">
+    <circle cx="154" cy="148" r="4.5" fill="#94bcd2"/>
+    <circle cx="806" cy="138" r="4.5" fill="#94bcd2"/>
+    <circle cx="142" cy="466" r="4.5" fill="#94bcd2"/>
+    <circle cx="818" cy="456" r="4.5" fill="#94bcd2"/>
+  </g>
 
-<rect x="347" y="183" width="266" height="236" rx="18" fill="none" stroke="#80D8D7" stroke-width="2.2" stroke-dasharray="46 710" opacity=".7"><animate attributeName="stroke-dashoffset" from="0" to="-756" dur="10s" repeatCount="indefinite"/></rect>
-<rect x="140" y="275" width="110" height="54" rx="8" fill="#1B3B4B" stroke="#8BBCC7" stroke-opacity=".38"/>
-<rect x="157" y="293" width="11" height="17" rx="2" fill="#A0DBDD" opacity=".2"/>
-<rect x="157" y="305" width="11" height="5" rx="1.5" fill="#A0DBDD" opacity=".75" class="pulse pulse-last"/>
-<rect x="176" y="293" width="11" height="17" rx="2" fill="#A0DBDD" opacity=".2"/>
-<rect x="176" y="298" width="11" height="12" rx="1.5" fill="#A0DBDD" opacity=".75" class="pulse pulse-later"/>
-<rect x="195" y="293" width="11" height="17" rx="2" fill="#A0DBDD" opacity=".2"/>
-<rect x="195" y="305" width="11" height="5" rx="1.5" fill="#A0DBDD" opacity=".75" class="pulse pulse-last"/>
-<rect x="214" y="293" width="11" height="17" rx="2" fill="#A0DBDD" opacity=".2"/>
-<rect x="214" y="298" width="11" height="12" rx="1.5" fill="#A0DBDD" opacity=".75" class="pulse pulse-later"/>
-<rect x="710" y="275" width="110" height="54" rx="8" fill="#1B3B4B" stroke="#8BBCC7" stroke-opacity=".38"/>
-<rect x="727" y="293" width="11" height="17" rx="2" fill="#DCC48C" opacity=".2"/>
-<rect x="727" y="305" width="11" height="5" rx="1.5" fill="#DCC48C" opacity=".75" class="pulse pulse-last"/>
-<rect x="746" y="293" width="11" height="17" rx="2" fill="#DCC48C" opacity=".2"/>
-<rect x="746" y="298" width="11" height="12" rx="1.5" fill="#DCC48C" opacity=".75" class="pulse pulse-later"/>
-<rect x="765" y="293" width="11" height="17" rx="2" fill="#DCC48C" opacity=".2"/>
-<rect x="765" y="305" width="11" height="5" rx="1.5" fill="#DCC48C" opacity=".75" class="pulse pulse-last"/>
-<rect x="784" y="293" width="11" height="17" rx="2" fill="#DCC48C" opacity=".2"/>
-<rect x="784" y="298" width="11" height="12" rx="1.5" fill="#DCC48C" opacity=".75" class="pulse pulse-later"/>
-<path d="M194 250 Q264 192 316 215" fill="none" stroke="#91C5CD" stroke-opacity=".45" stroke-dasharray="3 8"/>
-<path d="M630 385 Q691 423 762 364" fill="none" stroke="#DCC48C" stroke-opacity=".45" stroke-dasharray="3 8"/>
-<circle cx="480" cy="301" r="151" fill="none" stroke="#7EC1CC" stroke-opacity=".12" stroke-width="1" stroke-dasharray="3 11"/>
+  <g transform="translate(480 300)">
+    <path class="trace" d="M-212 -128H-128L-84 -84H-24"/>
+    <path class="trace rev" d="M212 -128H128L84 -84H24"/>
+    <path class="trace" d="M-212 128H-128L-84 84H-24"/>
+    <path class="trace rev" d="M212 128H128L84 84H24"/>
+    <path class="trace rev" d="M-236 0H-116L-78 0H-24"/>
+    <path class="trace" d="M236 0H116L78 0H24"/>
 
+    <circle class="packet packet1" cx="-24" cy="-24" r="5" fill="#82d0ef"/>
+    <circle class="packet packet2" cx="24" cy="-24" r="5" fill="#82d0ef"/>
+    <circle class="packet packet3" cx="24" cy="24" r="5" fill="#82d0ef"/>
+    <circle class="packet packet4" cx="-24" cy="24" r="5" fill="#82d0ef"/>
+
+    <rect x="-112" y="-112" width="224" height="224" rx="24" fill="#f7fbfe" stroke="#bbd3e2" stroke-width="2"/>
+    <rect x="-84" y="-84" width="168" height="168" rx="18" fill="url(#chip)" stroke="#5c89a4" stroke-width="2.2"/>
+    <rect x="-56" y="-56" width="112" height="112" rx="14" fill="#2e566c" stroke="#9ec7da" stroke-width="1.8"/>
+
+    <g fill="#aecddd">
+      <rect x="-145" y="-70" width="33" height="9" rx="4.5"/>
+      <rect x="-145" y="-31" width="33" height="9" rx="4.5"/>
+      <rect x="-145" y="8" width="33" height="9" rx="4.5"/>
+      <rect x="-145" y="47" width="33" height="9" rx="4.5"/>
+      <rect x="112" y="-70" width="33" height="9" rx="4.5"/>
+      <rect x="112" y="-31" width="33" height="9" rx="4.5"/>
+      <rect x="112" y="8" width="33" height="9" rx="4.5"/>
+      <rect x="112" y="47" width="33" height="9" rx="4.5"/>
+      <rect x="-70" y="-145" width="9" height="33" rx="4.5"/>
+      <rect x="-31" y="-145" width="9" height="33" rx="4.5"/>
+      <rect x="8" y="-145" width="9" height="33" rx="4.5"/>
+      <rect x="47" y="-145" width="9" height="33" rx="4.5"/>
+      <rect x="-70" y="112" width="9" height="33" rx="4.5"/>
+      <rect x="-31" y="112" width="9" height="33" rx="4.5"/>
+      <rect x="8" y="112" width="9" height="33" rx="4.5"/>
+      <rect x="47" y="112" width="9" height="33" rx="4.5"/>
+    </g>
+
+    <g class="chipGlow">
+      <circle cx="0" cy="0" r="73" fill="#6ec9eb" opacity="0.14"/>
+      <circle cx="0" cy="0" r="92" fill="#6ec9eb" opacity="0.08"/>
+    </g>
+
+    <g transform="translate(0 -4)">
+      <path d="M0-28c18 0 33 14 33 32v11H17V4c0-9-7-16-17-16S-17-5-17 4v11h-16V4c0-18 15-32 33-32Z" fill="#d9edf8"/>
+      <rect x="-40" y="13" width="80" height="62" rx="12" fill="#e8f5fc" stroke="#a5c8db" stroke-width="2"/>
+      <circle cx="0" cy="44" r="7" fill="#5c89a4"/>
+      <path d="M0 51v10" stroke="#5c89a4" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <rect class="scan" x="-76" y="-78" width="152" height="18" rx="9" fill="#ffffff" opacity="0.18"/>
+  </g>
+
+  <g opacity="0.5">
+    <path d="M132 180h74M132 420h102M754 183h74M728 421h100" stroke="#b5d1e1" stroke-width="2" stroke-linecap="round"/>
+  </g>
 </svg>
