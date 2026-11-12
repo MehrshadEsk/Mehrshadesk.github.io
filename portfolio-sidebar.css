@@ -576,3 +576,121 @@
 :root[data-theme="dark"] .home-page .hero-actions .btn.primary{background:#D0A0AB;border-color:#D0A0AB;color:#142C32}
 :root[data-theme="dark"] .home-page .hero-actions .btn.primary:hover{background:#E1BAC3;border-color:#E1BAC3}
 @media(max-width:760px){.home-page .hero-identity h1{font-size:clamp(34px,8.15vw,58px);letter-spacing:-.077em}.home-page .hero-identity h1::after{margin-top:20px}}
+
+
+/* November 2026: compact connection epilogue and refined native navigation. */
+.home-page .contact {
+  padding-block: clamp(30px, 3.1vw, 44px);
+  border-top: 1px solid var(--line);
+}
+.home-page .contact-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(205px, 250px);
+  gap: clamp(26px, 4.2vw, 64px);
+  align-items: start;
+}
+.home-page .contact .kicker { margin-bottom: 9px; }
+.home-page .contact h2 { margin-bottom: 18px; font-size: clamp(30px, 3vw, 40px); }
+.home-page .contact-postscript {
+  max-width: 780px;
+  padding-inline-start: 16px;
+  border-inline-start: 2px solid var(--dusty-rose);
+  color: var(--muted);
+}
+.home-page .contact-postscript p {
+  margin: 0 0 9px;
+  font-size: 12.5px;
+  line-height: 1.66;
+  text-align: left;
+  text-align-last: left;
+  hyphens: none;
+}
+.home-page .contact-postscript p:last-child { margin-bottom: 0; color: var(--ink); }
+.home-page .contact-actions { min-width: 0; padding-top: 4px; }
+.home-page .contact-actions > .contact-profile-label { margin-bottom: 6px; color: var(--chapter-accent); }
+.home-page .contact-email {
+  min-height: 40px;
+  padding-block: 6px;
+  gap: 12px;
+  font-size: clamp(15px, 1.45vw, 18px);
+}
+.home-page .contact-profiles { padding-top: 23px; }
+.home-page .contact-profiles .contact-profile-label { margin-bottom: 7px; }
+.home-page .contact-profiles > a { min-height: 38px; padding-block: 8px; }
+
+/* Page scrollbar stays subtle and consistent with the petrol-navy palette. */
+html:has(body.home-page) {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #55767B var(--bg);
+  scroll-padding-top: 90px;
+}
+html:has(body.home-page)::-webkit-scrollbar { width: 10px; }
+html:has(body.home-page)::-webkit-scrollbar-track { background: var(--bg); }
+html:has(body.home-page)::-webkit-scrollbar-thumb {
+  background: #55767B;
+  border: 2px solid var(--bg);
+  border-radius: 20px;
+}
+html:has(body.home-page)::-webkit-scrollbar-thumb:hover { background: #285259; }
+:root[data-theme="dark"]:has(body.home-page) { scrollbar-color: #77999D var(--bg); }
+:root[data-theme="dark"]:has(body.home-page)::-webkit-scrollbar-thumb { background: #77999D; }
+:root[data-theme="dark"]:has(body.home-page)::-webkit-scrollbar-thumb:hover { background: #BA8793; }
+
+/* Sidebar: slimmer rounded rail with clear but low-key interaction feedback. */
+.portfolio-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #72959B var(--sidebar-bg);
+  scroll-behavior: smooth;
+  scroll-padding-block: 22px;
+}
+.portfolio-sidebar::-webkit-scrollbar { width: 7px; }
+.portfolio-sidebar::-webkit-scrollbar-track { background: var(--sidebar-bg); }
+.portfolio-sidebar::-webkit-scrollbar-thumb {
+  background: #72959B;
+  border: 2px solid var(--sidebar-bg);
+  border-radius: 20px;
+}
+.portfolio-sidebar::-webkit-scrollbar-thumb:hover { background: var(--sidebar-accent); }
+.sidebar-nav-link { transition: color .24s ease, background-color .24s ease, border-color .24s ease; }
+.sidebar-nav-list.indicator-animated::before,
+.sidebar-nav-list.indicator-animated::after {
+  transition: transform .52s var(--sidebar-ease), height .3s var(--sidebar-ease), opacity .2s ease;
+}
+
+/* Thin reading-position indicator over the sticky toolbar. */
+.site-scroll-progress {
+  position: fixed;
+  z-index: 85;
+  pointer-events: none;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: 3px;
+  overflow: hidden;
+}
+.site-scroll-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left center;
+  background: var(--dusty-rose);
+  will-change: transform;
+}
+@media (max-width: 1024px) {
+  .site-scroll-progress { left: 0; }
+}
+@media (max-width: 760px) {
+  .home-page .contact { padding-block: 28px 32px; }
+  .home-page .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .home-page .contact h2 { margin-bottom: 16px; font-size: 34px; }
+  .home-page .contact-postscript p { font-size: 12.5px; line-height: 1.66; }
+  .home-page .contact-actions { padding-top: 4px; }
+  .home-page .contact-profiles { padding-top: 15px; }
+  .home-page .contact-profiles > a { min-height: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.home-page), .portfolio-sidebar { scroll-behavior: auto; }
+  .sidebar-nav-link, .sidebar-nav-list.indicator-animated::before,
+  .sidebar-nav-list.indicator-animated::after { transition: none; }
+}

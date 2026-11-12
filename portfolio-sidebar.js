@@ -152,3 +152,28 @@
   setOpen(false);
   updateActiveSection();
 })();
+
+
+/* Scroll-position indicator: requestAnimationFrame-coalesced and passive. */
+(() => {
+  const indicator = document.querySelector('.site-scroll-progress');
+  if (!indicator) return;
+  let scheduled = false;
+  const update = () => {
+    scheduled = false;
+    const root = document.documentElement;
+    const total = Math.max(0, root.scrollHeight - window.innerHeight);
+    const position = Math.min(1, Math.max(0, total ? window.scrollY / total : 0));
+    indicator.style.setProperty('--reading-progress', position.toFixed(4));
+  };
+  const schedule = () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('load', schedule, { once: true });
+  window.addEventListener('pageshow', schedule);
+  schedule();
+})();

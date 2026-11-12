@@ -145,7 +145,7 @@ header,.app-header{background:var(--bg);box-shadow:none;border-bottom:1px solid 
 .card,.panel,dialog,.notice,.fact,.clock,.photo-frame,.map-preview,.upload,.end-option{border-radius:0;box-shadow:none;background:var(--bg)}
 input,select,textarea,button{border-radius:0;font-family:inherit}
 .primary,.btn:not(.done){background:var(--accent);color:var(--charcoal);border-color:var(--accent);box-shadow:none}
-.brand::before{content:'m.';font-family:Consolas,'Liberation Mono',monospace;color:var(--charcoal);font-size:30px;line-height:1;margin-inline-end:16px;direction:ltr;display:inline-block}
+.brand::before{content:'m.';font-family:'Space Grotesk',sans-serif;color:var(--charcoal);font-size:30px;line-height:1;margin-inline-end:16px;direction:ltr;display:inline-block}
 button,input,select{min-height:44px}body [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
