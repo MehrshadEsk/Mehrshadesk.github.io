@@ -1,8 +1,8 @@
 @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-400.woff2') format('woff2');font-display:swap;font-weight:400}
 @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-500.woff2') format('woff2');font-display:swap;font-weight:500}
 @font-face{font-family:'Space Grotesk';src:url('assets/fonts/space-grotesk-600.woff2') format('woff2');font-display:swap;font-weight:600}
-:root{color-scheme:light;--vault-bg:#fafaf9;--vault-ink:#18364a;--vault-muted:#7190a3;--vault-line:#d9e4e9;--vault-panel:#fff;--vault-blue:#2479ac;--vault-focus:#2b88b6}
-:root[data-theme="dark"]{color-scheme:dark;--vault-bg:#15222b;--vault-ink:#eff7fb;--vault-muted:#a7becd;--vault-line:#40535f;--vault-panel:#1b303d;--vault-blue:#6cb5df;--vault-focus:#8acaf1}
+:root{color-scheme:light;--vault-bg:#FFFFFF;--vault-ink:#1B3439;--vault-muted:#657875;--vault-line:#DAE2DF;--vault-panel:#fff;--vault-blue:#20515A;--vault-focus:#2C6267}
+:root[data-theme="dark"]{color-scheme:dark;--vault-bg:#0D242A;--vault-ink:#ECF3F1;--vault-muted:#ADBEBB;--vault-line:#34555B;--vault-panel:#17363D;--vault-blue:#D0A0AB;--vault-focus:#E0BAC3}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{min-height:100%;background:var(--vault-bg)}

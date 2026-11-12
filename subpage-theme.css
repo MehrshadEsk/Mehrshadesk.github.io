@@ -8,4 +8,4 @@
 
 .private-page main{width:min(680px,calc(100% - 40px));margin:auto;padding-block:56px}.private-page main .eyebrow{margin-bottom:24px}.private-page main p{color:var(--muted)}
 
-.ref-main .application span{margin-inline-end:6px}.ref-main .intro{font-size:14px;line-height:1.9;max-width:700px;margin-block:18px}.code{font-family:"Space Grotesk",sans-serif}
+.ref-main .application span{margin-inline-end:6px}.ref-main .intro{font-size:14px;line-height:1.9;max-width:700px;margin-block:18px}.code{font-family:Consolas,sans-serif}

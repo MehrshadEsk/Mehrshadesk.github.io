@@ -1,7 +1,7 @@
 /* Restrained research pages: a short introduction, quiet focus sections,
    a gallery of paper-shaped publications, and no closing promotion. */
-.research-page{--bg:#F6F8FA;--ink:#142A3D;--muted:#5B6D7B;--line:#D7E0E8;--surface:#EDF2F5;--accent:#206F84;--width:1160px;background:var(--bg);color:var(--ink)}
-:root[data-theme=dark] .research-page{--bg:#0D1C2B;--ink:#ECF2F5;--muted:#A6B7C4;--line:#344A5B;--surface:#152B3D;--accent:#84CBD0}
+.research-page{--bg:#FFFFFF;--ink:#1B3439;--muted:#536866;--line:#DAE2DF;--surface:#F6F8F7;--accent:#20515A;--width:1160px;background:var(--bg);color:var(--ink)}
+:root[data-theme=dark] .research-page{--bg:#0D242A;--ink:#ECF3F1;--muted:#ADBEBB;--line:#34555B;--surface:#17363D;--accent:#D0A0AB}
 .research-page .site-header{background:var(--bg);border-color:var(--line)}
 .research-page .nav{min-height:78px}
 .research-page .brand .mark i{color:var(--accent)}
@@ -50,7 +50,7 @@
 .publication-card:hover{color:var(--ink);border-color:var(--accent);box-shadow:0 8px 28px rgba(33,54,68,.045)}
 .publication-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .paper-preview{position:relative;isolation:isolate;aspect-ratio:1/1.414;min-width:0;overflow:hidden;display:flex;flex-direction:column;background:#fff;color:#263440;border:1px solid #e0e5e8;box-shadow:3px 5px 0 #edf0f0,6px 9px 16px rgba(38,56,70,.07);padding:12px 10px 9px;font-family:Georgia,'Times New Roman',serif;transform:perspective(850px) rotateY(-4deg) rotateZ(-1deg);transform-origin:center left}
-.paper-preview-venue{font-family:'Space Grotesk',sans-serif;font-size:5.5px;line-height:1.4;letter-spacing:.02em;color:#607080;min-height:12px}
+.paper-preview-venue{font-family:Consolas,'Liberation Mono',monospace;font-size:5.5px;line-height:1.4;letter-spacing:.02em;color:#607080;min-height:12px}
 .paper-preview-rule{margin:4px 0 7px;height:1px;background:#8193a0;flex-shrink:0}
 .paper-preview-title{font-size:7.4px;font-weight:700;line-height:1.36;text-align:center;overflow-wrap:break-word}
 .paper-preview-authors{font-size:4.1px;line-height:1.5;text-align:center;margin-top:6px;max-height:20px;overflow:hidden;color:#68737b}
@@ -59,7 +59,7 @@
 .paper-preview-abstract i:last-child{width:67%}
 .paper-preview-columns{display:grid;grid-template-columns:1fr 1fr;gap:5px;flex:1;min-height:12px;margin-top:7px;overflow:hidden}
 .paper-preview-columns>span{display:block;background:repeating-linear-gradient(to bottom,#d8dde1 0,#d8dde1 1px,transparent 1px,transparent 3px);opacity:.85}
-.paper-preview-year{margin-top:6px;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:5px;color:#7b8791}
+.paper-preview-year{margin-top:6px;text-align:center;font-family:Consolas,'Liberation Mono',monospace;font-size:5px;color:#7b8791}
 .publication-details{min-width:0;display:flex;flex-direction:column;align-items:stretch}
 .publication-kind{font-size:8px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
 .research-page .publication-title{font-size:15px;font-weight:500;line-height:1.55;letter-spacing:-.01em;text-align:justify;text-align-last:left;hyphens:none;margin:0 0 13px}

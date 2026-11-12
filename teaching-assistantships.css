@@ -1,20 +1,20 @@
 /* Teaching assistantships — minimal academic register
-   Blue row hover matches the main portfolio sidebar (#d6e6f4).
+   Blue row hover matches the main portfolio sidebar (#EFF4F1).
    The desktop and mobile lists share the same restrained visual language. */
 .ta-page-body {
   --ta-rule: var(--line);
   --ta-secondary: var(--muted);
   --ta-quiet: color-mix(in srgb, var(--muted) 76%, var(--bg));
-  --ta-blue-hover: #d6e6f4;
-  --ta-blue-ink: #203e55;
-  --ta-blue-line: #315d80;
+  --ta-blue-hover: #EFF4F1;
+  --ta-blue-ink: #20515A;
+  --ta-blue-line: #20515A;
   color: var(--ink);
   background: var(--bg);
 }
 :root[data-theme="dark"] .ta-page-body {
-  --ta-blue-hover: #2e495e;
-  --ta-blue-ink: #e6f3ff;
-  --ta-blue-line: #a5cde8;
+  --ta-blue-hover: #264950;
+  --ta-blue-ink: #E5ECE9;
+  --ta-blue-line: #D0A0AB;
 }
 .ta-page-body main { overflow: clip; }
 .ta-page-body p { text-align: start; text-align-last: auto; }
