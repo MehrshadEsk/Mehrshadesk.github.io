@@ -1,7 +1,7 @@
 /* Restrained research pages: a short introduction, quiet focus sections,
    a gallery of paper-shaped publications, and no closing promotion. */
-.research-page{--bg:#f8f8f6;--ink:#1c3342;--muted:#637480;--line:#dbe1e4;--surface:#eef1f2;--accent:#356b7d;--width:1160px;background:var(--bg);color:var(--ink)}
-:root[data-theme=dark] .research-page{--bg:#101c25;--ink:#dce6eb;--muted:#9aadb9;--line:#2b3e4a;--surface:#162631;--accent:#8ebdc5}
+.research-page{--bg:#F6F8FA;--ink:#142A3D;--muted:#5B6D7B;--line:#D7E0E8;--surface:#EDF2F5;--accent:#206F84;--width:1160px;background:var(--bg);color:var(--ink)}
+:root[data-theme=dark] .research-page{--bg:#0D1C2B;--ink:#ECF2F5;--muted:#A6B7C4;--line:#344A5B;--surface:#152B3D;--accent:#84CBD0}
 .research-page .site-header{background:var(--bg);border-color:var(--line)}
 .research-page .nav{min-height:78px}
 .research-page .brand .mark i{color:var(--accent)}
