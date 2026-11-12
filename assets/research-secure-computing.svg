@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" fill="none">
+<rect width="960" height="640" rx="36" fill="#09111B"/>
+<rect x="68" y="74" width="824" height="492" rx="28" fill="url(#bg)" stroke="#29384A"/>
+<g opacity="0.36">
+<path d="M170 180h90M170 460h120M703 170h87M692 469h96" stroke="#5B6F89"/>
+<circle cx="260" cy="180" r="4" fill="#74B3FF"/><circle cx="290" cy="460" r="4" fill="#76FFD6"/><circle cx="789" cy="170" r="4" fill="#76FFD6"/><circle cx="692" cy="469" r="4" fill="#74B3FF"/>
+</g>
+<g filter="url(#f0)">
+<path d="M480 141 621 191V304c0 106-72 180-141 211-69-31-141-105-141-211V191l141-50Z" fill="#0D1722" stroke="url(#g1)" stroke-width="2"/>
+<path d="M480 182 584 219v80c0 74-47 128-104 157-57-29-104-83-104-157v-80l104-37Z" fill="#101D2B" stroke="#2F445B"/>
+<rect x="430" y="282" width="100" height="78" rx="18" fill="#122132" stroke="#7DB7FF" stroke-width="2"/>
+<path d="M450 282v-18c0-17 13-30 30-30s30 13 30 30v18" stroke="#76FFD6" stroke-width="3" stroke-linecap="round"/>
+<circle cx="480" cy="319" r="10" fill="#76FFD6"/>
+<path d="M480 327v15" stroke="#0D1722" stroke-width="4" stroke-linecap="round"/>
+</g>
+<g opacity="0.92" stroke-linecap="round">
+<path d="M339 228H250c-18 0-32 14-32 32v65" stroke="#5888D8" stroke-width="2.5"/>
+<path d="M621 228h89c18 0 32 14 32 32v65" stroke="#76FFD6" stroke-width="2.5"/>
+<path d="M378 372H272c-18 0-32 14-32 32v42" stroke="#5888D8" stroke-width="2.5"/>
+<path d="M582 372h106c18 0 32 14 32 32v42" stroke="#76FFD6" stroke-width="2.5"/>
+<path d="M480 395v70" stroke="url(#g2)" stroke-width="3"/>
+</g>
+<g filter="url(#f1)">
+<rect x="183" y="309" width="70" height="70" rx="18" fill="#0D1722" stroke="#6FA7F8" stroke-width="1.5"/>
+<rect x="707" y="309" width="70" height="70" rx="18" fill="#0D1722" stroke="#76FFD6" stroke-width="1.5"/>
+<rect x="205" y="440" width="70" height="70" rx="18" fill="#0D1722" stroke="#6FA7F8" stroke-width="1.5"/>
+<rect x="685" y="440" width="70" height="70" rx="18" fill="#0D1722" stroke="#76FFD6" stroke-width="1.5"/>
+<rect x="445" y="466" width="70" height="70" rx="18" fill="#0D1722" stroke="#8EC2FF" stroke-width="1.5"/>
+</g>
+<g opacity="0.9">
+<circle cx="218" cy="344" r="8" fill="#6FA7F8"/><circle cx="742" cy="344" r="8" fill="#76FFD6"/><circle cx="240" cy="475" r="8" fill="#6FA7F8"/><circle cx="720" cy="475" r="8" fill="#76FFD6"/><circle cx="480" cy="501" r="8" fill="#9CCBFF"/>
+<path d="M218 344h16M242 344h16M742 344h16M240 475h16M720 475h16M480 501h16" stroke="#D5E3F8" stroke-opacity=".4" stroke-linecap="round"/>
+</g>
+<g opacity="0.35">
+<path d="M410 144h140" stroke="#304256"/><path d="M360 530h245" stroke="#304256"/>
+</g>
+<defs>
+<linearGradient id="bg" x1="480" y1="74" x2="480" y2="566" gradientUnits="userSpaceOnUse"><stop stop-color="#0D1722"/><stop offset="1" stop-color="#0A121C"/></linearGradient>
+<linearGradient id="g1" x1="339" y1="141" x2="621" y2="515" gradientUnits="userSpaceOnUse"><stop stop-color="#74B3FF"/><stop offset="1" stop-color="#76FFD6"/></linearGradient>
+<linearGradient id="g2" x1="480.5" y1="395" x2="480.5" y2="465" gradientUnits="userSpaceOnUse"><stop stop-color="#74B3FF"/><stop offset="1" stop-color="#76FFD6"/></linearGradient>
+<filter id="f0" x="301" y="117" width="358" height="285" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="12"/><feGaussianBlur stdDeviation="16"/><feColorMatrix values="0 0 0 0 0.027451 0 0 0 0 0.0588235 0 0 0 0 0.109804 0 0 0 0.44 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/></filter>
+<filter id="f1" x="167" y="293" width="626" height="259" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feGaussianBlur in="BackgroundImageFix" stdDeviation="2" result="effect1_backgroundBlur_1_2"/><feBlend in="SourceGraphic" in2="effect1_backgroundBlur_1_2" result="shape"/></filter>
+</defs>
+</svg>
