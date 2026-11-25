@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Signal project team registration.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Signal — Team registration</title>
+  <link rel="canonical" href="https://mehrshadesk.ir/signal/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='white'/%3E%3Cpath d='M8 23h6l4-11 5 17 4-9h5' fill='none' stroke='%23821e3a' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css?v=5">
+  <script src="./config.js?v=5" defer></script>
+  <script src="./background.js?v=5" defer></script>
+  <script src="./app.js?v=5" defer></script>
+  <link rel="stylesheet" href="./deadline.css?v=5">
+  <script src="./deadline.js?v=5" defer></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="scene-vignette" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Signal registration">signal<span class="brand-dot">.</span></a>
+    <a class="home-link" href="https://mehrshadesk.ir/">mehrshadesk.ir</a>
+  </header>
+  <main>
+    <section class="panel" aria-label="Team registration">
+      <section class="signal-deadline" aria-labelledby="deadline-status">
+        <div class="signal-deadline-label">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span id="deadline-status" role="status">Registration deadline</span>
+        </div>
+        <div class="signal-countdown" aria-label="Time remaining" role="timer" aria-live="off">
+          <div><strong id="cd-days">--</strong><span>DAYS</span></div>
+          <div><strong id="cd-hours">--</strong><span>HOURS</span></div>
+          <div><strong id="cd-minutes">--</strong><span>MIN</span></div>
+          <div><strong id="cd-seconds">--</strong><span>SEC</span></div>
+        </div>
+        <p class="signal-deadline-date"><time datetime="2026-11-27T23:59:00+03:30">Friday, 27 November 2026 · 11:59 PM</time><br>Tehran time</p>
+      </section>
+      <div id="registration-view">
+        <form id="registration" novalidate autocomplete="on">
+          <span class="sr-only" id="member-count" aria-live="polite">1 / 3</span>
+          <div id="members"></div>
+          <button class="add-button" id="add-member" type="button"><span aria-hidden="true">+</span> Add teammate</button>
+          <fieldset class="project-fieldset"><legend class="sr-only">Project</legend>
+            <div class="projects">
+              <label class="project-option"><input type="radio" name="project" value="A" aria-describedby="project-error" required><span class="project-tile"><span>Project A</span><span class="selection-dot" aria-hidden="true"></span></span></label>
+              <label class="project-option"><input type="radio" name="project" value="B" aria-describedby="project-error" required><span class="project-tile"><span>Project B</span><span class="selection-dot" aria-hidden="true"></span></span></label>
+              <label class="project-option"><input type="radio" name="project" value="C" aria-describedby="project-error" required><span class="project-tile"><span>Project C</span><span class="selection-dot" aria-hidden="true"></span></span></label>
+              <label class="project-option"><input type="radio" name="project" value="D" aria-describedby="project-error" required><span class="project-tile"><span>Project D</span><span class="selection-dot" aria-hidden="true"></span></span></label>
+            </div>
+            <p id="project-error" class="field-error" hidden>Select a project.</p>
+          </fieldset>
+          <div class="bot-field" aria-hidden="true"><label>Website<input name="website" id="website" tabindex="-1" autocomplete="off"></label></div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          <button class="submit-button" id="submit" type="submit"><span id="submit-label">Register team</span><svg id="submit-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg><span class="spinner" hidden aria-hidden="true"></span></button>
+        </form>
+      </div>
+      <div id="success-view" class="success-view" hidden tabindex="-1">
+        <h1>Registered<span>.</span></h1>
+        <p id="success-summary"></p><div class="receipt"><span>Registration ID</span><strong id="receipt-id"></strong></div>
+      </div>
+      <section class="signal-registered" aria-labelledby="registered-title">
+        <div class="signal-registered-heading"><h2 id="registered-title">Registered students</h2><span>16 students</span></div>
+        <ul class="signal-registered-grid">
+          <li>404243032</li>
+          <li>404243080</li>
+          <li>404243018</li>
+          <li>404243074</li>
+          <li>404243066</li>
+          <li>404243052</li>
+          <li>404243048</li>
+          <li>404243078</li>
+          <li>404243077</li>
+          <li>404243016</li>
+          <li>404243095</li>
+          <li>403243005</li>
+          <li>404243024</li>
+          <li>404243002</li>
+          <li>402243132</li>
+          <li>403243006</li>
+        </ul>
+      </section>
+      <footer class="panel-footer"><a href="https://t.me/mehesk" target="_blank" rel="noopener noreferrer" aria-label="Contact @mehesk on Telegram">@mehesk</a></footer>
+    </section>
+  </main>
+  <noscript><p class="noscript">Enable JavaScript to register your team. Questions? <a href="https://t.me/mehesk">@mehesk</a></p></noscript>
+  <template id="member-template">
+    <fieldset class="member">
+      <legend class="sr-only"><span class="member-name">Member 1</span></legend>
+      <button class="remove-button" type="button" hidden aria-label="Remove teammate"><span aria-hidden="true">×</span></button>
+      <label class="full-name-field">Full name<input data-field="name" type="text" maxlength="80" autocapitalize="words" spellcheck="false" required><span class="field-error" hidden></span></label>
+      <div class="field-row">
+        <label>Phone number<input data-field="phone" type="tel" inputmode="tel" maxlength="24" required><span class="field-error" hidden></span></label>
+        <label>Student ID<input data-field="studentId" type="text" inputmode="numeric" maxlength="20" spellcheck="false" required><span class="field-error" hidden></span></label>
+      </div>
+    </fieldset>
+  </template>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.signal-deadline {
+  box-sizing: border-box;
+  margin: 0 0 26px;
+  padding: 18px 14px 16px;
+  border: 1px solid rgba(130,30,58,.13);
+  border-radius: 14px;
+  background: rgba(130,30,58,.035);
+}
+.signal-deadline-label {
+  display: flex; align-items: center; justify-content: center;
+  gap: 7px; color: #821e3a; font-size: 12px; font-weight: 600;
+}
+.signal-deadline-label svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.signal-countdown { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 19px 0 15px; }
+.signal-countdown > div { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.signal-countdown > div + div { border-left: 1px solid rgba(130,30,58,.12); }
+.signal-countdown strong { color: #821e3a; font-size: clamp(21px,5.8vw,32px); font-weight: 550; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.8px; }
+.signal-countdown span { color: #6e6268; font-size: 9px; letter-spacing: .8px; font-weight: 600; }
+.signal-deadline-date { margin: 0; text-align: center; color: #6e6268; font-size: 11px; line-height: 1.65; }
+.signal-registered { margin: 26px 0 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,.09); }
+.signal-registered-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.signal-registered-heading h2 { margin: 0; font-size: 13px; font-weight: 600; }
+.signal-registered-heading span { color: #6e6268; font-size: 11px; }
+.signal-registered-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.signal-registered-grid li { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid rgba(0,0,0,.045); border-radius: 7px; background: rgba(0,0,0,.025); font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.signal-registered-grid li::before { content: ''; width: 7px; height: 4px; border-left: 1.5px solid #821e3a; border-bottom: 1.5px solid #821e3a; transform: rotate(-45deg); flex-shrink: 0; }
+@media(max-width: 340px) { .signal-registered-grid { grid-template-columns: 1fr; } }
